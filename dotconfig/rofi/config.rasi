@@ -1,0 +1,17 @@
+configuration {
+	width: 14;
+	lines: 4;
+	font: "Noto Mono 10";
+	bw: 4;
+	location: 2;
+	padding: 10;
+	yoffset: 60;
+	fixed-num-lines: false;
+	disable-history: true;
+	line-margin: 0;
+	separator-style: "solid";
+	hide-scrollbar: true;
+	dpi: 92;
+	theme: "~/.cache/wal/colors-rofi-light.rasi";
+	display-run: "run"; 
+}
