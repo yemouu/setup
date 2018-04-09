@@ -34,7 +34,7 @@ fi
 # Start up programs
 start-pulseaudio-x11 &
 compton &
-wal -lR &
+wal -lR -o "wal-set" &
 
 # Start WM/DE
 session=${1:-bspwm}

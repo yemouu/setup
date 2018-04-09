@@ -13,5 +13,4 @@ configuration {
 	hide-scrollbar: true;
 	dpi: 92;
 	theme: "~/.cache/wal/colors-rofi-light.rasi";
-	display-run: "run"; 
 }

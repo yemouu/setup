@@ -24,8 +24,16 @@ a ll="ls -lh"
 a lla="ls -lAh"
 a {cl,cls}="c;l"
 
+a xup="sudo xbps-install -Suv"
+a xorph="sudo xbps-remove -Oo"
+a xfind="xbps-query -Rs"
+a xpkgc="xbps-query -l | wc -l"
+a xget="sudo xbps-install -S"
+a xrm="sudo xbps-remove -R"
+
 a poweroff="sudo poweroff"
 a {reboot,restart}="sudo reboot"
+a {sleep,zzz}="sudo zzz"
 
 scf(){
 	curdir=$(pwd)
