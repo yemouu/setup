@@ -4,13 +4,19 @@ super + e
 super + Return
 	urxvt
 
+super + b
+	firefox
+
+super + d
+	discord-ptb
+
 super + r
 	rofi -show run
 
-super + Esc
+super + Escape
 	pkill -USR1 -x sxhkd
 
-super + shift + Esc
+super + shift + Escape
 	bspc quit
 
 super + {_,shift + }q

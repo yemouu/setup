@@ -33,12 +33,13 @@ fi
 
 # Start up programs
 start-pulseaudio-x11 &
-compton &
-wal -lR -o "wal-set" &
+#compton &
+wal -lR &
+wal-set &
 
 # Start WM/DE
-session=${1:-bspwm}
 case $session in
 	bspwm|b		) exec $STARTUP bspwm;;
-	*		) exec $STARTUP $1;;
+	herbstluftwm|h	) exec $STARTIP herbstluftwm --locked;;
+	*		) exec $STARTUP herbstluftwm --locked;;
 esac

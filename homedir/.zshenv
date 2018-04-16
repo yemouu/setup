@@ -1,3 +1,3 @@
 typeset -U path
-path=(~/.local/bin $path[@])
+path=(~/.local/bin/ $path[@])
 export EDITOR="nvim"

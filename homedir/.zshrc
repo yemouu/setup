@@ -9,7 +9,7 @@ zstyle ':completion:*' rehash true
 ttyctl -f
 
 PS1="[%{$fg_bold[red]%}%1~%{$reset_color%}] %{$fg_bold[yellow]%}%(!.%%.#)%{$fg_no_bold[yellow]%}%n%{$reset_color%} "
-RPS1="%{$fg[cyan]%}%~"
+RPS1="%{$fg[cyan]%}%~%{$reset_color%}"
 PS2="%{$fg_bold[yellow]%}%(!.%%.#) %{$fg_bold[red]%}%_ %{$fg_no_bold[yellow]%}> "
 RPS2="%{$fg[cyan]%}<"
 
@@ -30,15 +30,16 @@ a xfind="xbps-query -Rs"
 a xpkgc="xbps-query -l | wc -l"
 a xget="sudo xbps-install -S"
 a xrm="sudo xbps-remove -R"
+a xl="xbps-query -l"
+a xm="xbps-query -m"
 
 a poweroff="sudo poweroff"
 a {reboot,restart}="sudo reboot"
-a {sleep,zzz}="sudo zzz"
 
 scf(){
 	curdir=$(pwd)
 	cd ${HOME}/music/
-	scdl -l https://soundcloud.com/yeemou -fc
+	scdl -l https://soundcloud.com/yeemou -fc --onlymp3
 	cd ${curdir}
 	unset curdir
 }
