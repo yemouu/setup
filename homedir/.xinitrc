@@ -40,6 +40,5 @@ wal-set &
 # Start WM/DE
 case $session in
 	bspwm|b		) exec $STARTUP bspwm;;
-	herbstluftwm|h	) exec $STARTIP herbstluftwm --locked;;
-	*		) exec $STARTUP herbstluftwm --locked;;
+	*		) exec $STARTUP bspwm;;
 esac
