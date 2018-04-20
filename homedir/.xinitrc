@@ -33,7 +33,7 @@ fi
 
 # Start up programs
 start-pulseaudio-x11 &
-#compton &
+compton &
 wal -lR &
 wal-set &
 

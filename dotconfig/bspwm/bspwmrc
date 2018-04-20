@@ -14,20 +14,22 @@ bspc config presel_feedback_color "$color1"
 bspc config border_width 6
 bspc config window_gap 20
 
-bspc config top_padding 80
-bspc config bottom_padding 80
-bspc config left_padding 100
-bspc config right_padding 100
+bspc config top_padding 116
+bspc config bottom_padding 116
+bspc config left_padding 130
+bspc config right_padding 130
 
-bspc config -d ^1 top_padding -80
-bspc config -d ^1 bottom_padding -80
-bspc config -d ^1 left_padding -100
-bspc config -d ^1 right_padding -100
+bspc config -d ^1 top_padding -116
+bspc config -d ^1 bottom_padding -116
+bspc config -d ^1 left_padding -130
+bspc config -d ^1 right_padding -130
+bspc config -d ^1 window_gap 10
 
-bspc config -d ^2 top_padding -80
-bspc config -d ^2 bottom_padding -80
-bspc config -d ^2 left_padding -100
-bspc config -d ^2 right_padding -100
+bspc config -d ^2 top_padding -116
+bspc config -d ^2 bottom_padding -116
+bspc config -d ^2 left_padding -130
+bspc config -d ^2 right_padding -130
+bspc config -d ^2 window_gap 10
 
 #bspc config top_padding 80
 #bspc config bottom_padding 80

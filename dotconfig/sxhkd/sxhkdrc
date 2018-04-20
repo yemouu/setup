@@ -8,7 +8,7 @@ super + b
 	firefox
 
 super + d
-	discord-ptb
+	Discord
 
 super + r
 	rofi -show run
