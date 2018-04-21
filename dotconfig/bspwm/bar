@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Lemonbar Config
+. ${HOME}/.cache/wal/colors.sh
+geometry="1920x16+0+0"
+background_color="${color7}"
+foreground_color="${color0}"
+font="Noto Sans Mono:size=8"
+
+main(){
+	while true
+	do
+		printf "%s\n" "test"
+		sleep 0.5
+	done
+}
+main | lemonbar -g "${geometry}" -f "${font}" -B "${background_color}" -F "${foreground_color}" -p
