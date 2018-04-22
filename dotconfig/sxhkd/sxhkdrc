@@ -1,6 +1,24 @@
 super + e
 	pamixer --source 1 -t
 
+XF86AudioNext
+	mpc next
+
+XF86AudioPlay
+	mpc play
+
+XF86AudioPrev
+	mpc prev
+
+XF86AudioStop
+	mpc pause
+
+Print
+	nougat -fuc;notify-send -a "Nougat" "Screenshot Taken!"
+
+super + Print
+	nougat -uc;notify-send -a "Nougat" "Screenshot Taken!"
+
 super + Return
 	urxvt
 
@@ -16,10 +34,16 @@ super + shift + d
 super + r
 	rofi -show run
 
+super + t
+	${HOME}/.dotfiles/dotconfig/bspwm/tbar
+
 super + Escape
 	pkill -USR1 -x sxhkd
 
 super + shift + Escape
+	${HOME}/.dotfiles/dotconfig/bspwm/bar
+
+super + ctrl + Escape
 	bspc quit
 
 super + {_,shift + }q

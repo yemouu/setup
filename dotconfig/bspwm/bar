@@ -1,16 +1,73 @@
 #!/usr/bin/env bash
 # Lemonbar Config
+
+# parts grabbed from 
+# https://github.com/Sweets/dotfiles/blob/master/.config/custard/schemes/in-love-with-a-ghost/bars/top.zsh
+
 . ${HOME}/.cache/wal/colors.sh
-geometry="1920x16+0+0"
+
+geometry="1920x26+0+0"
 background_color="${color7}"
 foreground_color="${color0}"
 font="Noto Sans Mono:size=8"
+icon="Font Awesome 5 Free:style=Solid:size=8"
 
-main(){
+bcolor0="%{F${color0}}"
+bcolor1="%{F${color1}}"
+bcolor2="%{F${color2}}"
+bcolor3="%{F${color3}}"
+bcolor4="%{F${color4}}"
+bcolor5="%{F${color5}}"
+bcolor6="%{F${color6}}"
+bcolor7="%{F${color7}}"
+bcolor8="%{F${color8}}"
+bcreset="%{F-}"
+
+bmpd() {
+
+	echo -e "${bcolor1}\uf001${bcreset}  $(mpc current)"
+}
+
+bvol() {
+	ovol=""
+	mvol="$(pamixer --get-mute)"
+
+	if ${mvol} -eq true; then
+		ovol="${bcolor1}\uf026${bcreset}"
+	else
+		ovol="${bcolor1}\uf028${bcreset}"
+	fi
+
+	echo -e ${ovol}
+}
+
+bmic() {
+	omic=""
+	mmic="$(pamixer --source 1 --get-mute)"
+
+	if ${mmic} -eq true; then
+		omic="${bcolor1}\uf131${bcreset}"
+	else
+		omic="${bcolor1}\uf130${bcreset}"
+	fi
+
+	echo -e ${omic}
+}
+
+btime() {
+	echo -e "${bcolor1}\uf017${bcreset}  $(date +'%R:%S')"
+}
+
+bdate() {
+	echo -e "${bcolor1}\uf133${bcreset}  $(date +'%a %d %b %Y')"
+}
+
+bar() {
 	while true
 	do
-		printf "%s\n" "test"
+		printf "%s\n" "    $(bdate) %{c}$(bvol)      $(bmpd)      $(bmic) %{r}$(btime)    "
 		sleep 0.5
 	done
 }
-main | lemonbar -g "${geometry}" -f "${font}" -B "${background_color}" -F "${foreground_color}" -p
+
+bar | lemonbar -g "${geometry}" -f "${font}" -f "${icon}" -B "${background_color}" -F "${foreground_color}" -p
