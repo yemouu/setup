@@ -34,8 +34,11 @@ super + shift + d
 super + r
 	rofi -show run
 
+super + w
+	rofi -show window
+
 super + t
-	${HOME}/.dotfiles/dotconfig/bspwm/tbar
+	bash ${HOME}/.dotfiles/dotconfig/bspwm/tbar &
 
 super + Escape
 	pkill -USR1 -x sxhkd

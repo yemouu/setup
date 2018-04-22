@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 # Lemonbar Config
 
-# parts grabbed from 
-# https://github.com/Sweets/dotfiles/blob/master/.config/custard/schemes/in-love-with-a-ghost/bars/top.zsh
-
 . ${HOME}/.cache/wal/colors.sh
 
 geometry="1920x26+0+0"
 background_color="${color7}"
 foreground_color="${color0}"
 font="Noto Sans Mono:size=8"
+#fonttc="Noto Sans Mono CJK TC:size=8"
+#fontkr="Noto Sans Mono CJK KR:size=8"
+#fontsc="Noto Sans Mono CJK SC:size=8"
+fontjp="Noto Sans Mono CJK JP:size=8"
+fontem="Noto Emoji:size=8"
 icon="Font Awesome 5 Free:style=Solid:size=8"
 
 bcolor0="%{F${color0}}"
@@ -70,4 +72,4 @@ bar() {
 	done
 }
 
-bar | lemonbar -g "${geometry}" -f "${font}" -f "${icon}" -B "${background_color}" -F "${foreground_color}" -p
+bar | lemonbar -g "${geometry}" -f "${font}" -f "${icon}" -f "${fonttc}" -f "${fontkr}" -f "${fontsc}" -f "${fontjp}" -f "${fontem}" -B "${background_color}" -F "${foreground_color}" -p

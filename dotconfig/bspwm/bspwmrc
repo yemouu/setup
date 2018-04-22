@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 . "${HOME}/.cache/wal/colors.sh"
+
 if [[ $(pidof sxhkd)  ]]; then
 	kill $(pidof sxhkd)
 	sxhkd &
@@ -8,13 +9,7 @@ else
 	sxhkd &
 fi
 
-if [[ $(pidof lemonbar) ]]; then
-	kill $(pidof lemonbar)
-	${HOME}/.dotfiles/dotconfig/bspwm/bar &
-else
-	${HOME}/.dotfiles/dotconfig/bspwm/bar &
-fi
-
+bash ${HOME}/.dotfiles/dotconfig/bspwm/tbar &
 xsetroot -cursor_name left_ptr &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
