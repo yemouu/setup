@@ -25,7 +25,7 @@ bcreset="%{F-}"
 
 bmpd() {
 
-	echo -e "${bcolor1}\uf001${bcreset}  $(mpc current)"
+	echo -e "${bcolor3}\uf001${bcreset}  $(mpc current)"
 }
 
 bvol() {
@@ -33,9 +33,9 @@ bvol() {
 	mvol="$(pamixer --get-mute)"
 
 	if ${mvol} -eq true; then
-		ovol="${bcolor1}\uf026${bcreset}"
+		ovol="${bcolor3}\uf026${bcreset}"
 	else
-		ovol="${bcolor1}\uf028${bcreset}"
+		ovol="${bcolor3}\uf028${bcreset}"
 	fi
 
 	echo -e ${ovol}
@@ -43,23 +43,23 @@ bvol() {
 
 bmic() {
 	omic=""
-	mmic="$(pamixer --source 1 --get-mute)"
+	mmic="$(pamixer --source 0 --get-mute)"
 
 	if ${mmic} -eq true; then
-		omic="${bcolor1}\uf131${bcreset}"
+		omic="${bcolor3}\uf131${bcreset}"
 	else
-		omic="${bcolor1}\uf130${bcreset}"
+		omic="${bcolor3}\uf130${bcreset}"
 	fi
 
 	echo -e ${omic}
 }
 
 btime() {
-	echo -e "${bcolor1}\uf017${bcreset}  $(date +'%R:%S')"
+	echo -e "${bcolor3}\uf017${bcreset}  $(date +'%R:%S')"
 }
 
 bdate() {
-	echo -e "${bcolor1}\uf133${bcreset}  $(date +'%a %d %b %Y')"
+	echo -e "${bcolor3}\uf133${bcreset}  $(date +'%a %d %b %Y')"
 }
 
 bar() {

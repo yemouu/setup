@@ -9,7 +9,20 @@ else
 	sxhkd &
 fi
 
-bash ${HOME}/.dotfiles/dotconfig/bspwm/tbar &
+if [[ $(pgrep -f "/home/meyou/.dotfiles/dotconfig/bspwm/bar") ]]; then
+	pkill -15 -P $(pgrep -f "/home/meyou/.dotfiles/dotconfig/bspwm/bar" | awk 'NR==1{print $1}')
+	bash ${HOME}/.dotfiles/dotconfig/bspwm/tbar &
+else
+	bash ${HOME}/.dotfiles/dotconfig/bspwm/tbar &
+fi
+
+if [[ $(pidof compton) ]];then
+	kill $(pidof compton)
+	compton &
+else
+	compton &
+fi
+
 xsetroot -cursor_name left_ptr &
 
 bspc monitor -d I II III IV V VI VII VIII IX X

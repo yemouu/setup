@@ -1,5 +1,5 @@
 super + e
-	pamixer --source 1 -t
+	pamixer --source 0 -t
 
 XF86AudioNext
 	mpc next
@@ -37,14 +37,14 @@ super + r
 super + w
 	rofi -show window
 
-super + t
+super + c
 	bash ${HOME}/.dotfiles/dotconfig/bspwm/tbar &
 
 super + Escape
 	pkill -USR1 -x sxhkd
 
 super + shift + Escape
-	${HOME}/.dotfiles/dotconfig/bspwm/bar
+	bash ${HOME}/.dotfiles/dotconfig/bspwm/bspwmrc
 
 super + ctrl + Escape
 	bspc quit
