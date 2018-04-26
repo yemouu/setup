@@ -2,26 +2,9 @@
 
 . "${HOME}/.cache/wal/colors.sh"
 
-if [[ $(pidof sxhkd)  ]]; then
-	kill $(pidof sxhkd)
-	sxhkd &
-else
-	sxhkd &
-fi
-
-if [[ $(pgrep -f "/home/meyou/.dotfiles/dotconfig/bspwm/bar") ]]; then
-	pkill -15 -P $(pgrep -f "/home/meyou/.dotfiles/dotconfig/bspwm/bar" | awk 'NR==1{print $1}')
-	bash ${HOME}/.dotfiles/dotconfig/bspwm/tbar &
-else
-	bash ${HOME}/.dotfiles/dotconfig/bspwm/tbar &
-fi
-
-if [[ $(pidof compton) ]];then
-	kill $(pidof compton)
-	compton &
-else
-	compton &
-fi
+sxhkd &
+${HOME}/.dotfiles/dotconfig/bspwm/bar &
+compton &
 
 xsetroot -cursor_name left_ptr &
 
@@ -51,15 +34,6 @@ bspc config -d ^2 bottom_padding -116
 bspc config -d ^2 left_padding -130
 bspc config -d ^2 right_padding -130
 bspc config -d ^2 window_gap 10
-
-#bspc config top_padding 80
-#bspc config bottom_padding 80
-#bspc config left_padding 338
-#bspc config right_padding 338
-#bspc config -d ^1 left_padding -138
-#bspc config -d ^1 right_padding -138
-#bspc config -d ^2 left_padding -138
-#bspc config -d ^2 right_padding -138
 
 bspc config split_ratio 0.50
 bspc config focus_follows_pointer true

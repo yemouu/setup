@@ -5,13 +5,13 @@ XF86AudioNext
 	mpc next
 
 XF86AudioPlay
-	mpc play
+	mpc toggle
 
 XF86AudioPrev
 	mpc prev
 
 XF86AudioStop
-	mpc pause
+	mpc stop
 
 Print
 	nougat -fuc;notify-send -a "Nougat" "Screenshot Taken!"
@@ -38,13 +38,10 @@ super + w
 	rofi -show window
 
 super + c
-	bash ${HOME}/.dotfiles/dotconfig/bspwm/tbar &
+	${HOME}/.dotfiles/dotconfig/bspwm/tbar &
 
 super + Escape
 	pkill -USR1 -x sxhkd
-
-super + shift + Escape
-	bash ${HOME}/.dotfiles/dotconfig/bspwm/bspwmrc
 
 super + ctrl + Escape
 	bspc quit

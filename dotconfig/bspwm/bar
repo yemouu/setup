@@ -24,12 +24,20 @@ bcolor8="%{F${color8}}"
 bcreset="%{F-}"
 
 bmpd() {
+	if [[ $(mpc current) ]]; then
+		if [[ $(mpc status | grep paused) ]]; then
+			ompd="${bcolor3}\uf04c${bcreset} $(mpc current)"
+		else
+			ompd="${bcolor3}\uf001${bcreset} $(mpc current)"
+		fi
+	else
+		ompd="${bcolor3}\uf001${bcreset} MPD n/a"
+	fi
 
-	echo -e "${bcolor3}\uf001${bcreset}  $(mpc current)"
+	echo -e ${ompd}
 }
 
 bvol() {
-	ovol=""
 	mvol="$(pamixer --get-mute)"
 
 	if ${mvol} -eq true; then
@@ -42,7 +50,6 @@ bvol() {
 }
 
 bmic() {
-	omic=""
 	mmic="$(pamixer --source 0 --get-mute)"
 
 	if ${mmic} -eq true; then
@@ -66,7 +73,7 @@ bar() {
 	while true
 	do
 		printf "%s\n" "    $(bdate) %{c}$(bvol)      $(bmpd)      $(bmic) %{r}$(btime)    "
-		sleep 0.5
+		#sleep 0.5
 	done
 }
 

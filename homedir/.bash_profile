@@ -6,6 +6,7 @@ PATH+=":${HOME}/.local/bin"
 
 # Other
 export EDITOR="nvim"
+export LESSHISTFILE="/dev/null"
 
 # Get the aliases and functions
 [ -f $HOME/.bashrc ] && . $HOME/.bashrc
