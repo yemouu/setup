@@ -2,9 +2,9 @@
 
 . "${HOME}/.cache/wal/colors.sh"
 
-sxhkd &
-${HOME}/.dotfiles/dotconfig/bspwm/bar &
-compton &
+pkill -x sxhkd;sxhkd &
+pkill -x compton;compton &
+${HOME}/.dotfiles/dotconfig/bspwm/tbar &
 
 xsetroot -cursor_name left_ptr &
 

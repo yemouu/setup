@@ -29,7 +29,7 @@ a {reboot,restart}="sudo reboot"
 scf() {
         curdir=$(pwd)
         cd ${HOME}/music/
-        scdl -l https://soundcloud.com/yeemou -fc --onlymp3
+        scdl -l "https://soundcloud.com/yeemou" -fc --onlymp3
         cd ${curdir}
         unset curdir
 }
