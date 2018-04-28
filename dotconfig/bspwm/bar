@@ -4,14 +4,9 @@
 . ${HOME}/.cache/wal/colors.sh
 
 geometry="1920x26+0+0"
+
 background_color="${color7}"
 foreground_color="${color0}"
-font="Noto Sans Mono:size=8"
-fontsc="Noto Sans Mono CJK SC:size=8"
-fontkr="Noto Sans Mono CJK KR:size=8"
-fontjp="Noto Sans Mono CJK JP:size=8"
-icon="Font Awesome 5 Free:style=Solid:size=8"
-
 bcolor0="%{F${color0}}"
 bcolor1="%{F${color1}}"
 bcolor2="%{F${color2}}"
@@ -22,6 +17,12 @@ bcolor6="%{F${color6}}"
 bcolor7="%{F${color7}}"
 bcolor8="%{F${color8}}"
 bcreset="%{F-}"
+
+font="Noto Sans Mono:size=8"
+fontsc="Noto Sans Mono CJK SC:size=8"
+fontkr="Noto Sans Mono CJK KR:size=8"
+fontjp="Noto Sans Mono CJK JP:size=8"
+icon="Font Awesome 5 Free:style=Solid:size=8"
 
 bmpd() {
 	if [[ $(mpc current) ]]; then
@@ -76,5 +77,4 @@ bar() {
 		#sleep 0.5
 	done
 }
-
 bar | lemonbar -g "${geometry}" -f "${font}" -f "${icon}" -f "${fontkr}" -f "${fontjp}" -f "${fontsc}" -B "${background_color}" -F "${foreground_color}" -p

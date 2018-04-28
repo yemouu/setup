@@ -1,9 +1,7 @@
-# If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 set -o vi
 
-# Some aliases from http://github.com/mitchweaver/dots
 alias a="alias"
 a {c,clear}="printf '\033c'"
 a {q,wq,:q,:wq}="exit"

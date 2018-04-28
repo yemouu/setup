@@ -1,11 +1,9 @@
-! Xft Options
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintslight
 Xft.hinting: 1
-!Xft.antialias: 1
+Xft.antialias: 1
 
-!URxvt
 URxvt.depth: 24
 URxvt.buffered: True
 URxvt.geometry: 80x20
