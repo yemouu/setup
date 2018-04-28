@@ -35,9 +35,9 @@ fi
 start-pulseaudio-x11 &
 wal -lR &
 wal-set &
+sxhkd &
+${HOME}/.dotfiles/dotconfig/bspwm/bar &
+compton &
 
 # Start WM/DE
-case $session in
-	bspwm|b		) exec $STARTUP bspwm;;
-	*		) exec $STARTUP bspwm;;
-esac
+exec $STARTUP bspwm

@@ -2,10 +2,6 @@
 
 . "${HOME}/.cache/wal/colors.sh"
 
-pkill -x sxhkd;sxhkd &
-pkill -x compton;compton &
-${HOME}/.dotfiles/dotconfig/bspwm/tbar &
-
 xsetroot -cursor_name left_ptr &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
