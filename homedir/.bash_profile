@@ -5,4 +5,4 @@ PATH+=":${HOME}/.local/bin"
 export EDITOR="nvim"
 export LESSHISTFILE="/dev/null"
 
-[ -f $HOME/.bashrc ] && . $HOME/.bashrc
+[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"

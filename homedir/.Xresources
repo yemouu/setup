@@ -6,7 +6,7 @@ Xft.antialias: 1
 
 URxvt.depth: 24
 URxvt.buffered: True
-URxvt.geometry: 80x20
+URxvt.geometry: 150x35
 URxvt.jumpScroll: True
 URxvt.skipScroll: True
 URxvt.font:  xft:Noto Sans Mono:size=8:antialias=false

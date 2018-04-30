@@ -3,7 +3,7 @@
 set -o vi
 
 alias a="alias"
-a {c,clear}="printf '\033c'"
+a {c,clear}="printf '\\033c'"
 a {q,wq,:q,:wq}="exit"
 
 a {l,sls,sl,ls}="ls -F --color=auto"
@@ -26,9 +26,9 @@ a {reboot,restart}="sudo reboot"
 
 scf() {
         curdir=$(pwd)
-        cd ${HOME}/music/
+        cd "${HOME}/music" || exit
         scdl -l "https://soundcloud.com/yeemou" -fc --onlymp3
-        cd ${curdir}
+        cd "${curdir}" || exit
         unset curdir
 }
 
@@ -36,12 +36,12 @@ pywal() {
 	if [ -z "$1" ]; then
 		echo "Wallpaper not specified."
 	else
-		papenum="$1"
-		wal --backend colorz -cli ${HOME}/pictures/wallpapers/Wall-${papenum}.* -o wal-set
+		pape="${HOME}/pictures/wallpapers/Wall-${1}.*"
+		wal --backend colorz -cli ${pape} -o wal-set
 	fi
 	unset papenum
 }
 
-PS1="[\[$(tput setaf 003)\]\[$(tput bold)\]\w\[$(tput sgr0)\]]"
-PS1+="\[$(tput setaf 006)\]\[$(tput bold)\]\$ \[$(tput sgr0)\]"
-PS2="\[$(tput setaf 006)\]\[$(tput bold)\]\$ \[$(tput sgr0)\]"
+PS1="[\\[$(tput setaf 003)\\]\\[$(tput bold)\\]\\w\\[$(tput sgr0)\\]]"
+PS1+="\\[$(tput setaf 006)\\]\\[$(tput bold)\\]\\$ \\[$(tput sgr0)\\]"
+PS2="\\[$(tput setaf 006)\\]\\[$(tput bold)\\]\\$ \\[$(tput sgr0)\\]"

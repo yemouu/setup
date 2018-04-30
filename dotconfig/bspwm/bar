@@ -27,12 +27,12 @@ icon="Font Awesome 5 Free:style=Solid:size=8"
 bmpd() {
 	if [[ $(mpc current) ]]; then
 		if mpc status | grep -q paused; then
-			ompd="${bcolor3}\\uf04c${bcreset} $(mpc current)"
+			ompd="${bcolor1}\\uf04c${bcreset} $(mpc current)"
 		else
-			ompd="${bcolor3}\\uf001${bcreset} $(mpc current)"
+			ompd="${bcolor1}\\uf001${bcreset} $(mpc current)"
 		fi
 	else
-		ompd="${bcolor3}\\uf001${bcreset} MPD n/a"
+		ompd="${bcolor1}\\uf001${bcreset} MPD n/a"
 	fi
 
 	echo -e "${ompd}"
@@ -42,9 +42,9 @@ bvol() {
 	mvol="$(pamixer --get-mute)"
 
 	if ${mvol} -eq true; then
-		ovol="${bcolor3}\\uf026${bcreset}"
+		ovol="${bcolor1}\\uf026${bcreset}"
 	else
-		ovol="${bcolor3}\\uf028${bcreset}"
+		ovol="${bcolor1}\\uf028${bcreset}"
 	fi
 
 	echo -e "${ovol}"
@@ -54,20 +54,20 @@ bmic() {
 	mmic="$(pamixer --source 0 --get-mute)"
 
 	if ${mmic} -eq true; then
-		omic="${bcolor3}\\uf131${bcreset}"
+		omic="${bcolor1}\\uf131${bcreset}"
 	else
-		omic="${bcolor3}\\uf130${bcreset}"
+		omic="${bcolor1}\\uf130${bcreset}"
 	fi
 
 	echo -e "${omic}"
 }
 
 btime() {
-	echo -e "${bcolor3}\\uf017${bcreset}  $(date +'%R')"
+	echo -e "${bcolor1}\\uf017${bcreset}  $(date +'%R')"
 }
 
 bdate() {
-	echo -e "${bcolor3}\\uf133${bcreset}  $(date +'%a %d %b %Y')"
+	echo -e "${bcolor1}\\uf133${bcreset}  $(date +'%a %d %b %Y')"
 }
 
 bar() {
