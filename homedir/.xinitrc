@@ -32,7 +32,7 @@ start-pulseaudio-x11 &
 wal -lR &
 wal-set &
 sxhkd &
-${HOME}/.dotfiles/dotconfig/bspwm/bar &
+"${HOME}/.dotfiles/dotconfig/bspwm/bar" &
 compton &
 
-exec $STARTUP bspwm
+exec "$STARTUP bspwm"
