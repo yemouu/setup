@@ -1,4 +1,3 @@
-echo "load"
 let mapleader = "`"
 let maplocalleader = "\\"
 

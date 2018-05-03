@@ -27,7 +27,7 @@ a {reboot,restart}="sudo reboot"
 scf() {
         curdir=$(pwd)
         cd "${HOME}/music" || exit
-        scdl -l "https://soundcloud.com/yeemou" -fc --onlymp3
+        scdl -l "https://soundcloud.com/yeemou" -f --onlymp3
         cd "${curdir}" || exit
         unset curdir
 }
@@ -37,8 +37,15 @@ pywal() {
 		echo "Wallpaper not specified."
 	else
 		pape="${HOME}/pictures/wallpapers/Wall-${1}.*"
-		wal --backend colorz -cli ${pape} -o wal-set
 	fi
+	if [ -z "$2" ]; then
+		wal --backend colorz -c -i ${pape} -o wal-set
+	else
+		lida="$2"
+		wal --backend colorz -c ${lida} -i ${pape} -o wal-set
+	fi
+
+	unset lida
 	unset papenum
 }
 

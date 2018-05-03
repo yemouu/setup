@@ -25,12 +25,6 @@ super + Return
 super + b
 	firefox
 
-super + d
-	discord-ptb
-
-super + shift + d
-	Discord
-
 super + r
 	rofi -show run
 
