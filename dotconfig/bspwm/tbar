@@ -6,5 +6,6 @@ if [[  $(pgrep lemonbar) ]];then
 	bspc config top_padding 116
 else
 	bspc config top_padding 142
+	#bspc config top_padding 152
 	"${HOME}/.dotfiles/dotconfig/bspwm/bar" &
 fi

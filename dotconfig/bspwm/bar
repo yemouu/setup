@@ -3,6 +3,7 @@
 
 . "${HOME}/.cache/wal/colors.sh"
 
+#geometry="1900x26+10+10"
 geometry="1920x26+0+0"
 
 background_color="${color7}"

@@ -14,10 +14,10 @@ XF86AudioStop
 	mpc stop
 
 Print
-	nougat -fuc;notify-send -a "Nougat" "Screenshot Taken!"
+	nougat -fc
 
 super + Print
-	nougat -uc;notify-send -a "Nougat" "Screenshot Taken!"
+	nougat -c
 
 super + Return
 	urxvt

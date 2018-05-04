@@ -26,6 +26,6 @@ wal -lR &
 wal-set &
 sxhkd &
 "${HOME}/.dotfiles/dotconfig/bspwm/bar" &
-#compton &
+compton &
 
 exec bspwm
