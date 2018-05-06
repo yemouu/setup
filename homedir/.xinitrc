@@ -27,11 +27,5 @@ wal-set &
 "${HOME}/.dotfiles/dotconfig/bspwm/bar" &
 compton &
 urxvtd -q -f -o &
-
-session=${1:-subtle}
-case $session in
-	b|bspwm		) sxhkd & exec bspwm;;
-	s|subtle	) exec subtle;;
-	*			) exec $1;;
-esac
-
+sxhkd &
+exec bspwm
