@@ -4,7 +4,7 @@
 
 xsetroot -cursor_name left_ptr &
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d I II III IV V
 
 bspc config normal_border_color "$color0"
 bspc config active_border_color "$color2"
@@ -14,8 +14,7 @@ bspc config presel_feedback_color "$color1"
 bspc config border_width 6
 bspc config window_gap 20
 
-bspc config top_padding 142
-#bspc config top_padding 152
+bspc config top_padding 158
 bspc config bottom_padding 116
 bspc config left_padding 130
 bspc config right_padding 130
@@ -36,6 +35,5 @@ bspc config split_ratio 0.50
 bspc config focus_follows_pointer true
 
 #bspc rule -a "*" state=floating
-bspc rule -a "Firefox" desktop='^1' state=tiled
-#bspc rule -a "discord" desktop='^2' state=tiled
+bspc rule -a "Firefox" desktop='^1'
 bspc rule -a "keepassxc" state=floating

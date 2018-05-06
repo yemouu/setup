@@ -24,8 +24,14 @@ fi
 start-pulseaudio-x11 &
 wal -lR &
 wal-set &
-sxhkd &
 "${HOME}/.dotfiles/dotconfig/bspwm/bar" &
 compton &
+urxvtd -q -f -o &
 
-exec bspwm
+session=${1:-subtle}
+case $session in
+	b|bspwm		) sxhkd & exec bspwm;;
+	s|subtle	) exec subtle;;
+	*			) exec $1;;
+esac
+

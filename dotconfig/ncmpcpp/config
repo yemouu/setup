@@ -1,12 +1,35 @@
 ncmpcpp_directory = "~/.config/ncmpcpp/"
 lyrics_directory = "~/music/lyrics"
+
 mpd_host = "localhost"
 mpd_port = "6600"
 mpd_music_dir = "~/music"
+
 visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_output_name = "my_fifo"
 visualizer_sync_interval = "30" 
 visualizer_in_stereo = "yes"
 visualizer_type = "spectrum"
 visualizer_look = "XX"
-user_interface = alternative
+
+message_delay_time = 2
+progressbar_look = "─│"
+
+song_list_format = $3%a $7%t $2%l$9
+song_status_format =
+song_library_format = %t
+song_window_title_format = %a - %t
+song_columns_list_format = "(20)[green]{a} (78)[cyan]{t} (0)[red]{l}"
+
+current_item_prefix = "$4>$9  "
+now_playing_prefix = "$4*$9  "
+
+browser_display_mode = columns
+search_engine_display_mode = columns
+
+default_find_mode = wrapped
+space_add_mode = add_remove
+startup_screen = "visualizer"
+
+statusbar_visibility = no
+titles_visibility = no

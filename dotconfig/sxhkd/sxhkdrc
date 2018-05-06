@@ -1,81 +1,65 @@
+XF86AudioNext
+	mpc next
+XF86AudioPlay
+	mpc toggle
+XF86AudioPrev
+	mpc prev
+XF86AudioStop
+	mpc stop
 super + e
 	pamixer --source 0 -t
 
-XF86AudioNext
-	mpc next
-
-XF86AudioPlay
-	mpc toggle
-
-XF86AudioPrev
-	mpc prev
-
-XF86AudioStop
-	mpc stop
-
 Print
 	nougat -fc
-
 super + Print
 	nougat -c
 
 super + Return
-	urxvt
-
+	urxvtc
 super + b
 	firefox
-
 super + r
 	rofi -show run
-
 super + w
 	rofi -show window
-
 super + c
 	${HOME}/.dotfiles/dotconfig/bspwm/tbar &
 
 super + Escape
 	pkill -USR1 -x sxhkd
-
 super + ctrl + Escape
 	bspc quit
 
-super + {_,shift + }q
-	bspc node -{c,k}
-
 super + Tab
 	bspc desktop -l next
-
 super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-super + shift + s
-	bspc node -g sticky
-
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
-
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
-
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
 super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
-
 super + ctrl + space
 	bspc node -p cancel
-
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 super + {u,i,o,p}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
 super + shift + {u,i,o,p}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+super + {_,ctrl + }q
+	bspc node -{c,k}
+
+super + shift + s
+	bspc node -g sticky
+
+super + {_,shift + }{1-5}
+	bspc {desktop -f,node -d} '^{1-5}'
 
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}

@@ -9,7 +9,8 @@ URxvt.buffered: True
 URxvt.geometry: 150x35
 URxvt.jumpScroll: True
 URxvt.skipScroll: True
-URxvt.font: xft:Noto Sans Mono:size=8
+URxvt.font: xft:Noto Sans Mono:pixelsize=12
+URxvt.letterSpace: 0
 URxvt.scrollBar: False
 URxvt.internalBorder: 50
 URxvt.cursorBlink: True

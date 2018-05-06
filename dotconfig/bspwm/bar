@@ -3,8 +3,7 @@
 
 . "${HOME}/.cache/wal/colors.sh"
 
-#geometry="1900x26+10+10"
-geometry="1920x26+0+0"
+geometry="1900x32+10+10"
 
 background_color="${color7}"
 foreground_color="${color0}"
@@ -19,11 +18,11 @@ bcolor7="%{F${color7}}"
 bcolor8="%{F${color8}}"
 bcreset="%{F-}"
 
-font="Noto Sans Mono:size=8"
-fontsc="Noto Sans Mono CJK SC:size=8"
-fontkr="Noto Sans Mono CJK KR:size=8"
-fontjp="Noto Sans Mono CJK JP:size=8"
-icon="Font Awesome 5 Free:style=Solid:size=8"
+font="Noto Sans Mono:pixelsize=12"
+fontsc="Noto Sans Mono CJK SC:pixelsize=12"
+fontkr="Noto Sans Mono CJK KR:pixelsize=12"
+fontjp="Noto Sans Mono CJK JP:pixelsize=12"
+icon="Font Awesome 5 Free:style=Solid:pixelsize=14"
 
 bmpd() {
 	if [[ $(mpc current) ]]; then
@@ -74,7 +73,7 @@ bdate() {
 bar() {
 	while true
 	do
-		printf '%s\n' "    $(bdate) %{c}$(bvol)      $(bmpd)      $(bmic) %{r}$(btime)    "
+		printf '%s\n' "  $(bdate) %{c}$(bvol)      $(bmpd)      $(bmic) %{r}$(btime)  "
 		sleep 0.5
 	done
 }
