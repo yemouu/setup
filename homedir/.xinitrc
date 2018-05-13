@@ -24,8 +24,10 @@ fi
 start-pulseaudio-x11 &
 wal -lR &
 wal-set &
-"${HOME}/.dotfiles/dotconfig/bspwm/bar" &
+"${HOME}/.dotfiles/dotconfig/bspwm/top" &
+#"${HOME}/.dotfiles/dotconfig/bspwm/bot" &
 compton &
 urxvtd -q -f -o &
 sxhkd &
+xbanish &
 exec bspwm

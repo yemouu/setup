@@ -2,6 +2,8 @@
 
 set -o vi
 
+. "/usr/share/bash-completion/bash_completion"
+
 alias a="alias"
 a {c,clear}="printf '\\033c'"
 a {q,wq,:q,:wq}="exit"
@@ -49,6 +51,6 @@ pywal() {
 	unset papenum
 }
 
-PS1="[\\[$(tput setaf 003)\\]\\[$(tput bold)\\]\\w\\[$(tput sgr0)\\]]"
-PS1+="\\[$(tput setaf 006)\\]\\[$(tput bold)\\]\\$ \\[$(tput sgr0)\\]"
-PS2="\\[$(tput setaf 006)\\]\\[$(tput bold)\\]\\$ \\[$(tput sgr0)\\]"
+PS1="[\\[$(tput setaf 005)\\]\\[$(tput bold)\\]\\w\\[$(tput sgr0)\\]]"
+PS1+="\\[$(tput setaf 003)\\]\\[$(tput bold)\\]\\$ \\[$(tput sgr0)\\]"
+PS2="\\[$(tput setaf 003)\\]\\[$(tput bold)\\]\\$ \\[$(tput sgr0)\\]"

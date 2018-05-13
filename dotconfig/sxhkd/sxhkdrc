@@ -18,6 +18,8 @@ super + Return
 	urxvtc
 super + b
 	firefox
+super + d
+	Discord
 super + r
 	rofi -show run
 super + w

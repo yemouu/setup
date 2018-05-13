@@ -19,7 +19,7 @@ song_list_format = $3%a $7%t $2%l$9
 song_status_format =
 song_library_format = %t
 song_window_title_format = %a - %t
-song_columns_list_format = "(20)[green]{a} (78)[cyan]{t} (0)[red]{l}"
+song_columns_list_format = "(16)[green]{a} (78)[cyan]{t} (8)[red]{l}"
 
 current_item_prefix = "$4>$9  "
 now_playing_prefix = "$4*$9  "

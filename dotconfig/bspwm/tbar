@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 # Toggle Bar
 
+# Lemonbar
 if [[  $(pgrep lemonbar) ]];then
-	pkill -15 -P "$(pgrep -f "/home/meyou/.dotfiles/dotconfig/bspwm/bar" | awk 'NR==1{print $1}')"
-	bspc config top_padding 116
+	pkill -15 -P "$(pgrep -f "/home/meyou/.dotfiles/dotconfig/bspwm/top" | awk 'NR==1{print $1}')"
+	#pkill -15 -P "$(pgrep -f "/home/meyou/.dotfiles/dotconfig/bspwm/bot" | awk 'NR==1{print $1}')"
+	bspc config top_padding 86
+	#bspc config bottom_padding 86 
 else
-	bspc config top_padding 158
-	"${HOME}/.dotfiles/dotconfig/bspwm/bar" &
+	bspc config top_padding 128
+	#bspc config bottom_padding 128
+	"${HOME}/.dotfiles/dotconfig/bspwm/top" &
+	#"${HOME}/.dotfiles/dotconfig/bspwm/bot" &
 fi
