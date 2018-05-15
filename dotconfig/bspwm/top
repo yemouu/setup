@@ -103,7 +103,7 @@ bar()
 {
 	while true
 	do
-		printf '%s\n' "  $(bdate) %{c}$(bvol)      $(bmpd)      $(bmic) %{r}$(btime)  "
+		printf '%s\n' "    $(bdate) %{c}$(bvol)        $(bmpd)        $(bmic) %{r}$(btime)    "
 		sleep 0.5
 	done
 }
