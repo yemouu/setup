@@ -5,11 +5,11 @@
 if [[  $(pgrep lemonbar) ]];then
 	pkill -15 -P "$(pgrep -f "/home/meyou/.dotfiles/dotconfig/bspwm/top" | awk 'NR==1{print $1}')"
 	#pkill -15 -P "$(pgrep -f "/home/meyou/.dotfiles/dotconfig/bspwm/bot" | awk 'NR==1{print $1}')"
-	bspc config top_padding 86
-	#bspc config bottom_padding 86 
-else
 	bspc config top_padding 128
-	#bspc config bottom_padding 128
+	#bspc config bottom_padding 128 
+else
+	bspc config top_padding 160
+	#bspc config bottom_padding 160
 	"${HOME}/.dotfiles/dotconfig/bspwm/top" &
 	#"${HOME}/.dotfiles/dotconfig/bspwm/bot" &
 fi

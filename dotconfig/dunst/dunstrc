@@ -1,15 +1,15 @@
 [global]
 	monitor = 0
 	follow = mouse
-	geometry = "500x1-16-16"
-	indicate_hidden = yes
+	geometry = "512x2-32-32"
+	indicate_hidden = no
 	shrink = yes
 	transparency = 0
 	notification_height = 0
-	separator_height = 2
+	separator_height = 0
 	padding = 8
 	horizontal_padding = 8
-	frame_width = 6
+	frame_width = 4
 	sort = no
 	idle_threshold = 0
 	font = Noto Sans 8
@@ -17,7 +17,7 @@
 	markup = full
 	format = "<b>%a</b>\n%s\n%b"
 	alignment = left
-	show_age_threshold = 60
+	show_age_threshold = 64
 	word_wrap = no
 	ellipsize = middle
 	ignore_newline = yes
@@ -25,7 +25,7 @@
 	hide_duplicate_count = false
 	show_indicators = no
 	icon_position = left
-	max_icon_size = 44
+	max_icon_size = 32
 	icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 	sticky_history = yes
 	history_length = 20

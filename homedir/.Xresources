@@ -6,13 +6,13 @@ Xft.antialias: 1
 
 URxvt.depth: 24
 URxvt.buffered: True
-URxvt.geometry: 150x35
+URxvt.geometry: 64x16
 URxvt.jumpScroll: True
 URxvt.skipScroll: True
-URxvt.font: xft:Noto Sans Mono:pixelsize=12
+URxvt.font: xft:Noto Sans Mono:size=8
 URxvt.letterSpace: 0
 URxvt.scrollBar: False
-URxvt.internalBorder: 50
+URxvt.internalBorder: 32
 URxvt.cursorBlink: True
 URxvt.perl-ext:
 URxvt.perl-ext-common:

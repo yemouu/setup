@@ -26,8 +26,8 @@ wal -lR &
 wal-set &
 "${HOME}/.dotfiles/dotconfig/bspwm/top" &
 #"${HOME}/.dotfiles/dotconfig/bspwm/bot" &
-compton &
 urxvtd -q -f -o &
 sxhkd &
 xbanish &
+redshift -l 33.4:-84.5 &
 exec bspwm
