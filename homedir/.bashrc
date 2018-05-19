@@ -4,27 +4,17 @@ set -o vi
 
 . "/usr/share/bash-completion/bash_completion"
 
-alias a="alias"
-a {c,clear}="printf '\\033c'"
-a {q,wq,:q,:wq}="exit"
+alias {c,clear}="printf '\\033c'"
+alias {q,wq,:q,:wq}="exit"
 
-a {l,sls,sl,ls}="ls -F --color=auto"
-a la="ls -A"
-a ll="ls -lh"
-a lla="ls -lAh"
-a {cl,cls}="c;l"
+alias {l,sls,sl,ls}="ls -F --color=auto"
+alias la="ls -A"
+alias ll="ls -lh"
+alias lla="ls -lAh"
+alias {cl,cls}="c;l"
 
-#a xup="sudo xbps-install -Suv"
-#a xorph="sudo xbps-remove -Oov"
-#a xfind="xbps-query -Rs"
-#a xpkgc="xbps-query -l | wc -l"
-#a xget="sudo xbps-install -Sv"
-#a xrm="sudo xbps-remove -Rv"
-#a xl="xbps-query -l"
-#a xm="xbps-query -m"
-
-a poweroff="sudo poweroff"
-a {reboot,restart}="sudo reboot"
+alias poweroff="sudo poweroff"
+alias {reboot,restart}="sudo reboot"
 
 scf() {
         curdir=$(pwd)
