@@ -31,8 +31,8 @@ reload_bspwm() {
 
 reload_bar() {
 	if [[  $(pgrep lemonbar) ]];then
-		pkill -15 -P "$(pgrep -f "/home/meyou/.dotfiles/dotconfig/bspwm/bar" | awk 'NR==1{print $1}')"
-		"${HOME}/.dotfiles/dotconfig/bspwm/bar" &
+		pkill -15 -P "$(pgrep -f "/home/meyou/.dotfiles/dotconfig/bspwm/top" | awk 'NR==1{print $1}')"
+		"${HOME}/.dotfiles/dotconfig/bspwm/top" &
 	fi
 }
 
