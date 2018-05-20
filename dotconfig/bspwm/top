@@ -3,11 +3,12 @@
 
 . "${HOME}/.cache/wal/colors.sh"
 
+lemdir="/tmp/lemtop"
+
 geometry="1920x32+0+0"
 
 background_color="${color0}"
 foreground_color="${color7}"
-
 iconcol="%{F${color5}}"
 bcolor0="%{F${color0}}"
 bcolor1="%{F${color1}}"

@@ -4,6 +4,8 @@ set -o vi
 
 . "/usr/share/bash-completion/bash_completion"
 
+(cat ~/.cache/wal/sequences &)
+
 alias {c,clear}="printf '\\033c'"
 alias {q,wq,:q,:wq}="exit"
 
