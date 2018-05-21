@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+# Notification Script for MPD
+
+app_name="Time and Date"
+icon="${HOME}/.dotfiles/notificationscripts/icons/timedate.png"
+
+summary="Time: $(date +'%R')"
+body="Date: $(date +'%a %d %b %Y')"
+
+notify-send -a "${app_name}"\
+	-i "${icon}"\
+	-t 4000\
+	"${summary}"\
+	"${body}"

@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+# Notification Script for MPD
+
+app_name="MPD Status"
+icon="${HOME}/.dotfiles/notificationscripts/icons/music.png"
+
+if pidof mpd
+then
+	if ! [ "$(mpc current)" ]
+	then
+		summary="MPD: Stopped"
+		body="MPD has been stopped"
+	elif mpc status | grep -q "paused"
+	then
+		summary="MPD: Paused"
+		body="$(mpc current)"
+	else
+		summary="MPD: Playing"
+		body="$(mpc current)"
+	fi
+else
+	summary="MPD: N/A"
+	body="MPD not running"
+fi
+
+notify-send -a "${app_name}"\
+	-i "${icon}"\
+	-t 4000\
+	"${summary}"\
+	"${body}"
