@@ -6,8 +6,16 @@ XF86AudioPrev
 	mpc prev
 XF86AudioStop
 	mpc stop
+shift + XF86AudioRaiseVolume
+	pactl set-sink-volume @DEFAULT_SINK@ 100%
+XF86AudioRaiseVolume
+	pactl set-sink-volume @DEFAULT_SINK@ +2%
+XF86AudioLowerVolume
+	pactl set-sink-volume @DEFAULT_SINK@ -2%
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
 super + e
-	pamixer --source 0 -t
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 Print
 	nougat -fc
@@ -24,8 +32,8 @@ super + r
 	rofi -show run
 super + w
 	rofi -show window
-super + c
-	${HOME}/.dotfiles/dotconfig/bspwm/tbar &
+#super + c
+#	${HOME}/.dotfiles/dotconfig/bspwm/tbar &
 
 super + Escape
 	pkill -USR1 -x sxhkd

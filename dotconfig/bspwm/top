@@ -116,4 +116,5 @@ bar | lemonbar -p -g "${geometry}"\
 	-f "${fontjp}"\
 	-f "${fontsc}"\
 	-B "${background_color}"\
-	-F "${foreground_color}"
+	-F "${foreground_color}"\
+	-o -2

@@ -24,7 +24,7 @@ fi
 start-pulseaudio-x11 &
 wal -lR &
 wal-set &
-"${HOME}/.dotfiles/dotconfig/bspwm/top" &
+#"${HOME}/.dotfiles/dotconfig/bspwm/top" &
 #"${HOME}/.dotfiles/dotconfig/bspwm/bot" &
 urxvtd -q -f -o &
 sxhkd &
