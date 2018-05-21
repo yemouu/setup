@@ -14,7 +14,7 @@ bspc config presel_feedback_color "$color1"
 bspc config border_width 4
 bspc config window_gap 16
 
-bspc config top_padding 160
+bspc config top_padding 128
 bspc config bottom_padding 128
 bspc config left_padding 256
 bspc config right_padding 256

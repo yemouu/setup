@@ -27,7 +27,12 @@ wal-set &
 #"${HOME}/.dotfiles/dotconfig/bspwm/top" &
 #"${HOME}/.dotfiles/dotconfig/bspwm/bot" &
 urxvtd -q -f -o &
-sxhkd &
 xbanish &
 redshift -l 33.4:-84.5 &
-exec bspwm
+
+session=${1:-bspwm}
+case $session in
+	b|bspwm		)	sxhkd & exec bspwm;;
+	c|custard	)	sxhkd -c ~/.dotfiles/dotconfig/custard/sxhkdrc & exec custard;;
+	*			)	exec $1;;
+esac
