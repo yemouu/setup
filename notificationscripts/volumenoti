@@ -5,27 +5,25 @@ app_name="Audio Status"
 icon="${HOME}/.dotfiles/notificationscripts/icons/audio.png"
 
 speaker_volume="$(pactl list sinks | grep Volume | awk NR==1'{print $5}')"
-speaker_mute="$(pactl list sinks | grep "Mute: yes")"
+speaker_mute="$(pactl list sinks | grep 'Mute: yes' | awk NR==1'{print $2}')"
 
 microphone_volume="$(pactl list sources | grep Volume | awk NR==1'{print $5}')"
-microphone_mute="$(pactl list sources | grep Mute | awk NR==1 | grep yes)"
+microphone_mute="$(pactl list sources | grep 'Mute: yes' | awk NR==1'{print $2}')"
 
-if [ "${speaker_mute}" = "Mute: yes" ]
+if [ "${speaker_mute}" = 'yes' ]
 then
 	summary="Speakers: MUTED ${speaker_volume}"
 else
 	summary="Speakers: ${speaker_volume}"
 fi
 
-if [ "${microphone_mute}" = "Mute: yes" ]
+if [ "${microphone_mute}" = 'yes' ]
 then
 	body="Microphone: MUTED ${microphone_volume}"
 else
 	body="Microphone: ${microphone_volume}"
 fi
 
-echo ${speaker_mute}
-echo ${microphone_mute}
 notify-send -a "${app_name}"\
 	-i "${icon}"\
 	-t 4000\
