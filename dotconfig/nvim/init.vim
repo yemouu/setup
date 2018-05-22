@@ -12,4 +12,3 @@ vnoremap <leader>' <esc>`>a'<esc>`<i'
 
 set tabstop=4
 set shiftwidth=4
-set runtimepath+=~/.dotfiles/dotconfig/nvim/plugins/wal.vim

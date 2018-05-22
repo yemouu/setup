@@ -4,7 +4,7 @@
 
 xsetroot -cursor_name left_ptr &
 
-bspc monitor -d I II III IV V VI VII VIII
+bspc monitor -d I II III IV V
 
 bspc config normal_border_color "$color8"
 bspc config active_border_color "$color3"
