@@ -1,21 +1,22 @@
 XF86AudioNext
-	mpc next
+	mpc next; ${HOME}/.dotfiles/notificationscripts/musicnoti
 XF86AudioPlay
-	mpc toggle
+	mpc toggle; ${HOME}/.dotfiles/notificationscripts/musicnoti
 XF86AudioPrev
-	mpc prev
+	mpc prev; ${HOME}/.dotfiles/notificationscripts/musicnoti
 XF86AudioStop
-	mpc stop
+	mpc stop; ${HOME}/.dotfiles/notificationscripts/musicnoti
+
 shift + XF86AudioRaiseVolume
-	pactl set-sink-volume @DEFAULT_SINK@ 100%
+	pactl set-sink-volume @DEFAULT_SINK@ 100%; ${HOME}/.dotfiles/notificationscripts/volumenoti
 XF86AudioRaiseVolume
-	pactl set-sink-volume @DEFAULT_SINK@ +2%
+	pactl set-sink-volume @DEFAULT_SINK@ +2%; ${HOME}/.dotfiles/notificationscripts/volumenoti
 XF86AudioLowerVolume
-	pactl set-sink-volume @DEFAULT_SINK@ -2%
+	pactl set-sink-volume @DEFAULT_SINK@ -2%; ${HOME}/.dotfiles/notificationscripts/volumenoti
 XF86AudioMute
-	pactl set-sink-mute @DEFAULT_SINK@ toggle
+	pactl set-sink-mute @DEFAULT_SINK@ toggle; ${HOME}/.dotfiles/notificationscripts/volumenoti
 super + e
-	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle; ${HOME}/.dotfiles/notificationscripts/volumenoti
 
 Print
 	nougat -fc
@@ -32,6 +33,8 @@ super + r
 	rofi -show run
 super + w
 	rofi -show window
+super + t
+	${HOME}/.dotfiles/notificationscripts/timedatenoti
 #super + c
 #	${HOME}/.dotfiles/dotconfig/bspwm/tbar &
 
