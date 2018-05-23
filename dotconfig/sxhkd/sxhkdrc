@@ -49,8 +49,8 @@ super + ctrl + Escape
 
 super + Tab
 	bspc desktop -l next
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+super + shift + {t,s,f}
+	bspc node -t {tiled,floating,fullscreen}
 
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
