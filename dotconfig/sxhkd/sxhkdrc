@@ -1,22 +1,26 @@
 XF86AudioNext
-	mpc next; ${HOME}/.dotfiles/notificationscripts/musicnoti
+	mpc next
 XF86AudioPlay
-	mpc toggle; ${HOME}/.dotfiles/notificationscripts/musicnoti
+	mpc toggle
 XF86AudioPrev
-	mpc prev; ${HOME}/.dotfiles/notificationscripts/musicnoti
+	mpc prev
 XF86AudioStop
-	mpc stop; ${HOME}/.dotfiles/notificationscripts/musicnoti
+	mpc stop
+XF86Mail
+	${HOME}/.dotfiles/notificationscripts/musicnoti
 
 shift + XF86AudioRaiseVolume
-	pactl set-sink-volume @DEFAULT_SINK@ 100%; ${HOME}/.dotfiles/notificationscripts/volumenoti
+	pactl set-sink-volume @DEFAULT_SINK@ 100%
 XF86AudioRaiseVolume
-	pactl set-sink-volume @DEFAULT_SINK@ +2%; ${HOME}/.dotfiles/notificationscripts/volumenoti
+	pactl set-sink-volume @DEFAULT_SINK@ +2%
 XF86AudioLowerVolume
-	pactl set-sink-volume @DEFAULT_SINK@ -2%; ${HOME}/.dotfiles/notificationscripts/volumenoti
+	pactl set-sink-volume @DEFAULT_SINK@ -2%
 XF86AudioMute
-	pactl set-sink-mute @DEFAULT_SINK@ toggle; ${HOME}/.dotfiles/notificationscripts/volumenoti
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
 super + e
-	pactl set-source-mute @DEFAULT_SOURCE@ toggle; ${HOME}/.dotfiles/notificationscripts/volumenoti
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+XF86Tools
+	${HOME}/.dotfiles/notificationscripts/volumenoti
 
 Print
 	nougat -fc
@@ -71,8 +75,8 @@ super + {_,ctrl + }q
 super + shift + s
 	bspc node -g sticky
 
-super + {_,shift + }{1-8}
-	bspc {desktop -f,node -d} '^{1-8}'
+super + {_,shift + }{1-5}
+	bspc {desktop -f,node -d} '^{1-5}'
 
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
