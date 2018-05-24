@@ -1,8 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 . "${HOME}/.cache/wal/colors.sh"
-
-xsetroot -cursor_name left_ptr &
 
 bspc monitor -d I II III IV V
 
