@@ -33,10 +33,10 @@ pywal() {
 		pape="${HOME}/pictures/wallpapers/Wall-${1}.*"
 	fi
 	if [ -z "$2" ]; then
-		wal --backend colorz -c -i ${pape} -o wal-set
+		wal -c -i ${pape} -o wal-set
 	else
 		lida="$2"
-		wal --backend colorz -c ${lida} -i ${pape} -o wal-set
+		wal -c ${lida} -i ${pape} -o wal-set
 	fi
 
 	unset lida

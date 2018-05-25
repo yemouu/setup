@@ -13,7 +13,8 @@ visualizer_type = "spectrum"
 visualizer_look = "XX"
 
 message_delay_time = 2
-progressbar_look = "─│"
+#progressbar_look = "─│"
+progressbar_look = "──"
 
 song_list_format = $3%a $7%t $2%l$9
 song_status_format =
@@ -21,8 +22,8 @@ song_library_format = %t
 song_window_title_format = %a - %t
 song_columns_list_format = "(16)[green]{a} (78)[cyan]{t} (8)[red]{l}"
 
-current_item_prefix = "$4>$9  "
-now_playing_prefix = "$4*$9  "
+#current_item_prefix = "$4>$9  "
+#now_playing_prefix = "$4*$9  "
 
 browser_display_mode = columns
 search_engine_display_mode = columns
