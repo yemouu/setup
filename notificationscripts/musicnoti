@@ -2,7 +2,7 @@
 # Notification Script for MPD
 
 app_name="MPD Status"
-icon="${HOME}/.dotfiles/notificationscripts/icons/music.png"
+icon="${HOME}/.dotfiles/notificationscripts/icons/music-white.png"
 
 if pidof mpd
 then

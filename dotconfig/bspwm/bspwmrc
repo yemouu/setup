@@ -27,6 +27,6 @@ bspc config split_ratio 0.50
 bspc config focus_follows_pointer true
 
 #bspc rule -a "*" state=floating
-bspc rule -a "Firefox" desktop='^1' border=off
+bspc rule -a "Firefox" desktop='^1'
 bspc rule -a "discord" desktop='^2'
 bspc rule -a "keepassxc" state=floating

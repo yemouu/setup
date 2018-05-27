@@ -2,7 +2,7 @@
 # Notification Script for MPD
 
 app_name="Audio Status"
-icon="${HOME}/.dotfiles/notificationscripts/icons/audio.png"
+icon="${HOME}/.dotfiles/notificationscripts/icons/audio-white.png"
 
 speaker_volume="$(pactl list sinks | grep Volume | awk NR==1'{print $5}')"
 speaker_mute="$(pactl list sinks | grep 'Mute: yes' | awk NR==1'{print $2}')"

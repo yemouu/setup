@@ -2,7 +2,7 @@
 # Notification Script for MPD
 
 app_name="Time and Date"
-icon="${HOME}/.dotfiles/notificationscripts/icons/timedate.png"
+icon="${HOME}/.dotfiles/notificationscripts/icons/timedate-white.png"
 
 summary="Time: $(date +'%R')"
 body="Date: $(date +'%a %d %b %Y')"
