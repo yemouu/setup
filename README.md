@@ -1,2 +1,2 @@
-# Void Dotfiles
-My configuration files for Void.
+# Linux Dotfiles
+My configuration files for Linux.
