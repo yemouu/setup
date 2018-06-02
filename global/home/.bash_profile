@@ -1,9 +1,11 @@
 [ ! -s ~/.dotfiles/dotconfig/mpd/pid ] && mpd
 
-PATH+=":${HOME}/.local/bin:${HOME}/.dotfiles/bin"
+PATH+=":${HOME}/.local/bin:${HOME}/.dotfiles/global/bin"
 
 export EDITOR="nvim"
 export INPUTRC="${HOME}/.inputrc"
 export LESSHISTFILE="/dev/null"
 
-[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
+if [[ -f ~/.bashrc  ]]; then
+	. ~/.bashrc
+fi

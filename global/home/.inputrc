@@ -1,3 +1,4 @@
 $include /etc/inputrc
 
 set expand-tilde on
+set completion-ignore-case on

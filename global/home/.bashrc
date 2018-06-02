@@ -1,4 +1,6 @@
-[[ $- != *i* ]] && return
+if [[ $- != *i*  ]]; then
+	return
+fi
 
 set -o vi
 
@@ -14,6 +16,9 @@ alias la="ls -A"
 alias ll="ls -lh"
 alias lla="ls -lAh"
 alias {cl,cls}="c;l"
+alias cla="c;la"
+alias cll="c;ll"
+alias clla="c;lla"
 
 alias poweroff="sudo poweroff"
 alias {reboot,restart}="sudo reboot"
@@ -33,12 +38,18 @@ pywal() {
 		pape="${HOME}/pictures/wallpapers/Wall-${1}.*"
 	fi
 	if [ -z "$2" ]; then
-		wal -c -i ${pape} -o wal-set
+		bnd=""	
 	else
-		lida="$2"
-		wal -c ${lida} -i ${pape} -o wal-set
+		bnd="$2"
+	fi
+	if [ -z "$3" ]; then
+		wal -c --backend ${bnd} -i ${pape} -o wal-set
+	else
+		lida="$3"
+		wal -c --backend ${bnd} ${lida} -i ${pape} -o wal-set
 	fi
 
+	unset bnd
 	unset lida
 	unset papenum
 }

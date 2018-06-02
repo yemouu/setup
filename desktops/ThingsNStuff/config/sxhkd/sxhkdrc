@@ -7,7 +7,7 @@ XF86AudioPrev
 XF86AudioStop
 	mpc stop
 XF86Mail
-	${HOME}/.dotfiles/notificationscripts/musicnoti
+	${HOME}/.dotfiles/global/noti/musicnoti
 
 shift + XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ 100%
@@ -20,7 +20,7 @@ XF86AudioMute
 super + e
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 XF86Tools
-	${HOME}/.dotfiles/notificationscripts/volumenoti
+	${HOME}/.dotfiles/global/noti/volumenoti
 
 Print
 	nougat -fc
@@ -38,9 +38,7 @@ super + r
 super + w
 	rofi -show window
 super + t
-	${HOME}/.dotfiles/notificationscripts/timedatenoti
-#super + c
-#	${HOME}/.dotfiles/dotconfig/bspwm/tbar &
+	${HOME}/.dotfiles/global/noti/timedatenoti
 
 super + Escape
 	pkill -USR1 -x sxhkd
