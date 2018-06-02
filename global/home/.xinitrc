@@ -26,7 +26,6 @@ wal -lR &
 wal-set &
 urxvtd -q -f -o &
 xbanish &
-redshift -l 33.4:-84.5 &
 xsetroot -cursor_name left_ptr &
 sxhkd &
 exec bspwm
