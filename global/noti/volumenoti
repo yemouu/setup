@@ -24,8 +24,20 @@ else
 	body="Microphone: ${microphone_volume}"
 fi
 
-notify-send -a "${app_name}"\
-	-i "${icon}"\
-	-t 4000\
-	"${summary}"\
-	"${body}"
+if command -v dunstify
+then
+	dunstify \
+		-a "${app_name}" \
+		-t 4000 \
+		-i "${icon}" \
+		-r 13596705 \
+		"${summary}" \
+		"${body}"
+else
+	notify-send \
+		-t 4000 \
+		-a "${app_name}" \
+		-i "${icon}" \
+		"${summary}" \
+		"${body}"
+fi
