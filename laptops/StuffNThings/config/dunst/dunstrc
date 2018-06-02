@@ -1,16 +1,16 @@
 [global]
 	monitor = 0
 	follow = mouse
-	geometry = "512x2-32-32"
+	geometry = "512x2-16-16"
 	indicate_hidden = no
 	shrink = yes
 	transparency = 0
 	notification_height = 0
-	separator_height = 4
+	separator_height = 2
 	separator_color = auto
-	padding = 8
-	horizontal_padding = 8
-	frame_width = 4
+	padding = 4
+	horizontal_padding = 4
+	frame_width = 2
 	sort = no
 	idle_threshold = 0
 	font = Noto Sans 8
