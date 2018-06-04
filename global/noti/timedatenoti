@@ -1,8 +1,11 @@
 #!/usr/bin/env sh
+
 # Notification Script for MPD
+# Requires:
+#	libnotify or dunstify
 
 app_name="Time and Date"
-icon="${HOME}/.dotfiles/notificationscripts/icons/timedate-white.png"
+icon="${HOME}/.dotfiles/global/noti/icons/timedate-white.png"
 
 summary="Time: $(date +'%R')"
 body="Date: $(date +'%a %d %b %Y')"

@@ -23,6 +23,8 @@ alias clla="c;lla"
 alias poweroff="sudo poweroff"
 alias {reboot,restart}="sudo reboot"
 
+alias ServerNStuff="TERM=xterm-256color ssh -p 50769 meyou@ServerNStuff"
+
 scf() {
         curdir=$(pwd)
         cd "${HOME}/music" || exit
