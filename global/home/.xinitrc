@@ -21,9 +21,8 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-start-pulseaudio-x11 &
-wal -lR &
-wal-set &
+#start-pulseaudio-x11 &
+sh "${HOME}/.fehbg" &
 urxvtd -q -f -o &
 xbanish &
 xsetroot -cursor_name left_ptr &
