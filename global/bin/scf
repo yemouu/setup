@@ -4,8 +4,8 @@
 # Requires:
 #	scdl - Downloading the music
 
-CLEAN=false
-KEEP_GOING=false
+DELETE=false
+CONTINUE=false
 
 usage() { 
 cat << EOF
@@ -31,15 +31,15 @@ EOF
 get_arguments() {
 	while getopts "dcu:h" OPTION; do
 		case "$OPTION" in
-			"d"	)	CLEAN=true		;;
-			"c"	)	KEEP_GOING=true		;;
+			"d"	)	DELETE=true		;;
+			"c"	)	CONTINUE=true		;;
 			"u"	)	USERNAME="${OPTARG}"	;;
-			"h"	)	usage; exit 1		;;
+			"h"	)	usage; exit 0		;;
 			"*"	)	usage; exit 1		;;
 		esac
 	done
 
-	if [ -z "${USERNAME}" ] && [ "${CLEAN}" = false ]; then
+	if [ -z "${USERNAME}" ] && [ "${DELETE}" = false ]; then
 		echo "scf must be run with -c or -u."
 		echo "Run scf -h for more information"
 		exit 1
@@ -53,17 +53,17 @@ clean() {
 		DIRECTORY="${HOME}/Music"
 	fi
 
-	if [ "${CLEAN}" = true ]; then
+	if [ "${DELETE}" = true ]; then
 		rm "${DIRECTORY}"/* &> /dev/null
 		echo "${DIRECTORY} is cleared"
 	fi
 }
 
 download() {
-	if [ -z ${USERNAME} ]; then
+	if [ -z "${USERNAME}" ]; then
 		exit
 	else
-		if [ "${KEEP_GOING}" = true ]; then
+		if [ "${CONTINUE}" = true ]; then
 			scdl \
 				-l "https://soundcloud.com/${USERNAME}" \
 				-fc --download-archive "${DIRECTORY}/archive" \

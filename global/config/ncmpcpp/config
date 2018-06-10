@@ -13,8 +13,8 @@ visualizer_type = "spectrum"
 visualizer_look = "XX"
 
 message_delay_time = 2
-#progressbar_look = "─│"
-progressbar_look = "──"
+#progressbar_look = "──"
+progressbar_look = "   "
 
 song_list_format = $3%a $7%t $2%l$9
 song_status_format =
@@ -30,7 +30,7 @@ search_engine_display_mode = columns
 
 default_find_mode = wrapped
 space_add_mode = add_remove
-startup_screen = "visualizer"
+#startup_screen = "visualizer"
 
 statusbar_visibility = no
 titles_visibility = no

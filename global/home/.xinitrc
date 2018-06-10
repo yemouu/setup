@@ -21,10 +21,8 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-#start-pulseaudio-x11 &
-sh "${HOME}/.fehbg" &
+colorme -R &
 urxvtd -q -f -o &
-xbanish &
 xsetroot -cursor_name left_ptr &
 sxhkd &
-exec bspwm
+exec ck-launch-session dbus-launch --sh-syntax --exit-with-session bspwm

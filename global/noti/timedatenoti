@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# Notification Script for MPD
+# Notification Script for Time & Date
 # Requires:
 #	libnotify or dunstify
 

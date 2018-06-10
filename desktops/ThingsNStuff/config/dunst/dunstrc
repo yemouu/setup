@@ -13,7 +13,7 @@
 	frame_width = 4
 	sort = no
 	idle_threshold = 0
-	font = Noto Sans 8
+	font = lucy tewi 8
 	line_height = 0
 	markup = full
 	format = "<b>%a</b>\n%s\n%b"

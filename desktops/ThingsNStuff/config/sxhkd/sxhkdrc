@@ -8,6 +8,8 @@ XF86AudioStop
 	mpc stop;${HOME}/.dotfiles/global/noti/musicnoti
 XF86Mail
 	${HOME}/.dotfiles/global/noti/musicnoti
+super + shift + {Up,Down}
+	mpc volume {+,-}2
 
 shift + XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ 100%;${HOME}/.dotfiles/global/noti/volumenoti
@@ -82,8 +84,8 @@ super + {_,ctrl + }q
 super + shift + s
 	bspc node -g sticky
 
-super + {_,shift + }{1-5}
-	bspc {desktop -f,node -d} '^{1-5}'
+super + {_,shift + }{1-8}
+	bspc {desktop -f,node -d} '^{1-8}'
 
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}

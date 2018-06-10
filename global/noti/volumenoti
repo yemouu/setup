@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# Notification Script for MPD
+# Notification Script for Volume
 # Requires:
 #	libnotify or dunstify
 #	Pulseaudio

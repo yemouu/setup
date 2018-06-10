@@ -9,7 +9,10 @@ URxvt.buffered: True
 URxvt.geometry: 64x16
 URxvt.jumpScroll: True
 URxvt.skipScroll: True
-URxvt.font: xft:Noto Mono:size=8
+URxvt.font: xft:lucy tewi:pixelsize=11
+URxvt.boldFont: xft:lucy tewi:style=Bold:pixelsize=11
+URxvt.italicFont: xft:lucy tewi:pixelsize=11
+URxvt.boldItalicFont: xft:lucy tewi:style=Bold:pixelsize=11
 URxvt.letterSpace: 0
 URxvt.scrollBar: False
 URxvt.internalBorder: 32

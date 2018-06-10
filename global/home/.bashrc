@@ -25,29 +25,11 @@ alias {reboot,restart}="sudo reboot"
 
 alias ServerNStuff="TERM=linux ssh -p 50769 meyou@ServerNStuff"
 
-pywal() {
-	if [ -z "$1" ]; then
-		echo "Wallpaper not specified."
-	else
-		pape="${HOME}/pictures/wallpapers/Wall-${1}.*"
-	fi
-	if [ -z "$2" ]; then
-		bnd=""	
-	else
-		bnd="$2"
-	fi
-	if [ -z "$3" ]; then
-		wal -c --backend ${bnd} -i ${pape} -o wal-set
-	else
-		lida="$3"
-		wal -c --backend ${bnd} ${lida} -i ${pape} -o wal-set
-	fi
+ESC="$(printf '\e')"
+C1="\\[${ESC}[3#1m\\]"
+C2="\\[${ESC}[3#5m\\]"
+BOLD="\\[${ESC}[1m\\]"
+RESET="\\[${ESC}(B${ESC}[m\\]"
 
-	unset bnd
-	unset lida
-	unset papenum
-}
-
-PS1="[\\[$(tput setaf 005)\\]\\[$(tput bold)\\]\\w\\[$(tput sgr0)\\]]"
-PS1+="\\[$(tput setaf 003)\\]\\[$(tput bold)\\]\\$ \\[$(tput sgr0)\\]"
-PS2="\\[$(tput setaf 003)\\]\\[$(tput bold)\\]\\$ \\[$(tput sgr0)\\]"
+PS1="[${BOLD}${C2}\\w${RESET}]${BOLD}${C1}\\$ ${RESET}"
+PS2="${BOLD}${C1}\\$ ${RESET}"
