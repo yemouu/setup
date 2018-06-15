@@ -21,7 +21,8 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-colorme -R &
+xrandr -r 144 &
+wal -R &
 urxvtd -q -f -o &
 xsetroot -cursor_name left_ptr &
 sxhkd &

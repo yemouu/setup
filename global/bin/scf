@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# Downloads liked songs from SoundCloud users
+# Wrapper for SCDL
 # Requires:
 #	scdl - Downloading the music
 
@@ -21,7 +21,7 @@ Options
 	-c	Continues download if a file is already found.
 
 	-u 	Picks user to download likes from. The end of soundcloud url.
-		Ex: 'scf -u yeemou' will targethttps://soundcloud.com/yeemou
+		Ex: 'scf -u yeemou' will target https://soundcloud.com/yeemou
 
 	-h	Displays this message
 

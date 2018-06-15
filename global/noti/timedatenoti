@@ -5,7 +5,7 @@
 #	libnotify or dunstify
 
 app_name="Time and Date"
-icon="${HOME}/.dotfiles/global/noti/icons/timedate-white.png"
+icon="${HOME}/.dotfiles/global/noti/icons/timedate.png"
 
 summary="Time: $(date +'%R')"
 body="Date: $(date +'%a %d %b %Y')"

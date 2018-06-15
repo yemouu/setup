@@ -1,7 +1,7 @@
 configuration {
 	width: 16;
 	lines: 8;
-	font: "lucy tewi 8";
+	font: "Noto Mono 8";
 	bw: 4;
 	location: 2;
 	padding: 8;

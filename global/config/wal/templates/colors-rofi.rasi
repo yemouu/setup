@@ -23,15 +23,17 @@
     background-color: @background;
     background: {background};
     foreground: {foreground};
-    border-color: {color8};
+    border-color: {color2};
     spacing: 2;
 }}
 
+
 #window {{
     background-color: @background;
-    border: 4;
-    padding: 8;
+    border: 2;
+    padding: 16;
 }}
+
 
 #mainbox {{
     border: 0;
@@ -64,7 +66,7 @@ textbox-prompt-colon {{
     border: 2px 0px 0px;
     border-color: @border-color;
     spacing: 2px;
-    scrollbar: true;
+    scrollbar: false;
     padding: 2px 0px 0px;
 }}
 
@@ -116,13 +118,6 @@ textbox-prompt-colon {{
 #element.alternate.active {{
     background-color: @alternate-active-background;
     text-color: @alternate-active-foreground;
-}}
-
-#scrollbar {{
-    width: 4px;
-    border: 0;
-    handle-width: 8px;
-    padding: 0;
 }}
 
 #sidebar {{

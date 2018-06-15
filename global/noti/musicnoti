@@ -6,7 +6,7 @@
 #	mpc
 
 app_name="MPD Status"
-icon="${HOME}/.dotfiles/global/noti/icons/music-white.png"
+icon="${HOME}/.dotfiles/global/noti/icons/music.png"
 
 if pidof mpd
 then

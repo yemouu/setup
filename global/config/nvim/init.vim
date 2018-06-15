@@ -12,3 +12,6 @@ vnoremap <leader>' <esc>`>a'<esc>`<i'
 
 set tabstop=8
 set shiftwidth=8
+
+set runtimepath^=${HOME}/.config/nvim/plugins/wal.vim
+colorscheme wal

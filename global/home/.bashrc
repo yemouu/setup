@@ -6,8 +6,6 @@ set -o vi
 
 . "/usr/share/bash-completion/bash_completion"
 
-(cat ~/.cache/wal/sequences &)
-
 alias {c,clear}="printf '\\033c'"
 alias {q,wq,:q,:wq}="exit"
 
@@ -19,9 +17,6 @@ alias {cl,cls}="c;l"
 alias cla="c;la"
 alias cll="c;ll"
 alias clla="c;lla"
-
-alias poweroff="sudo poweroff"
-alias {reboot,restart}="sudo reboot"
 
 alias ServerNStuff="TERM=linux ssh -p 50769 meyou@ServerNStuff"
 

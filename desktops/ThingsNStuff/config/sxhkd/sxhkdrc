@@ -40,8 +40,6 @@ super + Return
 	urxvtc
 super + b
 	firefox
-super + d
-	Discord
 super + r
 	rofi -show run
 super + w
@@ -66,8 +64,6 @@ super + {_,shift + }{h,j,k,l}
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
 super + ctrl + space
 	bspc node -p cancel
 super + ctrl + shift + space
@@ -84,8 +80,12 @@ super + {_,ctrl + }q
 super + shift + s
 	bspc node -g sticky
 
-super + {_,shift + }{1-8}
-	bspc {desktop -f,node -d} '^{1-8}'
+
+super + {_,shift + }{1-5}
+	bspc {desktop -f,node -d} '^{1-5}'
+
+super + ctrl + {_,shift + }{1,2,3,4,5}
+	bspc {desktop -f,node -d} '^{6,7,8,9,10}'
 
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
