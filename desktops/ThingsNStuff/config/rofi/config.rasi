@@ -1,16 +1,11 @@
 configuration {
-	width: 16;
-	lines: 8;
+	width: 12;
+	lines: 6;
 	font: "Noto Mono 8";
-	bw: 4;
 	location: 2;
-	padding: 8;
-	yoffset: 64;
+	yoffset: 44;
 	fixed-num-lines: false;
 	disable-history: true;
-	line-margin: 0;
-	separator-style: "none";
-	hide-scrollbar: true;
 	dpi: 92;
 	theme: "~/.cache/wal/colors-rofi.rasi";
 	terminal: "urxvt";

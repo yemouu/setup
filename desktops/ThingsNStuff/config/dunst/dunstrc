@@ -1,7 +1,7 @@
 [global]
 	monitor = 0
 	follow = mouse
-	geometry = "512x2-32-32"
+	geometry = "500x2-16-16"
 	indicate_hidden = no
 	shrink = yes
 	transparency = 0
@@ -26,10 +26,10 @@
 	hide_duplicate_count = false
 	show_indicators = no
 	icon_position = left
-	max_icon_size = 32
+	max_icon_size = 38
 	icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 	sticky_history = yes
-	history_length = 20
+	history_length = 10
 	dmenu = /usr/bin/rofi -dmenu
 	browser = /usr/bin/firefox -new-tab
 	always_run_script = true

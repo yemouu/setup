@@ -1,35 +1,37 @@
 XF86AudioNext
-	mpc next;${HOME}/.dotfiles/global/noti/musicnoti
+	mpc next
 XF86AudioPlay
-	mpc toggle;${HOME}/.dotfiles/global/noti/musicnoti
+	${HOME}/.dotfiles/global/noti/music/music-toggle
 XF86AudioPrev
-	mpc prev;${HOME}/.dotfiles/global/noti/musicnoti
+	mpc prev
 XF86AudioStop
-	mpc stop;${HOME}/.dotfiles/global/noti/musicnoti
+	${HOME}/.dotfiles/global/noti/music/music-stop
 XF86Mail
-	${HOME}/.dotfiles/global/noti/musicnoti
+	${HOME}/.dotfiles/global/noti/music/music-info
 super + shift + {Up,Down}
-	mpc volume {+,-}2
+	${HOME}/.dotfiles/global/noti/music/music-volume-{up,down}
 
 shift + XF86AudioRaiseVolume
-	pactl set-sink-volume @DEFAULT_SINK@ 100%;${HOME}/.dotfiles/global/noti/volumenoti
+	${HOME}/.dotfiles/global/noti/volume/speaker-volume-up-all
 XF86AudioRaiseVolume
-	pactl set-sink-volume @DEFAULT_SINK@ +2%;${HOME}/.dotfiles/global/noti/volumenoti
+	${HOME}/.dotfiles/global/noti/volume/speaker-volume-up
 XF86AudioLowerVolume
-	pactl set-sink-volume @DEFAULT_SINK@ -2%;${HOME}/.dotfiles/global/noti/volumenoti
+	${HOME}/.dotfiles/global/noti/volume/speaker-volume-down
 XF86AudioMute
-	pactl set-sink-mute @DEFAULT_SINK@ toggle;${HOME}/.dotfiles/global/noti/volumenoti
+	${HOME}/.dotfiles/global/noti/volume/speaker-volume-mute
 XF86Tools
-	${HOME}/.dotfiles/global/noti/volumenoti
+	${HOME}/.dotfiles/global/noti/volume/volume-info
 
 alt + shift + XF86AudioRaiseVolume
-	pactl set-source-volume @DEFAULT_SOURCE@ 100%;${HOME}/.dotfiles/global/noti/volumenoti
+	${HOME}/.dotfiles/global/noti/volume/microphone-volume-up-all
+alt + ctrl + XF86AudioRaiseVolume
+	${HOME}/.dotfiles/global/noti/volume/microphone-please-die
 alt + XF86AudioRaiseVolume
-	pactl set-source-volume @DEFAULT_SOURCE@ +2%;${HOME}/.dotfiles/global/noti/volumenoti
+	${HOME}/.dotfiles/global/noti/volume/microphone-volume-up
 alt + XF86AudioLowerVolume
-	pactl set-source-volume @DEFAULT_SOURCE@ -2%;${HOME}/.dotfiles/global/noti/volumenoti
+	${HOME}/.dotfiles/global/noti/volume/microphone-volume-down
 super + e
-	pactl set-source-mute @DEFAULT_SOURCE@ toggle;${HOME}/.dotfiles/global/noti/volumenoti
+	${HOME}/.dotfiles/global/noti/volume/microphone-volume-mute
 
 Print
 	nougat -fc
@@ -45,9 +47,9 @@ super + r
 super + w
 	rofi -show window
 super + t
-	${HOME}/.dotfiles/global/noti/timedatenoti
-super + grave
-	rofi-pass
+	${HOME}/.dotfiles/global/noti/time-date/utc-time-date
+super + ctrl + t
+	${HOME}/.dotfiles/global/noti/time-date/local-time-date
 
 super + Escape
 	pkill -USR1 -x sxhkd
@@ -77,7 +79,7 @@ super + shift + {u,i,o,p}
 super + {_,ctrl + }q
 	bspc node -{c,k}
 
-super + shift + s
+super + ctrl + s
 	bspc node -g sticky
 
 

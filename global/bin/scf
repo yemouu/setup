@@ -54,7 +54,7 @@ clean() {
 	fi
 
 	if [ "${DELETE}" = true ]; then
-		rm "${DIRECTORY}"/* &> /dev/null
+		rm "${DIRECTORY}/"* &> /dev/null
 		echo "${DIRECTORY} is cleared"
 	fi
 }
@@ -67,12 +67,12 @@ download() {
 			scdl \
 				-l "https://soundcloud.com/${USERNAME}" \
 				-fc --download-archive "${DIRECTORY}/archive" \
-				--onlymp3 --path "${DIRECTORY}"
+				--onlymp3 --path "${DIRECTORY}" --addtofile
 		else
 			scdl \
 				-l "https://soundcloud.com/${USERNAME}" \
 				-f --download-archive "${DIRECTORY}/archive" \
-				--onlymp3 --path "${DIRECTORY}"
+				--onlymp3 --path "${DIRECTORY}" --addtofile
 		fi
 	fi
 }

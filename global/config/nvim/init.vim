@@ -7,11 +7,14 @@ nnoremap H ^
 nnoremap L g_
 nnoremap <leader>1 :set nu!<cr>
 nnoremap <leader>2 :set rnu!<cr>
+nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>
 
 vnoremap <leader>' <esc>`>a'<esc>`<i'
 
 set tabstop=8
 set shiftwidth=8
+set syntax=on
+set scrolloff=4
 
 set runtimepath^=${HOME}/.config/nvim/plugins/wal.vim
 colorscheme wal

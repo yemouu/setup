@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+# Notification Script to display Time & Date in UTC
+# Requires:
+#	libnotify or dunstify
+
+app_name="UTC Time and Date"
+icon="${HOME}/.dotfiles/global/noti/time-date/icons/utc-time-date.png"
+
+summary="Time: $(TZ=UTC date +'%R')"
+body="Date: $(TZ=UTC date +'%a %d %b %Y')"
+
+if command -v dunstify; then
+	dunstify -a "${app_name}" \
+		-t 4000 \
+		-i "${icon}" \
+		-r 13596705 \
+		"${summary}" \
+		"${body}"
+else
+	notify-send -t 4000 \
+		-a "${app_name}" \
+		-i "${icon}" \
+		"${summary}" \
+		"${body}"
+fi
