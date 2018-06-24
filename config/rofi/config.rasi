@@ -1,4 +1,5 @@
 configuration {
+	modi: "window,run";
 	width: 12;
 	lines: 6;
 	font: "Noto Mono 8";

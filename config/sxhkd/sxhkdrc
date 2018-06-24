@@ -3,77 +3,68 @@ XF86Audio{Next,Prev}
 XF86Audio{Play,Stop}
 	${HOME}/.dotfiles/noti/music/{music-toggle,music-stop}
 XF86Mail
-	${HOME}/.dotfiles/global/noti/music/music-info
+	${HOME}/.dotfiles/noti/music/music-info
 super + shift + {Up,Down}
-	${HOME}/.dotfiles/global/noti/music/music-volume-{up,down}
+	${HOME}/.dotfiles/noti/music/music-volume-{up,down}
+
 
 shift + XF86AudioRaiseVolume
 	${HOME}/.dotfiles/global/noti/volume/speaker-volume-up-all
-XF86AudioRaiseVolume
-	${HOME}/.dotfiles/global/noti/volume/speaker-volume-up
-XF86AudioLowerVolume
-	${HOME}/.dotfiles/global/noti/volume/speaker-volume-down
-XF86AudioMute
-	${HOME}/.dotfiles/global/noti/volume/speaker-volume-mute
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+	${HOME}/.dotfiles/noti/volume/speaker-volume-{up,down,mute}
 XF86Tools
-	${HOME}/.dotfiles/global/noti/volume/volume-info
+	${HOME}/.dotfiles/noti/volume/volume-info
 
-alt + shift + XF86AudioRaiseVolume
-	${HOME}/.dotfiles/global/noti/volume/microphone-volume-up-all
-alt + ctrl + XF86AudioRaiseVolume
-	${HOME}/.dotfiles/global/noti/volume/microphone-please-die
-alt + XF86AudioRaiseVolume
-	${HOME}/.dotfiles/global/noti/volume/microphone-volume-up
-alt + XF86AudioLowerVolume
-	${HOME}/.dotfiles/global/noti/volume/microphone-volume-down
+
+alt + {shift,ctrl} + XF86AudioRaiseVolume
+	${HOME}/.dotfiles/noti/volume/microphone-{volume-up-all,please-die}
+alt + XF86Audio{Raise,Lower}Volume
+	${HOME}/.dotfiles/noti/volume/microphone-volume-{up,down}
 super + e
-	${HOME}/.dotfiles/global/noti/volume/microphone-volume-mute
+	${HOME}/.dotfiles/noti/volume/microphone-volume-mute
 
-Print
-	nougat -fc
-super + Print
-	nougat -c
+
+{_,super + }Print
+	nougat -c{f,_}
+super + r
+	rofi -show run
+
 
 super + Return
 	urxvtc
-super + b
-	firefox
-super + r
-	rofi -show run
-super + w
-	rofi -show window
-super + t
-	${HOME}/.dotfiles/global/noti/time-date/utc-time-date
-super + ctrl + t
-	${HOME}/.dotfiles/global/noti/time-date/local-time-date
+super + s ; {f,d,s}
+	{firefox,discord,steam}
+super + {_,ctrl + }t
+	${HOME}/.dotfiles/global/noti/time-date/{utc,local}-time-date
 
-super + Escape
-	pkill -USR1 -x sxhkd
-super + ctrl + Escape
-	bspc quit
+
+super + {_,ctrl + }Escape
+	{pkill -USR1 -x sxhkd,bspc quit}
+
 
 super + Tab
 	bspc desktop -l next
 super + shift + {t,s,f}
 	bspc node -t {tiled,floating,fullscreen}
 
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
+
+super + {_,shift + ,ctrl + }{h,j,k,l}
+	bspc node -{f,s,p} {west,south,north,east}
+
 
 super + ctrl + space
-	bspc node -p cancel
-super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
 
 super + {u,i,o,p}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 super + shift + {u,i,o,p}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
+
 super + {_,ctrl + }q
 	bspc node -{c,k}
+
 
 super + ctrl + s
 	bspc node -g sticky
@@ -81,9 +72,9 @@ super + ctrl + s
 
 super + {_,shift + }{1-5}
 	bspc {desktop -f,node -d} '^{1-5}'
-
 super + ctrl + {_,shift + }{1,2,3,4,5}
 	bspc {desktop -f,node -d} '^{6,7,8,9,10}'
+
 
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
