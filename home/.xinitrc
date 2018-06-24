@@ -26,6 +26,6 @@ wal -Rt &
 pywal-set
 urxvtd -q -f -o &
 xsetroot -cursor_name left_ptr &
-${HOME}.dotfiles/global/noti/music/music-changed &
+${HOME}/.dotfiles/global/noti/music/music-changed &
 sxhkd &
 exec ck-launch-session dbus-launch --sh-syntax --exit-with-session bspwm

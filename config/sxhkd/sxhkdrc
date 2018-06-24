@@ -1,11 +1,7 @@
-XF86AudioNext
-	mpc next
-XF86AudioPlay
-	${HOME}/.dotfiles/global/noti/music/music-toggle
-XF86AudioPrev
-	mpc prev
-XF86AudioStop
-	${HOME}/.dotfiles/global/noti/music/music-stop
+XF86Audio{Next,Prev}
+	mpc {next,prev}
+XF86Audio{Play,Stop}
+	${HOME}/.dotfiles/noti/music/{music-toggle,music-stop}
 XF86Mail
 	${HOME}/.dotfiles/global/noti/music/music-info
 super + shift + {Up,Down}
