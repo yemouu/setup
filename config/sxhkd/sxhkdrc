@@ -35,7 +35,7 @@ super + Return
 super + s ; {f,d,s}
 	{firefox,discord,steam}
 super + {_,ctrl + }t
-	${HOME}/.dotfiles/global/noti/time-date/{utc,local}-time-date
+	${HOME}/.dotfiles/noti/time-date/{utc,local}-time-date
 
 
 super + {_,ctrl + }Escape
