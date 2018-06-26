@@ -2,13 +2,11 @@ if [[ $- != *i*  ]]; then
 	return
 fi
 
-set -o vi
-
 . "/usr/share/bash-completion/bash_completion"
 
-(cat "${HOME}/.cache/wal/sequences")
+#(cat ${HOME}/.cache/wal/sequences)
 
-alias {c,clear}="printf '\\033c'"
+alias c="clear"
 alias {q,wq,:q,:wq}="exit"
 
 alias {l,sls,sl,ls}="ls -F --color=auto"
@@ -23,10 +21,9 @@ alias clla="c;lla"
 alias ServerNStuff="TERM=linux ssh -p 50769 meyou@ServerNStuff"
 
 ESC="$(printf '\e')"
-C1="\\[${ESC}[3#1m\\]"
-C2="\\[${ESC}[3#5m\\]"
-BOLD="\\[${ESC}[1m\\]"
-RESET="\\[${ESC}(B${ESC}[m\\]"
+C1="\[\e[0;31;1m\]"
+C2="\[\e[0;35;1m\]"
+RESET="\[\e[0m\]"
 
-PS1="[${BOLD}${C2}\\w${RESET}]${BOLD}${C1}\\$ ${RESET}"
-PS2="${BOLD}${C1}\\$ ${RESET}"
+PS1="[${C2}\w${RESET}]${C1}\$ ${RESET}"
+PS2="${C1}\$ ${RESET}"

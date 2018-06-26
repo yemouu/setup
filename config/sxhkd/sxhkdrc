@@ -30,8 +30,8 @@ super + r
 	rofi -show run
 
 
-super + Return
-	urxvtc
+super + {_,shift + }Return
+	{st,urxvt}
 super + s ; {f,d,s}
 	{firefox,discord,steam}
 super + {_,ctrl + }t
