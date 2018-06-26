@@ -21,11 +21,6 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-xrandr -r 144 &
-wal -Rt &
-pywal-set
-urxvtd -q -f -o &
-xsetroot -cursor_name left_ptr &
-${HOME}/.dotfiles/global/noti/music/music-changed &
+${HOME}/.autostart
 sxhkd &
 exec ck-launch-session dbus-launch --sh-syntax --exit-with-session bspwm
