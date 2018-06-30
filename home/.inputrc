@@ -2,30 +2,27 @@ $include /etc/inputrc
 
 set editing-mode vi
 set show-mode-in-prompt on
-
-$if mode=vi
-	set keymap vi-command
-		j: history-search-forward
-		k: history-search-backward
-	set keymap vi-insert
-		"\e[A": history-search-backward
-		"\e[B": history-search-forward
-$endif
-
 $if term=linux
-	set vi-cmd-mode-string \1\e[?0c\2
-	set vi-ins-mode-string \1\e[?8c\2
+	set vi-ins-mode-string \1\e[?0c\2
+	set vi-cmd-mode-string \1\e[?8c\2
 $else
-	set vi-cmd-mode-string \1\e[6 q\2
-	set vi-ins-mode-string \1\e[2 q\2
+	set vi-ins-mode-string \1\e[6 q\2
+	set vi-cmd-mode-string \1\e[2 q\2
 $endif
-
+set keymap vi-command
+	"\e[A": history-search-backward
+	"\e[B": history-search-forward
+	j: history-search-forward
+	k: history-search-backward
+set keymap vi-insert
+	"\e[A": history-search-backward
+	"\e[B": history-search-forward
 set expand-tilde on
 set completion-ignore-case on
 set show-all-if-ambiguous on
 set echo-control-characters off
-set colored-stats On
-set visible-stats On
-set mark-symlinked-directories On
-set colored-completion-prefix On
-set menu-complete-display-prefix On
+set colored-stats nn
+set visible-stats off
+set mark-symlinked-directories on
+set colored-completion-prefix on
+set menu-complete-display-prefix on

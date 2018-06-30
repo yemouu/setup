@@ -1,5 +1,4 @@
-clear
-[ ! -s ~/.dotfiles/dotconfig/mpd/pid ] && mpd
+[ ! -s /tmp/mpd-pid ] && mpd
 
 PATH+=":${HOME}/.local/bin:${HOME}/.dotfiles/bin"
 

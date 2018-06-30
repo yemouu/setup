@@ -30,8 +30,8 @@ super + r
 	rofi -show run
 
 
-super + {_,shift + }Return
-	{st,urxvt}
+super + Return
+	alacritty
 super + s ; {f,d,s}
 	{firefox,discord,steam}
 super + {_,ctrl + }t

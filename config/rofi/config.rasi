@@ -2,12 +2,11 @@ configuration {
 	modi: "window,run";
 	width: 12;
 	lines: 6;
-	font: "Noto Mono 8";
+	font: "DejaVu Sans Mono 8";
 	location: 2;
 	yoffset: 44;
 	fixed-num-lines: false;
 	disable-history: true;
 	dpi: 92;
-	theme: "~/.cache/wal/colors-rofi.rasi";
-	terminal: "urxvt";
+	/*theme: "~/.cache/wal/colors-rofi.rasi";*/
 }
