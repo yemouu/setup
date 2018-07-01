@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+# Script to decrease volume and display a notification
+# Requires:
+#	libnotify or dunstify
+#	pulseaudio
+
+app_name="Speaker Status"
+summary="Volume Down"
+
+pactl set-sink-volume @DEFAULT_SINK@ -2%
+
+if command -v dunstify; then
+	dunstify -a "${app_name}" \
+		-t 4000 \
+		-r 13596705 \
+		"${summary}" \
+		"$(pactl list sinks | awk NR==10'{print $5}')"
+else
+	notify-send -t 4000 \
+		-a "${app_name}" \
+		"${summary}" \
+		"$(pactl list sinks | awk NR==10'{print $5}')"
+fi

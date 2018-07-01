@@ -1,4 +1,4 @@
-NOUGAT_SCREENSHOT_DIRECTORY="$HOME/screenshots"
+NOUGAT_SCREENSHOT_DIRECTORY="$HOME/scr"
 NOUGAT_ORGANIZATION_POLICY="${year}/${month}/${day}/${hour}:${minute}:${second}${suffix}"
 NOUGAT_LINKING_POLICY="All/${year}-${month}-${day}.${hour}:${minute}:${second}${suffix}"
 MAIM_BACKEND_OPTIONS=""

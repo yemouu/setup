@@ -36,7 +36,7 @@ get_args() {
 		esac
 	done
 
-	if [ -z "${LINK}" ]
+	if [[ -z "${LINK}" ]]
 	then
 		printf '%s\n' "ard must be run with option -l."
 		printf '%s\n' "See \`ard -h\` for more information."
@@ -44,10 +44,10 @@ get_args() {
 }
 
 set_args() {
-	if [ -z "${DIR}" ]
+	if [[ -z "${DIR}" ]]
 	then
 		DIR="$(pwd)"
-	elif [ ! -d "${DIR}" ]
+	elif [[ ! -d "${DIR}" ]]
 	then
 		printf '%s\n' "Directory does not exist."
 		printf '%s\n' "Do you want to create the directory? (y/n)" 
@@ -55,10 +55,11 @@ set_args() {
 		case "${yn}" in
 			[Yy]*	)	mkdir -p "${DIR}"	;;
 			[Nn]*	)	exit 1			;;
+			"*"	)	exit 1			;;
 		esac
 	fi
 
-	if [ -z "${CONNECTIONS}" ]
+	if [[ -z "${CONNECTIONS}" ]]
 	then
 		X=""
 	else

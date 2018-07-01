@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+# Script to display information about Volume
+# Requires:
+#	libnotify or dunstify
+#	Pulseaudio
+
+app_name="Volume Status"
+icon="${HOME}/.dotfiles/global/noti/icons/audio.png"
+
+speaker_volume="$(pactl list sinks | awk NR==10'{print $5}')"
+speaker_mute="$(pactl list sinks | awk NR==9'{print $2}')"
+
+microphone_volume="$(pactl list sources | awk NR==10'{print $5}')"
+microphone_mute="$(pactl list sources | awk NR==9'{print $2}')"
+
+if [ "${speaker_mute}" = 'yes' ]; then
+	summary="Speakers: [M] ${speaker_volume}"
+else
+	summary="Speakers: ${speaker_volume}"
+fi
+
+if [ "${microphone_mute}" = 'yes' ];then
+	body="Microphone: [M] ${microphone_volume}"
+else
+	body="Microphone: ${microphone_volume}"
+fi
+
+if command -v dunstify; then
+	dunstify -a "${app_name}" \
+		-t 4000 \
+		-r 13596705 \
+		"${summary}" \
+		"${body}"
+else
+	notify-send -t 4000 \
+		-a "${app_name}" \
+		"${summary}" \
+		"${body}"
+fi
