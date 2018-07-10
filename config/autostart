@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+wal -Rt &
+pywal-set &
+xrandr -r 144 &
+xsetroot -cursor_name left_ptr &
+"${HOME}/.dotfiles/noti/music/music-changed" &
