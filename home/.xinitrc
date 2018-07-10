@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -21,6 +21,6 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-${HOME}/.autostart
-sxhkd &
-exec ck-launch-session dbus-launch --sh-syntax --exit-with-session bspwm
+"${HOME}/.config/autostart"
+
+exec ck-launch-session dbus-launch --sh-syntax --exit-with-session herbstluftwm --locked

@@ -1,5 +1,7 @@
 XF86Audio{Next,Prev}
 	mpc {next,prev}
+alt + XF86AudioPrev
+	mpc seek 0%
 XF86Audio{Play,Stop}
 	${HOME}/.dotfiles/noti/music/{music-toggle,music-stop}
 XF86Mail
@@ -9,7 +11,7 @@ super + shift + {Up,Down}
 
 
 shift + XF86AudioRaiseVolume
-	${HOME}/.dotfiles/global/noti/volume/speaker-volume-up-all
+	${HOME}/.dotfiles/noti/volume/speaker-volume-up-all
 XF86Audio{RaiseVolume,LowerVolume,Mute}
 	${HOME}/.dotfiles/noti/volume/speaker-volume-{up,down,mute}
 XF86Tools

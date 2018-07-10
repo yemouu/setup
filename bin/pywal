@@ -48,7 +48,7 @@ exec_wal() {
 		echo "Wallpaper not found"
 		exit 1
 	else
-		wal --backend "${BACKEND}" ${LIGHT} -t \
+		wal --backend "${BACKEND}" ${LIGHT} -ct \
 			-i "$(xdg-user-dir PICTURES)/wallpapers/Wall-${WALL_NUM}."*
 	fi
 }

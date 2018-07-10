@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-
-xrandr -r 144 &
-#wal -Rt &
-#pywal-set &
-#urxvtd -q -f -o &
-xsetroot -cursor_name left_ptr &
-${HOME}/.dotfiles/noti/music/music-changed &

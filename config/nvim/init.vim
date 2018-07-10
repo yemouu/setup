@@ -15,8 +15,9 @@ set tabstop=8
 set shiftwidth=8
 set syntax=on
 set scrolloff=4
+set clipboard=unnamedplus
 
 set runtimepath^=${HOME}/.config/nvim/plugins/ale
 set runtimepath^=${HOME}/.config/nvim/plugins/jedi-vim
-"set runtimepath^=${HOME}/.config/nvim/plugins/wal.vim
+set runtimepath^=${HOME}/.config/nvim/plugins/wal.vim
 "colorscheme wal

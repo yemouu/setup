@@ -21,7 +21,7 @@ set expand-tilde on
 set completion-ignore-case on
 set show-all-if-ambiguous on
 set echo-control-characters off
-set colored-stats nn
+set colored-stats yes
 set visible-stats off
 set mark-symlinked-directories on
 set colored-completion-prefix on
