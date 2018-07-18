@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+
+# Script to upload Screenshots to 0x0.st and copy the link into clipboard
+# Requires:
+#	nougat - take screenshots (https://github.com/Sweets/nougat)
+#	curl - upload to 0x0.st
+#	xclip - copy to clipboard
+# Optional:
+#	libnotify or dunstify - send notifcation
+
+full=false
+noti=false
+
+usage() { printf '%s\n' "
+Usage:	nougat-0x0 [OPTIONS]
+
+Options:
+	-h	display this message
+	-f	take a fullscreen screenshot
+	-n	sends a notification
+"
+}
+
+get_args() {
+	while getopts "hfn" options
+	do
+		case $options in
+			h	)	usage ; exit 0 ;;
+			f	)	full=true ;;
+			n	)	noti=true ;;
+			*	)	usage ; exit 1 ;;
+		esac
+	done
+}
+
+screenshot() {
+	if [[ ! $(command -v nougat) ]]
+	then
+		printf '%s\n' "Nougat not found"
+		exit 1
+	fi
+	if [[ $full = true ]] 
+	then
+		nougatArg=" -f"
+	else
+		nougatArg=""
+	fi
+
+	scr="$(nougat $nougatArg)"
+}
+
+upload() {
+	if [[ $(command -v curl) && $(command -v xclip) ]]
+	then
+		link="$(curl -F"file=@\"$scr\"" https://0x0.st)"
+		echo "$link" | xclip -selection clipboard
+	else
+		printf '%s\n' "Cannot upload or copy to clipboard."
+		printf '%s\n' "curl and/or xclip were not found."
+		exit 1
+	fi
+}
+
+notifcation() {
+	if [[ $noti == true ]]
+	then
+		if [[ -z "$link" ]]
+		then
+			printf '%s\n' "Picture hasn't been uploaded or taken."
+			exit 1
+		elif [[ $(command -v dunstify) ]]
+		then
+			dunstify -a "Nougat-0x0" \
+				-t 4000 \
+				-r 13596705 \
+				"Screenshot Taken!" \
+				"Added $link to clipboard"
+		elif [[ $(command -v notify-send) ]]
+		then
+			notify-send -a "Nougat-0x0" \
+				-t 4000 \
+				"Screenshot Taken!" \
+				"Added $link to clipboard"
+		else
+			printf '%s\n' "Cannot send notifcation."
+			printf '%s\n' "dunstify or notify-send is needed."
+			printf '%s\n' "See \`nougat-0x0 -h\` for more help."
+			exit 1
+		fi
+	fi
+
+}
+
+main() {
+	get_args "$@"
+	screenshot
+	upload
+	notifcation
+}
+
+main "$@"

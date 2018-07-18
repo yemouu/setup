@@ -5,7 +5,7 @@ fi
 #(cat "${HOME}/.cache/wal/sequences")
 
 . "/usr/share/bash-completion/bash_completion"
-# shellcheck source=/home/yemou/.aliases
+# shellcheck source /home/yemou/.aliases
 . "${HOME}/.aliases"
 
 C1="\\[\\e[0;31;1m\\]"

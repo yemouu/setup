@@ -12,16 +12,16 @@ hc() {
 hc emit_hook reload
 
 hc keyunbind --all
-Mod=Mod4
+mod=Mod4
 
 hc keybind XF86AudioNext	spawn mpc next
 hc keybind XF86AudioPrev	spawn mpc prev
 hc keybind Mod1-XF86AudioPrev	spawn mpc seek 0%
 hc keybind XF86AudioPlay	spawn "${HOME}/.dotfiles/noti/music/music-toggle"
 hc keybind XF86AudioStop	spawn "${HOME}/.dotfiles/noti/music/music-stop"
-hc keybind XF86Mail spawn	spawn "${HOME}/.dotfiles/noti/music/music-info"
-hc keybind $Mod-Shift-Up	spawn "${HOME}/.dotfiles/noti/music/music-volume-up"
-hc keybind $Mod-Shift-Down	spawn "${HOME}/.dotfiles/noti/music/music-volume-down"
+hc keybind XF86Mail 		spawn "${HOME}/.dotfiles/noti/music/music-info"
+hc keybind $mod-Shift-Up	spawn "${HOME}/.dotfiles/noti/music/music-volume-up"
+hc keybind $mod-Shift-Down	spawn "${HOME}/.dotfiles/noti/music/music-volume-down"
 
 hc keybind Shift-XF86AudioRaiseVolume	spawn "${HOME}/.dotfiles/noti/volume/speaker-volume-up-all"
 hc keybind XF86AudioRaiseVolume		spawn "${HOME}/.dotfiles/noti/volume/speaker-volume-up"
@@ -33,55 +33,53 @@ hc keybind Mod1-Control-XF86AudioRaiseVolume	spawn "${HOME}/.dotfiles/noti/volum
 hc keybind Mod1-Shift-XF86AudioRaiseVolume	spawn "${HOME}/.dotfiles/noti/volume/microphone-volume-up-all"
 hc keybind Mod1-XF86AudioRaiseVolume		spawn "${HOME}/.dotfiles/noti/volume/microphone-volume-up"
 hc keybind Mod1-XF86AudioLowerVolume		spawn "${HOME}/.dotfiles/noti/volume/microphone-volume-down"
-hc keybind $Mod-e				spawn "${HOME}/.dotfiles/noti/volume/microphone-volume-mute"
+hc keybind $mod-e				spawn "${HOME}/.dotfiles/noti/volume/microphone-volume-mute"
 
-hc keybind Print	spawn nougat -cf
-hc keybind $Mod-Print	spawn nougat -c
-hc keybind $Mod-r	spawn rofi -show run
+hc keybind Print	spawn sh -c "curl -F"file=@$(nougat -f)" https://0x0.st | xclip -selection clipboard"
+hc keybind $mod-Print	spawn sh -c "curl -F"file=@$(nougat)" https://0x0.st | xclip -selection clipboard"
+hc keybind $mod-r	spawn rofi -show run
 
-hc keybind $Mod-Return		spawn alacritty
-hc keybind $Mod-t		spawn "${HOME}/.dotfiles/noti/time-date/utc-time-date"
-hc keybind $Mod-Control-t	spawn "${HOME}/.dotfiles/noti/time-date/local-time-date"
+hc keybind $mod-Return		spawn alacritty
+hc keybind $mod-t		spawn "${HOME}/.dotfiles/noti/time-date/utc-time-date"
+hc keybind $mod-Control-t	spawn "${HOME}/.dotfiles/noti/time-date/local-time-date"
 
-hc keybind $Mod-Control-q	quit
-hc keybind $Mod-Control-r	reload
+hc keybind $mod-Control-q	quit
+hc keybind $mod-Control-r	reload
 
-hc keybind $Mod-m	set_layout max
-hc keybind $Mod-d	remove
-hc keybind $Mod-Shift-s	floating toggle
-hc keybind $Mod-Shift-f	fullscreen toggle
-hc keybind $Mod-Shift-p	pseudotile toggle
+hc keybind $mod-m	set_layout max
+hc keybind $mod-d	remove
+hc keybind $mod-Shift-s	floating toggle
+hc keybind $mod-Shift-f	fullscreen toggle
+hc keybind $mod-Shift-p	pseudotile toggle
 
-hc keybind $Mod-space                                                           \
+hc keybind $mod-space                                                           \
             or , and . compare tags.focus.curframe_wcount = 2                   \
                      . cycle_layout +1 vertical horizontal max vertical grid    \
                , cycle_layout +1
 
-hc keybind $Mod-h	focus left
-hc keybind $Mod-j	focus down
-hc keybind $Mod-k	focus up
-hc keybind $Mod-l	focus right
+hc keybind $mod-h	focus left
+hc keybind $mod-j	focus down
+hc keybind $mod-k	focus up
+hc keybind $mod-l	focus right
 
-hc keybind $Mod-Shift-h	shift left
-hc keybind $Mod-Shift-j	shift down
-hc keybind $Mod-Shift-k	shift up
-hc keybind $Mod-Shift-l	shift right
+hc keybind $mod-Shift-h	shift left
+hc keybind $mod-Shift-j	shift down
+hc keybind $mod-Shift-k	shift up
+hc keybind $mod-Shift-l	shift right
 
-hc keybind $Mod-Shift-q	close
+hc keybind $mod-u	split left 0.5
+hc keybind $mod-i	split bottom 0.5
+hc keybind $mod-o	split top 0.5
+hc keybind $mod-p	split right 0.5
+hc keybind $mod-s	split explode
 
-# splitting frames
-# create an empty frame at the specified direction
-hc keybind $Mod-u       split   bottom  0.5
-hc keybind $Mod-o       split   right   0.5
-# let the current frame explode into subframes
-hc keybind $Mod-Control-space split explode
+hc keybind $mod-q	close
 
-# resizing frames
-resizestep=0.05
-hc keybind $Mod-Control-h       resize left +$resizestep
-hc keybind $Mod-Control-j       resize down +$resizestep
-hc keybind $Mod-Control-k       resize up +$resizestep
-hc keybind $Mod-Control-l       resize right +$resizestep
+resizestep=0.025
+hc keybind $mod-Shift-u       resize left +$resizestep
+hc keybind $mod-Shift-i       resize down +$resizestep
+hc keybind $mod-Shift-o       resize up +$resizestep
+hc keybind $mod-Shift-p       resize right +$resizestep
 
 # tags
 tag_names=( {1..9} )
@@ -98,23 +96,21 @@ for i in "${!tag_names[@]}" ; do
 done
 
 # cycle through tags
-hc keybind $Mod-period use_index +1 --skip-visible
-hc keybind $Mod-comma  use_index -1 --skip-visible
-
-# layouting
+hc keybind $mod-period use_index +1 --skip-visible
+hc keybind $mod-comma  use_index -1 --skip-visible
 
 # mouse
 hc mouseunbind --all
-hc mousebind $Mod-Button1 move
-hc mousebind $Mod-Button2 zoom
-hc mousebind $Mod-Button3 resize
+hc mousebind $mod-Button1 move
+hc mousebind $mod-Button2 zoom
+hc mousebind $mod-Button3 resize
 
 # focus
-hc keybind $Mod-BackSpace   cycle_monitor
-hc keybind $Mod-Tab         cycle_all +1
-hc keybind $Mod-Shift-Tab   cycle_all -1
-hc keybind $Mod-c cycle
-hc keybind $Mod-i jumpto urgent
+hc keybind $mod-BackSpace   cycle_monitor
+hc keybind $mod-Tab         cycle_all +1
+hc keybind $mod-Shift-Tab   cycle_all -1
+hc keybind $mod-c cycle
+#hc keybind $mod-i jumpto urgent
 
 # theme
 hc attr theme.tiling.reset 1
