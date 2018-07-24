@@ -46,7 +46,7 @@ else
 
 	SONGNUM="[$(mpc listall | wc -l)]"
 
-	summary="${PAUSE} ${SONGNUM} [${RE}${RAN}${SIN}${CFADE}] ${VOL} "
+	summary="${SONGNUM} [${RE}${RAN}${SIN}${CFADE}] ${VOL} ${PAUSE}"
 	body="$(mpc current)"
 
 fi

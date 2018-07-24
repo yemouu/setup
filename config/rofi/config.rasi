@@ -2,7 +2,7 @@ configuration {
 	modi: "window,run";
 	width: 12;
 	lines: 6;
-	font: "curie 8";
+	font: "IBM Plex Mono 8";
 	location: 2;
 	yoffset: 44;
 	fixed-num-lines: false;

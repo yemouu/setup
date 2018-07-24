@@ -18,16 +18,16 @@ draw_bold_text_with_bright_colors: true
 
 font:
   normal:
-    family: curie
+    family: IBM Plex Mono
     style: Regular
 
   bold:
-    family: curie
-    style: Bold Bold
+    family: IBM Plex Mono
+    style: Bold
 
   italic:
-    family: curie
-    style: Bold Italic
+    family: IBM Plex Mono
+    style: Italic
 
   size: 8.0
 

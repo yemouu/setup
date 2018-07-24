@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Script to upload Screenshots to 0x0.st and copy the link into clipboard
 # Requires:
@@ -34,12 +34,12 @@ get_args() {
 }
 
 screenshot() {
-	if [[ ! $(command -v nougat) ]]
+	if [ ! "$(command -v nougat)" ]
 	then
 		printf '%s\n' "Nougat not found"
 		exit 1
 	fi
-	if [[ $full = true ]] 
+	if [ $full = true ] 
 	then
 		nougatArg=" -f"
 	else
@@ -50,10 +50,10 @@ screenshot() {
 }
 
 upload() {
-	if [[ $(command -v curl) && $(command -v xclip) ]]
+	if [ "$(command -v curl)" ] && [ "$(command -v xclip)" ]
 	then
 		link="$(curl -F"file=@\"$scr\"" https://0x0.st)"
-		echo "$link" | xclip -selection clipboard
+		printf '%s' "$link" | xclip -selection clipboard
 	else
 		printf '%s\n' "Cannot upload or copy to clipboard."
 		printf '%s\n' "curl and/or xclip were not found."
@@ -62,25 +62,25 @@ upload() {
 }
 
 notifcation() {
-	if [[ $noti == true ]]
+	if [ $noti = true ]
 	then
-		if [[ -z "$link" ]]
+		if [ -z "$link" ]
 		then
 			printf '%s\n' "Picture hasn't been uploaded or taken."
 			exit 1
-		elif [[ $(command -v dunstify) ]]
+		elif [ "$(command -v dunstify)" ]
 		then
 			dunstify -a "Nougat-0x0" \
 				-t 4000 \
 				-r 13596705 \
 				"Screenshot Taken!" \
-				"Added $link to clipboard"
-		elif [[ $(command -v notify-send) ]]
+				"Copied $link to clipboard"
+		elif [ "$(command -v notify-send)" ]
 		then
 			notify-send -a "Nougat-0x0" \
 				-t 4000 \
 				"Screenshot Taken!" \
-				"Added $link to clipboard"
+				"Copied $link to clipboard"
 		else
 			printf '%s\n' "Cannot send notifcation."
 			printf '%s\n' "dunstify or notify-send is needed."
