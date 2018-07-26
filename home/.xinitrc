@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -21,6 +21,22 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-"${HOME}/.config/autostart"
+wal -Rt &
+pywal-set &
+xrandr -r 144 &
+xsetroot -cursor_name left_ptr &
+redshift -l geoclue2 -m randr -t 6500K:3700K
+"${HOME}/.dotfiles/noti/music/music-changed" &
 
-exec ck-launch-session dbus-launch --sh-syntax --exit-with-session herbstluftwm --locked
+session=${1:-herbstluftwm}
+
+case $session in
+	b|bspwm		) sxhkd -c "${HOME}/.config/sxhkd/sxhkdrc-bspwm" &
+		exec ck-launch-session dbus-launch --sh-syntax \
+			--exit-with-session bspwm ;;
+
+	h|herbstluftwm	) exec ck-launch-session dbus-launch --sh-syntax \
+		--exit-with-session herbstluftwm --locked ;;
+
+	*		) echo "WM/DE not found." ;;
+esac

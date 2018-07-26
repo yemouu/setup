@@ -83,7 +83,7 @@ hc keybind $mod-Shift-i       resize down +$resizestep
 hc keybind $mod-Shift-o       resize up +$resizestep
 hc keybind $mod-Shift-p       resize right +$resizestep
 
-tag_names=( {1..9} 0 )
+tag_names=( {1..10} )
 hc rename default "${tag_names[0]}" || true
 for i in "${!tag_names[@]}" ; do
     hc add "${tag_names[$i]}"

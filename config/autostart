@@ -3,5 +3,6 @@
 wal -Rt &
 pywal-set &
 xrandr -r 144 &
-#xsetroot -cursor_name left_ptr &
+xsetroot -cursor_name left_ptr &
+redshift -l geoclue2 -m randr -t 6500K:3700K
 "${HOME}/.dotfiles/noti/music/music-changed" &
