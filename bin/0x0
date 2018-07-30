@@ -1,0 +1,72 @@
+#!/usr/bin/env sh
+
+usage() { printf '%s' "
+Usage: 0x0 [OPTIONS] -f [FILE]
+
+OPTIONS:
+	-h	displays this message
+
+	-c	copies the link to clipboard (requires xclip)
+
+	-f	file to upload
+
+"
+}
+
+get_args() {
+	clip=false
+	file=""
+
+	while getopts "hcf:" OPTS
+	do
+		case $OPTS in
+			"h"	) usage ; exit 0 ;;
+			"c"	) clip=true ;;
+			"f"	) file="$OPTARG" ;;
+			"*"	) usage ; exit 1 ;;
+		esac
+	done
+
+	if [ -z "$file" ]
+	then
+		echo "${0##*/} requires option -f"
+		echo "Do \`${0##*/} -h\` for more information. "
+		exit 1
+	fi
+}
+
+upload() {
+	if ! command -v curl
+	then
+		echo "curl not found"
+		echo "exiting..."
+		exit 1
+	else
+		upload=$(curl -sF "file=@$file" 0x0.st)
+		echo "$upload"
+	fi
+
+}
+
+copy() {
+	if [ $clip = true ]
+	then
+		if ! command -v xclip
+		then
+			echo "xclip not found"
+			echo "\`${0##*/}\` -h for more information"
+			echo "exiting..."
+			exit 1
+		else
+			echo "$upload" | xclip -sel clip
+		fi
+	fi
+}
+
+main() {
+	get_args "$@"
+	upload
+	copy
+}
+
+main "$@"

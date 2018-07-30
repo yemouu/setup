@@ -21,22 +21,19 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
+xrandr -r 144 &
+#xsetroot -cursor_name left_ptr &
+redshift -l geoclue2 -m randr -t 6500K:3700K &
+"${HOME}/.dotfiles/noti/music/music-changed" &
 wal -Rt &
 pywal-set &
-xrandr -r 144 &
-xsetroot -cursor_name left_ptr &
-redshift -l geoclue2 -m randr -t 6500K:3700K
-"${HOME}/.dotfiles/noti/music/music-changed" &
 
 session=${1:-herbstluftwm}
-
 case $session in
 	b|bspwm		) sxhkd -c "${HOME}/.config/sxhkd/sxhkdrc-bspwm" &
-		exec ck-launch-session dbus-launch --sh-syntax \
-			--exit-with-session bspwm ;;
+		exec ck-launch-session bspwm ;;
 
-	h|herbstluftwm	) exec ck-launch-session dbus-launch --sh-syntax \
-		--exit-with-session herbstluftwm --locked ;;
+	h|herbstluftwm	) exec ck-launch-session herbstluftwm --locked ;;
 
 	*		) echo "WM/DE not found." ;;
 esac

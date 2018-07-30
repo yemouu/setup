@@ -4,7 +4,7 @@
  . "${HOME}/.cache/wal/colors.sh"
 
 reload_dunst() {
-	pkill dunst
+	killall dunst
 	dunst \
 		-lb "${color0}" \
 		-nb "${color0}" \
@@ -20,7 +20,7 @@ reload_dunst() {
 }
 
 reload_bspwm() {
-	"${HOME}/.config/bspwm/bspwmrc"
+	"${HOME}/.config/bspwm/bspwmrc" &
 }
 
 reload_herbstluftwm() {

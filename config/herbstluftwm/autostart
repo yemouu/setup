@@ -35,8 +35,8 @@ hc keybind Mod1-XF86AudioRaiseVolume		spawn "${HOME}/.dotfiles/noti/volume/micro
 hc keybind Mod1-XF86AudioLowerVolume		spawn "${HOME}/.dotfiles/noti/volume/microphone-volume-down"
 hc keybind $mod-e				spawn "${HOME}/.dotfiles/noti/volume/microphone-volume-mute"
 
-hc keybind Print	spawn nougat-0x0 -fn
-hc keybind $mod-Print	spawn nougat-0x0 -n
+hc keybind Print	spawn nougat --screenshot -ctf
+hc keybind $mod-Print	spawn nougat --screenshot -ct
 hc keybind $mod-r	spawn rofi -show run
 
 hc keybind $mod-Return		spawn alacritty
@@ -46,7 +46,7 @@ hc keybind $mod-Control-t	spawn "${HOME}/.dotfiles/noti/time-date/local-time-dat
 hc keybind $mod-Control-q	quit
 hc keybind $mod-Control-r	reload
 
-hc keybind $mod-m	set_layout max
+hc keybind $mod-m	cycle_layout +1 max horizontal
 hc keybind $mod-d	remove
 hc keybind $mod-Shift-s	floating toggle
 hc keybind $mod-Shift-f	fullscreen toggle
@@ -54,7 +54,7 @@ hc keybind $mod-Shift-p	pseudotile toggle
 
 hc keybind $mod-space                                                           \
             or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal vertical grid    \
+                     . cycle_layout +1 horizontal vertical horizontal grid    \
                , cycle_layout +1
 
 hc keybind $mod-h	focus left
@@ -84,32 +84,39 @@ hc keybind $mod-Shift-o       resize up +$resizestep
 hc keybind $mod-Shift-p       resize right +$resizestep
 
 tag_names=( {1..10} )
+tag_keys=( {1..9} 0 )
+
 hc rename default "${tag_names[0]}" || true
 for i in "${!tag_names[@]}" ; do
     hc add "${tag_names[$i]}"
+    key="${tag_keys[$i]}"
+    if ! [ -z "$key" ] ; then
+        hc keybind "$mod-$key" use_index "$i"
+        hc keybind "$mod-Shift-$key" move_index "$i"
+    fi
 done
 
-hc keybind $mod-1	use_index 0
-hc keybind $mod-2	use_index 1
-hc keybind $mod-3	use_index 2
-hc keybind $mod-4	use_index 3
-hc keybind $mod-5	use_index 4
-hc keybind $mod-Shift-1	move_index 0
-hc keybind $mod-Shift-2	move_index 1
-hc keybind $mod-Shift-3	move_index 2
-hc keybind $mod-Shift-4	move_index 3
-hc keybind $mod-Shift-5	move_index 4
+if hc silent new_attr bool first_start ; then
+	hc load 1 '(clients horizontal:0)'
+	hc load 2 '(clients max:0)'
+	hc load 3 '(clients horizontal:0)'
+	hc load 4 '(clients horizontal:0)'
+	hc load 5 '(clients max:0)'
+	hc load 6 '(split vertical:0.500000:1
+	(split horizontal:0.675000:1
+	(split horizontal:0.500000:1
+	(clients horizontal:0)
+	(clients horizontal:0))
+	(clients horizontal:0))
+	(split horizontal:0.500000:0
+	(clients horizontal:0)
+	(clients horizontal:0)))'
+	hc load 7 '(clients horizontal:0)'
+	hc load 8 '(clients horizontal:0)'
+	hc load 9 '(clients horizontal:0)'
+	hc load 10 '(clients horizontal:0)'
+fi
 
-hc keybind $mod-Control-1	use_index 5
-hc keybind $mod-Control-2	use_index 6
-hc keybind $mod-Control-3	use_index 7
-hc keybind $mod-Control-4	use_index 8
-hc keybind $mod-Control-5	use_index 9
-hc keybind $mod-Control-Shift-1	move_index 5
-hc keybind $mod-Control-Shift-2	move_index 6
-hc keybind $mod-Control-Shift-3	move_index 7
-hc keybind $mod-Control-Shift-4	move_index 8
-hc keybind $mod-Control-Shift-5	move_index 9
 
 hc keybind $mod-period use_index +1 --skip-visible
 hc keybind $mod-comma  use_index -1 --skip-visible
@@ -129,7 +136,7 @@ hc set frame_border_width 2
 hc set always_show_frame 0
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 4
-hc set frame_gap 30
+hc set frame_gap 16
 
 hc attr theme.active.color "${color0}"
 hc attr theme.normal.color "${color0}"
@@ -144,6 +151,7 @@ hc attr theme.active.inner_color "${color4}"
 hc attr theme.active.outer_color "${color5}"
 hc attr theme.background_color "${color7}"
 
+hc pad 0 32 32 32 32
 hc set window_gap 0
 hc set frame_padding 0
 hc set smart_window_surroundings 0
@@ -151,6 +159,7 @@ hc set smart_frame_surroundings 0
 hc set mouse_recenter_gap 0
 
 hc unrule -F
+hc rule class=chromium-browser-chromium tag=1
 hc rule class=Firefox tag=1
 hc rule class=Steam tag=2
 hc rule class=discord tag=3

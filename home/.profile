@@ -2,7 +2,9 @@
 
 PATH+=":${HOME}/.local/bin:${HOME}/.dotfiles/bin"
 
-export EDITOR="nvim"
+export VISUAL="nvim"
+export EDITOR="${VISUAL}"
+
 export INPUTRC="${HOME}/.inputrc"
 export LESSHISTFILE="/dev/null"
 export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
