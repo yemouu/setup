@@ -5,18 +5,6 @@
 
 reload_dunst() {
 	killall dunst
-	dunst \
-		-lb "${color0}" \
-		-nb "${color0}" \
-		-cb "${color0}" \
-		-lf "${color7}" \
-		-bf "${color7}" \
-		-cf "${color7}" \
-		-nf "${color7}" \
-		-lfr "${color8}" \
-		-nfr "${color4}" \
-		-cfr "${color1}" \
-		 > "${HOME}/.config/dunst/log" 2>&1 &
 }
 
 reload_bspwm() {

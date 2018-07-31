@@ -36,7 +36,7 @@ get_args() {
 }
 
 upload() {
-	if ! command -v curl
+	if ! command -v curl 2>&1 /dev/null
 	then
 		echo "curl not found"
 		echo "exiting..."
@@ -51,7 +51,7 @@ upload() {
 copy() {
 	if [ $clip = true ]
 	then
-		if ! command -v xclip
+		if ! command -v xclip 2>&1 /dev/null
 		then
 			echo "xclip not found"
 			echo "\`${0##*/}\` -h for more information"

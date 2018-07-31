@@ -1,5 +1,3 @@
-[ ! -s /tmp/mpd-pid ] && mpd &
-
 PATH+=":${HOME}/.local/bin:${HOME}/.dotfiles/bin"
 
 export VISUAL="nvim"

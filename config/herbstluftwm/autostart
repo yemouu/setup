@@ -96,19 +96,17 @@ for i in "${!tag_names[@]}" ; do
     fi
 done
 
-if hc silent new_attr bool first_start ; then
+if hc silent new_attr bool my_first_start ; then
 	hc load 1 '(clients horizontal:0)'
 	hc load 2 '(clients max:0)'
 	hc load 3 '(clients horizontal:0)'
 	hc load 4 '(clients horizontal:0)'
 	hc load 5 '(clients max:0)'
-	hc load 6 '(split vertical:0.500000:1
-	(split horizontal:0.675000:1
-	(split horizontal:0.500000:1
+	hc load 6 '(split horizontal:0.500000:0
+	(split vertical:0.500000:1
 	(clients horizontal:0)
 	(clients horizontal:0))
-	(clients horizontal:0))
-	(split horizontal:0.500000:0
+	(split vertical:0.500000:1
 	(clients horizontal:0)
 	(clients horizontal:0)))'
 	hc load 7 '(clients horizontal:0)'
@@ -159,7 +157,7 @@ hc set smart_frame_surroundings 0
 hc set mouse_recenter_gap 0
 
 hc unrule -F
-hc rule class=chromium-browser-chromium tag=1
+hc rule class=Chromium-browser-chromium tag=1
 hc rule class=Firefox tag=1
 hc rule class=Steam tag=2
 hc rule class=discord tag=3
