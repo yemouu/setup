@@ -1,65 +1,58 @@
 #!/usr/bin/env sh
 
-# Notification Script to display information about MPD
-# Requires:
-#	libnotify or dunstify
-#	mpc
-#	mpd
+app_name="MPD Info"
 
-app_name="MPD Status"
-
-if ! [ "$(mpc current)" ]; then
-	summary="MPD: Stopped"
-	body="MPD has been stopped"
+if ! [ "$(mpc current)" ]
+then
+	summary="[Stopped]"
 else
-	if mpc status | grep -q paused; then
-		PAUSE="[Paused]"
-	else
-		PAUSE=""
+	if mpc status | grep -q paused
+	then
+		play="[Paused]"
 	fi
 
-	VOL="[$(mpc volume | awk '{print $2}')]"
-
-	if [ "$(mpc crossfade | awk '{print $2}')" -gt 0 ]; then
-		CFADE="x"
-	else
-		CFADE=""
+	if [ "$(mpc crossfade | awk '{print $2}')" -gt 0 ]
+	then
+		fade="x"
 	fi
 
-	if [ "$(mpc status | awk NR==3'{print $4}')" = "on" ]; then
-		RE="r"
-	else
-		RE=""
+	if [ "$(mpc status | awk NR==3'{print $4}')" = "on" ]
+	then
+		re="r"
 	fi
 
-	if [ "$(mpc status | awk NR==3'{print $6}')" = "on" ]; then
-		RAN="z"
-	else
-		RAN=""
+	if [ "$(mpc status | awk NR==3'{print $6}')" = "on" ]
+	then
+		ran="z"
 	fi
 
-	if [ "$(mpc status | awk NR==3'{print $8}')" = "on" ];then
-		SIN="s"
-	else
-		SIN=""
+	if [ "$(mpc status | awk NR==3'{print $8}')" = "on" ]
+	then
+		sin="s"
 	fi
 
-	SONGNUM="[$(mpc listall | wc -l)]"
+	vol="[$(mpc volume | awk '{print $2}')]"
+	time="[$(mpc | awk NR==2'{print $3}')]"
+	num="[$(mpc listall | wc -l)]"
 
-	summary="${SONGNUM} [${RE}${RAN}${SIN}${CFADE}] ${VOL} ${PAUSE}"
+	summary="${num} [${re}${ran}${sin}${fade}] ${vol} ${time} ${play}"
 	body="$(mpc current)"
-
 fi
 
-if command -v dunstify; then
+if command -v dunstify
+then
 	dunstify -a "${app_name}" \
 		-t 4000 \
 		-r 13596705 \
 		"${summary}" \
 		"${body}"
-else
+elif command -v notify-send
+then
 	notify-send -t 4000 \
 		-a "${app_name}" \
 		"${summary}" \
 		"${body}"
+else
+	echo "dunstify or libnotify not found"
+	exit 1
 fi

@@ -4,7 +4,10 @@
  . "${HOME}/.cache/wal/colors.sh"
 
 reload_dunst() {
-	killall dunst
+	if pidof dunst > /dev/null
+	then
+		killall dunst
+	fi
 }
 
 reload_bspwm() {

@@ -1,30 +1,26 @@
 #!/usr/bin/env sh
 
-# Script to Toggle music and display a notification
-# Requires:
-#	libnotify or dunstify
-#	mpc
-#	mpd
-
-app_name="MPD Status"
-
-if mpc toggle | grep -q paused; then
-	summary="MPD Paused"
-	body="$(mpc current)"
+if mpc toggle | grep -q paused
+then
+	app_name="MPD Paused"
+	summary="$(mpc current)"
 else
-	summary="MPD Playing"
-	body="$(mpc current)"
+	app_name="MPD Playing"
+	summary="$(mpc current)"
 fi
 
-if command -v dunstify; then
+if command -v dunstify
+then
 	dunstify -a "${app_name}" \
 		-t 4000 \
 		-r 13596705 \
-		"${summary}" \
-		"${body}"
-else
+		"${summary}" 
+elif command -v notify-send
+then
 	notify-send -t 4000 \
 		-a "${app_name}" \
-		"${summary}" \
-		"${body}"
+		"${summary}" 
+else
+	echo "dunstify or libnotify not found"
+	exit 1
 fi

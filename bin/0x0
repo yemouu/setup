@@ -36,7 +36,7 @@ get_args() {
 }
 
 upload() {
-	if ! command -v curl 2>&1 /dev/null
+	if ! command -v curl > /dev/null
 	then
 		echo "curl not found"
 		echo "exiting..."

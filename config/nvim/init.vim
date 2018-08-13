@@ -13,6 +13,10 @@ vnoremap <leader>' <esc>`>a'<esc>`<i'
 
 set tabstop=8
 set shiftwidth=8
+
+highlight ColorColumn ctermbg=8
+set colorcolumn=81
+
 set syntax=on
 set scrolloff=4
 set clipboard=unnamedplus

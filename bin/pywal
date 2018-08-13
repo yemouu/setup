@@ -13,7 +13,8 @@ cat << EOF
 Usage: pywal [OPTION] -w [WALL]
 
 Options:
-	-w	Wallpaper number. Looks for walpapers in XDG_PICTURES_DIR/wallpapers
+	-w	Wallpaper number.
+		Looks for walpapers in XDG_PICTURES_DIR/wallpapers
 
 	-l	Creates Light Colorscheme
 
@@ -48,8 +49,8 @@ exec_wal() {
 		echo "Wallpaper not found"
 		exit 1
 	else
-		wal --backend "${BACKEND}" ${LIGHT} -ct \
-			-i "$(xdg-user-dir PICTURES)/wallpapers/Wall-${WALL_NUM}."*
+		wal --backend "${BACKEND}" ${LIGHT} -ct -i \
+			"$(xdg-user-dir PICTURES)/wallpapers/Wall-${WALL_NUM}."*
 	fi
 }
 

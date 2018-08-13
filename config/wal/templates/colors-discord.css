@@ -1,0 +1,19 @@
+@import url('https://raw.githack.com/GhostlyDilemma/Customa/redo/Base/base.m.css');
+@import url('https://raw.githack.com/GhostlyDilemma/Customa/redo/Base/font.m.css');
+
+:root{{
+	/* Base Module Variables */
+	--ColAppBG: {color0};
+	--ColBackground1: var(--ColAppBG);
+	--ColBackground2: {color0};
+	--ColAccent: {color4};
+	--ColAccentAlpha: rgba({color4.rgb},.1);
+	--ColAnchor: {color1};
+	--ColLastMessage: transparent;
+	--DisplayEmbedPill: none;
+
+	/* Font Module Variables */
+	--ColTextSelection: rgba({color2.rgb},0.2);    
+	--FontFamily: 'IBM Plex Sans', sans-serif;
+	--FontMonoFamily: 'IBM Plex Mono', monospace;
+}}

@@ -35,13 +35,17 @@ hc keybind Mod1-XF86AudioRaiseVolume		spawn "${HOME}/.dotfiles/noti/volume/micro
 hc keybind Mod1-XF86AudioLowerVolume		spawn "${HOME}/.dotfiles/noti/volume/microphone-volume-down"
 hc keybind $mod-e				spawn "${HOME}/.dotfiles/noti/volume/microphone-volume-mute"
 
-hc keybind Print	spawn nougat --screenshot -ctf
-hc keybind $mod-Print	spawn nougat --screenshot -ct
+#hc keybind Print	spawn nougat --screenshot -ctf
+#hc keybind $mod-Print	spawn nougat --screenshot -ct
+hc keybind Print	spawn nougat -tcf
+hc keybind $mod-Print	spawn nougat -tc
+hc keybind Pause	spawn killall -SIGUSR1 dunst
+hc keybind $mod-Pause	spawn killall -SIGUSR2 dunst
 hc keybind $mod-r	spawn rofi -show run
 
 hc keybind $mod-Return		spawn alacritty
-hc keybind $mod-t		spawn "${HOME}/.dotfiles/noti/time-date/utc-time-date"
-hc keybind $mod-Control-t	spawn "${HOME}/.dotfiles/noti/time-date/local-time-date"
+hc keybind $mod-t		spawn "${HOME}/.dotfiles/noti/time-date/local-time-date"
+hc keybind $mod-Control-t	spawn "${HOME}/.dotfiles/noti/time-date/utc-time-date"
 
 hc keybind $mod-Control-q	quit
 hc keybind $mod-Control-r	reload

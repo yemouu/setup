@@ -10,7 +10,7 @@ visualizer_output_name = "my_fifo"
 visualizer_sync_interval = "30" 
 visualizer_in_stereo = "yes"
 visualizer_type = "spectrum"
-visualizer_look = "XX"
+visualizer_look = "##"
 
 message_delay_time = 2
 #progressbar_look = "──"

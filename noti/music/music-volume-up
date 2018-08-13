@@ -1,25 +1,22 @@
 #!/usr/bin/env sh
 
-# Script to increase mpd volume and display a notification
-# Requires:
-#	libnotify or dunstify
-#	mpd
-#	mpc
-
-app_name="MPD Status"
-summary="Volume Up"
+app_name="MPD Volume"
+summary="Increasing: $(mpc volume | awk '{print $2}')"
 
 mpc volume +2
 
-if command -v dunstify; then
+if command -v dunstify
+then
 	dunstify -a "${app_name}" \
 		-t 4000 \
 		-r 13596705 \
-		"${summary}" \
-		"$(mpc volume | awk '{print $2}')"
-else
+		"${summary}"
+elif command -v notify-send
+then
 	notify-send -t 4000 \
 		-a "${app_name}" \
-		"${summary}" \
-		"$(mpc volume | awk '{print $2}')"
+		"${summary}" 
+else 
+	echo "dunstify or libnotify not found"
+	exit 1
 fi
