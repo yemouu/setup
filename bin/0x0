@@ -41,25 +41,24 @@ upload() {
 		echo "curl not found"
 		echo "exiting..."
 		exit 1
-	else
-		upload=$(curl -sF "file=@$file" 0x0.st)
-		echo "$upload"
 	fi
+
+	upload=$(curl -sF "file=@$file" 0x0.st)
+	echo "$upload"
 
 }
 
 copy() {
 	if [ $clip = true ]
 	then
-		if ! command -v xclip 2>&1 /dev/null
+		if ! command -v xclip > /dev/null
 		then
 			echo "xclip not found"
 			echo "\`${0##*/}\` -h for more information"
 			echo "exiting..."
 			exit 1
-		else
-			echo "$upload" | xclip -sel clip
 		fi
+			echo "$upload" | xclip -sel clip
 	fi
 }
 
