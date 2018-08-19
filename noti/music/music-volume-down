@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
 app_name="MPD Volume"
-summary="Decreasing: $(mpc volume | awk '{print $2}')"
 
 mpc volume -2
 
@@ -10,12 +9,12 @@ then
 	dunstify -a "${app_name}" \
 		-t 4000 \
 		-r 13596705 \
-		"${summary}"
+		"Decreasing: $(mpc volume | awk '{print $2}')"
 elif command -v notify-send
 then
 	notify-send -t 4000 \
 		-a "${app_name}" \
-		"${summary}"
+		"Decreasing: $(mpc volume | awk '{print $2}')"
 else
 	echo "dunstify or libnotify not found"
 	exit 1

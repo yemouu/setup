@@ -102,8 +102,8 @@ done
 
 if hc silent new_attr bool my_first_start ; then
 	hc load 1 '(clients horizontal:0)'
-	hc load 2 '(clients max:0)'
-	hc load 3 '(clients horizontal:0)'
+	hc load 2 '(clients horizontal:0)'
+	hc load 3 '(clients max:0)'
 	hc load 4 '(clients horizontal:0)'
 	hc load 5 '(clients max:0)'
 	hc load 6 '(split horizontal:0.500000:0
@@ -163,8 +163,8 @@ hc set mouse_recenter_gap 0
 hc unrule -F
 hc rule class=Chromium-browser-chromium tag=1
 hc rule class=Firefox tag=1
-hc rule class=Steam tag=2
-hc rule class=discord tag=3
+hc rule class=Steam tag=3
+hc rule class=discord tag=2
 hc rule focus=on
 
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on

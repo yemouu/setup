@@ -18,7 +18,7 @@ alias cla="c;la"
 alias cll="c;ll"
 alias clla="c;lla"
 
-alias sns="TERM=xterm-256color ssh -p 50769 meyou@ServerNStuff"
+alias sns="TERM=xterm-256color ssh -p 50769 server@ThingsNStuff-ServerEdition"
 
 C1="\\[\\e[0;31;1m\\]"
 C2="\\[\\e[0;35;1m\\]"

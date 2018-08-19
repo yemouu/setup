@@ -4,7 +4,7 @@ configuration {
 	lines: 6;
 	font: "IBM Plex Mono 8";
 	location: 2;
-	yoffset: 50;
+	yoffset: 48;
 	fixed-num-lines: false;
 	disable-history: true;
 	dpi: 92;
