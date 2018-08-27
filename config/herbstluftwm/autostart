@@ -101,7 +101,7 @@ for i in "${!tag_names[@]}" ; do
 done
 
 if hc silent new_attr bool my_first_start ; then
-	hc load 1 '(clients horizontal:0)'
+	hc load 1 '(clients max:0)'
 	hc load 2 '(clients horizontal:0)'
 	hc load 3 '(clients max:0)'
 	hc load 4 '(clients horizontal:0)'
