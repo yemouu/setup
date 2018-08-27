@@ -1,0 +1,3 @@
+>=x11-libs/libxcb-1.13 xkb
+>=x11-libs/cairo-1.14.12 xcb
+>=x11-misc/rofi-1.5.1 windowmode

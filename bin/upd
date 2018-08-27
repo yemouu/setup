@@ -1,0 +1,107 @@
+#!/usr/bin/env sh
+
+usage() { printf '%s' "
+Usage: upd [OPTIONS]
+
+Options:
+	-h	displays this message
+	-p	disables pip package updates
+	-l	disables gentoo overlay sync
+	-g	disables gentoo repo sync
+
+"
+}
+
+get_args() {
+	while getopts "hpplg" OPTS
+	do
+		case $OPTS in
+			h ) usage;exit 0 ;;
+			p ) upd_pypi3=false ;;
+			l ) upd_gentoo_overlays=false ;;
+			g ) upd_gentoo_repos=false ;;
+			* ) usage;exit 1;;
+		esac
+	done
+}
+
+pypi3() {
+	if [ "$upd_pypi3" = false ] 
+	then 
+		echo "Skipping pip packages..."
+		return 0
+	fi
+
+	if ! command -v pip3 > /dev/null
+	then
+		echo "pip3 not found"
+		return 1
+	fi
+
+	echo "Updating pip packages..."
+	pkgs=$(pip list -o --user --disable-pip-version-check --format=freeze \
+		| cut -d'=' -f1)
+
+	# shellcheck disable=SC2086
+	pip3 install -U --disable-pip-version-check \
+		--user $pkgs 2> /dev/null 
+
+	echo "Done."
+}
+
+gentoo_overlays() {
+	if [ "$upd_gentoo_overlays" = false ]
+	then
+		echo "Skipping Gentoo Overlays synchronization..."
+		return 0
+	fi
+
+	if ! command -v layman > /dev/null
+	then
+		echo "layman not found"
+		return 1
+	fi
+
+	echo "Updating Gentoo Overlay Repositories..."
+	sudo layman -S
+	echo "Done."
+}
+
+gentoo_repos() {
+	if [ "$upd_gentoo_repos" = false ]
+	then
+		echo "Skipping Gentoo Repository synchronizationo..."
+		return 0
+	fi
+
+	if ! command -v emerge > /dev/null
+	then
+		echo "emerge not found"
+		return 1
+	fi
+
+	echo "Updating Gentoo Repository..."
+	sudo emerge --sync
+	echo "Done."
+}
+
+main() {
+	if [ "$(id -u)" = 0 ]
+	then
+		echo "Do not run this script as root."
+		exit 1
+	fi
+
+	sudo -v
+
+	upd_pypi3=true
+	upd_gentoo_overlays=true
+	upd_gentoo_repos=true
+
+	get_args "$@"
+	pypi3
+	gentoo_overlays
+	gentoo_repos
+}
+
+main "$@"
