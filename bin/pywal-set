@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # shellcheck source=/home/yemou/.cache/wal/colors.sh
- . "${HOME}/.cache/wal/colors.sh"
+# . "${HOME}/.cache/wal/colors.sh"
 
 reload_dunst() {
 	if pidof dunst > /dev/null

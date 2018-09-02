@@ -20,6 +20,10 @@ alias clla="c;lla"
 
 alias sns="TERM=xterm-256color ssh -p 50769 server@ThingsNStuff-ServerEdition"
 
+alias sup="clear;cd /etc/portage;sudo su"
+alias suel="clear;sudo tail -f /var/log/emerge.log"
+alias suef="clear;sudo tail -f /var/log/emerge-fetch.log"
+
 C1="\\[\\e[0;31;1m\\]"
 C2="\\[\\e[0;35;1m\\]"
 RESET="\\[\\e[0m\\]"
