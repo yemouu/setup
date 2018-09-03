@@ -4,6 +4,7 @@ compinit
 zstyle ':completion:*' rehash true
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 setopt autocd
 setopt correctall
@@ -23,7 +24,8 @@ alias lla="ls -lAh"
 alias sns="TERM=xterm-256color ssh -p 50769 server@ThingsNStuff-ServerEdition"
 alias suef="clear;sudo tail -f /var/log/emerge-fetch.log"
 alias suel="clear;sudo tail -f /var/log/emerge.log"
-alias sup="clear;cd /etc/portage;sudo su"
+alias sues="sudo -Es"
+alias sup="clear;cd /etc/portage;sudo -Es"
 alias {cl,cls}="c;l"
 alias {l,sls,sl,ls}="ls -F --color=auto"
 alias {q,wq}="exit"
@@ -33,5 +35,4 @@ RPS1='%F{8}%4d%f'
 PS2='%F{1}%(!.#.$)%f '
 RPS2='%F{8}%2d%f'
 
-. "${HOME}/doc/git/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 . "${HOME}/doc/git/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

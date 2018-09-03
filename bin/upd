@@ -1,5 +1,12 @@
 #!/usr/bin/env sh
 
+upd_pypi3=true
+upd_gentoo_overlays=true
+upd_gentoo_repos=true
+upd_git_repos=true
+
+upd_git_repos_dir="${HOME}/doc/git"
+
 usage() { printf '%s' "
 Usage: upd [OPTIONS]
 
@@ -8,18 +15,20 @@ Options:
 	-p	disables pip package updates
 	-l	disables gentoo overlay sync
 	-g	disables gentoo repo sync
+	-G	disables git repo updating
 
 "
 }
 
 get_args() {
-	while getopts "hpplg" OPTS
+	while getopts "hpplgG" OPTS
 	do
 		case $OPTS in
 			h ) usage;exit 0 ;;
 			p ) upd_pypi3=false ;;
 			l ) upd_gentoo_overlays=false ;;
 			g ) upd_gentoo_repos=false ;;
+			G ) upd_git_repos=false ;;
 			* ) usage;exit 1;;
 		esac
 	done
@@ -85,6 +94,29 @@ gentoo_repos() {
 	echo "Done."
 }
 
+git_repos() {
+	if [ "$upd_git_repos" = false ]
+	then
+		echo "Skipping pull of Git Repositories..."
+		return 0
+	fi
+
+	if ! command -v git > /dev/null
+	then
+		echo "git not found"
+		return 1
+	fi
+
+	echo "Upadting Git Repositories..."
+	dirs="$(find "$upd_git_repos_dir" -name ".git" | sed 's/.....$//g')"
+	for repo in $dirs
+	do
+		git -C "$repo" pull
+		echo "Repo Updated..."
+	done
+	echo "Done."
+}
+
 main() {
 	if [ "$(id -u)" = 0 ]
 	then
@@ -94,14 +126,11 @@ main() {
 
 	sudo -v
 
-	upd_pypi3=true
-	upd_gentoo_overlays=true
-	upd_gentoo_repos=true
-
 	get_args "$@"
 	pypi3
 	gentoo_overlays
 	gentoo_repos
+	git_repos
 }
 
 main "$@"
