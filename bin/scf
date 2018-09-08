@@ -50,10 +50,12 @@ get_arguments() {
 }
 
 clean() {
-	if [ "$(xdg-user-dir MUSIC)" != "${HOME}" ]; then
-		DIRECTORY="$(xdg-user-dir MUSIC)"
-	else
+	if ! command -v xdg-user-dir > /dev/null
+	then
 		DIRECTORY="${HOME}/Music"
+	elif [ "$(xdg-user-dir MUSIC)" != "${HOME}" ]
+	then
+		DIRECTORY="$(xdg-user-dir MUSIC)"
 	fi
 
 	if [ "${DELETE}" = true ]; then

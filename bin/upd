@@ -90,7 +90,7 @@ gentoo_repos() {
 	fi
 
 	echo "Updating Gentoo Repository..."
-	sudo emerge --sync
+	sudo emaint sync -a
 	echo "Done."
 }
 
@@ -124,13 +124,16 @@ main() {
 		exit 1
 	fi
 
-	sudo -v
+	if [ $upd_gentoo_repos = true ] || [ $upd_gentoo_overlays = true ]
+	then
+		sudo -v
+	fi
 
 	get_args "$@"
+	git_repos
 	pypi3
 	gentoo_overlays
 	gentoo_repos
-	git_repos
 }
 
 main "$@"

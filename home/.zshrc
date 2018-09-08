@@ -7,7 +7,6 @@ zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 setopt autocd
-setopt correctall
 setopt extendedglob
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
