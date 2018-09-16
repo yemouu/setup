@@ -1,0 +1,18 @@
+alias {l,sls,sl,ls}="ls -F --color=auto"
+alias ll="ls -lh"
+alias la="ls -A"
+alias lla="ls -lAh"
+
+alias c="clear"
+alias {cl,cls}="c;l"
+alias cla="c;la"
+alias cll="c;ll"
+alias clla="c;lla"
+
+alias suef="sudo -v;clear;sudo tail -f /var/log/emerge-fetch.log"
+alias suel="sudo -v;clear;sudo tail -f /var/log/emerge.log"
+alias sues="sudo -v;clear;sudo -Es"
+alias sup="sudo -v;clear;cd /etc/portage;sudo -Es"
+
+alias sns="TERM=xterm-256color ssh -p 50769 server@ThingsNStuff-ServerEdition"
+alias {q,wq}="exit"

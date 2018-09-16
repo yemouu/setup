@@ -4,9 +4,6 @@
 # Requires:
 #	pywal
 
-BACKEND="wal"
-LIGHT=""
-
 usage() {
 cat << EOF
 
@@ -21,23 +18,29 @@ Options:
 	-b	Picks a backend
 		Options: colorthief colorz haishoku schemer2 wal[default]
 
+	-s	Sets color saturation. From 0.0-1.0
+
 	-h	Displays this message
 
 EOF
 }
 
 get_args() {
-	while getopts "w:b:lh" OPTION; do
-		case "${OPTION}" in
-			"w"	)	WALL_NUM="${OPTARG}"	;;
-			"b"	)	BACKEND="${OPTARG}"	;;
-			"l"	)	LIGHT="-l"		;;
-			"h"	)	usage;exit 0		;;
-			"*"	)	usage;exit 1		;;
+
+	while getopts "w:b:ls:h" OPT
+	do
+		case ${OPT} in
+			w	) WALL_NUM="${OPTARG}"		;;
+			b	) BACKEND="${OPTARG}"		;;
+			l	) LIGHT="-l"			;;
+			s	) SATURATION="${OPTARG}"	;;
+			h	) usage;exit 0			;;
+			*	) usage;exit 1			;;
 		esac
 	done
 
-	if [ -z "${WALL_NUM}" ]; then
+	if [ -z "${WALL_NUM}" ]
+	then
 		echo "pywal must be run with option -w"
 		echo "Run pywal -h for more information"
 		exit 1
@@ -45,9 +48,15 @@ get_args() {
 }
 
 exec_wal() {
-	if [ -z "${WALL_NUM}" ]; then
+	if [ -z "${WALL_NUM}" ]
+	then
 		echo "Wallpaper not found"
 		exit 1
+	elif [ ! -z "$SATURATION" ]
+	then
+		wal --backend "${BACKEND}" --saturate "$SATURATION" ${LIGHT} \
+			-ct -i \
+			"$(xdg-user-dir PICTURES)/wallpapers/Wall-${WALL_NUM}."*
 	else
 		wal --backend "${BACKEND}" ${LIGHT} -ct -i \
 			"$(xdg-user-dir PICTURES)/wallpapers/Wall-${WALL_NUM}."*
@@ -55,6 +64,9 @@ exec_wal() {
 }
 
 main() {
+	BACKEND="wal"
+	LIGHT=""
+
 	get_args "$@"
 	exec_wal
 	pywal-set
