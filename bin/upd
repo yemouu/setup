@@ -124,12 +124,13 @@ main() {
 		exit 1
 	fi
 
+	get_args "$@"
+
 	if [ $upd_gentoo_repos = true ] || [ $upd_gentoo_overlays = true ]
 	then
 		sudo -v
 	fi
 
-	get_args "$@"
 	git_repos
 	pypi3
 	gentoo_overlays
