@@ -23,6 +23,6 @@ then
 			"$(mpc current --wait)"
 	done
 else
-	echo "dunstify or libnotify not found"
+	echo "dunstify/notify-send not found"
 	exit 1
 fi

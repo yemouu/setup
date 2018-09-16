@@ -1,9 +1,5 @@
 #!/usr/bin/env sh
 
-# Wrapper for SCDL
-# Requires:
-#	scdl - Downloading the music
-
 DELETE=false
 CONTINUE=false
 ME=false
