@@ -7,10 +7,12 @@ PAGER="less"
 
 INPUTRC="${HOME}/.inputrc"
 
+GPG_TTY=$(tty)
+
 LESSHISTFILE="/dev/null"
 HISTCONTROL+="erasedups:ignoreboth"
 
-export VISUAL EDITOR PAGER INPUTRC LESSHISTFILE HISTCONTROL
+export VISUAL EDITOR PAGER INPUTRC GPG_TTY LESSHISTFILE HISTCONTROL
 
 [ ! -s /tmp/mpd-pid ] && mpd &
 
