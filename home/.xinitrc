@@ -11,8 +11,6 @@ xrandr -r 144 &
 redshift -t 6500K:3700K &
 "${HOME}/.dotfiles/noti/music/music-changed" &
 "${HOME}/.fehbg" &
-#wal -Rt &
-#pywal-set &
 
 session=${1:-herbstluftwm}
 case $session in

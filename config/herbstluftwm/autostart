@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
 
-# Config file for Herbstluftwm
-
-# shellcheck source=/home/yemou/.cache/wal/colors.sh
 . "${HOME}/.cache/wal/colors.sh"
 
-hc() {
-	herbstclient "$@"
-}
+hc() { herbstclient "$@"; }
 
 hc emit_hook reload
 
@@ -35,17 +30,15 @@ hc keybind Mod1-XF86AudioRaiseVolume		spawn "${HOME}/.dotfiles/noti/volume/micro
 hc keybind Mod1-XF86AudioLowerVolume		spawn "${HOME}/.dotfiles/noti/volume/microphone-volume-down"
 hc keybind $mod-e				spawn "${HOME}/.dotfiles/noti/volume/microphone-volume-mute"
 
-#hc keybind Print	spawn nougat --screenshot -ctf
-#hc keybind $mod-Print	spawn nougat --screenshot -ct
+hc keybind $mod-t		spawn "${HOME}/.dotfiles/noti/time-date/local-time-date"
+hc keybind $mod-Control-t	spawn "${HOME}/.dotfiles/noti/time-date/utc-time-date"
+
 hc keybind Print	spawn nougat -tcf
 hc keybind $mod-Print	spawn nougat -tc
 hc keybind Pause	spawn killall -SIGUSR1 dunst
 hc keybind $mod-Pause	spawn killall -SIGUSR2 dunst
 hc keybind $mod-r	spawn rofi -show run
-
-hc keybind $mod-Return		spawn alacritty
-hc keybind $mod-t		spawn "${HOME}/.dotfiles/noti/time-date/local-time-date"
-hc keybind $mod-Control-t	spawn "${HOME}/.dotfiles/noti/time-date/utc-time-date"
+hc keybind $mod-Return	spawn alacritty
 
 hc keybind $mod-Control-q	quit
 hc keybind $mod-Control-r	reload
@@ -61,12 +54,12 @@ hc keybind $mod-space                                                           
                      . cycle_layout +1 horizontal vertical horizontal grid    \
                , cycle_layout +1
 
-hc keybind $mod-h	focus left
-hc keybind $mod-j	focus down
-hc keybind $mod-k	focus up
-hc keybind $mod-l	focus right
-hc keybind $mod-Tab         cycle_all +1
-hc keybind $mod-Shift-Tab   cycle_all -1
+hc keybind $mod-h		focus left
+hc keybind $mod-j		focus down
+hc keybind $mod-k		focus up
+hc keybind $mod-l		focus right
+hc keybind $mod-Tab		cycle_all +1
+hc keybind $mod-Shift-Tab	cycle_all -1
 
 hc keybind $mod-Shift-h	shift left
 hc keybind $mod-Shift-j	shift down
