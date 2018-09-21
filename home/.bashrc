@@ -14,7 +14,7 @@ RESET="\\[\\e[0m\\]"
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]
 then
-	PS1="(ssh) "
+	PS1="(${C1}ssh${RESET}) "
 else
 	PS1=""
 fi
