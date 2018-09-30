@@ -35,8 +35,12 @@ hc keybind $mod-Control-t	spawn "${HOME}/.dotfiles/noti/time-date/utc-time-date"
 
 hc keybind Print	spawn nougat -tcf
 hc keybind $mod-Print	spawn nougat -tc
+
 hc keybind Pause	spawn killall -SIGUSR1 dunst
 hc keybind $mod-Pause	spawn killall -SIGUSR2 dunst
+
+hc keybind XF86Calculator	spawn powermenu
+
 hc keybind $mod-r	spawn rofi -show run
 hc keybind $mod-Return	spawn alacritty
 

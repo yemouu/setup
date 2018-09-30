@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+. ${HOME}/.cache/wal/colors-stripped.sh
+
+i3lock -c "${color8}" -e

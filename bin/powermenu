@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+rofi_prompt="Power Menu"
+screen_locker="i3locck"
+power_options="Poweroff Reboot Lock Sleep Hibernate Hybrid-Sleep"
+
+confirmation() {
+	rofi_confirmation_prompt="Are you sure? [$user_input]"
+	user_input="$(printf "yes\\nno" | rofi -dmenu -p "$rofi_confirmation_prompt")"
+	case $user_input in
+		Y*|y*	) return ;;
+		N*|n*	) exit ;;
+	esac
+}
+
+user_input=$(echo "$power_options" | xargs -n1 | rofi -dmenu -p "$rofi_prompt")
+case $user_input in
+	Poweroff|poweroff|Shutdown|shutdown	) confirmation; loginctl poweroff ;;
+	Reboot|reboot|Restart|restart		) confirmation; loginctl reboot ;;
+	Lock|lock				) confirmation; $screen_locker ;;
+	Sleep|sleep				) confirmation; $screen_locker; loginctl suspend ;;
+	Hibernate|hibernate			) confirmation; $screen_locker; loginctl hibernate ;;
+	Hybrid-Sleep|hybrid-sleep|Hybrid|hybrid	) confirmation; $screen_locker; loginctl hybrid-sleep ;;
+	*					) exit ;;
+esac
