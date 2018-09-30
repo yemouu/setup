@@ -14,10 +14,10 @@ redshift -t 6500K:3700K &
 
 session=${1:-herbstluftwm}
 case $session in
-	b|bspwm		) sxhkd -c "${HOME}/.config/sxhkd/sxhkdrc-bspwm" &
-		exec ck-launch-session bspwm ;;
+	b|bspwm		) sxhkd -c "${HOME}/.config/sxhkd/sxhkdrc-bspwm" & 
+		bspwm ;;
 
-	h|herbstluftwm	) exec ck-launch-session herbstluftwm --locked ;;
+	h|herbstluftwm	)  herbstluftwm --locked ;;
 
 	*		) echo "WM/DE not in list." ;;
 esac
