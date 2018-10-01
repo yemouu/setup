@@ -20,8 +20,8 @@ reload_herbstluftwm() {
 
 main() {
 	reload_dunst &
-	#reload_bspwm &
-	reload_herbstluftwm &
+	reload_bspwm &
+	#reload_herbstluftwm &
 }
 
 main

@@ -3,7 +3,7 @@ MANPATH+=":${HOME}/.local/share/man"
 
 VISUAL="nvim"
 EDITOR="${VISUAL}"
-PAGER="less"
+PAGER="less -R"
 
 INPUTRC="${HOME}/.inputrc"
 

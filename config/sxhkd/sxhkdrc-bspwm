@@ -1,82 +1,145 @@
-XF86Audio{Next,Prev}
-	mpc {next,prev}
+XF86AudioNext
+	mpc next
+XF86AudioPrev
+	mpc prev
 alt + XF86AudioPrev
 	mpc seek 0%
-XF86Audio{Play,Stop}
-	${HOME}/.dotfiles/noti/music/{music-toggle,music-stop}
+XF86AudioPlay
+	${HOME}/.dotfiles/noti/music/music-toggle
+XF86AudioStop
+	${HOME}/.dotfiles/noti/music/music-stop
 XF86Mail
 	${HOME}/.dotfiles/noti/music/music-info
-super + shift + {Up,Down}
-	${HOME}/.dotfiles/noti/music/music-volume-{up,down}
-
+super + shift + Up
+	${HOME}/.dotfiles/noti/music/music-volume-up
+super + shift + Down
+	${HOME}/.dotfiles/noti/music/music-volume-down
 
 shift + XF86AudioRaiseVolume
 	${HOME}/.dotfiles/noti/volume/speaker-volume-up-all
-XF86Audio{RaiseVolume,LowerVolume,Mute}
-	${HOME}/.dotfiles/noti/volume/speaker-volume-{up,down,mute}
+XF86AudioRaiseVolume
+	${HOME}/.dotfiles/noti/volume/speaker-volume-up
+XF86AudioLowerVolume
+	${HOME}/.dotfiles/noti/volume/speaker-volume-down
+XF86AudioMute
+	${HOME}/.dotfiles/noti/volume/speaker-volume-mute
+alt + ctrl + XF86AudioRaiseVolume
+	${HOME}/.dotfiles/noti/volume/microphone-please-die
+alt + shift + XF86AudioRaiseVolume
+	${HOME}/.dotfiles/noti/volume/microphone-volume-up-all
+alt + XF86AudioRaiseVolume
+	${HOME}/.dotfiles/noti/volume/microphone-volume-up
+alt + XF86AudioLowerVolume
+	${HOME}/.dotfiles/noti/volume/microphone-volume-down
+super + e
+	${HOME}/.dotfiles/noti/volume/microphone-volume-mute
 XF86Tools
 	${HOME}/.dotfiles/noti/volume/volume-info
 
+super + t
+	${HOME}/.dotfiles/noti/time-date/local-time-date
+super + ctrl + t
+	${HOME}/.dotfiles/noti/time-date/utc-time-date
 
-alt + {shift,ctrl} + XF86AudioRaiseVolume
-	${HOME}/.dotfiles/noti/volume/microphone-{volume-up-all,please-die}
-alt + XF86Audio{Raise,Lower}Volume
-	${HOME}/.dotfiles/noti/volume/microphone-volume-{up,down}
-super + e
-	${HOME}/.dotfiles/noti/volume/microphone-volume-mute
+Print
+	nougat -tcf
+super + Print
+	nougat -tc
 
+Pause
+	killall -SIGUSR1 dunst
+super + Pause
+	killall -SIGUSR2 dunst
 
-{_,super + }Print
-	nougat-0x0 -n{f,_}
+XF86Calculator
+	powermenu
+
 super + r
 	rofi -show run
-
-
 super + Return
 	alacritty
-super + s ; {f,d,s}
-	{firefox,discord,steam}
-super + {_,ctrl + }t
-	${HOME}/.dotfiles/noti/time-date/{utc,local}-time-date
 
 
-super + {_,ctrl + }Escape
-	{pkill -USR1 -x sxhkd,bspc quit}
+super + Escape
+	pkill -USR1 -x sxhkd ; ${HOME}/.config/bspwm/bspwmrc
+super + alt + Escape
+	bspc quit
 
-
-super + Tab
+super + m
 	bspc desktop -l next
-super + shift + {t,s,f}
-	bspc node -t {tiled,floating,fullscreen}
+super + shift + t
+	bspc node -t tiled
+super + alt + t
+	bspc node -t pseudo_tiled
+super + shift + s
+	bspc node -t floating
+super + shift + f
+	bspc node -t fullscreen
 
+super + h
+	bspc node -f west
+super + j
+	bspc node -f south
+super + k
+	bspc node -f north
+super + l
+	bspc node -f east
+super + Tab
+	bspc node -f next.local
+super + shift + Tab
+	bspc node -f prev.local
 
-super + {_,shift + ,ctrl + }{h,j,k,l}
-	bspc node -{f,s,p} {west,south,north,east}
+super + shift + h
+	bspc node -s west
+super + shift + j
+	bspc node -s south
+super + shift + k
+	bspc node -s north
+super + shift + l
+	bspc node -s east
+super + Left
+	bspc node -v -20 0
+super + Down
+	bspc node -v 0 20
+super + Up
+	bspc node -v 0 -20
+super + Right
+	bspc node -v 20 0
 
-
+super + ctrl + h
+	bspc node -p west
+super + ctrl + j
+	bspc node -p south
+super + ctrl + k
+	bspc node -p north
+super + ctrl + k
+	bspc node -p east
 super + ctrl + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
+super + q
+	bspc node -c
+super + shift + q
+	bspc node -k
 
-super + {u,i,o,p}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-super + shift + {u,i,o,p}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+super + u
+	bspc node -z left -20 0
+super + i
+	bspc node -z bottom 0 20
+super + o
+	bspc node -z top 0 -20
+super + p
+	bspc node -z right 20 0
+super + shift + u
+	bspc node -z right -20 0
+super + shift + i
+	bspc node -z top 0 20
+super + shift + o
+	bspc node -z bottom 0 -20
+super + shift + p
+	bspc node -z left 20 0
 
-
-super + {_,ctrl + }q
-	bspc node -{c,k}
-
-
-super + ctrl + s
-	bspc node -g sticky
-
-
-super + {_,shift + }{1-5}
-	bspc {desktop -f,node -d} '^{1-5}'
-super + ctrl + {_,shift + }{1,2,3,4,5}
-	bspc {desktop -f,node -d} '^{6,7,8,9,10}'
-
-
-super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+super + {1-9,0}
+	bspc desktop -f '^{1-9,10}'
+super + shift + {1-9,0}
+	bspc node -d '^{1-9,10}'

@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 
-# shellcheck source=/home/yemou/.cache/wal/colors.sh
 . "${HOME}/.cache/wal/colors.sh"
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
@@ -12,15 +11,14 @@ bspc config presel_feedback_color "${color2}"
 
 bspc config border_width 4
 bspc config window_gap 16
-
-bspc config top_padding 16
-bspc config right_padding 16
-bspc config bottom_padding 16
-bspc config left_padding 16
+bspc config top_padding 32
+bspc config right_padding 32
+bspc config bottom_padding 32
+bspc config left_padding 32
 
 bspc config split_ratio 0.50
 bspc config focus_follows_pointer true
 
-bspc rule -a "Firefox" desktop='^1'
-bspc rule -a "Steam" desktop='^2'
-bspc rule -a "discord" desktop='^3'
+bspc rule -a Chromium-browser-chromium desktop='^1'
+bspc rule -a discord desktop='^2'
+bspc rule -a Steam desktop='^3'
