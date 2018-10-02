@@ -20,5 +20,8 @@ bspc config split_ratio 0.50
 bspc config focus_follows_pointer true
 
 bspc rule -a Chromium-browser-chromium desktop='^1'
+bspc desktop '^1' -l monocle
 bspc rule -a discord desktop='^2'
 bspc rule -a Steam desktop='^3'
+bspc desktop '^3' -l monocle
+bspc desktop '^5' -l monocle

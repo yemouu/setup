@@ -15,13 +15,16 @@ reload_bspwm() {
 }
 
 reload_herbstluftwm() {
-	herbstclient reload &
+	if command -v herbstclient > /dev/null
+	then
+		herbstclient reload &
+	fi
 }
 
 main() {
 	reload_dunst &
 	reload_bspwm &
-	#reload_herbstluftwm &
+	reload_herbstluftwm &
 }
 
 main

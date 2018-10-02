@@ -15,11 +15,11 @@ confirmation() {
 
 user_input=$(echo "$power_options" | xargs -n1 | rofi -dmenu -p "$rofi_prompt")
 case $user_input in
-	Poweroff|poweroff|Shutdown|shutdown	) confirmation; loginctl poweroff ;;
-	Reboot|reboot|Restart|restart		) confirmation; loginctl reboot ;;
+	Poweroff|poweroff|Shutdown|shutdown	) confirmation; loginctl poweroff -i ;;
+	Reboot|reboot|Restart|restart		) confirmation; loginctl reboot -i ;;
 	Lock|lock				) confirmation; $screen_locker ;;
-	Sleep|sleep				) confirmation; $screen_locker; loginctl suspend ;;
-	Hibernate|hibernate			) confirmation; $screen_locker; loginctl hibernate ;;
-	Hybrid-Sleep|hybrid-sleep|Hybrid|hybrid	) confirmation; $screen_locker; loginctl hybrid-sleep ;;
+	Sleep|sleep				) confirmation; $screen_locker; loginctl suspend -i ;;
+	Hibernate|hibernate			) confirmation; $screen_locker; loginctl hibernate -i ;;
+	Hybrid-Sleep|hybrid-sleep|Hybrid|hybrid	) confirmation; $screen_locker; loginctl hybrid-sleep -i ;;
 	*					) exit ;;
 esac

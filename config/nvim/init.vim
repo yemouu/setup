@@ -1,3 +1,41 @@
+"dein Scripts-----------------------------
+
+if &compatible
+	set nocompatible	" Be iMproved
+endif
+
+" Required:
+set runtimepath+=/home/yemou/.local/share/dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state('/home/yemou/.local/share/dein')
+	call dein#begin('/home/yemou/.local/share/dein')
+
+	" Let dein manage dein
+	" Required:
+	call dein#add('/home/yemou/.local/share/dein/repos/github.com/Shougo/dein.vim')
+
+	" Add or remove your plugins here:
+	call dein#add('w0rp/ale')
+	call dein#add('davidhalter/jedi-vim')
+	call dein#add('dylanaraps/wal.vim')
+
+	" Required:
+	call dein#end()
+	call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+	call dein#install()
+endif
+
+"End dein Scripts-------------------------
+
 let mapleader = "`"
 let maplocalleader = "\\"
 
@@ -21,7 +59,4 @@ set syntax=on
 set scrolloff=4
 set clipboard=unnamedplus
 
-set runtimepath^=${HOME}/doc/git/neovim-plugins/ale
-set runtimepath^=${HOME}/doc/git/neovim-plugins/jedi-vim
-set runtimepath^=${HOME}/doc/git/neovim-plugins/wal.vim
-"colorscheme wal
+colorscheme wal

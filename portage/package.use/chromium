@@ -3,3 +3,5 @@
 >=media-libs/harfbuzz-1.8.1 icu
 >=sys-libs/zlib-1.2.11-r2 minizip
 >=dev-libs/icu-60.2 abi_x86_32
+
+>=net-libs/nodejs-9.11.2 inspector icu
