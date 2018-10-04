@@ -11,7 +11,10 @@ reload_dunst() {
 }
 
 reload_bspwm() {
-	"${HOME}/.config/bspwm/bspwmrc" &
+	if command -v bspc > /dev/null
+	then
+		"${HOME}/.config/bspwm/bspwmrc" &
+	fi
 }
 
 reload_herbstluftwm() {

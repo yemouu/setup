@@ -14,8 +14,8 @@
 	--DisplayNoConnectionBackdraw: none;
 	
 	--ColTextSelection: rgba({color2.rgb},0.5);    
-	--FontFamily: "IBM Plex Sans", sans-serif;
-	--FontMonoFamily: "IBM Plex Mono", monospace;
+	--FontFamily: "Noto Sans", sans-serif;
+	--FontMonoFamily: "Noto Mono", monospace;
 	
 	--ColFont: {color7};
 	--ColFontBright: {color8};

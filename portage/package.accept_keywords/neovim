@@ -1,4 +1,4 @@
-=app-editors/neovim-0.3.0
-=dev-libs/msgpack-1.1.0
-=dev-python/msgpack-0.5.6
-=dev-python/neovim-python-client-0.2.6
+#=app-editors/neovim-0.3.0
+#=dev-libs/msgpack-1.1.0
+#=dev-python/msgpack-0.5.6
+#=dev-python/neovim-python-client-0.2.6
