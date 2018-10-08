@@ -3,3 +3,4 @@ config/mpd/state
 config/mpd/database
 ._cfg*
 20opengl.conf
+config/nvim/.netrwhist

@@ -1,9 +1,9 @@
-PATH+=":${HOME}/.local/bin:${HOME}/.dotfiles/bin"
+PATH+=":${HOME}/.local/bin:${HOME}/.dotfiles/bin:${HOME}/.bin"
 MANPATH+=":${HOME}/.local/share/man"
 
 VISUAL="nvim"
 EDITOR="${VISUAL}"
-PAGER="less -R"
+PAGER="less"
 
 INPUTRC="${HOME}/.inputrc"
 

@@ -96,19 +96,14 @@ for i in "${!tag_names[@]}" ; do
     fi
 done
 
-if hc silent new_attr bool my_first_start ; then
-	hc load 1 '(clients max:0)'
+if hc silent new_attr bool my_first_start
+then
+	hc load 1 '(clients horizontal:0)'
 	hc load 2 '(clients horizontal:0)'
 	hc load 3 '(clients max:0)'
 	hc load 4 '(clients horizontal:0)'
 	hc load 5 '(clients max:0)'
-	hc load 6 '(split horizontal:0.500000:0
-	(split vertical:0.500000:1
-	(clients horizontal:0)
-	(clients horizontal:0))
-	(split vertical:0.500000:1
-	(clients horizontal:0)
-	(clients horizontal:0)))'
+	hc load 6 '(clients horizontal:0)'
 	hc load 7 '(clients horizontal:0)'
 	hc load 8 '(clients horizontal:0)'
 	hc load 9 '(clients horizontal:0)'

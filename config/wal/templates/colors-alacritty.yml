@@ -23,11 +23,11 @@ font:
 
         bold:
                 family: Noto Mono
-                style: Bold
+                #style: Bold
 
         italic:
                 family: Noto Mono
-                style: Italic
+                #style: Italic
 
         size: 8.0
 

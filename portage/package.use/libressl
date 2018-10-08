@@ -1,0 +1,2 @@
+>=net-misc/curl-7.61.1 curl_ssl_libressl -curl_ssl_openssl
+>=dev-libs/libressl-2.6.5 abi_x86_32
