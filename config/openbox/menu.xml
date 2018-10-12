@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+  <menu id="root-menu" label="Openbox UWU">
+    <separator label="Applications"/>
+    <item label="Discord">
+      <action name="Execute">
+        <command>discord</command>
+      </action>
+    </item>
+    <item label="Editor">
+      <action name="Execute">
+        <command>alacritty -e nvim</command>
+      </action>
+    </item>
+    <item label="Firefox">
+      <action name="Execute">
+        <command>firefox</command>
+      </action>
+    </item>
+    <item label="Htop">
+      <action name="Execute">
+        <command>alacritty -e htop</command>
+      </action>
+    </item>
+    <item label="Ncmpcpp">
+      <action name="Execute">
+        <command>alacritty -e ncmpcpp</command>
+      </action>
+    </item>
+    <item label="Terminal">
+      <action name="Execute">
+        <command>alacritty</command>
+      </action>
+    </item>
+    <separator label="Power Options"/>
+    <item label="Poweroff">
+      <action name="Execute">
+        <command>loginctl poweroff -i</command>
+        <prompt>Are you sure? [Poweroff]</prompt>
+      </action>
+    </item>
+    <item label="Reboot">
+      <action name="Execute">
+        <command>loginctl reboot -i</command>
+        <prompt>Are you sure? [Reboot]</prompt>
+      </action>
+    </item>
+    <item label="Lock">
+      <action name="Execute">
+        <command>i3locck</command>
+        <prompt>Are you sure? [Lock]</prompt>
+      </action>
+    </item>
+    <item label="Sleep">
+      <action name="Execute">
+        <command>loginctl suspend -i</command>
+        <prompt>Are you sure? [Sleep]</prompt>
+      </action>
+    </item>
+    <item label="Hibernate">
+      <action name="Execute">
+        <command>loginctl hibernate -i</command>
+        <prompt>Are you sure? [Hibernate]</prompt>
+      </action>
+    </item>
+    <item label="Hybrid-Sleep">
+      <action name="Execute">
+        <command>loginctl hybrid-sleep -i</command>
+        <prompt>Are you sure? [Hybrid-Sleep]</prompt>
+      </action>
+    </item>
+    <separator label="Openbox"/>
+    <item label="Exit">
+      <action name="Exit">
+        <prompt>yes</prompt>
+      </action>
+    </item>
+    <item label="Reload">
+      <action name="Reconfigure">
+      </action>
+    </item>
+    <item label="Restart">
+      <action name="Restart">
+      </action>
+    </item>
+  </menu>
+</openbox_menu>

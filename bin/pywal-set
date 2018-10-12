@@ -6,19 +6,19 @@
 reload_dunst() {
 	if pidof dunst > /dev/null
 	then
-		killall dunst
+		pkill dunst
 	fi
 }
 
 reload_bspwm() {
-	if command -v bspc > /dev/null
+	if pidof bspwm > /dev/null
 	then
 		"${HOME}/.config/bspwm/bspwmrc" &
 	fi
 }
 
 reload_herbstluftwm() {
-	if command -v herbstclient > /dev/null
+	if pidof herbstluftwm > /dev/null
 	then
 		herbstclient reload &
 	fi
