@@ -3,8 +3,8 @@ env:
 
 window:
         dimensions:
-        columns: 40
-        lines: 12
+        columns: 80
+        lines: 24
 
         padding:
                 x: 30
@@ -18,15 +18,15 @@ draw_bold_text_with_bright_colors: true
 
 font:
         normal:
-                family: Noto Mono
+                family: monospace
                 style: Regular
 
         bold:
-                family: Noto Mono
-                #style: Bold
+                family: monospace
+                style: Bold
 
         italic:
-                family: Noto Mono
+                family: monospace
                 #style: Italic
 
         size: 8.0

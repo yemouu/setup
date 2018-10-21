@@ -59,8 +59,6 @@ set syntax=on
 set scrolloff=4
 set clipboard=unnamedplus
 
-autocmd Filetype lua :setlocal et sw=2 ts=2 sts=2
-autocmd Filetype xml :setlocal et sw=2 ts=2 sts=2
-autocmd Filetype html :setlocal et sw=2 ts=2 sts=2
+autocmd Filetype xml,html :setlocal et sw=2 ts=2 sts=2
 
 colorscheme wal

@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+export BARTOP_PID=$$
+
+user_hostname() {
+	return
+}
+
+workspace_indicator() {
+	return
+}
+
+date_time() {
+	return
+}

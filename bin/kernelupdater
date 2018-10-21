@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+set -e
+
+if ! [ "$(id -u)" = 0 ]
+then
+	echo "Run this script as root"
+	exit 1
+fi
+
+if [ "$1" = "-e" ]
+then
+	edit_kernel=true
+else
+	edit_kernel=false
+fi
+
+cd /usr/src/linux
+zcat /proc/config.gz > /usr/src/linux/.config
+make olddefconfig
+if [ $edit_kernel = true ]
+then
+	make menuconfig
+fi
+make modules_prepare
+make -j4
+make modules_install
+mv arch/x86/boot/bzImage /boot/EFI/Gentoo/bzImage

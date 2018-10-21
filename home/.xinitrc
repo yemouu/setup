@@ -11,7 +11,6 @@ xrandr -r 144 &
 redshift -t 6500K:3700K &
 "${HOME}/.dotfiles/noti/music/music-changed" &
 "${HOME}/.fehbg" &
-xautolock -detectsleep -time 35 -locker i3locck -killtime 30 -killer "loginctl hybrid-sleep -i" &
 
 session=${1:-openbox}
 case $session in

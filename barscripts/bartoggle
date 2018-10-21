@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+if [ -n "$BARBOT_PID" ] || [ -n "$BARTOP_PID" ]
+then
+	kill -15 "$BARBOT_PID"
+	kill -15 "$BARTOP_PID"
+	unset BARBOT_PID
+	unset BARTOP_PID
+else
+	barbot &
+	bartop &
+fi

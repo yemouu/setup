@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
 rofi_prompt="Power Menu"
-screen_locker="i3locck"
 power_options="Poweroff Reboot Lock Sleep Hibernate Hybrid-Sleep"
 
 confirmation() {
@@ -17,9 +16,9 @@ user_input=$(echo "$power_options" | xargs -n1 | rofi -dmenu -p "$rofi_prompt")
 case $user_input in
 	Poweroff|poweroff|Shutdown|shutdown	) confirmation; loginctl poweroff -i ;;
 	Reboot|reboot|Restart|restart		) confirmation; loginctl reboot -i ;;
-	Lock|lock				) confirmation; $screen_locker ;;
-	Sleep|sleep				) confirmation; $screen_locker; loginctl suspend -i ;;
-	Hibernate|hibernate			) confirmation; $screen_locker; loginctl hibernate -i ;;
-	Hybrid-Sleep|hybrid-sleep|Hybrid|hybrid	) confirmation; $screen_locker; loginctl hybrid-sleep -i ;;
+	Lock|lock				) confirmation; "${HOME}/.dotfiles/powerscript/i3locck" ;;
+	Sleep|sleep				) confirmation; "${HOME}/.dotfiles/powerscript/psleep" ;;
+	Hibernate|hibernate			) confirmation; "${HOME}/.dotfiles/powerscript/phibernate" ;;
+	Hybrid-Sleep|hybrid-sleep|Hybrid|hybrid	) confirmation; "${HOME}/.dotfiles/powerscript/phybrid-sleep" ;;
 	*					) exit ;;
 esac

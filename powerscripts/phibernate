@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+${HOME}/.dotfiles/powerscripts/i3locck
+loginctl hibernate -i

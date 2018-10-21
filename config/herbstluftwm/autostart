@@ -98,7 +98,6 @@ do
     fi
 done
 
-
 if hc silent new_attr bool my_first_start
 then
 	hc load 1 '(clients horizontal:0)'

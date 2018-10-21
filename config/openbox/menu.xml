@@ -3,6 +3,11 @@
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
   <menu id="root-menu" label="Openbox UWU">
     <separator label="Applications"/>
+    <item label="Browser">
+      <action name="Execute">
+        <command>firefox</command>
+      </action>
+    </item>
     <item label="Discord">
       <action name="Execute">
         <command>discord</command>
@@ -13,9 +18,9 @@
         <command>alacritty -e nvim</command>
       </action>
     </item>
-    <item label="Firefox">
+    <item label="File Manager">
       <action name="Execute">
-        <command>firefox</command>
+        <command>thunar</command>
       </action>
     </item>
     <item label="Htop">
@@ -26,6 +31,16 @@
     <item label="Ncmpcpp">
       <action name="Execute">
         <command>alacritty -e ncmpcpp</command>
+      </action>
+    </item>
+    <item label="Steam Acc1">
+      <action name="Execute">
+        <command>a1steam</command>
+      </action>
+    </item>
+    <item label="Steam Acc2">
+      <action name="Execute">
+        <command>a2steam</command>
       </action>
     </item>
     <item label="Terminal">
@@ -48,25 +63,25 @@
     </item>
     <item label="Lock">
       <action name="Execute">
-        <command>i3locck</command>
+        <command>~/.dotfiles/powerscripts/i3locck</command>
         <prompt>Are you sure? [Lock]</prompt>
       </action>
     </item>
     <item label="Sleep">
       <action name="Execute">
-        <command>loginctl suspend -i</command>
+        <command>~/.dotfiles/powerscripts/psleep</command>
         <prompt>Are you sure? [Sleep]</prompt>
       </action>
     </item>
     <item label="Hibernate">
       <action name="Execute">
-        <command>loginctl hibernate -i</command>
+        <command>~/.dotfiles/powerscripts/phibernate</command>
         <prompt>Are you sure? [Hibernate]</prompt>
       </action>
     </item>
     <item label="Hybrid-Sleep">
       <action name="Execute">
-        <command>loginctl hybrid-sleep -i</command>
+        <command>~/.dotfiles/powerscripts/phybrid-sleep</command>
         <prompt>Are you sure? [Hybrid-Sleep]</prompt>
       </action>
     </item>
