@@ -4,3 +4,11 @@ config/mpd/database
 ._cfg*
 20opengl.conf
 config/nvim/.netrwhist
+config/wpg/.current
+config/wpg/formats
+config/wpg/samples
+config/wpg/schemes
+config/wpg/sequences
+config/wpg/wallpapers
+config/wpg/wp_init.sh
+config/wpg/wpg.conf

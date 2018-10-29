@@ -1,0 +1,1 @@
+/home/yemou/.cache/wpg/colors-stripped.sh

@@ -1,1 +1,1 @@
->=xfce-base/thunar-1.8.2 -trash-panel-plugin -pcre
+>=xfce-base/thunar-1.8.2 exif udisks -trash-panel-plugin

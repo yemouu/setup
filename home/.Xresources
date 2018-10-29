@@ -9,7 +9,7 @@ URxvt.buffered: True
 URxvt.geometry: 80x24
 URxvt.jumpScroll: True
 URxvt.skipScroll: True
-URxvt.font: xft:IBM Plex Mono:size=8
+URxvt.font: xft:monospace:size=8
 URxvt.letterSpace: -1
 URxvt.scrollBar: False
 URxvt.internalBorder: 26

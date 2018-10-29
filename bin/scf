@@ -68,24 +68,20 @@ download() {
 	then
 		scdl \
 			-l "https://soundcloud.com/${USERNAME}" \
-			-fc --download-archive "${DIRECTORY}/archive" \
-			--onlymp3 --path "${DIRECTORY}" --addtofile
+			-fc --onlymp3 --path "${DIRECTORY}" --addtofile
 	elif [ ${CONTINUE} = false ] && [ ! -z "${USERNAME}" ]
 	then
 		scdl \
 			-l "https://soundcloud.com/${USERNAME}" \
-			-f --download-archive "${DIRECTORY}/archive" \
-			--onlymp3 --path "${DIRECTORY}" --addtofile
+			-f --onlymp3 --path "${DIRECTORY}" --addtofile
 	elif [ ${CONTINUE} = true ] && [ ${ME} = true ]
 	then
 		scdl \
-			-fc --download-archive "${DIRECTORY}/archive" \
-			--onlymp3 --path "${DIRECTORY}" --addtofile me
+			-fc --onlymp3 --path "${DIRECTORY}" --addtofile me
 	elif [ ${CONTINUE} = false ] && [ ${ME} = true ]
 	then
 		scdl \
-			-f --download-archive "${DIRECTORY}/archive" \
-			--onlymp3 --path "${DIRECTORY}" --addtofile me
+			-f --onlymp3 --path "${DIRECTORY}" --addtofile me
 	fi
 }
 

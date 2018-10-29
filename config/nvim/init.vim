@@ -18,7 +18,7 @@ if dein#load_state('/home/yemou/.local/share/dein')
 	" Add or remove your plugins here:
 	call dein#add('w0rp/ale')
 	call dein#add('davidhalter/jedi-vim')
-	call dein#add('dylanaraps/wal.vim')
+"	call dein#add('deviantfero/wpgtk.vim')
 
 	" Required:
 	call dein#end()
@@ -61,4 +61,4 @@ set clipboard=unnamedplus
 
 autocmd Filetype xml,html :setlocal et sw=2 ts=2 sts=2
 
-colorscheme wal
+"colorscheme wpgtk
