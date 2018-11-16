@@ -2,6 +2,7 @@
 
 set -e
 
+sudo -v
 if ! [ "$(id -u)" = 0 ]
 then
 	echo "Run this script as root"
@@ -16,13 +17,15 @@ else
 fi
 
 cd /usr/src/linux
-zcat /proc/config.gz > /usr/src/linux/.config
-make olddefconfig
+sudo zcat /proc/config.gz > /usr/src/linux/.config
+sudo make olddefconfig
 if [ $edit_kernel = true ]
 then
-	make menuconfig
+	sudo make menuconfig
 fi
-make modules_prepare
-make -j4
-make modules_install
-mv arch/x86/boot/bzImage /boot/EFI/Gentoo/bzImage
+sudo make modules_prepare
+sudo make -j4
+sudo make modules_install
+echo "Moving kernel..."
+sudo mv arch/x86/boot/bzImage /boot/EFI/Gentoo/bzImage
+echo "Kernel moved."

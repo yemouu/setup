@@ -1,22 +1,59 @@
-@import url('https://raw.githack.com/Customa/Customa/master/Misc/allModules.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Base/base.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Base/font.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Base/selection.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Base/settings.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Base/tooltip.m.css');
+
+@import url('https://raw.githack.com/Customa/Customa/master/Chat/betterFileTypes.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Chat/channelDivider.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Chat/codeBlockLanguages.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Chat/embedsModernized.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Chat/embedsModernized.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Chat/guildsWrapper.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Chat/newDividerRed.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Chat/newEditIcon.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Chat/typingOnRight.m.css');
+
+@import url('https://raw.githack.com/Customa/Customa/master/Emoji/jumboMoji.m.css');
+
+@import url('https://raw.githack.com/Customa/Customa/master/Misc/iOSToggles.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Misc/settingsModal.m.css');
+
+
+@import url('https://raw.githack.com/Customa/Customa/master/Sidebar/newUserModal.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Sidebar/newUserPopout.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Sidebar/sidebarModifier.m.css');
+
+@import url('https://raw.githack.com/Customa/Customa/master/Webkit/advancedScrollbar.m.css');
 
 :root{{
-	--ColAppBG: {color0};
-	--ColBackground1: var(--ColAppBG);
-	--ColBackground2: rgba({color0.rgb},1);
-	--ColAccent: {color4};
-	--ColAccentAlpha: rgba({color4.rgb},.1);
-	--ColAnchor: {color1};
-	--ColLastMessage: transparent;
-	--ColFalse: {color5};
-	--ColTrue: {color2};
-	--DisplayEmbedPill: block !important;
-	--DisplayNoConnectionBackdraw: none;
-	
-	--ColTextSelection: rgba({color2.rgb},0.5);    
-	--FontFamily: "Noto Sans", sans-serif;
-	--FontMonoFamily: "Noto Mono", monospace;
-	
-	--ColFont: {color7};
-	--ColFontBright: {color8};
+    --ColAppBG: {color0};
+    --ColBackground1: var(--ColAppBG);
+    --ColBackground2: {color0};
+    --ColAccent: {color6};
+    --ColAccentAlpha: rgba({color6.rgb},0.1);
+    --ColAnchor: {color8};
+    --ColLastMessage: transparent;
+    --ColFalse: {color2};
+    --ColTrue: {color1};
+    --DisplayEmbedPill: none;
+    --DisplayNoConnectionBackdraw: none;
+
+    --FontFamily: sans-serif;
+    --FontMonoFamily: monospace;
+
+    --ColTextSelection: rgba({color6.rgb},0.2);
+
+    --ColTooltip: var(--ColAccent);
+
+    --FilterNoHover: grayscale(60%);
+    --WidthGuildMax: 80px;
+
+    --SizeEmote: 50px;
+
+    --DisplayNoDoubleBorderRadius: Block;
+}}
+
+.textArea-2Spzkt::-webkit-input-placeholder{{
+    font-family: sans-serif;
 }}

@@ -8,18 +8,15 @@ then
 fi
 
 xrandr -r 144 &
-redshift -t 6500K:3700K &
-"${HOME}/.dotfiles/noti/music/music-changed" &
+exec redshift -t 6500K:3700K &
 "${HOME}/.fehbg" &
 
-session=${1:-openbox}
+session=${1:-bspwm}
 case $session in
 	b|bspwm		) sxhkd -c "${HOME}/.config/sxhkd/sxhkdrc-bspwm" &
-		xsetroot -cursor_name left_ptr & bspwm ;;
+		xsetroot -cursor_name left_ptr & exec bspwm ;;
 
-	h|herbstluftwm	)  herbstluftwm --locked ;;
-
-	o|openbox	) openbox-session ;;
+	h|herbstluftwm	) exec herbstluftwm --locked ;;
 
 	*		) echo "WM/DE not in list." ;;
 esac

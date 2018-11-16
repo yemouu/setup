@@ -31,7 +31,7 @@ else
 		sin="s"
 	fi
 
-	vol="[$(mpc volume | awk '{print $2}')]"
+	vol="[$(mpc volume | sed -e "s/:/:\\ /g"| awk '{print $2}')]"
 	time="[$(mpc | awk NR==2'{print $3}')]"
 	num="[$(mpc listall | wc -l)]"
 

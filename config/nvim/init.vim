@@ -16,9 +16,7 @@ if dein#load_state('/home/yemou/.local/share/dein')
 	call dein#add('/home/yemou/.local/share/dein/repos/github.com/Shougo/dein.vim')
 
 	" Add or remove your plugins here:
-	call dein#add('w0rp/ale')
-	call dein#add('davidhalter/jedi-vim')
-"	call dein#add('deviantfero/wpgtk.vim')
+	call dein#add('dylanaraps/wal.vim')
 
 	" Required:
 	call dein#end()
@@ -39,26 +37,19 @@ endif
 let mapleader = "`"
 let maplocalleader = "\\"
 
-nnoremap <leader>ev :split $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap H ^
 nnoremap L g_
-nnoremap <leader>1 :set nu!<cr>
-nnoremap <leader>2 :set rnu!<cr>
-nnoremap <leader>zz :let &scrolloff=999-&scrolloff<CR>
-
-vnoremap <leader>' <esc>`>a'<esc>`<i'
 
 set tabstop=8
 set shiftwidth=8
 
 highlight ColorColumn ctermbg=8
-set colorcolumn=81
+set colorcolumn=80
 
 set syntax=on
 set scrolloff=4
 set clipboard=unnamedplus
 
-autocmd Filetype xml,html :setlocal et sw=2 ts=2 sts=2
+autocmd Filetype xml,html,css :setlocal et sw=2 ts=2 sts=2
 
-"colorscheme wpgtk
+colorscheme wal

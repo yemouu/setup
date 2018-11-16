@@ -8,5 +8,5 @@ configuration {
 	fixed-num-lines: false;
 	disable-history: true;
 	dpi: 92;
-	theme: "~/.cache/wpg/rofi-theme.rasi";
+	theme: "~/.cache/wal/colors-rofi.rasi";
 }

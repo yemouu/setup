@@ -19,5 +19,5 @@ else
 	PS1=""
 fi
 
-PS1+="[${C2}\\w${RESET}]${C1}\\$ ${RESET}"
+PS1+="${C2}\\w${RESET}]${C1}\\$ ${RESET}"
 PS2="${C1}\\$ ${RESET}"

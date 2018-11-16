@@ -2,3 +2,5 @@
 >=www-client/firefox-62.0.3 clang lto -screenshot
 >=net-libs/nodejs-9.11.2 -npm -ssl
 >=sys-devel/llvm-7.0.0-r1 gold
+>=dev-lang/python-3.6.6 sqlite
+>=dev-lang/python-2.7.15 sqlite
