@@ -52,13 +52,14 @@ super + Pause
 	killall -SIGUSR2 dunst
 
 XF86Calculator
-	powermenu
+	${HOME}/.dotfiles/powerscripts/powermenu
+XF86HomePage
+	polybar-toggle
 
 super + r
 	rofi -show run
 super + Return
 	alacritty
-
 
 super + Escape
 	pkill -USR1 -x sxhkd ; ${HOME}/.config/bspwm/bspwmrc

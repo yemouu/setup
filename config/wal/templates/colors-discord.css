@@ -54,6 +54,7 @@
     --DisplayNoDoubleBorderRadius: Block;
 }}
 
-.textArea-2Spzkt::-webkit-input-placeholder{{
-    font-family: sans-serif;
+.isMentionedCozy-3isp7y:after {{
+    background: var(--ColAccentAlpha);
 }}
+

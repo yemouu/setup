@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if pidof polybar
+then
+	pkill polybar
+else
+	exec polybar --reload bar1 &
+	exec polybar --reload bar2 &
+fi

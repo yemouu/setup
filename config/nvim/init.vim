@@ -16,6 +16,7 @@ if dein#load_state('/home/yemou/.local/share/dein')
 	call dein#add('/home/yemou/.local/share/dein/repos/github.com/Shougo/dein.vim')
 
 	" Add or remove your plugins here:
+	call dein#add('w0rp/ale')
 	call dein#add('dylanaraps/wal.vim')
 
 	" Required:

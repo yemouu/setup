@@ -1,0 +1,25 @@
+# created by eselect-repo
+
+[steam-overlay]
+location = /var/db/repos/steam-overlay
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/steam-overlay.git
+
+
+[ahrs]
+location = /var/db/repos/ahrs
+sync-type = git
+sync-uri = https://gitlab.com/ahrs/gentoo-stuff.git
+
+
+[ricerlay]
+location = /var/db/repos/ricerlay
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/ricerlay.git
+
+
+
+[poly-c]
+location = /var/db/repos/poly-c
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/poly-c.git

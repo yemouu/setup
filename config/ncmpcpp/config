@@ -12,14 +12,14 @@ message_delay_time = 2
 
 song_list_format = $8%a - %t$R%l$9
 song_window_title_format = %a - %t
-song_columns_list_format = (32)[green]{ar} (0)[magenta]{t}
+song_columns_list_format = (32)[red]{ar} (0)[green]{t}
 
 playlist_shorten_total_times = yes
 browser_display_mode = columns
 centered_cursor = yes
 progressbar_look = "──"
-progressbar_color = red
-progressbar_elapsed_color = yellow
+progressbar_color = green
+progressbar_elapsed_color = red
 header_visibility = no
 statusbar_visibility = no
 titles_visibility = yes

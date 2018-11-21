@@ -7,9 +7,12 @@ then
     xrdb -merge "$userresources"
 fi
 
+start-pulseaudio-x11 &
 xrandr -r 144 &
 exec redshift -t 6500K:3700K &
 "${HOME}/.fehbg" &
+! pidof polybar && { exec polybar --reload bar1 & exec polybar --reload bar2 & }
+"${HOME}/.dotfiles/noti/music/music-changed" &
 
 session=${1:-bspwm}
 case $session in

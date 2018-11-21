@@ -14,10 +14,10 @@ RESET="\\[\\e[0m\\]"
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]
 then
-	PS1="(${C1}ssh${RESET}) "
+	PS1="(${C1}ssh${RESET})"
 else
 	PS1=""
 fi
 
-PS1+="${C2}\\w${RESET}]${C1}\\$ ${RESET}"
+PS1+="${C2}\\$ ${RESET}"
 PS2="${C1}\\$ ${RESET}"

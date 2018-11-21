@@ -1,71 +1,61 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+script_name=${0##*/}
+site="https://0x0.st"
 
 usage() { printf '%s' "
-Usage: 0x0 [OPTIONS] -f [FILE]
+Usage: $script_name [-f <file>] [-s <url>] [-u <url>] [input]
 
 OPTIONS:
-	-h	displays this message
+	-h|--help	displays this message
 
-	-c	copies the link to clipboard (requires xclip)
+	-f|--file	file to upload
 
-	-f	file to upload
+	-s|--shorten	url to shorten
+
+	-u|--url	url to upload
 
 "
 }
 
-get_args() {
-	clip=false
-	file=""
-
-	while getopts "hcf:" OPTS
-	do
-		case $OPTS in
-			"h"	) usage ; exit 0 ;;
-			"c"	) clip=true ;;
-			"f"	) file="$OPTARG" ;;
-			"*"	) usage ; exit 1 ;;
-		esac
-	done
-
-	if [ -z "$file" ]
-	then
-		echo "${0##*/} requires option -f"
-		echo "Do \`${0##*/} -h\` for more information. "
-		exit 1
-	fi
+upload_stdin() {
+	while read -r lines 
+	do 
+		echo "$lines"
+	done | curl -F"file=@-" $site | xclip -sel clip 
 }
 
-upload() {
-	if ! command -v curl > /dev/null
-	then
-		echo "curl not found"
-		echo "exiting..."
-		exit 1
-	fi
-
-	upload=$(curl -sF "file=@$file" 0x0.st)
-	echo "$upload"
-
+upload_file() {
+	curl -F"file=@$1" $site | xclip -sel clip
 }
 
-copy() {
-	if [ $clip = true ]
-	then
-		if ! command -v xclip > /dev/null
+shorten_url() {
+	curl -F"shorten=$1" $site | xclip -sel clip
+}
+
+upload_url() {
+	curl -F"url=$1" $site | xclip -sel clip
+}
+
+if [[ -f $1 || $# -lt 1 ]]
+then
+	operation="default"
+else
+	operation=$1
+	shift
+fi
+
+case "$operation" in
+	default	)
+		if [[ $# -gt 0 ]]
 		then
-			echo "xclip not found"
-			echo "\`${0##*/}\` -h for more information"
-			echo "exiting..."
-			exit 1
-		fi
-			echo "$upload" | xclip -sel clip
-	fi
-}
-
-main() {
-	get_args "$@"
-	upload
-	copy
-}
-
-main "$@"
+			upload_file "$@"
+		else
+			upload_stdin "$@" 
+		fi ;;
+	-f|--file ) upload_file "$@" ;;
+	-s|--shorten ) shorten_url "$@" ;;
+	-u|--url ) upload_url "$@" ;;
+	-h|--help ) usage;exit 0 ;;
+	* ) usage;exit 1;;
+esac

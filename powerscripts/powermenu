@@ -14,11 +14,11 @@ confirmation() {
 
 user_input=$(echo "$power_options" | xargs -n1 | rofi -dmenu -p "$rofi_prompt")
 case $user_input in
-	Poweroff|poweroff|Shutdown|shutdown	) confirmation; loginctl poweroff -i ;;
-	Reboot|reboot|Restart|restart		) confirmation; loginctl reboot -i ;;
-	Lock|lock				) confirmation; "${HOME}/.dotfiles/powerscript/i3locck" ;;
-	Sleep|sleep				) confirmation; "${HOME}/.dotfiles/powerscript/psleep" ;;
-	Hibernate|hibernate			) confirmation; "${HOME}/.dotfiles/powerscript/phibernate" ;;
-	Hybrid-Sleep|hybrid-sleep|Hybrid|hybrid	) confirmation; "${HOME}/.dotfiles/powerscript/phybrid-sleep" ;;
-	*					) exit ;;
+	Poweroff	) confirmation; loginctl poweroff -i ;;
+	Reboot		) confirmation; loginctl reboot -i ;;
+	Lock		) confirmation; "${HOME}/.dotfiles/powerscripts/i3locck" ;;
+	Sleep		) confirmation; "${HOME}/.dotfiles/powerscripts/psleep" ;;
+	Hibernate	) confirmation; "${HOME}/.dotfiles/powerscripts/phibernate" ;;
+	Hybrid-Sleep	) confirmation; "${HOME}/.dotfiles/powerscripts/phybrid-sleep" ;;
+	*		) exit 1 ;;
 esac

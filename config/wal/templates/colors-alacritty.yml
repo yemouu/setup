@@ -7,8 +7,8 @@ window:
     lines: 36
 
   padding:
-    x: 30
-    y: 30
+    x: 32
+    y: 32
 
   decorations: full
 
@@ -36,7 +36,7 @@ font:
 
   offset:
     x: 0
-    y: 0
+    y: -2
 
   glyph_offset:
     x: 0
@@ -86,8 +86,8 @@ mouse:
   triple_click: {{ threshold: 300 }}
   hide_when_typing: true
 
-  url:
-    launcher: xdg-open
+  #url:
+  #  launcher: xdg-open
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{{}}<>"

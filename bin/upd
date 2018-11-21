@@ -78,6 +78,7 @@ gentoo_repos() {
 			/var/cache/eix/previous.eix
 		sudo eix-update
 		sudo eix-remote update
+		sudo eix-remote add
 	fi
 	echo "Done."
 }

@@ -1,1 +1,6 @@
-*/*::ahrs
+app-shells/bash::ahrs
+x11-libs/gtk+::ahrs
+x11-misc/lemonbar::ahrs
+x11-misc/dunst::ahrs
+dev-python/neovim-python-client::ahrs
+net-libs/nodejs::ahrs

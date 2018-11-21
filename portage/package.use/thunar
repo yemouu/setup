@@ -1,1 +1,2 @@
 >=xfce-base/thunar-1.8.2 exif -udisks -trash-panel-plugin
+>=xfce-extra/tumbler-0.2.3 gstreamer ffmpeg

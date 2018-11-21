@@ -1,10 +1,10 @@
-alias {l,sls,sl,ls}="ls -F --color=auto"
+alias l="ls -F --color=auto"
 alias ll="ls -lh"
 alias la="ls -A"
 alias lla="ls -lAh"
 
 alias c="clear"
-alias {cl,cls}="c;l"
+alias cl="c;l"
 alias cla="c;la"
 alias cll="c;ll"
 alias clla="c;lla"
@@ -14,5 +14,13 @@ alias suel="sudo -v;clear;sudo -u portage watch -cn 10 genlop -ci"
 alias suelo="sudo -v;clear;sudo -u portage tail -f /var/log/emerge.log"
 alias sues="sudo -v;clear;sudo -Es"
 
-alias sns="TERM=xterm-256color ssh -p 50769 server@ThingsNStuff-ServerEdition"
-alias {q,wq}="exit"
+alias sns="TERM=xterm-256color ssh -p 50769 server@owo"
+alias q="exit"
+
+run() {
+	[[ $# -lt 2 ]] && return 1
+	for ((i=1; i<=$1; i++))
+	do
+		${@:2}
+	done
+}

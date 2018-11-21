@@ -3,23 +3,10 @@
 set -e
 
 sudo -v
-if ! [ "$(id -u)" = 0 ]
-then
-	echo "Run this script as root"
-	exit 1
-fi
-
-if [ "$1" = "-e" ]
-then
-	edit_kernel=true
-else
-	edit_kernel=false
-fi
-
 cd /usr/src/linux
-sudo zcat /proc/config.gz > /usr/src/linux/.config
+zcat /proc/config.gz | sudo tee /usr/src/linux/.config
 sudo make olddefconfig
-if [ $edit_kernel = true ]
+if [ "$1" = "-e" ]
 then
 	sudo make menuconfig
 fi

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+kill_steam() {
+	if pidof steam > /dev/null
+	then
+		pkill steam
+		sleep 1
+		pkill -9 steam
+	fi
+}
+
+login_steam() {
+	. "$pw_file"
+	un="steam_un$acc_num"
+	pw="steam_pw$acc_num"
+	echo "Logging into account: $un"
+	exec steam -login "${!un}" "${!pw}"
+}
+
+main() {
+	pw_file="${HOME}/.steampw"
+	if [[ -n $1 ]]
+	then
+		acc_num=$1
+	else
+		acc_num=1
+	fi
+	kill_steam
+	login_steam
+}
+
+main "$@"
