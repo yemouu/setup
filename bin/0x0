@@ -5,14 +5,10 @@ site="https://0x0.st"
 
 usage() { printf '%s' "
 Usage: $script_name [-f <file>] [-s <url>] [-u <url>] [input]
-
 OPTIONS:
 	-h|--help	displays this message
-
 	-f|--file	file to upload
-
 	-s|--shorten	url to shorten
-
 	-u|--url	url to upload
 
 "
@@ -57,5 +53,4 @@ case "$operation" in
 	-s|--shorten ) shorten_url "$@" ;;
 	-u|--url ) upload_url "$@" ;;
 	-h|--help ) usage;exit 0 ;;
-	* ) usage;exit 1;;
 esac
