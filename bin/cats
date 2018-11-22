@@ -1,3 +1,48 @@
 #!/usr/bin/env bash
 
+script_name=${0##*/}
+site="https://catgirlsare.sexy/api/upload"
 
+. ${HOME}/.cgask
+
+usage() { printf '%s' "
+Usage: $script_name [-f <file>] [input]
+OPTIONS:
+	-h|--help	displays this message
+	-f|--file	file to upload
+
+"
+}
+
+upload_stdin() {
+	while read -r lines 
+	do 
+		echo "$lines"
+	done | curl -F key="$API_KEY" -F"file=@-" $site | jq -r '.url' \
+		| xclip -sel clip 
+}
+
+upload_file() {
+	curl -F key="$API_KEY" -F"file=@$1" $site | jq -r '.url'  \
+		| xclip -sel clip
+}
+
+if [[ -f $1 || $# -lt 1 ]]
+then
+	operation="default"
+else
+	operation=$1
+	shift
+fi
+
+case "$operation" in
+	default	)
+		if [[ $# -gt 0 ]]
+		then
+			upload_file "$@"
+		else
+			upload_stdin "$@" 
+		fi ;;
+	-f|--file ) upload_file "$@" ;;
+	-h|--help ) usage;exit 0 ;;
+esac

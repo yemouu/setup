@@ -356,3 +356,29 @@ x11-proto/xproto abi_x86_32
 # required by @selected
 # required by @world (argument)
 >=media-libs/libjpeg-turbo-2.0.1 abi_x86_32
+# required by sys-libs/libcap-2.26-r1::gentoo[pam]
+# required by sys-libs/pam-1.3.1-r1::gentoo[filecaps]
+# required by sys-apps/util-linux-2.33::gentoo[pam]
+# required by @system
+# required by @world (argument)
+>=virtual/pam-0-r1 abi_x86_32
+# required by virtual/pam-0-r1::gentoo
+# required by sys-libs/libcap-2.26-r1::gentoo[pam]
+# required by net-misc/iputils-20180629::gentoo[-static,filecaps,-caps]
+# required by @system
+# required by @world (argument)
+>=sys-libs/pam-1.3.1-r1 abi_x86_32
+# required by sys-libs/pam-1.3.1-r1::gentoo[berkdb]
+# required by virtual/pam-0-r1::gentoo
+# required by sys-libs/libcap-2.26-r1::gentoo[pam]
+# required by net-misc/iputils-20180629::gentoo[-static,filecaps,-caps]
+# required by @system
+# required by @world (argument)
+>=sys-libs/db-6.0.35-r1 abi_x86_32
+# required by sys-libs/pam-1.3.1-r1::gentoo[cracklib]
+# required by virtual/pam-0-r1::gentoo
+# required by sys-libs/libcap-2.26-r1::gentoo[pam]
+# required by net-misc/iputils-20180629::gentoo[-static,filecaps,-caps]
+# required by @system
+# required by @world (argument)
+>=sys-libs/cracklib-2.9.6-r1 abi_x86_32
