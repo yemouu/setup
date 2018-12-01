@@ -1,49 +1,21 @@
-XF86AudioNext
-	mpc next
-XF86AudioPrev
-	mpc prev
+XF86Audio{Next,Prev}
+	mpc -q {next,prev}
 alt + XF86AudioPrev
-	mpc seek 0%
-XF86AudioPlay
-	${HOME}/.dotfiles/noti/music/music-toggle
-XF86AudioStop
-	${HOME}/.dotfiles/noti/music/music-stop
-XF86Mail
-	${HOME}/.dotfiles/noti/music/music-info
-super + shift + Up
-	${HOME}/.dotfiles/noti/music/music-volume-up
-super + shift + Down
-	${HOME}/.dotfiles/noti/music/music-volume-down
+	mpc -q seek 0%
+XF86{AudioPlay,AudioStop,Mail}
+	${HOME}/.dotfiles/noti/music/music-{toggle,stop,info}
+XF86Audio{Raise,Lower}Volume
+	${HOME}/.dotfiles/noti/music/music-volume-{up,down}
 
-shift + XF86AudioRaiseVolume
-	${HOME}/.dotfiles/noti/volume/speaker-volume-up-all
-XF86AudioRaiseVolume
-	${HOME}/.dotfiles/noti/volume/speaker-volume-up
-XF86AudioLowerVolume
-	${HOME}/.dotfiles/noti/volume/speaker-volume-down
-XF86AudioMute
-	${HOME}/.dotfiles/noti/volume/speaker-volume-mute
-alt + ctrl + XF86AudioRaiseVolume
-	${HOME}/.dotfiles/noti/volume/microphone-please-die
-alt + shift + XF86AudioRaiseVolume
-	${HOME}/.dotfiles/noti/volume/microphone-volume-up-all
-alt + XF86AudioRaiseVolume
-	${HOME}/.dotfiles/noti/volume/microphone-volume-up
-alt + XF86AudioLowerVolume
-	${HOME}/.dotfiles/noti/volume/microphone-volume-down
+{_,alt +} XF86AudioMute
+	${HOME}/.dotfiles/noti/volume/microphone-{please-die,volume-up-all}
 super + e
 	${HOME}/.dotfiles/noti/volume/microphone-volume-mute
-XF86Tools
-	${HOME}/.dotfiles/noti/volume/volume-info
 
-super + t
-	${HOME}/.dotfiles/noti/time-date/local-time-date
-super + ctrl + t
-	${HOME}/.dotfiles/noti/time-date/utc-time-date
-
-Print
-	nougat -tcf
-super + Print
+super + {_,alt +} t
+	${HOME}/.dotfiles/noti/time-date/{local,utc}-time-date
+{_,super +} Print
+	nougat -tc{f,_}
 	nougat -tc
 
 Pause

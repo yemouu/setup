@@ -1,0 +1,24 @@
+@import url("https://raw.githack.com/Customa/CustomaFirefox/master/Base/base.m.css");
+
+:root {{
+    --color: {color1};
+    --accent: var(--color);
+    --background: {color0};
+    --foreground: {color0};
+
+    --arrowpanel-dimmed: var(--foreground) !important;
+    --panel-separator-color: var(--background) !important;
+    --arrowpanel-background: var(--background) !important;
+    --backbutton-background: #f00 !important;
+    --toolbar-field-focus-border-color: var(--accent) !important;
+    
+    --toolbar-bgcolor: var(--foreground) !important;
+    --chrome-background-color: var(--background) !important;
+    --chrome-secondary-background-color: var(--foreground) !important;
+    --lwt-toolbarbutton-hover-background: var(--background) !important;
+    --lwt-toolbar-field-background-color: var(--background) !important;
+    --lwt-toolbar-field-border-color: var(--background) !important;
+    --lwt-accent-color-inactive: var(--background) !important;
+    --lwt-accent-color: var(--background) !important;
+    --lwt-background-tab-separator-color: transparent !important;
+}}

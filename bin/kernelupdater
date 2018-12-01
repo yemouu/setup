@@ -1,18 +1,18 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 set -e
-
-sudo -v
+[[ $EUID -ne 0 ]] && { echo Run this script as root; exit 1; }
 cd /usr/src/linux
-zcat /proc/config.gz | sudo tee /usr/src/linux/.config
-sudo make olddefconfig
-if [ "$1" = "-e" ]
-then
-	sudo make menuconfig
-fi
-sudo make modules_prepare
-sudo make -j4
-sudo make modules_install
-echo "Moving kernel..."
-sudo mv arch/x86/boot/bzImage /boot/EFI/Gentoo/bzImage
-echo "Kernel moved."
+make clean
+zcat /proc/config.gz > /usr/src/linux/.config
+make olddefconfig
+echo Updated old config for new kernel.
+[[ "$1" = "-e" ]] && { make menuconfig; echo Kernel config edited; }
+make modules_prepare
+echo Kernel modules prepared
+make -j4
+echo Kernel compiled
+make modules_install
+echo Kernel modules installed
+mv arch/x86/boot/bzImage /boot/EFI/Gentoo/bzImage
+echo "Moved kernel to EFI partition"

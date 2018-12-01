@@ -13,7 +13,7 @@ login_steam() {
 	. "$pw_file"
 	un="steam_un$acc_num"
 	pw="steam_pw$acc_num"
-	echo "Logging into account: $un"
+	echo "Logging into account: ${!un}"
 	exec steam -login "${!un}" "${!pw}"
 }
 

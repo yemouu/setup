@@ -1,1 +1,1 @@
->=x11-misc/polybar-3.2.1 mpd
+>=x11-misc/polybar-3.2.1 mpd -alsa

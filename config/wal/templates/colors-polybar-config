@@ -152,7 +152,7 @@ format-prefix-background = ${{colors.color5}}
 format-prefix-foreground = ${{colors.color7}}
 
 label = "  %title%  "
-label-maxlen = 95
+label-maxlen = 85
 label-empty = "  uwu  "
 
 [module/random-text]

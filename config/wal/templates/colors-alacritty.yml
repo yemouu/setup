@@ -98,7 +98,7 @@ dynamic_title: true
 cursor:
   style: Beam
 
-  unfocused_hollow: true
+  unfocused_hollow: false
 
 live_config_reload: true
 

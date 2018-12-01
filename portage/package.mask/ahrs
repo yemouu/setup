@@ -4,3 +4,4 @@ x11-misc/lemonbar::ahrs
 x11-misc/dunst::ahrs
 dev-python/neovim-python-client::ahrs
 net-libs/nodejs::ahrs
+x11-misc/redshift::ahrs
