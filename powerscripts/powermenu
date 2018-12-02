@@ -16,9 +16,9 @@ user_input=$(echo "$power_options" | xargs -n1 | rofi -dmenu -p "$rofi_prompt")
 case $user_input in
 	Poweroff	) confirmation; loginctl poweroff -i ;;
 	Reboot		) confirmation; loginctl reboot -i ;;
-	Lock		) confirmation; "${HOME}/.dotfiles/powerscripts/i3locck" ;;
-	Sleep		) confirmation; "${HOME}/.dotfiles/powerscripts/psleep" ;;
-	Hibernate	) confirmation; "${HOME}/.dotfiles/powerscripts/phibernate" ;;
-	Hybrid-Sleep	) confirmation; "${HOME}/.dotfiles/powerscripts/phybrid-sleep" ;;
+	Lock		) confirmation; "${HOME}/.setup/powerscripts/i3locck" ;;
+	Sleep		) confirmation; "${HOME}/.setup/powerscripts/psleep" ;;
+	Hibernate	) confirmation; "${HOME}/.setup/powerscripts/phibernate" ;;
+	Hybrid-Sleep	) confirmation; "${HOME}/.setup/powerscripts/phybrid-sleep" ;;
 	*		) exit 1 ;;
 esac

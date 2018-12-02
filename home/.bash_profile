@@ -1,4 +1,4 @@
-PATH+=":${HOME}/.local/bin:${HOME}/.dotfiles/bin:${HOME}/.bin"
+PATH+=":${HOME}/.local/bin:${HOME}/.setup/bin:${HOME}/.bin"
 MANPATH+=":${HOME}/.local/share/man"
 
 VISUAL="nvim"

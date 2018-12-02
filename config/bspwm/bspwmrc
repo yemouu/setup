@@ -17,7 +17,7 @@ bspc config bottom_padding 32
 bspc config left_padding 32
 bspc config split_ratio 0.50
 
-for i in {0..9}
+for i in {1..10}
 do
 	bspc desktop "^$i" -l monocle
 done

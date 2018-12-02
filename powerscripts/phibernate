@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-${HOME}/.dotfiles/powerscripts/i3locck
+"${HOME}/.setup/powerscripts/i3locck"
 loginctl hibernate -i

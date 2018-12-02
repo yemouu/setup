@@ -15,4 +15,4 @@ echo Kernel compiled
 make modules_install
 echo Kernel modules installed
 mv arch/x86/boot/bzImage /boot/EFI/Gentoo/bzImage
-echo "Moved kernel to EFI partition"
+echo Moved kernel to EFI partition

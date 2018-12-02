@@ -3,116 +3,56 @@ XF86Audio{Next,Prev}
 alt + XF86AudioPrev
 	mpc -q seek 0%
 XF86{AudioPlay,AudioStop,Mail}
-	${HOME}/.dotfiles/noti/music/music-{toggle,stop,info}
+	${HOME}/.setup/noti/music/music-{toggle,stop,info}
 XF86Audio{Raise,Lower}Volume
-	${HOME}/.dotfiles/noti/music/music-volume-{up,down}
+	${HOME}/.setup/noti/music/music-volume-{up,down}
+XF86Tools
+	alacritty -e ncmpcpp
 
 {_,alt +} XF86AudioMute
-	${HOME}/.dotfiles/noti/volume/microphone-{please-die,volume-up-all}
+	${HOME}/.setup/noti/volume/microphone-{please-die,volume-up-all}
 super + e
-	${HOME}/.dotfiles/noti/volume/microphone-volume-mute
+	${HOME}/.setup/noti/volume/microphone-volume-mute
 
 super + {_,alt +} t
-	${HOME}/.dotfiles/noti/time-date/{local,utc}-time-date
+	${HOME}/.setup/noti/time-date/{local,utc}-time-date
 {_,super +} Print
 	nougat -tc{f,_}
-	nougat -tc
-
-Pause
-	killall -SIGUSR1 dunst
-super + Pause
-	killall -SIGUSR2 dunst
-
+{_,super +} Pause
+	pkill -SIGUSR{1,2} dunst
 XF86Calculator
-	${HOME}/.dotfiles/powerscripts/powermenu
+	${HOME}/.setup/powerscripts/powermenu
 XF86HomePage
 	polybar-toggle
-
 super + r
 	rofi -show run
 super + Return
 	alacritty
 
-super + Escape
-	pkill -USR1 -x sxhkd ; ${HOME}/.config/bspwm/bspwmrc
-super + alt + Escape
-	bspc quit
+super + {_,alt +} Escape
+	{pkill -USR1 -x sxhkd; ${HOME}/.config/bspwm/bspwmrc,bspc quit}
 
-super + m
-	bspc desktop -l next
-super + shift + t
-	bspc node -t tiled
-super + alt + t
-	bspc node -t pseudo_tiled
-super + shift + s
-	bspc node -t floating
-super + shift + f
-	bspc node -t fullscreen
-
-super + h
-	bspc node -f west
-super + j
-	bspc node -f south
-super + k
-	bspc node -f north
-super + l
-	bspc node -f east
-super + Tab
-	bspc node -f next.local
-super + shift + Tab
-	bspc node -f prev.local
-
-super + shift + h
-	bspc node -s west
-super + shift + j
-	bspc node -s south
-super + shift + k
-	bspc node -s north
-super + shift + l
-	bspc node -s east
-super + Left
-	bspc node -v -20 0
-super + Down
-	bspc node -v 0 20
-super + Up
-	bspc node -v 0 -20
-super + Right
-	bspc node -v 20 0
-
-super + ctrl + h
-	bspc node -p west
-super + ctrl + j
-	bspc node -p south
-super + ctrl + k
-	bspc node -p north
-super + ctrl + k
-	bspc node -p east
-super + ctrl + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
-
-super + q
-	bspc node -c
-super + shift + q
-	bspc node -k
-
-super + u
-	bspc node -z left -20 0
-super + i
-	bspc node -z bottom 0 20
-super + o
-	bspc node -z top 0 -20
-super + p
-	bspc node -z right 20 0
-super + shift + u
-	bspc node -z right -20 0
-super + shift + i
-	bspc node -z top 0 20
-super + shift + o
-	bspc node -z bottom 0 -20
-super + shift + p
-	bspc node -z left 20 0
-
-super + {1-9,0}
-	bspc desktop -f '^{1-9,10}'
-super + shift + {1-9,0}
-	bspc node -d '^{1-9,10}'
+super + shift + {s,t,f}
+	bspc node -t {floating,tiled,fullscreen}
+super + {h,j,k,l}
+	bspc node -f {west,south,north,east}
+super + {Left,Down,Up,Right}
+	bspc node -f {west,south,north,east}
+super + shift + {h,j,k,l}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+super + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+super + {_,shift +} Tab
+	bspc node -f {next,prev}.local
+super + {_,shift +} q
+	bspc node -{c,k}
+super + ctrl + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+super + ctrl + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+super + alt + {h,j,k,l}
+	bspc node -z {left 20 0,bottom 0 -20,top 0 20,right -20 0}
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {left 20 0,bottom 0 -20,top 0 20,right -20 0}
+super + {_,shift +} {1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'

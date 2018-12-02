@@ -4,14 +4,16 @@
 @import url('https://raw.githack.com/Customa/Customa/master/Base/settings.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Base/tooltip.m.css');
 
+@import url('https://raw.githack.com/Customa/Customa/master/Chat/betterBlock.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/betterFileTypes.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/channelDivider.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/codeBlockLanguages.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/embedsModernized.m.css');
-@import url('https://raw.githack.com/Customa/Customa/master/Chat/embedsModernized.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/guildsWrapper.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/newDividerRed.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/newEditIcon.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Chat/newMessageText.m.css');
+@import url('https://raw.githack.com/Customa/Customa/master/Chat/oldChannelSelect.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/typingOnRight.m.css');
 
 @import url('https://raw.githack.com/Customa/Customa/master/Emoji/jumboMoji.m.css');
@@ -37,23 +39,17 @@
     --ColTrue: {color1};
     --DisplayEmbedPill: none;
     --DisplayNoConnectionBackdraw: none;
-
     --FontFamily: sans-serif;
     --FontMonoFamily: monospace;
-
     --ColTextSelection: rgba({color6.rgb},0.2);
-
     --ColTooltip: var(--ColAccent);
-
     --FilterNoHover: grayscale(60%);
     --WidthGuildMax: 80px;
-
     --SizeEmote: 50px;
-
     --DisplayNoDoubleBorderRadius: Block;
+    --TextNewMessage: "uwu";
 }}
 
 .isMentionedCozy-3isp7y:after {{
     background: var(--ColAccentAlpha);
 }}
-
