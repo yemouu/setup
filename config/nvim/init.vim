@@ -50,6 +50,7 @@ set colorcolumn=80
 set syntax=on
 set scrolloff=4
 set clipboard=unnamedplus
+set nowrap
 
 autocmd Filetype xml,html,css :setlocal et sw=2 ts=2 sts=2
 

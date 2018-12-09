@@ -30,7 +30,7 @@ super + Return
 	alacritty
 
 super + {_,alt +} Escape
-	{pkill -USR1 -x sxhkd; ${HOME}/.config/bspwm/bspwmrc,bspc quit}
+	{pkill -USR1 -x sxhkd; $HOME/.config/bspwm/bspwmrc,bspc quit}
 
 super + shift + {s,t,f}
 	bspc node -t {floating,tiled,fullscreen}
