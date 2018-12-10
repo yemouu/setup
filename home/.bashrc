@@ -12,9 +12,10 @@ C1="\\[\\e[0;31;1m\\]"
 C2="\\[\\e[0;35;1m\\]"
 RESET="\\[\\e[0m\\]"
 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ]
+if [[ -n "$SSH_CLIENT" ||  -n "$SSH_TTY"  ||  -n "$SSH_CONNECTION" ]]
 then
 	PS1="(${C1}ssh${RESET})"
+	[[ -f "${HOME}/.ssh_extras" ]] && . "${HOME}/.ssh_extras"
 else
 	PS1=""
 fi
