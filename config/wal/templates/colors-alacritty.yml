@@ -10,7 +10,9 @@ window:
     x: 32
     y: 32
 
+  dynamic_padding: true
   decorations: full
+  start_maximized: false
 
 scrolling:
   history: 10000
@@ -19,6 +21,7 @@ scrolling:
   auto_scroll: false
 
 tabspaces: 8
+
 font:
   normal:
     family: monospace
@@ -42,9 +45,8 @@ font:
     x: 0
     y: 0
 
-  scale_with_dpi: true
-
 render_timer: false
+persistent_logging: false
 draw_bold_text_with_bright_colors: true
 
 colors:
@@ -86,19 +88,15 @@ mouse:
   triple_click: {{ threshold: 300 }}
   hide_when_typing: true
 
-  #url:
-  #  launcher: xdg-open
-
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{{}}<>"
   save_to_clipboard: false
 
-dynamic_title: true
+dynamic_title: false
 
 cursor:
   style: Beam
-
-  unfocused_hollow: false
+  unfocused_hollow: true
 
 live_config_reload: true
 
@@ -113,6 +111,8 @@ key_bindings:
   - {{ key: Key0,     mods: Control, action: ResetFontSize                }}
   - {{ key: Equals,   mods: Control, action: IncreaseFontSize             }}
   - {{ key: Subtract, mods: Control, action: DecreaseFontSize             }}
+  - {{ key: L,        mods: Control, action: ClearLogNotice               }}
+  - {{ key: L,        mods: Control, chars: "\x0c"                        }}
   - {{ key: Home,                    chars: "\x1bOH",   mode: AppCursor   }}
   - {{ key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }}
   - {{ key: End,                     chars: "\x1bOF",   mode: AppCursor   }}

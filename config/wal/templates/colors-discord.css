@@ -12,7 +12,6 @@
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/guildsWrapper.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/newDividerRed.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/newEditIcon.m.css');
-@import url('https://raw.githack.com/Customa/Customa/master/Chat/newMessageText.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/oldChannelSelect.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/typingOnRight.m.css');
 
@@ -48,7 +47,6 @@
     --WidthGuildMax: 80px;
     --SizeEmote: 50px;
     --DisplayNoDoubleBorderRadius: Block;
-    --TextNewMessage: "Send a Message! uwu";
     --ColFont:  {color7};
     --ColFontBright: {color8};
 }}
