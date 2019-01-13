@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+rofi_prompt="Power Menu"
+power_options="Poweroff\\nReboot\\nSleep\\nHibernate\\nHybrid-Sleep"
+
+confirmation() {
+	rofi_confirmation_prompt="Are you sure? [$user_input]"
+	user_input="$(printf "yes\\nno" | rofi -dmenu -i -p "$rofi_confirmation_prompt")"
+	case $user_input in
+		Y*|y*	) return ;;
+		N*|n*	) exit 0 ;;
+		*	) exit 1 ;;
+	esac
+}
+
+user_input=$(printf '%b' "$power_options" | rofi -dmenu  -i -p "$rofi_prompt")
+case $user_input in
+	Poweroff	) confirmation; loginctl poweroff -i ;;
+	Reboot		) confirmation; loginctl reboot -i ;;
+	Sleep		) confirmation; loginctl suspend -i ;;
+	Hibernate	) confirmation; loginctl hibernate -i ;;
+	Hybrid-Sleep	) confirmation; loginctl hybrid-sleep -i;;
+	*		) exit 1 ;;
+esac

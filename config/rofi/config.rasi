@@ -1,10 +1,10 @@
 configuration {
-	modi: "window,run";
-	width: 12;
-	lines: 6;
-	font: "Noto Mono 8";
+	modi: "run,window,drun";
+	width: 24;
+	lines: 12;
+	font: "monospace 8";
 	location: 2;
-	yoffset: 26;
+	yoffset: 64;
 	fixed-num-lines: false;
 	disable-history: true;
 	dpi: 92;

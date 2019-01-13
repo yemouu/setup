@@ -1,8 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-upd_pypi3=true
-upd_gentoo_repos=true
-upd_git_repos=true
+upd_pypi3=false
+upd_gentoo_repos=false
+upd_gentoo_mirrors=false
+upd_git_repos=false
 
 upd_git_repos_dir="${HOME}/doc/git"
 
@@ -11,30 +12,35 @@ Usage: upd [OPTIONS]
 
 Options:
 	-h	displays this message
-	-p	disables pip package updates
-	-g	disables gentoo repos sync
-	-G	disables git repo updating
+	-p	enables pip package updates
+	-g	enables gentoo repos sync
+	-G	enables git repo updating
 
 "
 }
 
 get_args() {
-	while getopts "hpplgG" OPTS
+	while getopts "hpplgGm" OPTS
 	do
 		case $OPTS in
 			h ) usage;exit 0 ;;
-			p ) upd_pypi3=false ;;
-			g ) upd_gentoo_repos=false ;;
-			G ) upd_git_repos=false ;;
+			p ) upd_pypi3=true ;;
+			g ) upd_gentoo_repos=true ;;
+			G ) upd_git_repos=true ;;
 			* ) usage;exit 1;;
 		esac
 	done
+	if [[ $upd_pypi3 = false && $upd_gentoo_repos = false && \
+		$upd_git_repos = false && $upd_gentoo_mirrors = false ]]
+	then
+		echo "Nothing selected for updates"
+		exit 1
+	fi
 }
 
 pypi3() {
-	if [ "$upd_pypi3" = false ] 
+	if [[ "$upd_pypi3" = false ]] 
 	then 
-		echo "Skipping pip packages..."
 		return 0
 	fi
 
@@ -56,9 +62,8 @@ pypi3() {
 }
 
 gentoo_repos() {
-	if [ "$upd_gentoo_repos" = false ]
+	if [[ "$upd_gentoo_repos" = false ]]
 	then
-		echo "Skipping Gentoo Repository synchronizationo..."
 		return 0
 	fi
 
@@ -70,23 +75,19 @@ gentoo_repos() {
 
 	echo "Updating Gentoo Repository..."
 	sudo emaint sync -A
-	if ! command -v eix > /dev/null
+	if command -v eix > /dev/null
 	then
-		echo "eix not found"
-	else
 		sudo cp -a /var/cache/eix/portage.eix \
 			/var/cache/eix/previous.eix
 		sudo eix-update
 		sudo eix-remote update
-		sudo eix-remote add
 	fi
 	echo "Done."
 }
 
 git_repos() {
-	if [ "$upd_git_repos" = false ]
+	if [[ "$upd_git_repos" = false ]]
 	then
-		echo "Skipping pull of Git Repositories..."
 		return 0
 	fi
 
@@ -107,7 +108,7 @@ git_repos() {
 }
 
 main() {
-	if [ "$(id -u)" = 0 ]
+	if [[ "$(id -u)" = 0 ]]
 	then
 		echo "Do not run this script as root."
 		exit 1
@@ -115,10 +116,10 @@ main() {
 
 	get_args "$@"
 
-	if [ $upd_gentoo_repos = true ]
-	then
-		sudo -v
-	fi
+	#if [[ $upd_gentoo_repos = true ]]
+	#then
+	#	sudo -v
+	#fi
 
 	git_repos
 	pypi3

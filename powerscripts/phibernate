@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-"${HOME}/.setup/powerscripts/i3locck"
-loginctl hibernate -i

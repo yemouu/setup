@@ -2,15 +2,17 @@ XF86Audio{Next,Prev}
 	mpc -q {next,prev}
 alt + XF86AudioPrev
 	mpc -q seek 0%
-XF86{AudioPlay,AudioStop,Mail}
-	${HOME}/.setup/noti/music/music-{toggle,stop,info}
-XF86Audio{Raise,Lower}Volume
-	${HOME}/.setup/noti/music/music-volume-{up,down}
-XF86Tools
+{_,alt +} XF86Audio{Raise,Lower}Volume
+	${HOME}/.setup/noti/{music/music,volume/microphone}-volume-{up,down}
+alt + F1
 	alacritty -e ncmpcpp
+XF86{AudioPlay,AudioStop}
+	mpc -q {toggle,stop}
+alt + F9
+	${HOME}/.setup/noti/music/music-info
 
-{_,alt +} XF86AudioMute
-	${HOME}/.setup/noti/volume/microphone-{please-die,volume-up-all}
+{_,alt +,ctrl +} XF86AudioMute
+	${HOME}/.setup/noti/volume/microphone-{please-die,volume-set-base,volume-set-max}
 super + e
 	${HOME}/.setup/noti/volume/microphone-volume-mute
 
@@ -20,12 +22,14 @@ super + {_,alt +} t
 	nougat -tc{f,_}
 {_,super +} Pause
 	pkill -SIGUSR{1,2} dunst
-XF86Calculator
-	${HOME}/.setup/powerscripts/powermenu
-XF86HomePage
+alt + F12
+	powermenu
+alt + F10
 	polybar-toggle
 super + r
 	rofi -show run
+super + g
+	game-launch
 super + Return
 	alacritty
 

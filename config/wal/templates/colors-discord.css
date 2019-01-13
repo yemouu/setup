@@ -4,11 +4,9 @@
 @import url('https://raw.githack.com/Customa/Customa/master/Base/settings.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Base/tooltip.m.css');
 
-@import url('https://raw.githack.com/Customa/Customa/master/Chat/betterBlock.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/betterFileTypes.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/channelDivider.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/codeBlockLanguages.m.css');
-@import url('https://raw.githack.com/Customa/Customa/master/Chat/embedsModernized.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/guildsWrapper.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/newDividerRed.m.css');
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/newEditIcon.m.css');
@@ -31,9 +29,9 @@
     --ColAppBG: {color0};
     --ColBackground1: var(--ColAppBG);
     --ColBackground2: {color0};
-    --ColAccent: {color6};
-    --ColAccentAlpha: rgba({color6.rgb},0.1);
-    --ColAnchor: {color1};
+    --ColAccent: {color1};
+    --ColAccentAlpha: rgba({color1.rgb},0.1);
+    --ColAnchor: var(--ColAccent);
     --ColLastMessage: transparent;
     --ColFalse: {color1};
     --ColTrue: {color2};
@@ -41,12 +39,12 @@
     --DisplayNoConnectionBackdraw: none;
     --FontFamily: sans-serif;
     --FontMonoFamily: monospace;
-    --ColTextSelection: rgba({color6.rgb},0.2);
+    --ColTextSelection: rgba({color1.rgb},0.2);
     --ColTooltip: var(--ColAccent);
     --FilterNoHover: grayscale(60%);
     --WidthGuildMax: 80px;
     --SizeEmote: 50px;
     --DisplayNoDoubleBorderRadius: Block;
     --ColFont:  {color7};
-    --ColFontBright: {color8};
+    --ColFontBright: {color0};
 }}

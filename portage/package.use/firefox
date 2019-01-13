@@ -1,5 +1,5 @@
 >=media-libs/libpng-1.6.35-r1 apng
->=www-client/firefox-62.0.3 clang lto system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite
+>=www-client/firefox-62.0.3 geckodriver system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite
 >=net-libs/nodejs-8.14.0 -npm -ssl
 >=sys-devel/llvm-7.0.0-r1 gold
 >=dev-lang/python-3.6.6 sqlite

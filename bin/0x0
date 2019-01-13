@@ -18,19 +18,19 @@ upload_stdin() {
 	while read -r lines 
 	do 
 		echo "$lines"
-	done | curl -F"file=@-" $site | xclip -sel clip 
+	done | curl -sF"file=@-" $site | xclip -sel clip 
 }
 
 upload_file() {
-	curl -F"file=@$1" $site | xclip -sel clip
+	curl -sF"file=@$1" $site | xclip -sel clip
 }
 
 shorten_url() {
-	curl -F"shorten=$1" $site | xclip -sel clip
+	curl -sF"shorten=$1" $site | xclip -sel clip
 }
 
 upload_url() {
-	curl -F"url=$1" $site | xclip -sel clip
+	curl -sF"url=$1" $site | xclip -sel clip
 }
 
 if [[ -f $1 || $# -lt 1 ]]

@@ -1,27 +1,25 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-app_name="MPD"
-summary="[Stopped]"
-body=
+app_name="Microphone"
+summary="Volume: Base"
 
-mpc stop
+pactl set-source-volume @DEFAULT_SOURCE@ 44649
+
 sleep .01
-
 if command -v dunstify
 then
 	dunstify -a "${app_name}" \
 		-t 4000 \
 		-r 13596705 \
 		"${summary}" \
-		"${body}"
+		"$(pactl list sources | awk NR==10'{print $5}')"
 elif command -v notify-send
 then
 	notify-send -t 4000 \
 		-a "${app_name}" \
 		"${summary}" \
-		"${body}"
+		"$(pactl list sources | awk NR==10'{print $5}')"
 else
 	echo "dunstify/notify-send not found"
 	exit 1
 fi
-

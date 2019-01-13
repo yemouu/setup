@@ -34,21 +34,6 @@ x11-libs/libXfixes abi_x86_32
 x11-libs/libXScrnSaver abi_x86_32
 x11-libs/libxshmfence abi_x86_32
 x11-libs/libXxf86vm abi_x86_32
-x11-proto/damageproto abi_x86_32
-x11-proto/dri2proto abi_x86_32
-x11-proto/dri3proto abi_x86_32
-x11-proto/fixesproto abi_x86_32
-x11-proto/glproto abi_x86_32
-x11-proto/inputproto abi_x86_32
-x11-proto/kbproto abi_x86_32
-x11-proto/presentproto abi_x86_32
-# move x11-proto/xcb-proto x11-base/xcb-proto
-x11-base/xcb-proto abi_x86_32
-x11-proto/xextproto abi_x86_32
-x11-proto/xf86bigfontproto abi_x86_32
-x11-proto/xf86driproto abi_x86_32
-x11-proto/xf86vidmodeproto abi_x86_32
-x11-proto/xproto abi_x86_32
 # required by games-util/steam-launcher-1.0.0.54-r4::steam-overlay[steamruntime]
 # required by games-util/steam-launcher (argument)
 >=virtual/opengl-7.0-r1 abi_x86_32
@@ -402,3 +387,6 @@ x11-proto/xproto abi_x86_32
 # required by @selected
 # required by @world (argument)
 >=dev-libs/libgpg-error-1.32-r1 abi_x86_32
+# required by media-libs/mesa-18.3.1::gentoo[wayland]
+# required by x11-libs/gtk+-3.24.1::gentoo[wayland]
+# required by x11-themes/adwaita-icon-theme-3.30.1::gentoo
