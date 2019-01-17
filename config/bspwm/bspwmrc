@@ -23,4 +23,10 @@ bspc rule -a Firefox:Navigator desktop='^1' state=tiled
 bspc rule -a Chromium-browser-chromium desktop='^1' state=tiled
 bspc rule -a discord desktop='^1' state=tiled
 bspc rule -a Steam desktop='^2'
+bspc rule -a '*:MultiMC' desktop='^3'
+bspc rule -a 'Minecraft 1.13.2' desktop='^3' state=fullscreen
 bspc rule -a RocketLeague desktop='^3' state=fullscreen
+bspc rule -a csgo_linux64 desktop='^3' state=fullscreen
+bspc rule -a scram.x86_64 desktop='^3' state=fullscreen
+bspc rule -a starbound desktop='^3' state=fullscreen
+bspc rule -a "Golf With Your Friends.x86_64" desktop='^3' state=fullscreen

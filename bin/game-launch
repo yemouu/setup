@@ -26,6 +26,7 @@ Terraria
 The Escapists 2
 Tower Unite
 Unturned
+scram
 ----Other----
 AssaultCube
 Minecraft (MultiMC)
@@ -42,8 +43,8 @@ check_steam() {
 	fi
 }
 
-brain_out()			{ check_steam && exec steam steam://rungameid/578310; }
 battleblock_theater()		{ check_steam && exec steam steam://rungameid/238460; }
+brain_out()			{ check_steam && exec steam steam://rungameid/578310; }
 clustertruck()			{ check_steam && exec steam steam://rungameid/397950; }
 csgo()				{ check_steam && exec steam steam://rungameid/730; }
 gmod()				{ check_steam && exec steam steam://rungameid/4000; }
@@ -57,6 +58,7 @@ plague_inc_evolved()		{ check_steam && exec steam steam://rungameid/246620; }
 portal()			{ check_steam && exec steam steam://rungameid/400; }
 portal_2()			{ check_steam && exec steam steam://rungameid/620; }
 rl()				{ check_steam && exec steam steam://rungameid/252950; }
+scram()				{ check_steam && exec steam steam://rungameid/773920; }
 shellshock_live()		{ check_steam && exec steam steam://rungameid/326460; }
 starbound()			{ check_steam && exec steam steam://rungameid/211820; }
 starbound_unstable()		{ check_steam && exec steam steam://rungameid/367540; }
@@ -67,11 +69,11 @@ the_escapists_2()		{ check_steam && exec steam steam://rungameid/641990; }
 tower_unite()			{ check_steam && exec steam steam://rungameid/394690; }
 unturned()			{ check_steam && exec steam steam://rungameid/304930; }
 # Other
-assaultcube() 			{ exec "${HOME}/apps/AssaultCube/assaultcube.sh"; }
-multimc()			{ exec "${HOME}/apps/MultiMC/MultiMC"; }
-unreal_tournament()		{ exec "${HOME}/apps/UnrealTournament/LinuxNoEditor/Engine/Binaries/Linux/UE4-Linux-Shipping" UnrealTournamentc; }
-warsow()			{ exec "${HOME}/apps/warsow/warsow"; }
-xonotic()			{ exec "${HOME}/apps/Xonotic/xonotic-linux-sdl.sh"; }
+assaultcube() 			{ exec "${HOME}/apps/games/AssaultCube/assaultcube.sh"; }
+multimc()			{ exec "${HOME}/apps/games/MultiMC/MultiMC"; }
+unreal_tournament()		{ exec "${HOME}/apps/games/UnrealTournament/LinuxNoEditor/Engine/Binaries/Linux/UE4-Linux-Shipping" UnrealTournamentc; }
+warsow()			{ exec "${HOME}/apps/games/warsow/warsow"; }
+xonotic()			{ exec "${HOME}/apps/games/Xonotic/xonotic-linux-sdl.sh"; }
 
 game=$(printf '%b' "$game_list" | rofi -dmenu -i -p "$rofi_prompt")
 case $game in
@@ -88,18 +90,19 @@ case $game in
 	"Metro: Last Light Redux"		) metro_last_light_redux ;;
 	"Never Split the Party"			) never_split_the_party ;;
 	"Plague Inc: Evolved"			) plague_inc_evolved ;;
-	"Portal"				) portal ;;
 	"Portal 2"				) portal_2 ;;
+	"Portal"				) portal ;;
 	"Rocket League"|rl			) rl ;;
 	"ShellShock Live"			) shellshock_live ;;
-	"Starbound"				) starbound ;;
 	"Starbound - Unstable"			) starbound_unstable ;;
+	"Starbound"				) starbound ;;
 	"Stardew Valley"			) stardew_valley ;;
 	"Stick Fight"				) stick_fight ;;
 	"Terraria"				) terraria ;;
 	"The Escapists 2"			) the_escapists_2 ;;
 	"Tower Unite"				) tower_unite ;;
 	"Unturned"				) unturned ;;
+	"scram"					) scram ;;
 	# Other
 	"AssaultCube"				) assaultcube ;;
 	"Minecraft (MultiMC)"			) multimc ;;

@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+destdir="${HOME}/apps/discord"
+olddir="$PWD"
+autoinstall=true
+version=
+fversion=
+format="deb"
+
+for i in "$@"
+do
+	case $i in
+		canary ) version="/canary" && fversion="canary" ;;
+		ptb ) version="/ptb" && fversion="ptb" ;;
+		stable ) version= && fversion= ;;
+		deb ) format="deb" ;;
+		tar.gz|tar ) format="tar.gz" ;;
+		noauto ) autoinstall=false ;;
+	esac
+done
+
+require() {
+	if ! command -v "$1" &> /dev/null
+	then
+		echo "discord-installer: $1: command not found"
+		cd "$olddir" || return 1
+		exit 1
+	fi
+}
+
+err_cd() {
+	echo Failed to cd into: "$*"
+	cd "$olddir" || return 1
+	exit 1
+}
+
+rm -r "${destdir}/discord${fversion}"
+mkdir -p "${destdir}/discord${fversion}"
+cd "$_" || err_cd "$_"
+require wget && wget -O "discord.$format" "https://discordapp.com/api/download${version}?platform=linux&format=${format}"
+
+if [[ $format = "deb" && $autoinstall = true ]]
+then
+	require ar
+	require tar
+	ar x "${destdir}/discord${fversion}/discord.deb"
+	tar xvf "${destdir}/discord${fversion}/data.tar.xz"
+elif [[ $format = "tar.gz" && $autoinstall = true ]]
+then
+	require tar
+	tar -xv --strip-components=1 -f "${destdir}/discord${fversion}/discord.tar.gz"
+	chmod +x "${destdir}/discord${fversion}/Discord"*
+fi
+
+cd "$olddir" || exit 1
+echo Done.

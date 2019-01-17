@@ -15,7 +15,7 @@ alias suel="sudo -v;clear;sudo -u portage tail -f /var/log/emerge.log"
 alias sues="sudo -v;clear;sudo -Es"
 
 alias em="sudo emerge"
-alias emu="sudo emerge -uvDNa --with-bdeps=y @world"
+alias emu="sudo emerge -uDNa --with-bdeps=y @world"
 alias emul="sudo emerge -a @live-rebuild"
 alias qe="qlist -IR | grep -v ::gentoo"
 

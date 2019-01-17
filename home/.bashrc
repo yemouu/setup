@@ -16,7 +16,7 @@ fi
 
 if [[ -n "$SSH_CLIENT" ||  -n "$SSH_TTY"  ||  -n "$SSH_CONNECTION" ]]
 then
-	PS1="(${color}ssh${reset})"
+	PS1="(${color}ssh${reset}) "
 	[[ -f "${HOME}/.ssh_extras" ]] && . "${HOME}/.ssh_extras"
 else
 	PS1=""
