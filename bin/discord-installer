@@ -52,5 +52,5 @@ then
 	chmod +x "${destdir}/discord${fversion}/Discord"*
 fi
 
-cd "$olddir" || exit 1
+cd "$olddir" || err_cd "$olddir"
 echo Done.
