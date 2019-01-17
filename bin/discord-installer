@@ -23,7 +23,7 @@ require() {
 	if ! command -v "$1" &> /dev/null
 	then
 		echo "discord-installer: $1: command not found"
-		cd "$olddir" || return 1
+		cd "$olddir" || exit 1
 		exit 1
 	fi
 }
@@ -52,5 +52,5 @@ then
 	chmod +x "${destdir}/discord${fversion}/Discord"*
 fi
 
-cd "$olddir" || err_cd "$olddir"
+cd "$olddir" || return 1
 echo Done.
