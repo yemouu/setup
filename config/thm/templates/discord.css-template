@@ -25,16 +25,16 @@
 
 @import url('https://raw.githack.com/Customa/Customa/master/Chat/whiteThemeSupport.m.css');
 
-:root{{
-    --ColAppBG: {color0};
+:root{
+    --ColAppBG: #{bg_color};
     --ColBackground1: var(--ColAppBG);
-    --ColBackground2: {color0};
-    --ColAccent: {color1};
+    --ColBackground2: var(--ColAppBG);
+    --ColAccent: #{color1};
     --ColAccentAlpha: rgba({color1.rgb},0.1);
     --ColAnchor: var(--ColAccent);
     --ColLastMessage: transparent;
-    --ColFalse: {color1};
-    --ColTrue: {color2};
+    --ColFalse: #{color1};
+    --ColTrue: #{color2};
     --DisplayEmbedPill: none;
     --DisplayNoConnectionBackdraw: none;
     --FontFamily: sans-serif;
@@ -45,7 +45,7 @@
     --WidthGuildMax: 80px;
     --SizeEmote: 50px;
     --DisplayNoDoubleBorderRadius: Block;
-    --ColFont:  {color7};
-    --ColFontBright: {color0};
+    --ColFont: #{color7};
+    --ColFontBright: #{color0};
     --DisplayBlockedUserMessage: none;
-}}
+}

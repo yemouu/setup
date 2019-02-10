@@ -56,3 +56,4 @@
 # required by media-libs/sdl-image-1.2.12-r2::gentoo
 # required by @assault_cube (argument)
 >=media-libs/glu-9.0.0-r1 abi_x86_32
+>=x11-libs/libdrm-2.4.97 video_cards_radeon

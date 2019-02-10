@@ -49,20 +49,20 @@
 
 [urgency_low]
 	timeout = 4
-	background = "{color0}"
-	foreground = "{color7}"
-	frame_color = "{color2}"
+	background = "#{color0}"
+	foreground = "#{color7}"
+	frame_color = "#{color2}"
 
 [urgency_normal]
 	timeout = 5
-	background = "{color0}"
-	foreground = "{color7}"
-	frame_color = "{color1}"
+	background = "#{color0}"
+	foreground = "#{color7}"
+	frame_color = "#{color1}"
 
 [urgency_critical]
 	timeout = 0
-	background = "{color0}"
-	foreground = "{color7}"
-	frame_color = "{color3}"
+	background = "#{color0}"
+	foreground = "#{color7}"
+	frame_color = "#{color3}"
 
 # vim: ft=cfg

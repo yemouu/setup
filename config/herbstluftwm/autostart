@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. "${HOME}/.cache/wal/colors.sh"
+. "${HOME}/.config/thm/current/colors.sh"
 
 hc() { herbstclient "$@"; }
 

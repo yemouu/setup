@@ -75,6 +75,7 @@ gentoo_repos() {
 
 	echo "Updating Gentoo Repository..."
 	sudo emaint sync -A
+	sudo emerge --regen
 	if command -v eix > /dev/null
 	then
 		sudo cp -a /var/cache/eix/portage.eix \
@@ -115,11 +116,6 @@ main() {
 	fi
 
 	get_args "$@"
-
-	#if [[ $upd_gentoo_repos = true ]]
-	#then
-	#	sudo -v
-	#fi
 
 	git_repos
 	pypi3

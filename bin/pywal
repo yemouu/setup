@@ -1,12 +1,10 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Wrapper for Pywal
 # Requires:
 #	pywal
 
-usage() {
-cat << EOF
-
+usage() { printf '%s' "
 Usage: pywal [OPTION] -w [WALL]
 
 Options:
@@ -20,26 +18,28 @@ Options:
 
 	-s	Sets color saturation. From 0.0-1.0
 
-	-h	Displays this message
+	-t	Sets a theme
 
-EOF
+	-h	Displays this message
+"
 }
 
 get_args() {
 
-	while getopts "w:b:ls:h" OPT
+	while getopts "w:b:ls:t:h" OPT
 	do
 		case ${OPT} in
 			w	) WALL_NUM="${OPTARG}"		;;
 			b	) BACKEND="${OPTARG}"		;;
 			l	) LIGHT="-l"			;;
 			s	) SATURATION="${OPTARG}"	;;
+			t	) THEME="${OPTARG}"		;;
 			h	) usage;exit 0			;;
 			*	) usage;exit 1			;;
 		esac
 	done
 
-	if [ -z "${WALL_NUM}" ]
+	if [ -z "${WALL_NUM}" ] && [ -z "${THEME}" ]
 	then
 		echo "pywal must be run with option -w"
 		echo "Run pywal -h for more information"
@@ -48,15 +48,18 @@ get_args() {
 }
 
 exec_wal() {
-	if [ -z "${WALL_NUM}" ]
+	if [ -z "${WALL_NUM}" ] && [ -z "${THEME}" ]
 	then
 		echo "Wallpaper not found"
 		exit 1
-	elif [ ! -z "$SATURATION" ]
+	elif [ -n "$SATURATION" ]
 	then
 		wal --backend "${BACKEND}" --saturate "$SATURATION" ${LIGHT} \
 			-ct -i \
 			"$(xdg-user-dir PICTURES)/wallpapers/Wall-${WALL_NUM}."*
+	elif [ -n "${THEME}" ]
+	then
+		wal --theme "${THEME}" ${LIGHT}
 	else
 		wal --backend "${BACKEND}" ${LIGHT} -ct -i \
 			"$(xdg-user-dir PICTURES)/wallpapers/Wall-${WALL_NUM}."*

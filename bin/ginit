@@ -5,6 +5,7 @@
 case $1 in
 	bspwm ) exec xinit bspwm ;;
 	herbstluftwm|herbstluft|hlwm ) exec xinit herbstluftwm ;;
-	sway ) "${HOME}/.autostart" wayland & sway ;;
+	sway ) exec "${HOME}/.autostart" wayland 
+		exec sway ;;
 	* ) echo "No entry for $1." ;;
 esac

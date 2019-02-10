@@ -1,2 +1,0 @@
->=x11-libs/libdrm-2.4.91 video_cards_radeon
->=x11-base/xorg-server-1.20.3 suid

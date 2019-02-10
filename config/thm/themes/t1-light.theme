@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# t1-light
+bg_color='f2f2f2'
+fg_color='1a1a1a'
+
+color0='f2f2f2'
+color1='995454'
+color2='54996b'
+color3='999354'
+color4='546b99'
+color5='7c5499'
+color6='549998'
+color7='404040'
+
+color8='b3b3b3'
+color9='995454'
+color10='54996b'
+color11='999354'
+color12='546b99'
+color13='7c5499'
+color14='549998'
+color15='1a1a1a'

@@ -1,8 +1,0 @@
-app-shells/bash::ahrs
-x11-libs/gtk+::ahrs
-x11-misc/dunst::ahrs
-dev-python/neovim-python-client::ahrs
-net-libs/nodejs::ahrs
-x11-misc/redshift::ahrs
-dev-python/typing::ahrs
-media-libs/mutagen::ahrs

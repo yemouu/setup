@@ -24,8 +24,6 @@ super + {_,alt +} t
 	pkill -SIGUSR{1,2} dunst
 alt + F12
 	powermenu
-alt + F10
-	polybar-toggle
 super + r
 	rofi -show run
 super + g

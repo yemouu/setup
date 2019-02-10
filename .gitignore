@@ -7,3 +7,5 @@ config/nvim/.netrwhist
 portage/package.accept_keywords/zz-autounmask
 portage/repos.conf/eselect-repo.conf~
 config/nvim/dein
+config/thm/current
+portage/repos.conf/uwulay.conf~

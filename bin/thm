@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+
+if [[ -n $XDG_CONFIG_HOME ]]
+then
+	thm_config_dir="${XDG_CONFIG_HOME}/thm"
+	thm_dest_dir="${XDG_CONFIG_HOME}/thm/current"
+else
+	thm_config_dir="${HOME}/.config/thm"
+	thm_dest_dir="${HOME}/.config/thm/current"
+fi
+
+if [[ -z $1 ]]
+then
+	count=0
+	files=("${thm_config_dir}/themes/"*".theme")
+	for f in "${files[@]}"
+	do
+		echo [$count] "${f/${thm_config_dir}\/themes\//}"
+		(( count++ ))
+	done
+	read -rp "Pick a theme: " theme_number
+	. ${files[theme_number]}
+elif [[ ! -f "${thm_config_dir}/themes/${1}.theme" ]]
+then
+	echo "${0##*/}: theme not found"
+	exit 1
+else
+	. "${thm_config_dir}/themes/${1}.theme"
+fi
+
+bg_color_rgb="$(printf "%d,%d,%d" 0x"${bg_color:0:2}" 0x"${bg_color:2:2}" 0x"${bg_color:4:2}")"
+fg_color_rgb="$(printf "%d,%d,%d" 0x"${fg_color:0:2}" 0x"${fg_color:2:2}" 0x"${fg_color:4:2}")"
+color0_rgb="$(printf "%d,%d,%d" 0x"${color0:0:2}" 0x"${color0:2:2}" 0x"${color0:4:2}")"
+color1_rgb="$(printf "%d,%d,%d" 0x"${color1:0:2}" 0x"${color1:2:2}" 0x"${color1:4:2}")"
+color2_rgb="$(printf "%d,%d,%d" 0x"${color2:0:2}" 0x"${color2:2:2}" 0x"${color2:4:2}")"
+color3_rgb="$(printf "%d,%d,%d" 0x"${color3:0:2}" 0x"${color3:2:2}" 0x"${color3:4:2}")"
+color4_rgb="$(printf "%d,%d,%d" 0x"${color4:0:2}" 0x"${color4:2:2}" 0x"${color4:4:2}")"
+color5_rgb="$(printf "%d,%d,%d" 0x"${color5:0:2}" 0x"${color5:2:2}" 0x"${color5:4:2}")"
+color6_rgb="$(printf "%d,%d,%d" 0x"${color6:0:2}" 0x"${color6:2:2}" 0x"${color6:4:2}")"
+color7_rgb="$(printf "%d,%d,%d" 0x"${color7:0:2}" 0x"${color7:2:2}" 0x"${color7:4:2}")"
+color8_rgb="$(printf "%d,%d,%d" 0x"${color8:0:2}" 0x"${color8:2:2}" 0x"${color8:4:2}")"
+color9_rgb="$(printf "%d,%d,%d" 0x"${color9:0:2}" 0x"${color9:2:2}" 0x"${color9:4:2}")"
+color10_rgb="$(printf "%d,%d,%d" 0x"${color10:0:2}" 0x"${color10:2:2}" 0x"${color10:4:2}")"
+color11_rgb="$(printf "%d,%d,%d" 0x"${color11:0:2}" 0x"${color11:2:2}" 0x"${color11:4:2}")"
+color12_rgb="$(printf "%d,%d,%d" 0x"${color12:0:2}" 0x"${color12:2:2}" 0x"${color12:4:2}")"
+color13_rgb="$(printf "%d,%d,%d" 0x"${color13:0:2}" 0x"${color13:2:2}" 0x"${color13:4:2}")"
+color14_rgb="$(printf "%d,%d,%d" 0x"${color14:0:2}" 0x"${color14:2:2}" 0x"${color14:4:2}")"
+color15_rgb="$(printf "%d,%d,%d" 0x"${color15:0:2}" 0x"${color15:2:2}" 0x"${color15:4:2}")"
+
+[[ ! -d $thm_dest_dir ]] && {
+	mkdir -p "$thm_dest_dir" || {
+		echo "${0##*/}: couldn't create $thm_dest_dir";exit 1;
+	}
+}
+templates=("${thm_config_dir}/templates/"*"-template")
+for t in "${templates[@]}"
+do
+	file_name=${t/${thm_config_dir}\/templates\//}
+	file_name=${file_name/-template/}
+	file="$(<"$t")"
+	file="${file//\{bg_color\}/$bg_color}"
+	file="${file//\{fg_color\}/$fg_color}"
+	file="${file//\{color0\}/$color0}"
+	file="${file//\{color1\}/$color1}"
+	file="${file//\{color2\}/$color2}"
+	file="${file//\{color3\}/$color3}"
+	file="${file//\{color4\}/$color4}"
+	file="${file//\{color5\}/$color5}"
+	file="${file//\{color6\}/$color6}"
+	file="${file//\{color7\}/$color7}"
+	file="${file//\{color8\}/$color8}"
+	file="${file//\{color9\}/$color9}"
+	file="${file//\{color10\}/$color10}"
+	file="${file//\{color11\}/$color11}"
+	file="${file//\{color12\}/$color12}"
+	file="${file//\{color13\}/$color13}"
+	file="${file//\{color14\}/$color14}"
+	file="${file//\{color15\}/$color15}"
+	file="${file//\{bg_color.rgb\}/$bg_color_rgb}"
+	file="${file//\{fg_color.rgb\}/$fg_color_rgb}"
+	file="${file//\{color0.rgb\}/$color0_rgb}"
+	file="${file//\{color1.rgb\}/$color1_rgb}"
+	file="${file//\{color2.rgb\}/$color2_rgb}"
+	file="${file//\{color3.rgb\}/$color3_rgb}"
+	file="${file//\{color4.rgb\}/$color4_rgb}"
+	file="${file//\{color5.rgb\}/$color5_rgb}"
+	file="${file//\{color6.rgb\}/$color6_rgb}"
+	file="${file//\{color7.rgb\}/$color7_rgb}"
+	file="${file//\{color8.rgb\}/$color8_rgb}"
+	file="${file//\{color9.rgb\}/$color9_rgb}"
+	file="${file//\{color10.rgb\}/$color10_rgb}"
+	file="${file//\{color11.rgb\}/$color11_rgb}"
+	file="${file//\{color12.rgb\}/$color12_rgb}"
+	file="${file//\{color13.rgb\}/$color13_rgb}"
+	file="${file//\{color14.rgb\}/$color14_rgb}"
+	file="${file//\{color15.rgb\}/$color15_rgb}"
+	printf '%s' "$file" > "${thm_dest_dir}/${file_name}"
+done

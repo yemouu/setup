@@ -24,12 +24,14 @@ Stardew Valley
 Stick Fight
 Terraria
 The Escapists 2
+The Mean Greens - Plastic Warfare
 Tower Unite
 Unturned
 scram
 ----Other----
 AssaultCube
 Minecraft (MultiMC)
+Super Smash Bros. Melee (FasterMelee)
 Unreal Tournament
 Warsow
 Xonotic
@@ -39,41 +41,43 @@ check_steam() {
 	if ! pidof steam &> /dev/null
 	then
 		notify-send -a "Game Launch" "Steam isn't running." "Not starting game."
-		exit 1;
+		exit 1
 	fi
 }
 
-battleblock_theater()		{ check_steam && exec steam steam://rungameid/238460; }
-brain_out()			{ check_steam && exec steam steam://rungameid/578310; }
-clustertruck()			{ check_steam && exec steam steam://rungameid/397950; }
-csgo()				{ check_steam && exec steam steam://rungameid/730; }
-gmod()				{ check_steam && exec steam steam://rungameid/4000; }
-golf_with_your_friends()	{ check_steam && exec steam steam://rungameid/431240; }
-hollow_knight()			{ check_steam && exec steam steam://rungameid/367520; }
-insurgency()			{ check_steam && exec steam steam://rungameid/222880; }
-metro_2033()			{ check_steam && exec steam steam://rungameid/286690; }
-metro_last_light_redux()	{ check_steam && exec steam steam://rungameid/287390; }
-never_split_the_party()		{ check_steam && exec steam steam://rungameid/711810; }
-plague_inc_evolved()		{ check_steam && exec steam steam://rungameid/246620; }
-portal()			{ check_steam && exec steam steam://rungameid/400; }
-portal_2()			{ check_steam && exec steam steam://rungameid/620; }
-rl()				{ check_steam && exec steam steam://rungameid/252950; }
-scram()				{ check_steam && exec steam steam://rungameid/773920; }
-shellshock_live()		{ check_steam && exec steam steam://rungameid/326460; }
-starbound()			{ check_steam && exec steam steam://rungameid/211820; }
-starbound_unstable()		{ check_steam && exec steam steam://rungameid/367540; }
-stardew_valley()		{ check_steam && exec steam steam://rungameid/413150; }
-stick_fight()			{ check_steam && exec steam steam://rungameid/674940; }
-terraria()			{ check_steam && exec steam steam://rungameid/105600; }
-the_escapists_2()		{ check_steam && exec steam steam://rungameid/641990; }
-tower_unite()			{ check_steam && exec steam steam://rungameid/394690; }
-unturned()			{ check_steam && exec steam steam://rungameid/304930; }
+battleblock_theater()			{ check_steam && exec steam steam://rungameid/238460; }
+brain_out()				{ check_steam && exec steam steam://rungameid/578310; }
+clustertruck()				{ check_steam && exec steam steam://rungameid/397950; }
+csgo()					{ check_steam && exec steam steam://rungameid/730; }
+gmod()					{ check_steam && exec steam steam://rungameid/4000; }
+golf_with_your_friends()		{ check_steam && exec steam steam://rungameid/431240; }
+hollow_knight()				{ check_steam && exec steam steam://rungameid/367520; }
+insurgency()				{ check_steam && exec steam steam://rungameid/222880; }
+metro_2033()				{ check_steam && exec steam steam://rungameid/286690; }
+metro_last_light_redux()		{ check_steam && exec steam steam://rungameid/287390; }
+never_split_the_party()			{ check_steam && exec steam steam://rungameid/711810; }
+plague_inc_evolved()			{ check_steam && exec steam steam://rungameid/246620; }
+portal()				{ check_steam && exec steam steam://rungameid/400; }
+portal_2()				{ check_steam && exec steam steam://rungameid/620; }
+rl()					{ check_steam && exec steam steam://rungameid/252950; }
+scram()					{ check_steam && exec steam steam://rungameid/773920; }
+shellshock_live()			{ check_steam && exec steam steam://rungameid/326460; }
+starbound()				{ check_steam && exec steam steam://rungameid/211820; }
+starbound_unstable()			{ check_steam && exec steam steam://rungameid/367540; }
+stardew_valley()			{ check_steam && exec steam steam://rungameid/413150; }
+stick_fight()				{ check_steam && exec steam steam://rungameid/674940; }
+terraria()				{ check_steam && exec steam steam://rungameid/105600; }
+the_escapists_2()			{ check_steam && exec steam steam://rungameid/641990; }
+tower_unite()				{ check_steam && exec steam steam://rungameid/394690; }
+the_mean_greens_plastic_warfare()	{ check_steam && exec steam steam://rungameid/360940; }
+unturned()				{ check_steam && exec steam steam://rungameid/304930; }
 # Other
-assaultcube() 			{ exec "${HOME}/apps/games/AssaultCube/assaultcube.sh"; }
-multimc()			{ exec "${HOME}/apps/games/MultiMC/MultiMC"; }
-unreal_tournament()		{ exec "${HOME}/apps/games/UnrealTournament/LinuxNoEditor/Engine/Binaries/Linux/UE4-Linux-Shipping" UnrealTournamentc; }
-warsow()			{ exec "${HOME}/apps/games/warsow/warsow"; }
-xonotic()			{ exec "${HOME}/apps/games/Xonotic/xonotic-linux-sdl.sh"; }
+assaultcube() 		{ exec "${HOME}/apps/games/AssaultCube/assaultcube.sh"; }
+multimc()		{ exec "${HOME}/apps/games/MultiMC/MultiMC"; }
+unreal_tournament()	{ exec "${HOME}/apps/games/UnrealTournament/LinuxNoEditor/Engine/Binaries/Linux/UE4-Linux-Shipping" UnrealTournamentc; }
+smash_melee()		{ exec "${HOME}/apps/games/FasterMelee/launch-fm"; }
+warsow()		{ exec "${HOME}/apps/games/warsow/warsow"; }
+xonotic()		{ exec "${HOME}/apps/games/Xonotic/xonotic-linux-sdl.sh"; }
 
 game=$(printf '%b' "$game_list" | rofi -dmenu -i -p "$rofi_prompt")
 case $game in
@@ -97,6 +101,7 @@ case $game in
 	"Starbound - Unstable"			) starbound_unstable ;;
 	"Starbound"				) starbound ;;
 	"Stardew Valley"			) stardew_valley ;;
+	"The Mean Greens - Plastic Warfare"	) the_mean_greens_plastic_warfare ;;
 	"Stick Fight"				) stick_fight ;;
 	"Terraria"				) terraria ;;
 	"The Escapists 2"			) the_escapists_2 ;;
@@ -106,6 +111,7 @@ case $game in
 	# Other
 	"AssaultCube"				) assaultcube ;;
 	"Minecraft (MultiMC)"			) multimc ;;
+	"Super Smash Bros. Melee (FasterMelee)" ) smash_melee ;;
 	"Unreal Tournament"			) unreal_tournament ;;
 	"Warsow"				) warsow ;;
 	"Xonotic"				) xonotic ;;

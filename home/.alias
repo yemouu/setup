@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 alias l="ls -F --color=auto"
-alias la="ls -A"
-alias ll="ls -lh"
-alias lla="ls -lAh"
+alias la="l -A"
+alias ll="l -lh"
+alias lla="l -lAh"
 
 alias c="clear"
 alias cl="c;l"
@@ -15,15 +15,14 @@ alias suel="sudo -v;clear;sudo -u portage tail -f /var/log/emerge.log"
 alias sues="sudo -v;clear;sudo -Es"
 
 alias em="sudo emerge"
-alias emu="sudo emerge -uDNa --with-bdeps=y @world"
+alias emu="sudo emerge -uvDNa --with-bdeps=y @world"
 alias emul="sudo emerge -a @live-rebuild"
 alias qe="qlist -IR | grep -v ::gentoo"
 
-alias e="nvim"
+alias e="${EDITOR}"
 alias se="sudo -e"
 
-alias gs="cd ${HOME}/.setup"
-alias gc="cd ${HOME}/.config"
+alias gb="cd ~-"
 
 alias info="info --vi-keys"
 alias q="exit"
@@ -33,7 +32,7 @@ run() {
 	[[ $# -lt 2 ]] && return 1
 	for ((i=1; i<=$1; i++))
 	do
-		"${@:2}"
+		eval "${@:2}"
 	done
 }
 

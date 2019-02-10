@@ -22,7 +22,7 @@ if dein#load_state('~/.config/nvim/dein')
 				\ 'rev': 'next',
 				\ 'build': 'bash install.sh',
 				\ })
-	
+
 	call dein#end()
 	call dein#save_state()
 endif
@@ -38,6 +38,7 @@ endif
 set nowrap
 set scrolloff=4
 set clipboard+=unnamedplus
+set completeopt-=preview
 
 nnoremap <leader>1 :set relativenumber!<enter>
 nnoremap <localleader>1 :set number!<enter>

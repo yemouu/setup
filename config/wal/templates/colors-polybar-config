@@ -10,13 +10,13 @@ color7 = {color7}
 color8 = {color8}
 
 [bar/bar1]
-override-redirect = true
+;override-redirect = true
 fixed-center = true
 
-width = 80%
+#width = 80%
 height = 32
-offset-x = 10%
-offset-y = 0.75% 
+#offset-x = 10%
+#offset-y = 0.75% 
 
 background = ${{colors.color0}}
 foreground = ${{colors.color7}}
@@ -34,7 +34,7 @@ font-4 = Noto Sans Mono CJK JP Regular:size=8;2
 font-5 = Noto Sans Mono CJK SC Regular:size=8;2
 font-6 = Noto Color Emoji:scale=12;2
 
-modules-left = workspaces random-text 
+modules-left = workspaces
 modules-center = mpd
 modules-right = time date
 
