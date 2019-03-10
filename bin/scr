@@ -7,6 +7,25 @@ scr_rec_dir="${scr_dir}/rec"
 pa_source="default"
 pa_sink="alsa_output.pci-0000_00_1f.3.analog-stereo.monitor"
 
+pic_mimetype="image/jpeg"
+pic_extension="jpg"
+pic_filename="${scr_pic_dir}/$(date +%y%m%d%H%M%S).${pic_extension}"
+pic_args="-quality 100"
+
+audio_mimetype="audio/x-wav"
+audio_extension="wav"
+audio_filename="${scr_rec_dir}/$(date +%y%m%d%H%M%S).${audio_extension}"
+
+video_mimetype="video/mp4"
+video_extension="mp4"
+video_filename="${scr_rec_dir}/$(date +%y%m%d%H%M%S).${video_extension}"
+
+rec_args="-f x11grab -r 60"
+rec_mic_args="-f pulse -i ${pa_source}"
+rec_audio_args="-f pulse -i ${pa_sink}"
+rec_multi_audio_args="-filter_complex amix=inputs=2"
+rec_opt_args="-c:v libx264 -crf 20 -preset veryfast"
+
 usage() {
 printf '%s' "usage: scr action [options]
 
@@ -20,6 +39,7 @@ options:
 	a	record video with audio
 	m	record video with microphone audio
 	M	record only microphone audio
+	p	record only microphone and desktop audio
 
 "
 }
@@ -38,35 +58,46 @@ do
 		a ) audio=true ;;
 		m ) microphone=true ;;
 		M ) microphone_only=true ;;
+		P ) podcast=true; microphone_only=true ;;
 	esac
 done
 
 scr_pic() {
 	[[ ! -d ${scr_pic_dir} ]] && { mkdir -p "${scr_pic_dir}" || exit 1; }
-	filename="${scr_pic_dir}/$(date +%y%m%d%H%M%S).jpg"
-	[[ $fullscreen = true ]] && pic_args="-window root"
-	import ${pic_args} -quality 100 "$filename"
-	[[ $clipboard = true ]] && xclip -i -selection clipboard -t image/jpeg "$filename"
-	echo "$filename"
+	[[ -n ${fullscreen} ]] && pic_fullscreen="-window root"
+	import ${pic_fullscreen} ${pic_args} ${pic_filename}
+	[[ ${clipboard} = true ]] && xclip -i -se c -t ${pic_mimetype} ${pic_filename}
+	echo ${pic_filename}
 }
 
 scr_rec() {
 	[[ ! -d ${scr_rec_dir} ]] && { mkdir -p "${scr_rec_dir}" || exit 1; }
-	[[ $microphone_only = true ]] && ffmpeg_args="-f pulse -i ${pa_source}"
-	[[ -z $microphone_only ]] && {
-		read -r X Y W H < <(slop -q -f '%x %y %w %h')
-		ffmpeg_args="-f x11grab -r 60 -s ${W}x${H} -i :0.0+${X},${Y} "
+	[[ -n ${microphone_only} ]] && {
+		filename="${audio_filename}"
+		mimetype="${audio_mimetype}"
+		ffmpeg_args="${rec_mic_args} "
+		[[ -n ${podcast} ]] && {
+			ffmpeg_args+="${rec_audio_args} "
+			ffmpeg_args+="${rec_multi_audio_args} "
+		}
 	}
-	extension="mp4"
-	[[ -n $microphone_only ]] && extension="wav"
-	filename="${scr_rec_dir}/$(date +%y%m%d%H%M%S).${extension}"
-	[[ $audio = true && -z $microphone_only ]] && ffmpeg_args+="-f pulse -i ${pa_sink} "
-	[[ $microphone = true && -z $microphone_only ]] && ffmpeg_args+="-f pulse -i ${pa_source} "
-	[[ $audio = true && $microphone = true && -z $microphone_only ]] && ffmpeg_args+="-filter_complex amix=inputs=2"
-	ffmpeg ${ffmpeg_args} $filename
-	[[ $clipboard = true && -n $microphone_only ]] && xclip -i -selection clipboard -t audio/x-wav "$filename"
-	[[ $clipboard = true && -z $microphone_only ]] && xclip -i -selection clipboard -t video/mp4 "$filename"
-	echo "$filename"
+
+	[[ -z ${microphone_only} ]] && {
+		filename="${video_filename}"
+		mimetype="${video_mimetype}"
+		read -r X Y W H < <(slop -q -f '%x %y %w %h')
+		ffmpeg_args="${rec_args} "
+ 		ffmpeg_args+="-s ${W}x${H} -i :0.0+${X},${Y} "
+		[[ -n ${audio} ]] && ffmpeg_args+="${rec_audio_args} "
+		[[ -n ${microphone} ]] && ffmpeg_args+="${rec_mic_args} "
+		[[ -n ${audio} && -n ${microphone} ]] && ffmpeg_args+="${rec_multi_audio_args} "
+		ffmpeg_args+="${rec_opt_args} "
+
+	}
+
+	ffmpeg ${ffmpeg_args} ${filename}
+	[[ -n $clipboard ]] && xclip -i -se c -t ${mimetype} ${filename}
+	echo $filename
 }
 
 $action
