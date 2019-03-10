@@ -1,6 +1,0 @@
->=dev-libs/libxml2-2.9.8 icu
->=media-libs/harfbuzz-2.3.0 icu
->=sys-libs/zlib-1.2.11-r2 minizip
->=net-libs/nodejs-9.11.2 inspector ssl icu bundled-ssl
->=dev-libs/icu-63.1-r1 abi_x86_32
->=www-client/chromium-71.0.3595.2 jumbo-build system-icu system-libvpx widevine

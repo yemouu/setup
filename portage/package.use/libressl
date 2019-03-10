@@ -1,3 +1,2 @@
->=net-misc/curl-7.61.1 curl_ssl_libressl -curl_ssl_openssl
->=dev-libs/libressl-2.6.5 abi_x86_32
-#>=net-libs/nodejs-8.14.0 bundled-ssl
+net-misc/curl -curl_ssl_openssl curl_ssl_libressl
+dev-libs/libressl abi_x86_32

@@ -1,1 +1,5 @@
 games-util/steam-launcher::steam-overlay
+games-util/steam-meta::steam-overlay
+games-util/steam-games-meta::steam-overlay
+media-fonts/steamfonts::steam-overlay
+games-util/steam-client-meta::steam-overlay

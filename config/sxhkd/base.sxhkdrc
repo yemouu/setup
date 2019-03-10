@@ -1,0 +1,23 @@
+XF86Audio{Raise,Lower}Volume
+	${HOME}/.setup/noti/volume/microphone-volume-{up,down}
+
+{_,alt +,ctrl +} XF86AudioMute
+	${HOME}/.setup/noti/volume/microphone-{please-die,volume-set-base,volume-set-max}
+super + e
+	${HOME}/.setup/noti/volume/microphone-volume-mute
+
+super + {_,alt +} t
+	${HOME}/.setup/noti/time-date/{local,utc}-time-date
+{_,super +} Print
+	nougat -tc{f,_}
+{_,super +} Pause
+	pkill -SIGUSR{1,2} dunst
+alt + F12
+	powermenu
+super + r
+	rofi -show run
+super + Return
+	alacritty
+
+super + Escape
+	sxhkdm

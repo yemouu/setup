@@ -1,1 +1,1 @@
->=sys-apps/busybox-1.28.0 syslog
+sys-apps/busybox syslog

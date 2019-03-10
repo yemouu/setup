@@ -75,7 +75,7 @@ gentoo_repos() {
 
 	echo "Updating Gentoo Repository..."
 	sudo emaint sync -A
-	sudo emerge --regen
+	sudo emerge --regen --jobs 4
 	if command -v eix > /dev/null
 	then
 		sudo cp -a /var/cache/eix/portage.eix \

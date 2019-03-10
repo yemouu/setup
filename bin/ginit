@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
 [[ $# -eq 0 ]] && { echo "${0##*/} requires an argument."; exit 1; }
+rm "${HOME}/.config/sxhkd/sxhkdm-default.sxhkdrc"
 
 case $1 in
-	bspwm ) exec xinit bspwm ;;
+	bspwm ) ln -s "${HOME}/.config/sxhkd/bspwm.sxhkdrc" "${HOME}/.config/sxhkd/sxhkdm-default.sxhkdrc"
+		exec xinit bspwm ;;
 	herbstluftwm|herbstluft|hlwm ) exec xinit herbstluftwm ;;
+	openbox|ob ) ln -s "${HOME}/.config/sxhkd/bare.sxhkdrc" "${HOME}/.config/sxhkd/sxhkdm-default.sxhkdrc"
+		exec xinit openbox ;;
 	sway ) exec "${HOME}/.autostart" wayland 
 		exec sway ;;
 	* ) echo "No entry for $1." ;;

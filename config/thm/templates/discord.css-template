@@ -31,7 +31,7 @@
     --ColBackground2: var(--ColAppBG);
     --ColAccent: #{color1};
     --ColAccentAlpha: rgba({color1.rgb},0.1);
-    --ColAnchor: var(--ColAccent);
+    --ColAnchor: #{color4};
     --ColLastMessage: transparent;
     --ColFalse: #{color1};
     --ColTrue: #{color2};
@@ -45,7 +45,7 @@
     --WidthGuildMax: 80px;
     --SizeEmote: 50px;
     --DisplayNoDoubleBorderRadius: Block;
-    --ColFont: #{color7};
+    --ColFont: #{color15};
     --ColFontBright: #{color0};
     --DisplayBlockedUserMessage: none;
 }

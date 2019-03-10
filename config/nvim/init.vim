@@ -5,7 +5,6 @@ let maplocalleader = "\\"
 
 set nocompatible
 
-" ---------------------------------dein scripts---------------------------------
 set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 
 if dein#load_state('~/.config/nvim/dein')
@@ -33,7 +32,6 @@ syntax enable
 if dein#check_install()
 	call dein#install()
 endif
-" -------------------------------end dein scripts-------------------------------
 
 set nowrap
 set scrolloff=4
@@ -44,5 +42,7 @@ nnoremap <leader>1 :set relativenumber!<enter>
 nnoremap <localleader>1 :set number!<enter>
 
 let g:deoplete#enable_at_startup = 1
+
+au FileType xml setlocal shiftwidth=2 tabstop=2
 
 colorscheme wal

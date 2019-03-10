@@ -1,8 +1,8 @@
->=media-libs/libpng-1.6.35-r1 apng
->=www-client/firefox-62.0.3 geckodriver system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite
->=net-libs/nodejs-8.14.0 -npm -ssl
->=sys-devel/llvm-7.0.0-r1 gold
->=dev-lang/python-3.6.6 sqlite
->=dev-lang/python-2.7.15 sqlite
->=dev-db/sqlite-3.25.3 secure-delete
->=media-libs/libvpx-1.7.0 postproc
+media-libs/libpng apng
+www-client/firefox geckodriver system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite
+net-libs/nodejs -npm -ssl
+sys-devel/llvm gold
+dev-lang/python sqlite
+dev-lang/python sqlite
+dev-db/sqlite secure-delete
+media-libs/libvpx postproc

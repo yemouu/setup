@@ -1,1 +1,1 @@
->=sys-apps/openrc-0.40.3 -netifrc
+sys-apps/openrc -netifrc

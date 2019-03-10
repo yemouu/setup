@@ -7,12 +7,8 @@ make clean
 zcat /proc/config.gz > /usr/src/linux/.config
 make olddefconfig
 echo Updated old config for new kernel.
-[[ "$1" = "-e" ]] && { make menuconfig; echo Kernel config edited; }
-make modules_prepare
-echo Kernel modules prepared
+[[ "$1" = "-e" ]] && { make nconfig; echo Kernel config edited; }
 make -j4
 echo Kernel compiled
-make modules_install
-echo Kernel modules installed
 mv arch/x86/boot/bzImage /boot/EFI/Gentoo/bzImage
 echo Moved kernel to EFI partition

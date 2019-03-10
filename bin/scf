@@ -64,24 +64,28 @@ download() {
 	if [ -z "${USERNAME}" ] && [ ${ME} = false ]
 	then
 		exit 1
-	elif [ "${CONTINUE}" = true ] && [ ! -z "${USERNAME}" ]
+	elif [ "${CONTINUE}" = true ] && [ -n "${USERNAME}" ]
 	then
 		scdl \
 			-l "https://soundcloud.com/${USERNAME}" \
-			-fc --onlymp3 --path "${DIRECTORY}" --addtofile
-	elif [ ${CONTINUE} = false ] && [ ! -z "${USERNAME}" ]
+			-fc --onlymp3 --addtofile \
+			--download-archive "${DIRECTORY}/download-archive"
+	elif [ ${CONTINUE} = false ] && [ -n "${USERNAME}" ]
 	then
 		scdl \
 			-l "https://soundcloud.com/${USERNAME}" \
-			-f --onlymp3 --path "${DIRECTORY}" --addtofile
+			-f --onlymp3 --addtofile \
+			--download-archive "${DIRECTORY}/download-archive"
 	elif [ ${CONTINUE} = true ] && [ ${ME} = true ]
 	then
 		scdl \
-			-fc --onlymp3 --path "${DIRECTORY}" --addtofile me
+			-fc --onlymp3 --addtofile \
+			--download-archive "${DIRECTORY}/download-archive" me
 	elif [ ${CONTINUE} = false ] && [ ${ME} = true ]
 	then
 		scdl \
-			-f --onlymp3 --path "${DIRECTORY}" --addtofile me
+			-f --onlymp3 --addtofile \
+			--download-archive "${DIRECTORY}/download-archive" me
 	fi
 }
 

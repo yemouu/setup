@@ -96,3 +96,9 @@ do
 	file="${file//\{color15.rgb\}/$color15_rgb}"
 	printf '%s' "$file" > "${thm_dest_dir}/${file_name}"
 done
+
+scripts=("${thm_config_dir}/scripts/"*)
+for i in "${scripts[@]}"
+do
+	$i &> /dev/null &
+done

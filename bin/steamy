@@ -5,7 +5,7 @@ silent_mode="-silent"
 account_number=1
 
 check_steam() { pgrep steam &> /dev/null; }
-close_steam() { check_steam && steam -shutdown; }
+close_steam() { check_steam && steam -shutdown; sleep 1; }
 
 if [[ $# -ge 1 ]]
 then

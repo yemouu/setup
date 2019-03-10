@@ -1,0 +1,27 @@
+Escape
+	sxhkdm sxhkdm-default.sxhkdrc
+
+o
+	alacritty -e ncmpcpp
+{comma,period}
+	mpc -q {prev,next}
+p
+	mpc toggle
+shift + s
+	mpc stop
+{_,shift +,ctrl +} {0-9}
+	mpc -q seek {_,+,-}{0-9}0%
+ctrl + s
+	mpc -q shuffle
+bracket{left,right}
+	${HOME}/.setup/noti/music/music-volume-{down,up}
+r
+	mpc -q repeat
+z
+	mpc -q random
+y
+	mpc -q single
+shift + r
+	mpc -q consume
+u
+	mpc -q rescan; mpc -q clear; mpc -q listall | mpc add

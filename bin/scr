@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+scr_dir="/tmp/scr"
+scr_pic_dir="${scr_dir}/pic"
+scr_rec_dir="${scr_dir}/rec"
+
+pa_source="default"
+pa_sink="alsa_output.pci-0000_00_1f.3.analog-stereo.monitor"
+
+usage() {
+printf '%s' "usage: scr action [options]
+
+actions:
+	pic	picture
+	rec	record
+
+options:
+	c	copy image or video to clipboard
+	f	fullscreen picture of the screen
+	a	record video with audio
+	m	record video with microphone audio
+	M	record only microphone audio
+
+"
+}
+case $1 in
+	pic ) action="scr_pic" ;;
+	rec ) action="scr_rec" ;;
+	*help|*h ) usage; exit 0 ;;
+	* ) usage; exit 1 ;;
+esac
+
+for (( i=0; i<${#2}; i++ ))
+do
+	case ${2:$i:1} in
+		c ) clipboard=true ;;
+		f ) fullscreen=true ;;
+		a ) audio=true ;;
+		m ) microphone=true ;;
+		M ) microphone_only=true ;;
+	esac
+done
+
+scr_pic() {
+	[[ ! -d ${scr_pic_dir} ]] && { mkdir -p "${scr_pic_dir}" || exit 1; }
+	filename="${scr_pic_dir}/$(date +%y%m%d%H%M%S).jpg"
+	[[ $fullscreen = true ]] && pic_args="-window root"
+	import ${pic_args} -quality 100 "$filename"
+	[[ $clipboard = true ]] && xclip -i -selection clipboard -t image/jpeg "$filename"
+	echo "$filename"
+}
+
+scr_rec() {
+	[[ ! -d ${scr_rec_dir} ]] && { mkdir -p "${scr_rec_dir}" || exit 1; }
+	[[ $microphone_only = true ]] && ffmpeg_args="-f pulse -i ${pa_source}"
+	[[ -z $microphone_only ]] && {
+		read -r X Y W H < <(slop -q -f '%x %y %w %h')
+		ffmpeg_args="-f x11grab -r 60 -s ${W}x${H} -i :0.0+${X},${Y} "
+	}
+	extension="mp4"
+	[[ -n $microphone_only ]] && extension="wav"
+	filename="${scr_rec_dir}/$(date +%y%m%d%H%M%S).${extension}"
+	[[ $audio = true && -z $microphone_only ]] && ffmpeg_args+="-f pulse -i ${pa_sink} "
+	[[ $microphone = true && -z $microphone_only ]] && ffmpeg_args+="-f pulse -i ${pa_source} "
+	[[ $audio = true && $microphone = true && -z $microphone_only ]] && ffmpeg_args+="-filter_complex amix=inputs=2"
+	ffmpeg ${ffmpeg_args} $filename
+	[[ $clipboard = true && -n $microphone_only ]] && xclip -i -selection clipboard -t audio/x-wav "$filename"
+	[[ $clipboard = true && -z $microphone_only ]] && xclip -i -selection clipboard -t video/mp4 "$filename"
+	echo "$filename"
+}
+
+$action

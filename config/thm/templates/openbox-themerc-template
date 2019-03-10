@@ -1,0 +1,18 @@
+border.width: 2
+window.active.border.color: #{bg_color}
+
+window.client.padding.width: 2
+window.active.client.color: #{fg_color}
+window.inactive.client.color: #{color8}
+
+window.handle.width: 0
+
+padding.width: 4
+
+window.active.title.separator.color: #{fg_color}
+window.inactive.title.separator.color: #{color8}
+
+window.active.title.bg: Solid Flat
+window.active.title.bg.color: #{fg_color}
+window.inactive.title.bg: Solid Flat
+window.inactive.title.bg.color: #{color8}

@@ -14,7 +14,6 @@ HISTCONTROL+="erasedups:ignoreboth"
 
 export VISUAL EDITOR PAGER INPUTRC LESSHISTFILE HISTSIZE HISTFILESIZE HISTCONTROL
 
-[[ ! -s /tmp/mpd-pid ]] && mpd &
 [[ -f ${HOME}/.bashrc  ]] && . "${HOME}/.bashrc"
 
 clear

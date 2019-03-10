@@ -1,30 +1,32 @@
 #!/usr/bin/env bash
 
-! pgrep sxhkd &> /dev/null && sxhkd -c "${HOME}/.config/sxhkd/sxhkdrc-bspwm" &
-! pgrep polybar &> /dev/null && polybar-toggle &
 . "${HOME}/.config/thm/current/colors.sh"
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 
-bspc config normal_border_color "${color8}"
-bspc config focused_border_color "${color1}"
+bspc config normal_border_color "#${color8}"
+bspc config focused_border_color "#${fg_color}"
 
 bspc config border_width 4
 bspc config window_gap 16
 bspc config top_padding 32
 bspc config split_ratio 0.50
 
-bspc desktop "^1" -l monocle
+for i in {1..10}; do bspc desktop "^$i" -l monocle; done
 
 bspc rule -a '*' state=floating
 bspc rule -a 'Firefox:Navigator' desktop='^1' state=tiled 
 bspc rule -a 'Chromium-browser-chromium' desktop='^1' state=tiled 
+bspc rule -a 'Google-chrome-unstable' desktop='^1' state=tiled
 bspc rule -a 'discord' desktop='^1' state=tiled 
 bspc rule -a '*:MultiMC' desktop='^9'
 bspc rule -a 'Golf With Your Friends.x86_64' desktop='^9' state=fullscreen
 bspc rule -a 'Minecraft 1.13.2' desktop='^9' state=fullscreen
 bspc rule -a 'RocketLeague' desktop='^9' state=fullscreen
 bspc rule -a 'ShellShockLive.x86_64' desktop='^9' state=fullscreen
+bspc rule -a 'Terraria.bin.x86' desktop='^9' state=fullscreen
+bspc rule -a 'Wine' desktop='^9' state=fullscreen
+bspc rule -a 'WolfPackBattalion-Linux-DebugGame' desktop='^9'
 bspc rule -a 'csgo_linux64' desktop='^9' state=fullscreen
 bspc rule -a 'scram.x86_64' desktop='^9' state=fullscreen
 bspc rule -a 'starbound' desktop='^9' state=fullscreen
