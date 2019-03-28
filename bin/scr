@@ -64,8 +64,12 @@ done
 
 scr_pic() {
 	[[ ! -d ${scr_pic_dir} ]] && { mkdir -p "${scr_pic_dir}" || exit 1; }
-	[[ -n ${fullscreen} ]] && pic_fullscreen="-window root"
-	import ${pic_fullscreen} ${pic_args} ${pic_filename}
+	[[ -z ${fullscreen} ]] && {
+		echo yeet
+		read -r X Y W H < <(slop -q -f '%x %y %w %h')
+		pic_selection="-crop ${W}x${H}+${X}+${Y}"
+	}
+	import -window root $pic_selection ${pic_args} ${pic_filename}
 	[[ ${clipboard} = true ]] && xclip -i -se c -t ${pic_mimetype} ${pic_filename}
 	echo ${pic_filename}
 }

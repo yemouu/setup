@@ -28,9 +28,9 @@
 :root{
     --ColAppBG: #{bg_color};
     --ColBackground1: var(--ColAppBG);
-    --ColBackground2: var(--ColAppBG);
-    --ColAccent: #{color1};
-    --ColAccentAlpha: rgba({color1.rgb},0.1);
+    --ColBackground2: #{color8};
+    --ColAccent: #{color9};
+    --ColAccentAlpha: rgba({color9.rgb},0.1);
     --ColAnchor: #{color4};
     --ColLastMessage: transparent;
     --ColFalse: #{color1};
@@ -39,7 +39,7 @@
     --DisplayNoConnectionBackdraw: none;
     --FontFamily: sans-serif;
     --FontMonoFamily: monospace;
-    --ColTextSelection: rgba({color1.rgb},0.2);
+    --ColTextSelection: rgba({color9.rgb},0.2);
     --ColTooltip: var(--ColAccent);
     --FilterNoHover: grayscale(60%);
     --WidthGuildMax: 80px;
@@ -48,4 +48,14 @@
     --ColFont: #{color15};
     --ColFontBright: #{color0};
     --DisplayBlockedUserMessage: none;
+}
+
+.timestampCozy-2hLAPV {
+    color: var(--ColFont)!important;
+    opacity: 0.5;
+}
+
+.dividerEnabled-2TTlcf {
+    border-bottom-color: var(--ColFont)!important;
+    opacity: 0.03;
 }

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+dicon="\\uf133"
+while true
+do
+	echo -e "D$dicon $(date +'%d %a %b %Y')"
+	sleep 1
+done
+

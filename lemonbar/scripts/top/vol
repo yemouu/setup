@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+{ echo 'sink #0'; echo 'source #0'; pactl subscribe; } |
+	while read -r audio
+	do
+		case $audio in
+			*'sink #0'* )
+				svol=$(pactl list sinks | grep -i volume: | awk NR==1'{print $5}')
+				smute=$(pactl list sinks | grep -i mute: | awk '{print $2}')
+				[[ $smute = "yes" ]] && sicon="\\uf026" || sicon="\\uf028"
+				echo -e "S$sicon $svol" ;;
+			*'source #0'* )
+				mvol=$(pactl list sources | grep -i volume: | awk NR==1'{print $5}')
+				mmute=$(pactl list sources | grep -i mute: | awk NR==1'{print $2}')
+				[[ $mmute = "yes" ]] && micon="\\uf131" || micon="\\uf130"
+				echo -e "M$micon $mvol" ;;
+		esac
+	done

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+ticon="\\uf017"
+while true
+do
+	echo -e "T$ticon $(date +%H:%M)"
+	sleep 1
+done

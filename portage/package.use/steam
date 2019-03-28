@@ -27,7 +27,7 @@ virtual/libelf abi_x86_32
 dev-libs/elfutils abi_x86_32
 app-arch/bzip2 abi_x86_32
 media-libs/libpng:1.2 abi_x86_32
-dev-libs/libgcrypt:11 abi_x86_32
+dev-libs/libgcrypt abi_x86_32
 dev-libs/libgpg-error abi_x86_32
 virtual/libintl abi_x86_32
 dev-libs/icu abi_x86_32
@@ -35,3 +35,4 @@ x11-libs/libdrm abi_x86_32 video_cards_radeon
 x11-libs/libva abi_x86_32
 x11-libs/libvdpau abi_x86_32
 x11-libs/libva-vdpau-driver abi_x86_32
+dev-libs/wayland abi_x86_32

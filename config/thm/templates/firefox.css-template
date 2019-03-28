@@ -3,10 +3,10 @@
 /*@import url('https://raw.githack.com/Customa/Customa-Firefox/master/Misc/autoHideNavigatorToolbox.m.css');*/
 @import url('https://raw.githack.com/Customa/Customa-Firefox/master/Misc/reorderTabContextMenu.m.css');
 :root {
-	--color: {color1.rgb};
+	--color: {color9.rgb};
 	--accent: rgb(var(--color));
 	--background: #{bg_color};
-	--foreground: #{fg_color};
+	--foreground: #{color8};
 
 	background-color: var(--background) !important;
 
@@ -19,7 +19,7 @@
 	--toolbar-bgcolor: var(--foreground) !important;
 	--toolbarbutton-hover-background: var(--foreground) !important;
 	--chrome-background-color: var(--background) !important;
-	--chrome-secondary-background-color: var(--foreground) !important;
+	--chrome-secondary-background-color: var(--background) !important;
 	--lwt-toolbarbutton-hover-background: var(--background) !important;
 	--lwt-toolbar-field-background-color: var(--background) !important;
 	--lwt-toolbar-field-border-color: var(--background) !important;

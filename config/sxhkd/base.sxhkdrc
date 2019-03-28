@@ -9,7 +9,7 @@ super + e
 super + {_,alt +} t
 	${HOME}/.setup/noti/time-date/{local,utc}-time-date
 {_,super +} Print
-	nougat -tc{f,_}
+	scr pic {f,_}c
 {_,super +} Pause
 	pkill -SIGUSR{1,2} dunst
 alt + F12

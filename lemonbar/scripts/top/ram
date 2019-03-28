@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+ricon="\\uf2db"
+rtotal=$(free -mh --si | awk NR==2'{print $2}')
+while true
+do
+	rused=$(free -mh --si | awk NR==2'{print $3}')
+	echo -e "R$ricon $rused/$rtotal"
+	sleep 2
+done

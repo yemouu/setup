@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+filename="${1##*/}"
+read -r w h < <(identify -format "%w %h" "$1")
+wd=$((w/2))
+hd=$((h/2))
+convert -liquid-rescale ${wd}x${hd} "$1" "/tmp/upscale_$filename"
+convert -liquid-rescale ${w}x${h} "/tmp/upscale_$filename" "/tmp/output_$filename"
+rm "/tmp/upscale_$filename"

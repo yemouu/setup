@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+. "${HOME}/.config/thm/current/colors.sh"
+scripts_dir="${HOME}/.setup/lemonbar/scripts/top"
+
+geometry="-g 1920x32"
+font="-o 0 -f monospace -f FontAwesome -o -2"
+bgcolor="-B #$color8"
+fgcolor="-F #$color7"
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+for script in "$scripts_dir"/*
+do
+	("$script" &)
+done | while read -r event
+do
+	case $event in
+		S* ) fvol=${event#?};;
+		M* ) fmic=${event#?};;
+		T* ) ftim=${event#?};;
+		D* ) fdat=${event#?};;
+		C* ) fcpu=${event#?};;
+		R* ) fram=${event#?};;
+	esac
+	echo "%{l}  $fvol  ${fmic}%{c}$ftim  $fdat%{r}$fcpu  $fram  "
+done | lemonbar -p $geometry $font $bgcolor $fgcolor

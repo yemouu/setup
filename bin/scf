@@ -20,24 +20,27 @@ Options
 
 	-m	Downloads from user specified in ~/.config/scdl/scdl.cfg
 
+	-t	Downloads specified song from url
+
 	-h	Displays this message
 
 "
 }
 
 get_arguments() {
-	while getopts "dcu:hm" OPTION; do
+	while getopts "dcu:hmt" OPTION; do
 		case "$OPTION" in
 			"d"	)	DELETE=true		;;
 			"c"	)	CONTINUE=true		;;
 			"u"	)	USERNAME="${OPTARG}"	;;
 			"h"	)	usage; exit 0		;;
 			"m"	)	ME=true			;;
+			"t"	)	TRACK=true		;;
 			"*"	)	usage; exit 1		;;
 		esac
 	done
 
-	if [ -z "${USERNAME}" ] && [ "${DELETE}" = false ] && [ ${ME} = false ]
+	if [ -z "${USERNAME}" ] && [ "${DELETE}" = false ] && [ ${ME} = false ] && [ -z "$TRACK" ]
 	then
 		echo "scf must be run with -d -m or -u."
 		echo "Run scf -h for more information"

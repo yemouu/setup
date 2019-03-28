@@ -11,7 +11,6 @@ if dein#load_state('~/.config/nvim/dein')
 	call dein#begin('~/.config/nvim/dein')
 	call dein#add('~/.config/nvim/dein/repos/github.com/Shougo/dein.vim')
 	
-	call dein#add('dylanaraps/wal.vim')
 	call dein#add('w0rp/ale')
 	call dein#add('Shougo/deoplete.nvim')
 	call dein#add('Shougo/neco-vim')
@@ -45,4 +44,4 @@ let g:deoplete#enable_at_startup = 1
 
 au FileType xml setlocal shiftwidth=2 tabstop=2
 
-colorscheme wal
+colorscheme theme

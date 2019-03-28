@@ -87,8 +87,8 @@
 		</popupFixedPosition>
 	</resize>
 	<margins>
-		<top>16</top>
-		<bottom>16</bottom>
+		<top>48</top>
+		<bottom>48</bottom>
 		<left>16</left>
 		<right>16</right>
 	</margins>
@@ -217,7 +217,9 @@
 			<action name="Restart"/>
 		</keybind>
 		<keybind key="W-C-Escape">
-			<action name="Exit"/>
+			<action name="Exit">
+				<prompt>no</prompt>
+			</action>
 		</keybind>
 		<keybind key="W-q">
 			<action name="Close"/>
@@ -631,6 +633,10 @@
 			<fullscreen>yes</fullscreen>
 		</application>
 		<application class="Unturned.x86_64">
+			<desktop>9</desktop>
+			<fullscreen>yes</fullscreen>
+		</application>
+		<application class="xonotic-linux64-sdl">
 			<desktop>9</desktop>
 			<fullscreen>yes</fullscreen>
 		</application>

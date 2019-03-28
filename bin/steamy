@@ -5,7 +5,7 @@ silent_mode="-silent"
 account_number=1
 
 check_steam() { pgrep steam &> /dev/null; }
-close_steam() { check_steam && steam -shutdown; sleep 1; }
+close_steam() { check_steam && steam -shutdown; sleep 5; }
 
 if [[ $# -ge 1 ]]
 then
@@ -22,7 +22,7 @@ then
 					exit 0
 				else
 					notify-send -a "steamy" -t 4000 "Steam isn't running"
-					return 1
+					exit 1
 				fi
 				;;
 			* ) account_number=$i ;;

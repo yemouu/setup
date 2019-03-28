@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-alias l="ls -F --color=auto"
+alias {l,ls}="ls -F --color=auto"
 alias la="l -A"
 alias ll="l -lh"
 alias lla="l -lAh"
@@ -26,7 +26,8 @@ alias gb="cd ~-"
 
 alias info="info --vi-keys"
 alias q="exit"
-alias sns="TERM=xterm-256color ssh -p 50769 yemou@owo"
+alias snsy="TERM=xterm-256color ssh -p 50769 ye@server-n-stuff"
+alias snss="TERM=xterm-256color ssh -p 50769 servernstuff@server-n-stuff"
 
 run() {
 	[[ $# -lt 2 ]] && return 1
