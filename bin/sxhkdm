@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+[[ -f /tmp/sxhkdm.lock ]] && {
+	echo "sxhkdm is locked"
+	exit 1
+}
+
+> /tmp/sxhkdm.lock
+
 if [[ -n $XDG_CONFIG_HOME ]]
 then
 	sxhkd_cfg_dir="${XDG_CONFIG_HOME}/sxhkd"
@@ -37,3 +44,5 @@ then
 else
 	sxhkd &
 fi
+
+rm /tmp/sxhkdm.lock

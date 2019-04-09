@@ -9,3 +9,5 @@ portage/repos.conf/eselect-repo.conf~
 config/nvim/dein
 config/thm/current
 portage/repos.conf/uwulay.conf~
+config/sxhkd/sxhkdrc
+config/sxhkd/sxhkdm-default.sxhkdrc

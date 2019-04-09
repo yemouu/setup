@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 rofi_prompt="Power Menu"
-power_options="Poweroff\\nReboot\\nSleep\\nHibernate\\nHybrid-Sleep"
+power_options="Poweroff\\nReboot\\nSleep\\nFake-Sleep\\nHibernate\\nHybrid-Sleep"
 
 confirmation() {
 	rofi_confirmation_prompt="Are you sure? [$user_input]"
@@ -13,12 +13,28 @@ confirmation() {
 	esac
 }
 
+fake_sleep() {
+	mpc -q pause
+	pactl set-source-mute @DEFAULT_SOURCE@ true
+	pactl set-sink-mute @DEFAULT_SINK@ true
+	xset dpms force off
+	while true
+	do
+		if [[ $(dunstify -b -t 0 -a "powermenu" "Speakers Muted" "Click here to unmute") = 2 ]]
+		then
+			pactl set-sink-mute @DEFAULT_SINK@ false
+			exit 0
+		fi
+	done
+}
+
 user_input=$(printf '%b' "$power_options" | rofi -dmenu  -i -p "$rofi_prompt")
 case $user_input in
 	Poweroff	) confirmation; loginctl poweroff -i ;;
 	Reboot		) confirmation; loginctl reboot -i ;;
 	Sleep		) confirmation; loginctl suspend -i ;;
+	Fake-Sleep	) confirmation; fake_sleep ;;
 	Hibernate	) confirmation; loginctl hibernate -i ;;
-	Hybrid-Sleep	) confirmation; loginctl hybrid-sleep -i;;
+	Hybrid-Sleep	) confirmation; loginctl hybrid-sleep -i ;;
 	*		) exit 1 ;;
 esac

@@ -3,7 +3,7 @@
 GPG_TTY=$(tty)
 export GPG_TTY
 
-. "/usr/share/bash-completion/bash_completion"
+#. "/usr/share/bash-completion/bash_completion"
 . "${HOME}/.alias"
 
 reset="\\[\\e[0m\\]"

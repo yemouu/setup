@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+xorg_autostart() {
+	[[ -f "${HOME}/.Xresources" ]] && xrdb -merge "${HOME}/.Xresources" &
+	[[ -f "${HOME}/.config/thm/current/Xresources" ]] && xrdb -merge "${HOME}/.config/thm/current/Xresources" &
+	xrandr -r 144 &
+	setroot --restore &
+	sxhkdm sxhkdm-default.sxhkdrc &
+	blugon -f &
+	autostart &
+}
+
+wayland_autostart() {
+	autostart &
+}
+
+autostart() {
+	! pgrep mpd && mpd &
+	"${HOME}/.setup/noti/music/music-changed" &
+	! pgrep syncthing && syncthing -no-browser &
+	megasync &
+}
+
+[[ $1 = "xorg" ]] && xorg_autostart
+[[ $1 = "wayland" ]] && wayland_autostart

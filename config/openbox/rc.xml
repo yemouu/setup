@@ -21,7 +21,7 @@
 	<theme>
 		<name>theme</name>
 		<titleLayout></titleLayout>
-		<keepBorder>yes</keepBorder>
+		<keepBorder>no</keepBorder>
 		<animateIconify>no</animateIconify>
 		<font place="ActiveWindow">
 			<name>monospace</name>
@@ -87,8 +87,8 @@
 		</popupFixedPosition>
 	</resize>
 	<margins>
-		<top>48</top>
-		<bottom>48</bottom>
+		<top>16</top>
+		<bottom>16</bottom>
 		<left>16</left>
 		<right>16</right>
 	</margins>
@@ -637,6 +637,14 @@
 			<fullscreen>yes</fullscreen>
 		</application>
 		<application class="xonotic-linux64-sdl">
+			<desktop>9</desktop>
+			<fullscreen>yes</fullscreen>
+		</application>
+		<application class="hl2_linux">
+			<desktop>9</desktop>
+			<fullscreen>yes</fullscreen>
+		</application>
+		<application class="Becalm.x86_64">
 			<desktop>9</desktop>
 			<fullscreen>yes</fullscreen>
 		</application>

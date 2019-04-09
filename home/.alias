@@ -25,7 +25,7 @@ alias se="sudo -e"
 alias gb="cd ~-"
 
 alias info="info --vi-keys"
-alias q="exit"
+alias {q,Q}="exit"
 alias snsy="TERM=xterm-256color ssh -p 50769 ye@server-n-stuff"
 alias snss="TERM=xterm-256color ssh -p 50769 servernstuff@server-n-stuff"
 
