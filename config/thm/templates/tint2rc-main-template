@@ -1,0 +1,55 @@
+rounded = 0
+border_width = 0
+border_sides = LRTB
+background_color = #{color8} 100
+border_color = #{color8} 100
+
+panel_items = PTCP
+panel_position = top center horizontal
+panel_size = 100% 24
+panel_padding = 4 4 0
+font_shadow = 0
+panel_background_id = 1
+wm_menu = 1
+disable_transparency = 1
+
+taskbar_padding = 4 0 0
+taskbar_sort_order = application
+task_icon = 1
+task_text = 1
+task_maximum_size = 128
+task_padding = 0 0 4
+urgent_nb_of_blink = 32
+task_font = sans Regular 8
+task_font_color = #{color7} 100
+
+time1_format = %H:%M %d %B %Y
+time1_font = sans Regular 8
+clock_font_color = #{color7} 100
+clock_padding = 4 0
+clock_background_id = 1
+
+tooltip_padding = 4 4
+tooltip_show_timeout = 1
+tooltip_hide_timeout = 0
+tooltip_background_id = 1
+tooltip_font_color = #{color7} 100
+tooltip_font = sans Regular 10
+
+button = new
+button_icon = /home/ye/.config/thm/current/application-menu.svg
+button_tooltip = Start Menu
+button_font = sans Regular 10
+button_font_color = #{color8} 100
+button_background_id = 1
+button_padding = 0 0 0
+button_lclick_command = jgmenu_run
+
+button = new
+button_icon = /home/ye/.config/thm/current/poweroff.svg
+button_tooltip = Power Menu
+button_font = sans Regular 10
+button_font_color = #{color8} 100
+button_background_id = 1
+button_padding = 0 0 0
+button_lclick_command = powermenu

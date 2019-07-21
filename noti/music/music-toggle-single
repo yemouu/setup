@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+app_name="MPD Toggle Single"
+summary="Single: $(mpc single | awk NR==3'{print $8}')"
+body="$(mpc -q current)"
+
+dunstify -a "$app_name" \
+	-t 4000 \
+	-r 1 \
+	"$summary" \
+	"$body"

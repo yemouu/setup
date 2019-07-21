@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+app_name="MPD Shuffle"
+summary="Shuffled"
+body="$(mpc -q current)"
+
+mpc -q shuffle
+
+dunstify -a "${app_name}" \
+	-t 4000 \
+	-r 1 \
+	"$summary" \
+	"$body"
