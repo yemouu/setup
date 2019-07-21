@@ -1,19 +1,19 @@
 [global]
 	monitor = 0
 	follow = mouse
-	geometry = "500x2-8-8"
+	geometry = "600-4-4"
 	indicate_hidden = no
 	shrink = yes
 	transparency = 0
 	notification_height = 0
-	separator_height = 2
-	separator_color = auto
+	separator_height = 4
+	separator_color = "#{color8}"
 	padding = 14
 	horizontal_padding = 14
-	frame_width = 2
+	frame_width = 4
 	sort = no
 	idle_threshold = 0
-	font = Noto Mono 8
+	font = monospace 10
 	line_height = 0
 	markup = full
 	format = "<b>%a</b>\n%s\n%b"
@@ -31,7 +31,7 @@
 	sticky_history = yes
 	history_length = 10
 	dmenu = /usr/bin/rofi -dmenu
-	browser = /usr/bin/chromium
+	browser = /usr/bin/firefox
 	always_run_script = true
 	title = Dunst
 	class = Dunst
@@ -49,20 +49,20 @@
 
 [urgency_low]
 	timeout = 4
-	background = "#{color0}"
-	foreground = "#{color7}"
-	frame_color = "#{color2}"
+	background = "#{bg_color}"
+	foreground = "#{fg_color}"
+	frame_color = "#{color8}"
 
 [urgency_normal]
 	timeout = 5
-	background = "#{color0}"
-	foreground = "#{color7}"
-	frame_color = "#{color1}"
+	background = "#{bg_color}"
+	foreground = "#{fg_color}"
+	frame_color = "#{color7}"
 
 [urgency_critical]
 	timeout = 0
-	background = "#{color0}"
-	foreground = "#{color7}"
-	frame_color = "#{color3}"
+	background = "#{bg_color}"
+	foreground = "#{fg_color}"
+	frame_color = "#{color1}"
 
-# vim: ft=cfg
+# vim: se ft=cfg :

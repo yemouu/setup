@@ -23,9 +23,6 @@ def_key "h"
 def_key "l"
     next_column
 
-def_key "."
-    show_lyrics
-
 def_key "n"
     next_found_item
 def_key "N"

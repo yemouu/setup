@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
-rofi_prompt="Power Menu"
-power_options="Poweroff\\nReboot\\nSleep\\nFake-Sleep\\nHibernate\\nHybrid-Sleep"
+prompt="powermenu"
+options="poweroff\\nreboot\\nfake-sleep\\nsleep\\nhibernate\\nhybrid-sleep"
 
-confirmation() {
-	rofi_confirmation_prompt="Are you sure? [$user_input]"
-	user_input="$(printf "yes\\nno" | rofi -dmenu -i -p "$rofi_confirmation_prompt")"
-	case $user_input in
-		Y*|y*	) return ;;
+confirm() {
+	local prompt="Are you sure? [$input]"
+	local input
+	input="$(printf "yes\\nno" | rofi -dmenu -i -p "$prompt")"
+	case $input in
+		Y*|y*	) return 0 ;;
 		N*|n*	) exit 0 ;;
 		*	) exit 1 ;;
 	esac
 }
 
-fake_sleep() {
+sleep_task() {
 	mpc -q pause
 	pactl set-source-mute @DEFAULT_SOURCE@ true
 	pactl set-sink-mute @DEFAULT_SINK@ true
-	xset dpms force off
 	while true
 	do
 		if [[ $(dunstify -b -t 0 -a "powermenu" "Speakers Muted" "Click here to unmute") = 2 ]]
@@ -28,13 +28,12 @@ fake_sleep() {
 	done
 }
 
-user_input=$(printf '%b' "$power_options" | rofi -dmenu  -i -p "$rofi_prompt")
-case $user_input in
-	Poweroff	) confirmation; loginctl poweroff -i ;;
-	Reboot		) confirmation; loginctl reboot -i ;;
-	Sleep		) confirmation; loginctl suspend -i ;;
-	Fake-Sleep	) confirmation; fake_sleep ;;
-	Hibernate	) confirmation; loginctl hibernate -i ;;
-	Hybrid-Sleep	) confirmation; loginctl hybrid-sleep -i ;;
+input=$(printf '%b' "$options" | rofi -dmenu  -i -p "$prompt")
+case $input in
+	poweroff	) confirm; alacritty -e sudo openrc-shutdown -p now ;;
+	reboot		) confirm; alacritty -e sudo openrc-shutdown -r now ;;
+	sleep		) confirm; sleep_task & sleep 0.5 && xset dpms force off ;;
+	hibernate	) confirm; sleep_task & alacritty -e loginctl hibernate -i ;;
+	hybrid-sleep	) confirm; sleep_task & alacritty -e loginctl hybrid-sleep -i ;;
 	*		) exit 1 ;;
 esac

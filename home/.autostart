@@ -5,9 +5,11 @@ xorg_autostart() {
 	[[ -f "${HOME}/.config/thm/current/Xresources" ]] && xrdb -merge "${HOME}/.config/thm/current/Xresources" &
 	xrandr -r 144 &
 	setroot --restore &
-	sxhkdm sxhkdm-default.sxhkdrc &
+	compton -b &
 	blugon -f &
+	start-pulseaudio-x11 &
 	autostart &
+	sxhkdm sxhkdm-default.sxhkdrc &
 }
 
 wayland_autostart() {
@@ -16,10 +18,10 @@ wayland_autostart() {
 
 autostart() {
 	! pgrep mpd && mpd &
+	! pgrep syncthing && syncthing -no-browser &> /tmp/syncthing-autostart.log &
 	"${HOME}/.setup/noti/music/music-changed" &
-	! pgrep syncthing && syncthing -no-browser &
-	megasync &
+	parsecd app_daemon=1:app_silent=1:hidden=1 &
 }
 
-[[ $1 = "xorg" ]] && xorg_autostart
-[[ $1 = "wayland" ]] && wayland_autostart
+[[ $1 = "xorg" ]] && xorg_autostart &
+[[ $1 = "wayland" ]] && wayland_autostart &

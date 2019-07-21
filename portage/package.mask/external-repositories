@@ -1,9 +1,4 @@
-*/*::ahrs
-*/*::go-overlay
 */*::hering-overlay
 */*::libressl
-*/*::rust
 */*::steam-overlay
-*/*::wizard
-*/*::4nykey
 */*::vampire

@@ -4,19 +4,8 @@ app_name="MPD Volume"
 
 mpc volume +2
 
-if command -v dunstify
-then
-	dunstify -a "${app_name}" \
-		-t 4000 \
-		-r 13596705 \
-		"Increasing: $(mpc volume | sed -e "s/:/:\\ /g"| \
-		awk '{print $2}')"
-elif command -v notify-send
-then
-	notify-send -t 4000 \
-		-a "${app_name}" \
-		"Increasing: $(mpc volume | awk '{print $2}')"
-else 
-	echo "dunstify/notify-send not found"
-	exit 1
-fi
+dunstify -a "${app_name}" \
+	-t 4000 \
+	-r 1 \
+	"Increasing: $(mpc volume | sed -e "s/:/:\\ /g"| \
+	awk '{print $2}')"

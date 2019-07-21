@@ -37,11 +37,7 @@ set scrolloff=4
 set clipboard+=unnamedplus
 set completeopt-=preview
 
-nnoremap <leader>1 :set relativenumber!<enter>
-nnoremap <localleader>1 :set number!<enter>
-
 let g:deoplete#enable_at_startup = 1
 
-au FileType xml setlocal shiftwidth=2 tabstop=2
-
+set background=light
 colorscheme theme

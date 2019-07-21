@@ -1,8 +1,7 @@
 media-libs/libpng apng
-www-client/firefox geckodriver system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite
-net-libs/nodejs -npm -ssl
-sys-devel/llvm gold
+www-client/firefox geckodriver system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite lto pgo
 dev-lang/python sqlite
 dev-lang/python sqlite
 dev-db/sqlite secure-delete
 media-libs/libvpx postproc
+x11-base/xorg-server xvfb

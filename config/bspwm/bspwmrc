@@ -8,8 +8,10 @@ bspc config normal_border_color "#${color8}"
 bspc config focused_border_color "#${fg_color}"
 
 bspc config border_width 4
-bspc config window_gap 16
+bspc config window_gap 0
 bspc config split_ratio 0.50
+bspc config borderless_monocle true
+bspc config gapless_monocle true
 
 for i in {1..10}; do bspc desktop "^$i" -l monocle; done
 

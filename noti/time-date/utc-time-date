@@ -3,7 +3,7 @@
 app_name="Time and Date (UTC)"
 
 summary="Time: $(TZ=UTC date +'%R')"
-body="Date: $(TZ=UTC date +'%a %d %b %Y')"
+body="Date: $(TZ=UTC date +'%Y %b %a %d')"
 
 if command -v dunstify
 then

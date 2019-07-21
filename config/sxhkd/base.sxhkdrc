@@ -1,6 +1,5 @@
 XF86Audio{Raise,Lower}Volume
 	${HOME}/.setup/noti/volume/microphone-volume-{up,down}
-
 {_,alt +,ctrl +} XF86AudioMute
 	${HOME}/.setup/noti/volume/microphone-{please-die,volume-set-base,volume-set-max}
 super + e

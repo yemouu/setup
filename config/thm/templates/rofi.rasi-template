@@ -154,3 +154,5 @@ textbox-prompt-colon {
     spacing: 0;
     text-color: @normal-foreground;
 }
+
+/* vim: se ft=css : */

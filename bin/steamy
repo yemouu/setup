@@ -2,10 +2,16 @@
 
 password_file="${HOME}/.steampw"
 silent_mode="-silent"
-account_number=1
 
 check_steam() { pgrep steam &> /dev/null; }
 close_steam() { check_steam && steam -shutdown; sleep 5; }
+launch_steam() {
+	. "$password_file"
+	close_steam
+	username="steam_un$account_number"
+	password="steam_pw$account_number"
+	dbr steam $silent_mode $developer_mode -login "${!username}" "${!password}"
+}
 
 if [[ $# -ge 1 ]]
 then
@@ -30,8 +36,13 @@ then
 	done
 fi
 
-. "$password_file"
-close_steam
-username="steam_un$account_number"
-password="steam_pw$account_number"
-exec steam $silent_mode $developer_mode -login "${!username}" "${!password}"
+if [[ -n $account_number ]]
+then
+	launch_steam
+elif check_steam
+then
+	dbr steam
+else
+	account_number=1
+	launch_steam
+fi

@@ -1,8 +1,7 @@
 #!/usr/bin/env sh
 
 DELETE=false
-CONTINUE=false
-ME=false
+CONTINUE=false ME=false
 
 usage() { printf '%s' " 
 Usage: scf [OPTION] [-u [USER] | -m | -d]
@@ -28,14 +27,14 @@ Options
 }
 
 get_arguments() {
-	while getopts "dcu:hmt" OPTION; do
+	while getopts "dcu:hmt:" OPTION; do
 		case "$OPTION" in
 			"d"	)	DELETE=true		;;
 			"c"	)	CONTINUE=true		;;
 			"u"	)	USERNAME="${OPTARG}"	;;
 			"h"	)	usage; exit 0		;;
 			"m"	)	ME=true			;;
-			"t"	)	TRACK=true		;;
+			"t"	)	TRACK="${OPTARG}"	;;
 			"*"	)	usage; exit 1		;;
 		esac
 	done
@@ -64,31 +63,27 @@ clean() {
 }
 
 download() {
-	if [ -z "${USERNAME}" ] && [ ${ME} = false ]
+	if [ -z "${USERNAME}" ] && [ ${ME} = false ] && [ -z "${TRACK}" ]
 	then
 		exit 1
 	elif [ "${CONTINUE}" = true ] && [ -n "${USERNAME}" ]
 	then
-		scdl \
-			-l "https://soundcloud.com/${USERNAME}" \
-			-fc --onlymp3 --addtofile \
-			--download-archive "${DIRECTORY}/download-archive"
+		scdl -l "https://soundcloud.com/${USERNAME}" -fc --addtofile --onlymp3 --download-archive "${DIRECTORY}/download-archive"
 	elif [ ${CONTINUE} = false ] && [ -n "${USERNAME}" ]
 	then
-		scdl \
-			-l "https://soundcloud.com/${USERNAME}" \
-			-f --onlymp3 --addtofile \
-			--download-archive "${DIRECTORY}/download-archive"
+		scdl -l "https://soundcloud.com/${USERNAME}" -f --addtofile --onlymp3 --download-archive "${DIRECTORY}/download-archive"
 	elif [ ${CONTINUE} = true ] && [ ${ME} = true ]
 	then
-		scdl \
-			-fc --onlymp3 --addtofile \
-			--download-archive "${DIRECTORY}/download-archive" me
+		scdl -fc --addtofile --onlymp3 --download-archive "${DIRECTORY}/download-archive" me
 	elif [ ${CONTINUE} = false ] && [ ${ME} = true ]
 	then
-		scdl \
-			-f --onlymp3 --addtofile \
-			--download-archive "${DIRECTORY}/download-archive" me
+		scdl -f --addtofile --onlymp3 --download-archive "${DIRECTORY}/download-archive" me
+	elif [ ${CONTINUE} = true ] && [ -n "${TRACK}" ]
+	then
+		scdl -fc --addtofile --onlymp3 --download-archive "${DIRECTORY}/download-archive" -l "${TRACK}"
+	elif [ ${CONTINUE} = false ] && [ -n "${TRACK}" ]
+	then
+		scdl -f --addtofile --onlymp3 --download-archive "${DIRECTORY}/download-archive" -l "${TRACK}"
 	fi
 }
 

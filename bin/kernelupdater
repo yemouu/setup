@@ -2,13 +2,26 @@
 
 set -e
 [[ $EUID -ne 0 ]] && { echo Run this script as root; exit 1; }
-cd /usr/src/linux
-make clean
-zcat /proc/config.gz > /usr/src/linux/.config
-make olddefconfig
-echo Updated old config for new kernel.
-[[ "$1" = "-e" ]] && { make nconfig; echo Kernel config edited; }
-make -j12
-echo Kernel compiled
-mv arch/x86/boot/bzImage /boot/EFI/Gentoo/bzImage
-echo Moved kernel to EFI partition
+
+time {
+	echo cd /usr/src/linux
+	cd /usr/src/linux || { echo "failed to cd into /usr/src/linux"; exit 1; }
+	
+	echo make clean
+	make clean || { echo "failed make clean"; exit 1; }
+	
+	echo "zcat /proc/config.gz > /usr/src/linux/.config"
+	zcat /proc/config.gz > /usr/src/linux/.config
+	
+	echo make olddefconfig
+	make olddefconfig
+	
+	[[ "$1" = "-e" ]] && { echo make menuconfig; make menuconfig; }
+	
+	echo make -j4
+	make -j4 || exit 1
+	
+	echo mv arch/x86/boot/bzImage /boot/EFI/Gentoo/bzImage 
+	mv arch/x86/boot/bzImage /boot/EFI/Gentoo/bzImage || \
+		{ echo failed to move kernel to /boot/EFI/Gentoo/bzImage; exit 1; }
+}

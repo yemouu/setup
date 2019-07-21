@@ -25,37 +25,37 @@
 		<animateIconify>no</animateIconify>
 		<font place="ActiveWindow">
 			<name>monospace</name>
-			<size>8</size>
+			<size>10</size>
 			<weight>bold</weight>
 			<slant>normal</slant>
 		</font>
 		<font place="InactiveWindow">
 			<name>monospace</name>
-			<size>8</size>
+			<size>10</size>
 			<weight>bold</weight>
 			<slant>normal</slant>
 		</font>
 		<font place="MenuHeader">
 			<name>monospace</name>
-			<size>8</size>
+			<size>10</size>
 			<weight>normal</weight>
 			<slant>normal</slant>
 		</font>
 		<font place="MenuItem">
 			<name>monospace</name>
-			<size>8</size>
+			<size>10</size>
 			<weight>normal</weight>
 			<slant>normal</slant>
 		</font>
 		<font place="ActiveOnScreenDisplay">
 			<name>monospace</name>
-			<size>8</size>
+			<size>10</size>
 			<weight>bold</weight>
 			<slant>normal</slant>
 		</font>
 		<font place="InactiveOnScreenDisplay">
 			<name>monospace</name>
-			<size>8</size>
+			<size>10</size>
 			<weight>bold</weight>
 			<slant>normal</slant>
 		</font>
@@ -87,10 +87,10 @@
 		</popupFixedPosition>
 	</resize>
 	<margins>
-		<top>16</top>
-		<bottom>16</bottom>
-		<left>16</left>
-		<right>16</right>
+		<top>0</top>
+		<bottom>0</bottom>
+		<left>0</left>
+		<right>0</right>
 	</margins>
 	<keyboard>
 		<chainQuitKey>w-g</chainQuitKey>
@@ -577,9 +577,9 @@
 			<layer>below</layer>
 			<maximized>true</maximized>
 		</application>
-		<application class="Google-chrome-unstable">
+		<application class="webapp" name="Navigator">
 			<decor>no</decor>
-			<desktop>1</desktop>
+			<desktop>2</desktop>
 			<layer>below</layer>
 			<maximized>true</maximized>
 		</application>
@@ -588,9 +588,6 @@
 			<desktop>1</desktop>
 			<layer>below</layer>
 			<maximized>true</maximized>
-		</application>
-		<application class="MultiMC*">
-			<desktop>9</desktop>
 		</application>
 		<application class="Golf With Your Friends.x86_64">
 			<desktop>9</desktop>
@@ -614,6 +611,9 @@
 		</application>
 		<application class="Wine">
 			<desktop>9</desktop>
+		</application>
+		<application name="*.exe">
+			<desktop>9</desktop>
 			<fullscreen>yes</fullscreen>
 		</application>
 		<application class="WolfPackBattalion-Linux-DebugGame">
@@ -632,11 +632,15 @@
 			<desktop>9</desktop>
 			<fullscreen>yes</fullscreen>
 		</application>
+		<application class="StardewValley*">
+			<desktop>9</desktop>
+			<fullscreen>yes</fullscreen>
+		</application>
 		<application class="Unturned.x86_64">
 			<desktop>9</desktop>
 			<fullscreen>yes</fullscreen>
 		</application>
-		<application class="xonotic-linux64-sdl">
+		<application class="xonotic-sdl">
 			<desktop>9</desktop>
 			<fullscreen>yes</fullscreen>
 		</application>
@@ -648,8 +652,29 @@
 			<desktop>9</desktop>
 			<fullscreen>yes</fullscreen>
 		</application>
+		<application title="The Escapists 2">
+			<desktop>9</desktop>
+			<fullscreen>yes</fullscreen>
+		</application>
+		<application title="Himno*">
+			<desktop>9</desktop>
+			<fullscreen>yes</fullscreen>
+		</application>
+		<application class="parsecd">
+			<desktop>9</desktop>
+			<fullscreen>yes</fullscreen>
+		</application>
+		<application class="MultiMC*">
+			<desktop>10</desktop>
+		</application>
+		<application class="parsec" name="Navigator">
+			<desktop>10</desktop>
+		</application>
+		<application class="Lutris">
+			<desktop>10</desktop>
+		</application>
 		<application class="Steam">
 			<desktop>10</desktop>
 		</application>
-		</applications>
-	</openbox_config>
+	</applications>
+</openbox_config>

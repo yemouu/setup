@@ -5,7 +5,7 @@
 	exit 1
 }
 
-> /tmp/sxhkdm.lock
+echo lock > /tmp/sxhkdm.lock
 
 if [[ -n $XDG_CONFIG_HOME ]]
 then

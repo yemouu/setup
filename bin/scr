@@ -24,7 +24,7 @@ rec_args="-f x11grab -r 60"
 rec_mic_args="-f pulse -i ${pa_source}"
 rec_audio_args="-f pulse -i ${pa_sink}"
 rec_multi_audio_args="-filter_complex amix=inputs=2"
-rec_opt_args="-c:v libx264 -crf 20 -preset veryfast"
+rec_opt_args="-c:v libx264 -crf 20 -preset veryfast -pix_fmt yuv420p"
 
 usage() {
 printf '%s' "usage: scr action [options]
@@ -65,7 +65,6 @@ done
 scr_pic() {
 	[[ ! -d ${scr_pic_dir} ]] && { mkdir -p "${scr_pic_dir}" || exit 1; }
 	[[ -z ${fullscreen} ]] && {
-		echo yeet
 		read -r X Y W H < <(slop -q -f '%x %y %w %h')
 		pic_selection="-crop ${W}x${H}+${X}+${Y}"
 	}

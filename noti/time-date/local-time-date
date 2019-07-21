@@ -3,7 +3,7 @@
 app_name="Time and Date (Local)"
 
 summary="Time: $(date +'%R')"
-body="Date: $(date +'%a %d %b %Y')"
+body="Date: $(date +'%Y %b %a %d')"
 
 if command -v dunstify
 then

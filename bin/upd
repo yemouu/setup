@@ -1,125 +1,83 @@
 #!/usr/bin/env bash
 
-upd_pypi3=false
-upd_gentoo_repos=false
-upd_gentoo_mirrors=false
-upd_git_repos=false
+info() {
+	case $1 in
+		f) msg="fail"; color="\e[31;1m";;
+		i) msg="info"; color="\e[32;1m";;
+		w) msg="warn"; color="\e[33;1m";;
+	esac
+	shift
+	printf "\n${color}%s\e[m %s\n\n" "[${msg}]" "$*"
+}
 
-upd_git_repos_dir="${HOME}/doc/git"
-
-usage() { printf '%s' "
-Usage: upd [OPTIONS]
-
-Options:
-	-h	displays this message
-	-p	enables pip package updates
-	-g	enables gentoo repos sync
-	-G	enables git repo updating
-
+usage() { printf '%s' "usage: ${0##*/} [options]
+	-a: requires confirmation to update and remove packages
+	-c: removes orphaned packages
+	-h: displays usage statement
+	-r: regenerates ebuild cache
+	-s: skip repository sync
+	-u: updates packages
 "
 }
 
-get_args() {
-	while getopts "hpplgGm" OPTS
+remove_orphans() {
+	info i removing orphans
+	command -v emerge &> /dev/null || info w emerge not found
+	printf '%s\n' "$ sudo emerge --depclean --verbose $ask"
+	sudo emerge --depclean --verbose $ask || { info f failed to remove orphans; exit 1; }
+	info i orphans removed
+}
+
+regen_cache() {
+	info i regenerating ebuild cache
+	command -v emerge &> /dev/null || info w emerge not found
+	printf '%s\n' "$ sudo emerge --regen --verbose"
+	sudo emerge --regen --verbose || { info f failed to regenerate ebuild cache; exit 1; }
+	info i ebuild cache regenerated
+}
+
+sync_repo() {
+	info i syncing repositories
+	command -v emaint &> /dev/null || info w emaint not found
+	printf '%s\n' "$ sudo emaint sync --auto"
+	sudo emaint sync --auto || { info f failed to sync repositories; exit 1;}
+	info i repositories synced
+}
+
+update_pkgs() {
+	info i updating packages
+	command -v emerge &> /dev/null || info w emerge not found
+	printf '%s\n' "$ sudo emerge --update --deep --newuse --with-bdeps=y --verbose @world $ask"
+	sudo emerge --update --deep --newuse --with-bdeps=y --verbose @world $ask || \
+		{ info f failed to update packages; exit 1; }
+	info i packages updated
+}
+
+upd_sync_repos=true
+upd_regen_cache=false
+upd_update_pkgs=false
+upd_remove_orphans=false
+
+[[ -z $* ]] && { sync_repo; exit 0; }
+for (( a=1; a<$(( ${#@} + 1 )); a++ ))
+do
+	arg=${!a}
+	[[ ! $arg =~ ^-.* || ${#arg} -lt 2 ]] && continue
+	for (( i=1; i<${#arg}; i++ ))
 	do
-		case $OPTS in
-			h ) usage;exit 0 ;;
-			p ) upd_pypi3=true ;;
-			g ) upd_gentoo_repos=true ;;
-			G ) upd_git_repos=true ;;
-			* ) usage;exit 1;;
+		case ${arg:$i:1} in
+			a ) ask="--ask" ;;
+			c ) upd_remove_orphans=true ;;
+			h ) usage; exit 0 ;;
+			r ) upd_regen_cache=true ;;
+			s ) upd_sync_repos=false ;;
+			u ) upd_update_pkgs=true ;;
+			* ) printf '%s\n' "${0##*/}: -${a:$i:1} is an invalid argument"; usage; exit 1 ;;
 		esac
 	done
-	if [[ $upd_pypi3 = false && $upd_gentoo_repos = false && \
-		$upd_git_repos = false && $upd_gentoo_mirrors = false ]]
-	then
-		echo "Nothing selected for updates"
-		exit 1
-	fi
-}
+done
 
-pypi3() {
-	if [[ "$upd_pypi3" = false ]] 
-	then 
-		return 0
-	fi
-
-	if ! command -v pip3 > /dev/null
-	then
-		echo "pip3 not found"
-		return 1
-	fi
-
-	echo "Updating pip packages..."
-	pkgs=$(pip list -o --user --disable-pip-version-check --format=freeze \
-		| cut -d'=' -f1)
-
-	# shellcheck disable=SC2086
-	pip3 install -U --disable-pip-version-check \
-		--user $pkgs 2> /dev/null 
-
-	echo "Done."
-}
-
-gentoo_repos() {
-	if [[ "$upd_gentoo_repos" = false ]]
-	then
-		return 0
-	fi
-
-	if ! command -v emerge > /dev/null
-	then
-		echo "emerge not found"
-		return 1
-	fi
-
-	echo "Updating Gentoo Repository..."
-	sudo emaint sync -A
-	sudo emerge --regen --jobs 12
-	if command -v eix > /dev/null
-	then
-		sudo cp -a /var/cache/eix/portage.eix \
-			/var/cache/eix/previous.eix
-		sudo eix-update
-		sudo eix-remote update
-	fi
-	echo "Done."
-}
-
-git_repos() {
-	if [[ "$upd_git_repos" = false ]]
-	then
-		return 0
-	fi
-
-	if ! command -v git > /dev/null
-	then
-		echo "git not found"
-		return 1
-	fi
-
-	echo "Upadting Git Repositories..."
-	dirs="$(find "$upd_git_repos_dir" -name ".git" | sed 's/.....$//g')"
-	for repo in $dirs
-	do
-		git -C "$repo" pull
-		echo "Repo Updated..."
-	done
-	echo "Done."
-}
-
-main() {
-	if [[ "$(id -u)" = 0 ]]
-	then
-		echo "Do not run this script as root."
-		exit 1
-	fi
-
-	get_args "$@"
-
-	git_repos
-	pypi3
-	gentoo_repos
-}
-
-main "$@"
+[[ $upd_sync_repos = true ]] && sync_repo
+[[ $upd_regen_cache = true ]] && regen_cache
+[[ $upd_update_pkgs = true ]] && update_pkgs
+[[ $upd_remove_orphans = true ]] && remove_orphans

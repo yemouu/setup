@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# vim: se ft=sh :
 alias {l,ls}="ls -F --color=auto"
 alias la="l -A"
 alias ll="l -lh"
@@ -12,11 +13,12 @@ alias clla="c;lla"
 
 alias suef="sudo -v;clear;sudo -u portage tail -f /var/log/emerge-fetch.log"
 alias suel="sudo -v;clear;sudo -u portage tail -f /var/log/emerge.log"
+alias suet="sudo -v;clear;sudo -u portage watch -cn 10 genlop -ci"
 alias sues="sudo -v;clear;sudo -Es"
 
 alias em="sudo emerge"
-alias emu="sudo emerge -uvDNa --with-bdeps=y @world"
-alias emul="sudo emerge -a @live-rebuild"
+alias emu="sudo emerge -uDN --with-bdeps=y @world"
+alias emul="sudo emerge @live-rebuild"
 alias qe="qlist -IR | grep -v ::gentoo"
 
 alias e="${EDITOR}"
@@ -27,7 +29,6 @@ alias gb="cd ~-"
 alias info="info --vi-keys"
 alias {q,Q}="exit"
 alias snsy="TERM=xterm-256color ssh -p 50769 ye@server-n-stuff"
-alias snss="TERM=xterm-256color ssh -p 50769 servernstuff@server-n-stuff"
 
 run() {
 	[[ $# -lt 2 ]] && return 1

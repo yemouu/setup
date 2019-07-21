@@ -1,4 +1,6 @@
 [colors]
+bg_color = #{bg_color}
+fg_color = #{fg_color}
 color0 = #{color0}
 color1 = #{color1}
 color2 = #{color2}
@@ -17,129 +19,92 @@ color14 = #{color14}
 color15 = #{color15}
 
 [bar/bar1]
-;override-redirect = true
-fixed-center = true
-
-#width = 80%
-height = 32
-#offset-x = 10%
-#offset-y = 0.75% 
+width = 100%
+height = 24
 
 background = ${colors.color0}
 foreground = ${colors.color15}
 
-border-size = 0
-border-color = ${colors.color0}
+line-size = 2
 
+padding = 2
 module-margin = 2
 
-font-0 = monospace:size=8;2
-font-1 = FontAwesome:size=12;3
-font-2 = Noto Sans Mono CJK TC Regular:size=8;2
-font-3 = Noto Sans Mono CJK KR Regular:size=8;2
-font-4 = Noto Sans Mono CJK JP Regular:size=8;2
-font-5 = Noto Sans Mono CJK SC Regular:size=8;2
-font-6 = Noto Color Emoji:scale=12;2
+font-0 = monospace:size=10;2
+font-1 = Noto Sans Mono:size=10;2
+font-2 = Noto Sans Mono CJK JP:size=10;2
+font-3 = Noto Sans Mono CJK TC:size=10;2
+font-4 = Noto Sans Mono CJK SC:size=10;2
+font-5 = Noto Sans Mono CJK KR:size=10;2
+font-6 = Noto Color Emoji:scale=14;2
 
-modules-left = workspaces
-modules-center = mpd
-modules-right = time date
-
-wm-restack = bspwm
-
-[module/workspaces]
-type = internal/bspwm
-
-enable-click = false
-enable-scroll = false
-
-label-focused = "  %name%  "
-label-focused-background = ${colors.color0}
-label-focused-foreground = ${colors.color15}
-
-label-occupied = "  %name%  "
-label-occupied-background = ${colors.color0}
-label-occupied-foreground = ${colors.color8}
-
-label-urgent = "  %name%  "
-label-urgent-background = ${colors.color8}
-label-urgent-foreground = ${colors.color15}
-
-label-empty =
+modules-left = music
+modules-center = workspaces
+modules-right = time date powermenu
 
 [module/time]
 type = internal/date
 interval = 1.0
 
-format = <label>
-format-background = ${colors.color0}
-format-foreground = ${colors.color2}
-format-prefix = ""
-format-prefix-background = ${colors.color0}
-format-prefix-foreground = ${colors.color2}
-
 time = %H:%M
-label = "  %time%  "
+
+format = <label>
+format-overline = ${colors.color2}
+
+label = " %time% "
 
 [module/date]
 type = internal/date
 interval = 1.0
 
+date = %d %a %b %Y
+
 format = <label>
-format-background = ${colors.color0}
-format-foreground = ${colors.color4}
-format-prefix = ""
-format-prefix-background = ${colors.color0}
-format-prefix-foreground = ${colors.color4}
+format-overline = ${colors.color6}
 
-date = %a %e %b %Y
-label = "  %date%  "
+label = " %date% "
 
-[module/mpd]
+[module/music]
 type = internal/mpd
 interval = 1.0
 
-host = 127.0.0.1
-port = 6600
+label-song = " %artist% - %title% "
+label-offline = " N/A "
 
-format-online = <label-song>
-format-online-background = ${colors.color0}
-format-online-foreground = ${colors.color1}
-format-online-prefix = ""
-format-online-prefix-background = ${colors.color0}
-format-online-prefix-foreground = ${colors.color1}
+format-playing = <label-song>
+format-playing-overline = ${colors.color1}
+
+format-paused = <label-song>
+format-paused-overline = ${colors.color1}
+
+format-stopped = " Music Stopped "
+format-stopped-overline = ${colors.color1}
 
 format-offline = <label-offline>
-format-offline-background = ${colors.color0}
-format-offline-foreground = ${colors.color1}
-format-offline-prefix = ""
-format-offline-prefix-background = ${colors.color0}
-format-offline-prefix-foreground = ${colors.color1}
+format-offline-overline = ${colors.color1}
 
-format-playing-prefix = ""
-format-playing-prefix-background = ${colors.color0}
-format-playing-prefix-foreground = ${colors.color1}
+[module/powermenu]
+type = custom/text
 
-format-paused-prefix = ""
-format-paused-prefix-background = ${colors.color0}
-format-paused-prefix-foreground = ${colors.color1}
+content = " Power Menu "
+content-overline = ${colors.color4}
 
-format-stopped = "  MPD Stopped  "
-format-stopped-prefix = ""
-format-stopped-prefix-background = ${colors.color0}
-format-stopped-prefix-foreground = ${colors.color1}
+click-left = powermenu
 
-label-song = "  %artist% - %title%  "
-label-offline = "  MPD Offline  "
+[module/workspaces]
+type = internal/xworkspaces
 
-label-song-maxlen = 65
-label-song-ellipsis = true
+enable-click = true
+enable-scroll = true
 
-[settings]
-screenchange-reload = true
+format-overline = ${colors.color3}
 
-[global/wm]
-margin-top = 0
-margin-bottom = 0
+label-active = " %name% "
 
-; vim:ft=dosini
+label-urgent = " %name% "
+label-urgent-foreground = ${colors.color1}
+
+label-occupied =
+label-empty =
+
+# vim: se ft=cfg :

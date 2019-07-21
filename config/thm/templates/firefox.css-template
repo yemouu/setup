@@ -1,8 +1,9 @@
-@import url('https://raw.githack.com/Customa/Customa-Firefox/master/Base/base.m.css');
+/*@import url('https://raw.githack.com/Customa/Customa-Firefox/master/Base/base.m.css');*/
 
 /*@import url('https://raw.githack.com/Customa/Customa-Firefox/master/Misc/autoHideNavigatorToolbox.m.css');*/
 @import url('https://raw.githack.com/Customa/Customa-Firefox/master/Misc/reorderTabContextMenu.m.css');
 :root {
+	/*
 	--color: {color9.rgb};
 	--accent: rgb(var(--color));
 	--background: #{bg_color};
@@ -24,6 +25,7 @@
 	--lwt-toolbar-field-background-color: var(--background) !important;
 	--lwt-toolbar-field-border-color: var(--background) !important;
 	--lwt-background-tab-separator-color: transparent !important;
+	*/
 
 	--tcmo-bookmarks: 10;
 	--tcmo-close-other-tabs: 2;
@@ -40,3 +42,5 @@
 	--tcmo-undo-close-tab: 1;
 	--tcmo-unpin-tabs: 4;
 }
+
+/* vim: se ft=css : */

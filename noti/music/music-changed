@@ -3,26 +3,12 @@
 app_name="MPD"
 summary="Now Playing"
 
-if command -v dunstify
-then
-	while true
-	do
-		dunstify -a "${app_name}" \
-			-t 4000 \
-			-r 13596705 \
-			"${summary}" \
-			"$(mpc current --wait)"
-	done
-elif command -v notify-send
-then
-	while true
-	do
-		notify-send -t 4000 \
-			-a "${app_name}" \
-			"${summary}" \
-			"$(mpc current --wait)"
-	done
-else
-	echo "dunstify/notify-send not found"
-	exit 1
-fi
+while true
+do
+	dunstify -a "$app_name" \
+		-t 4000 \
+		-r 1 \
+		-u low \
+		"$summary" \
+		"$(mpc current --wait)"
+done
