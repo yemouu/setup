@@ -1,0 +1,33 @@
+[ ! $USER = "ye" ] || [ ! $SHELL = "/bin/bash" ] && exit
+
+PATH="${HOME}/bin:$PATH"
+XDG_DATA_HOME="${HOME}/data"
+XDG_CONFIG_HOME="${HOME}/cfg"
+XDG_CACHE_HOME="${HOME}/tmp/cache"
+
+ALTERNATE_EDITOR=""
+VISUAL="emacsclient -c"
+EDITOR="emacsclient -t"
+PAGER="less"
+
+LESSHISTFILE="/dev/null"
+HISTFILE="${XDG_CACHE_HOME}/bash_history"
+HISTSIZE=
+HISTFILESIZE=
+HISTCONTROL+="erasedups:ignoreboth"
+
+VDPAU_DRIVER=radeonsi
+
+GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+XINITRC="${XDG_CONFIG_HOME}/xorg/xinitrc"
+INPUTRC="${XDG_CONFIG_HOME}/bash/inputrc"
+
+DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+
+export PATH XDG_{DATA,CONFIG,CACHE}_HOME ALTERNATE_EDITOR VISUAL EDITOR PAGER \
+       LESSHISTFILE HISTFILE HISTSIZE HISTFILESIZE HISTCONTROL GNUPGHOME XINITRC INPUTRC \
+       DBUS_SESSION_BUS_ADDRESS
+
+[ -f ${XDG_CONFIG_HOME}/bash/rc  ] && . "${XDG_CONFIG_HOME}/bash/rc"
+
+clear

@@ -72,7 +72,7 @@ do
 			r ) upd_regen_cache=true ;;
 			s ) upd_sync_repos=false ;;
 			u ) upd_update_pkgs=true ;;
-			* ) printf '%s\n' "${0##*/}: -${a:$i:1} is an invalid argument"; usage; exit 1 ;;
+			* ) printf '%s\n' "${0##*/}: -${arg:$i:1} is an invalid argument"; usage; exit 1 ;;
 		esac
 	done
 done

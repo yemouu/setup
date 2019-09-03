@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 prompt="powermenu"
-options="poweroff\\nreboot\\nfake-sleep\\nsleep\\nhibernate\\nhybrid-sleep"
+options="poweroff\\nreboot\\nsleep\\nhibernate\\nhybrid-sleep"
 
 confirm() {
 	local prompt="Are you sure? [$input]"

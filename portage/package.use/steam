@@ -1,4 +1,4 @@
-games-util/steam-games-meta mono steamgames_portal steamgames_source_engine steamgames_tf2
+games-util/steam-games-meta mono steamgames_portal steamgames_source_engine steamgames_tf2 steamgames_dirt_rally
 
 x11-libs/libX11 abi_x86_32
 x11-libs/libXau abi_x86_32

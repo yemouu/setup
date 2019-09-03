@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# vim: se ft=sh :
+alias {l,ls}="ls -F --color=auto"
+alias la="l -A"
+alias ll="l -lh"
+alias lla="l -lAh"
+
+alias c="clear"
+alias cl="c;l"
+alias cla="c;la"
+alias cll="c;ll"
+alias clla="c;lla"
+
+alias suef="sudo -v;clear;sudo -u portage tail -f /var/log/emerge-fetch.log"
+alias suel="sudo -v;clear;sudo -u portage tail -f /var/log/emerge.log"
+alias suet="sudo -v;clear;sudo -u portage watch -cn 10 genlop -ci"
+alias sues="sudo -v;clear;sudo -Es"
+
+alias em="sudo emerge -v"
+alias emu="sudo emerge -uvDN --with-bdeps=y @world"
+alias emul="sudo emerge -v @live-rebuild"
+alias qe="qlist -IR | grep -v ::gentoo"
+alias emdxml="metagen -e meeyou@tuta.io -t person -l"
+
+alias gb="cd ~-"
+alias e="$VISUAL"
+
+alias info="info --vi-keys"
+alias {q,Q}="exit"
+alias snsy="TERM=xterm-256color ssh -p 50769 ye@server-n-stuff"
+
+run() {
+    [[ $# -lt 2 ]] && return 1
+    for ((i=1; i<=$1; i++))
+    do
+	eval "${@:2}"
+    done
+}
+
+extract() {
+    [[ ! -f $1 ]] && return 1
+    for file in "$@"
+    do
+	case $file in
+	    *.tar* ) tar xvf "$file" ;;
+	    *.zip ) unzip "$file";;
+	    * ) echo ;;
+	esac
+    done
+}

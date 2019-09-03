@@ -1,3 +1,0 @@
-dev-lua/lpeg luajit
-dev-lua/mpack luajit
-app-editors/neovim python -nvimpager

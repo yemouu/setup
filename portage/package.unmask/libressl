@@ -1,4 +1,3 @@
 net-libs/nodejs::libressl
 net-nds/openldap::libressl
 dev-qt/qtnetwork::libressl
-=dev-perl/Net-SSLeay-1.860.0_p9::libressl

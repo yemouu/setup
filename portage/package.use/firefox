@@ -1,5 +1,5 @@
 media-libs/libpng apng
-www-client/firefox geckodriver system-harfbuzz system-icu system-jpeg system-libevent system-libvpx system-sqlite lto pgo
+www-client/firefox custom-cflags custom-optimization hwaccel lto pgo -screenshot
 dev-lang/python sqlite
 dev-lang/python sqlite
 dev-db/sqlite secure-delete

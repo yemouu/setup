@@ -1,0 +1,58 @@
+! X colors.
+*foreground:        #{fg_color}
+*background:        #{bg_color}
+*.foreground:       #{fg_color}
+*.background:       #{bg_color}
+emacs*foreground:   #{fg_color}
+emacs*background:   #{bg_color}
+URxvt*foreground:   #{fg_color}
+XTerm*foreground:   #{fg_color}
+UXTerm*foreground:  #{fg_color}
+URxvt*background:   #{bg_color}
+XTerm*background:   #{bg_color}
+UXTerm*background:  #{bg_color}
+URxvt*cursorColor:  #{fg_color}
+XTerm*cursorColor:  #{fg_color}
+UXTerm*cursorColor: #{fg_color}
+URxvt*borderColor:  #{bg_color}
+
+! Colors 0-15.
+*.color0: #{color0}
+*color0:  #{color0}
+*.color1: #{color1}
+*color1:  #{color1}
+*.color2: #{color2}
+*color2:  #{color2}
+*.color3: #{color3}
+*color3:  #{color3}
+*.color4: #{color4}
+*color4:  #{color4}
+*.color5: #{color5}
+*color5:  #{color5}
+*.color6: #{color6}
+*color6:  #{color6}
+*.color7: #{color7}
+*color7:  #{color7}
+*.color8: #{color8}
+*color8:  #{color8}
+*.color9: #{color9}
+*color9:  #{color9}
+*.color10: #{color10}
+*color10:  #{color10}
+*.color11: #{color11}
+*color11:  #{color11}
+*.color12: #{color12}
+*color12:  #{color12}
+*.color13: #{color13}
+*color13:  #{color13}
+*.color14: #{color14}
+*color14:  #{color14}
+*.color15: #{color15}
+*color15:  #{color15}
+
+! Black color that will not be affected by bold highlighting.
+*.color66: #{color0}
+*color66:  #{color0}
+
+! Set depth to make transparency work.
+URxvt*depth: 32

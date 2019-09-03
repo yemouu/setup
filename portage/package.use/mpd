@@ -1,2 +1,2 @@
-media-sound/mpd -udisks
+media-sound/mpd -udisks -flac -mad -vorbis -network
 media-sound/ncmpcpp taglib

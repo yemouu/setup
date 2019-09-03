@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+[ -f "${XDG_CONFIG_HOME}/xorg/xresources" ] && xrdb -merge "${XDG_CONFIG_HOME}/xorg/xresources" &
+[ -f "${XDG_CONFIG_HOME}/thm/current/Xresources" ] && xrdb -merge "${XDG_CONFIG_HOME}/thm/current/Xresources" &
+xrandr -r 144 &
+dbus-daemon --session --address=unix:path="${XDG_RUNTIME_DIR}/bus" --nopidfile --syslog &
+start-pulseaudio-x11 &
+setroot --restore &
+blugon -f &
+
+! pgrep mpd && mpd &
+! pgrep syncthing && syncthing -no-browser &
+"${HOME}/.setup/noti/music/music-changed" &
+parsecd app_daemon=1:app_silent=1:hidden=1 &
+
+case $1 in
+    bspwm|bsp ) exec bspwm ;;
+    herbstluftwm|hlwm ) exec herbstluftwm --locked ;;
+    openbox|ob ) exec openbox-session ;;
+esac
