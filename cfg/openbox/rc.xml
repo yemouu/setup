@@ -482,17 +482,17 @@
 	<command>~/doc/setup/noti/volume/microphone-volume-down</command>
       </action>
     </keybind>
-    <keybind key="XF86AudioMute">
+    <keybind key="C-XF86AudioMute">
       <action name="Execute">
 	<command>~/doc/setup/noti/volume/microphone-please-die</command>
       </action>
     </keybind>
-    <keybind key="A-XF86AudioMute">
+    <keybind key="XF86AudioMute">
       <action name="Execute">
 	<command>~/doc/setup/noti/volume/microphone-volume-set-base</command>
       </action>
     </keybind>
-    <keybind key="C-XF86AudioMute">
+    <keybind key="A-XF86AudioMute">
       <action name="Execute">
 	<command>~/doc/setup/noti/volume/microphone-volume-set-max</command>
       </action>

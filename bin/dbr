@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-mid=$(</etc/machine-id)
-. "${HOME}/.dbus/session-bus/${mid}-0"
-export DBUS_SESSION_BUS_ADDRESS DBUS_SESSION_BUS_PID DBUS_SESSION_BUS_WINDOWID
-exec "$@"

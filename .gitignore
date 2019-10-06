@@ -1,6 +1,4 @@
 *log
-cfg/mpd/state
-cfg/mpd/database
 ._cfg*
 20opengl.conf
 cfg/nvim/.netrwhist

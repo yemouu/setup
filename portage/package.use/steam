@@ -38,3 +38,4 @@ x11-libs/libva-vdpau-driver abi_x86_32
 dev-libs/wayland abi_x86_32
 virtual/pkgconfig abi_x86_32
 dev-util/pkgconf abi_x86_32
+x11-libs/libxkbcommon abi_x86_32

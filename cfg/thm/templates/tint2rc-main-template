@@ -1,45 +1,35 @@
 rounded = 0
-border_width = 0
-border_sides = LRTB
 background_color = #{bg_color} 100
-border_color = #{bg_color} 100
+background_color_hover = #{bg_color} 100
+background_color_pressed = #{bg_color} 100
 
-panel_items = PTCP
-panel_position = top center horizontal
+rounded = 0
+background_color = #{bg_color} 100
+background_color_hover = #{color8} 40
+background_color_pressed = #{color8} 80
+
+panel_items = T
+panel_position = bottom center horizontal
 panel_size = 100% 32
-panel_padding = 4 4 0
-font_shadow = 0
+panel_padding = 0 0
 panel_background_id = 1
-wm_menu = 1
-disable_transparency = 1
+panel_layer = top
 
-taskbar_padding = 4 0 0
+taskbar_mode = single_desktop
+taskbar_padding = 16 4 16
 taskbar_sort_order = application
-task_icon = 1
+task_align = left
+taskbar_name = 1
+taskbar_name_background_id = 1
+taskbar_name_font = monospace normal 10
+taskbar_name_font_color = #{fg_color} 100
+taskbar_name_active_font_color = #{fg_color} 100
+
+task_icon = 0
 task_text = 1
-task_maximum_size = 128
-task_padding = 0 0 4
-urgent_nb_of_blink = 32
-task_font = sans Regular 8
-task_font_color = #{color7} 100
-
-time1_format = %H:%M %d %B %Y
-time1_font = sans Regular 8
-clock_font_color = #{color7} 100
-clock_padding = 4 0
-clock_background_id = 1
-
-tooltip_padding = 4 4
-tooltip_show_timeout = 1
-tooltip_hide_timeout = 0
-tooltip_background_id = 1
-tooltip_font_color = #{color7} 100
-tooltip_font = sans Regular 10
-
-button = new
-button_icon = /home/ye/.config/thm/current/application-menu.svg
-button_tooltip = Start Menu
-button_font = sans Regular 10
-button_font_color = #{color8} 100
-button_background_id = 1
-button_padding = 0 0 0
+task_centered = 1
+task_padding = 16
+urgent_nb_of_blink = 4
+task_font = monospace normal 10
+task_font_color = #{fg_color} 100
+task_background_id = 2

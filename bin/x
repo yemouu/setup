@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-xinit $1 -- /usr/bin/Xorg -nolisten tcp vt${2:-${XDG_VTNR}}
+exec xinit $1 -- /usr/bin/Xorg -nolisten tcp vt1

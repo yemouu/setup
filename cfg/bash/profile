@@ -1,4 +1,4 @@
-[ ! $USER = "ye" ] || [ ! $SHELL = "/bin/bash" ] && exit
+[ ! $USER = "ye" ] || [ ! $SHELL = "/bin/bash" ] && return
 
 PATH="${HOME}/bin:$PATH"
 XDG_DATA_HOME="${HOME}/data"
@@ -21,7 +21,7 @@ VDPAU_DRIVER=radeonsi
 GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 XINITRC="${XDG_CONFIG_HOME}/xorg/xinitrc"
 INPUTRC="${XDG_CONFIG_HOME}/bash/inputrc"
-PASSWORD_STORE_DIR="$(xdg-user-dir DOCUMENTS)/.pws"
+PASSWORD_STORE_DIR="${HOME}/doc/.pws"
 
 DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
 
@@ -30,5 +30,9 @@ export PATH XDG_{DATA,CONFIG,CACHE}_HOME ALTERNATE_EDITOR VISUAL EDITOR PAGER \
        PASSWORD_STORE_DIR DBUS_SESSION_BUS_ADDRESS
 
 [ -f ${XDG_CONFIG_HOME}/bash/rc  ] && . "${XDG_CONFIG_HOME}/bash/rc"
+
+{ ! pgrep -f 'dbus-daemon --session' && DISPLAY=:0 exec dbus-daemon --session --address="${DBUS_SESSION_BUS_ADDRESS}" --syslog &
+! pgrep emacs && exec emacs --daemon &> /dev/null &
+} &
 
 clear

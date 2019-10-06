@@ -18,8 +18,8 @@ time {
 	
 	[[ "$1" = "-e" ]] && { echo make menuconfig; make menuconfig; }
 	
-	echo make -j4
-	make -j4 || exit 1
+	echo make -j4 -l4
+	make -j5 -l4 || exit 1
 	
 	echo mv arch/x86/boot/bzImage /boot/EFI/Gentoo/bzImage 
 	mv arch/x86/boot/bzImage /boot/EFI/Gentoo/bzImage || \

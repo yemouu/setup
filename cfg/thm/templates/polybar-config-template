@@ -1,34 +1,16 @@
 [colors]
 bg_color = #{bg_color}
 fg_color = #{fg_color}
-color0 = #{color0}
-color1 = #{color1}
-color2 = #{color2}
-color3 = #{color3}
-color4 = #{color4}
-color5 = #{color5}
-color6 = #{color6}
-color7 = #{color7}
-color8 = #{color8}
-color9 = #{color9}
-color10 = #{color10}
-color11 = #{color11}
-color12 = #{color12}
-color13 = #{color13}
-color14 = #{color14}
-color15 = #{color15}
 
 [bar/bar1]
 width = 100%
 height = 24
 
-background = ${colors.color0}
-foreground = ${colors.color15}
+background = ${colors.bg_color}
+foreground = ${colors.fg_color}
 
-line-size = 2
-
-padding = 2
-module-margin = 2
+padding = 1
+module-margin = 1
 
 font-0 = monospace:size=10;2
 font-1 = Noto Sans Mono:size=10;2
@@ -39,72 +21,30 @@ font-5 = Noto Sans Mono CJK KR:size=10;2
 font-6 = Noto Color Emoji:scale=14;2
 
 modules-left = music
-modules-center = workspaces
-modules-right = time date powermenu
+modules-center = time
+modules-right = powermenu
 
 [module/time]
 type = internal/date
 interval = 1.0
-
 time = %H:%M
-
+date = %Y %b %a %d
 format = <label>
-format-overline = ${colors.color2}
-
-label = " %time% "
-
-[module/date]
-type = internal/date
-interval = 1.0
-
-date = %d %a %b %Y
-
-format = <label>
-format-overline = ${colors.color6}
-
-label = " %date% "
+label = " %date% %time% "
 
 [module/music]
 type = internal/mpd
 interval = 1.0
-
 label-song = " %artist% - %title% "
 label-offline = " N/A "
-
 format-playing = <label-song>
-format-playing-overline = ${colors.color1}
-
 format-paused = <label-song>
-format-paused-overline = ${colors.color1}
-
 format-stopped = " Music Stopped "
-format-stopped-overline = ${colors.color1}
-
 format-offline = <label-offline>
-format-offline-overline = ${colors.color1}
 
 [module/powermenu]
 type = custom/text
-
 content = " Power Menu "
-content-overline = ${colors.color4}
-
 click-left = powermenu
-
-[module/workspaces]
-type = internal/xworkspaces
-
-enable-click = true
-enable-scroll = true
-
-format-overline = ${colors.color3}
-
-label-active = " %name% "
-
-label-urgent = " %name% "
-label-urgent-foreground = ${colors.color1}
-
-label-occupied =
-label-empty =
 
 # vim: se ft=cfg :

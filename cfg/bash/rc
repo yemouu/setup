@@ -1,12 +1,14 @@
 [[ $- != *i*  ]] && return
 
-[[ ! $USER = "ye" ]] && exit
+[[ ! $USER = "ye" ]] && return
 
-#HISTFILE="${XDG_CACHE_HOME}/bash_history"
 GPG_TTY=$(tty)
 export GPG_TTY
 
-#. "/usr/share/bash-completion/bash_completion"
+shopt -s autocd
+shopt -s cdable_vars
+shopt -s cdspell
+
 . "${XDG_CONFIG_HOME}/bash/alias"
 
 reset="\\[\\e[0m\\]"

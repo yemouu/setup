@@ -1,5 +1,0 @@
-super + grave
-	sxhkdm sxhkdm-default.sxhkdrc
-
-super + {o,p}
-	sleep 0.1; xdotool mousedown {1,3}

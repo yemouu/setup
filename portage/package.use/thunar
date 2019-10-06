@@ -1,1 +1,2 @@
-xfce-base/thunar -trash-panel-plugin
+xfce-base/thunar introspection -trash-panel-plugin
+xfce-extra/tumbler ffmpeg raw
