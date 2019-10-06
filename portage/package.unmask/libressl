@@ -1,3 +1,0 @@
-net-libs/nodejs::libressl
-net-nds/openldap::libressl
-dev-qt/qtnetwork::libressl

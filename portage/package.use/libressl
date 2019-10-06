@@ -1,3 +1,0 @@
-sys-fs/cryptsetup
-net-libs/nodejs bundled-ssl
-net-misc/curl curl_ssl_libressl -curl_ssl_openssl

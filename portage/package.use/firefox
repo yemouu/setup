@@ -1,7 +1,0 @@
-media-libs/libpng apng
-www-client/firefox custom-cflags custom-optimization hwaccel lto pgo -screenshot
-dev-lang/python sqlite
-dev-lang/python sqlite
-dev-db/sqlite secure-delete
-media-libs/libvpx postproc
-x11-base/xorg-server xvfb
