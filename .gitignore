@@ -12,3 +12,4 @@ cfg/sxhkd/sxhkdm-default.sxhkdrc
 home/.emacs.d/auto-save-list
 home/.emacs.d/elpa
 home/.emacs.d/ido.last
+cfg/ncmpcpp/patterns.list

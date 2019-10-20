@@ -4,8 +4,8 @@ XDG_SESSION_TYPE=x11
 
 export XDG_SESSION_TYPE
 
-[ -f "${XDG_CONFIG_HOME}/xorg/xresources" ] && xrdb -merge "${XDG_CONFIG_HOME}/xorg/xresources" &
-[ -f "${XDG_CONFIG_HOME}/thm/current/Xresources" ] && xrdb -merge "${XDG_CONFIG_HOME}/thm/current/Xresources" &
+[ -f "${HOME}/cfg/xorg/xresources" ] && xrdb "${HOME}/cfg/xorg/xresources"
+[ -f "${HOME}/cfg/thm/current/Xresources" ] && xrdb -merge "${HOME}/cfg/thm/current/Xresources"
 xrandr -r 144 &
 
 mpd &
@@ -16,10 +16,9 @@ setroot --restore &
 tint2 -c "${XDG_CONFIG_HOME}/thm/current/tint2rc-main" &
 polybar bar1 --reload &
 blugon -f &
-"${HOME}/doc/setup/noti/music/music-changed" &
+"${HOME}/doc/setup/bin/noti/music/music-changed" &
 
 case $1 in
-    bspwm|bsp ) exec bspwm ;;
-    herbstluftwm|hlwm ) exec herbstluftwm --locked ;;
     openbox|ob ) exec openbox-session ;;
+    cwm ) exec cwm -c "${HOME}/cfg/cwm/cwmrc" ;;
 esac

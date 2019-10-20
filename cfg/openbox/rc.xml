@@ -474,42 +474,42 @@
     </keybind>
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-	<command>~/doc/setup/noti/volume/microphone-volume-up</command>
+	<command>~/doc/setup/bin/noti/volume/microphone-volume-up</command>
       </action>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-	<command>~/doc/setup/noti/volume/microphone-volume-down</command>
+	<command>~/doc/setup/bin/noti/volume/microphone-volume-down</command>
       </action>
     </keybind>
     <keybind key="C-XF86AudioMute">
       <action name="Execute">
-	<command>~/doc/setup/noti/volume/microphone-please-die</command>
+	<command>~/doc/setup/bin/noti/volume/microphone-please-die</command>
       </action>
     </keybind>
     <keybind key="XF86AudioMute">
       <action name="Execute">
-	<command>~/doc/setup/noti/volume/microphone-volume-set-base</command>
+	<command>~/doc/setup/bin/noti/volume/microphone-volume-set-base</command>
       </action>
     </keybind>
     <keybind key="A-XF86AudioMute">
       <action name="Execute">
-	<command>~/doc/setup/noti/volume/microphone-volume-set-max</command>
+	<command>~/doc/setup/bin/noti/volume/microphone-volume-set-max</command>
       </action>
     </keybind>
     <keybind key="W-e">
       <action name="Execute">
-	<command>~/doc/setup/noti/volume/microphone-volume-mute</command>
+	<command>~/doc/setup/bin/noti/volume/microphone-volume-mute</command>
       </action>
     </keybind>
     <keybind key="W-t">
       <action name="Execute">
-	<command>~/doc/setup/noti/time-date/local-time-date</command>
+	<command>~/doc/setup/bin/noti/time-date/local-time-date</command>
       </action>
     </keybind>
     <keybind key="W-A-t">
       <action name="Execute">
-	<command>~/doc/setup/noti/time-date/utc-time-date</command>
+	<command>~/doc/setup/bin/noti/time-date/utc-time-date</command>
       </action>
     </keybind>
     <keybind key="Print">
@@ -552,14 +552,9 @@
 	<command>emacsclient -c</command>
       </action>
     </keybind>
-    <keybind key="W-A-f">
-      <action name="Execute">
-	<command>alacritty -d 20 6 -e sudo -Es emacs --geometry 120x30</command>
-      </action>
-    </keybind>
     <keybind key="W-i">
       <action name="Execute">
-	<command>~/doc/setup/noti/music/music-info</command>
+	<command>~/doc/setup/bin/noti/music/music-info</command>
       </action>
     </keybind>
     <keybind key="W-o">
@@ -579,32 +574,32 @@
     </keybind>
     <keybind key="W-p">
       <action name="Execute">
-	<command>~/doc/setup/noti/music/music-toggle</command>
+	<command>~/doc/setup/bin/noti/music/music-toggle</command>
       </action>
     </keybind>
     <keybind key="W-bracketleft">
       <action name="Execute">
-	<command>~/doc/setup/noti/music/music-volume-down</command>
+	<command>~/doc/setup/bin/noti/music/music-volume-down</command>
       </action>
     </keybind>
     <keybind key="W-bracketright">
       <action name="Execute">
-	<command>~/doc/setup/noti/music/music-volume-up</command>
+	<command>~/doc/setup/bin/noti/music/music-volume-up</command>
       </action>
     </keybind>
     <keybind key="W-C-minus">
       <action name="Execute">
-	<command>~/doc/setup/noti/music/music-seek 00%</command>
+	<command>~/doc/setup/bin/noti/music/music-seek 00%</command>
       </action>
     </keybind>
     <keybind key="W-minus">
       <action name="Execute">
-	<command>~/doc/setup/noti/music/music-seek -05%</command>
+	<command>~/doc/setup/bin/noti/music/music-seek -05%</command>
       </action>
     </keybind>
     <keybind key="W-equal">
       <action name="Execute">
-	<command>~/doc/setup/noti/music/music-seek +05%</command>
+	<command>~/doc/setup/bin/noti/music/music-seek +05%</command>
       </action>
     </keybind>
   </keyboard>
@@ -707,6 +702,12 @@
       </position>
     </application>
     <application class="Firefox" name="Navigator">
+      <decor>no</decor>
+      <desktop>1</desktop>
+      <layer>below</layer>
+      <maximized>true</maximized>
+    </application>
+    <application class="Nightly" name="Navigator">
       <decor>no</decor>
       <desktop>1</desktop>
       <layer>below</layer>

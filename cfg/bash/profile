@@ -1,6 +1,7 @@
 [ ! $USER = "ye" ] || [ ! $SHELL = "/bin/bash" ] && return
 
-PATH="${HOME}/bin:$PATH"
+PATH="${HOME}/bin:${HOME}/data/npm/bin:$PATH"
+MANPATH+=":${HOME}/data/npm/share/man"
 XDG_DATA_HOME="${HOME}/data"
 XDG_CONFIG_HOME="${HOME}/cfg"
 XDG_CACHE_HOME="${HOME}/tmp/cache"
@@ -25,14 +26,15 @@ PASSWORD_STORE_DIR="${HOME}/doc/.pws"
 
 DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
 
-export PATH XDG_{DATA,CONFIG,CACHE}_HOME ALTERNATE_EDITOR VISUAL EDITOR PAGER \
+NODE_PATH+=":${HOME}/data/npm/lib/node_modules"
+
+export PATH MANPATH XDG_{DATA,CONFIG,CACHE}_HOME ALTERNATE_EDITOR VISUAL EDITOR PAGER \
        LESSHISTFILE HISTFILE HISTSIZE HISTFILESIZE HISTCONTROL GNUPGHOME XINITRC INPUTRC \
        PASSWORD_STORE_DIR DBUS_SESSION_BUS_ADDRESS
 
 [ -f ${XDG_CONFIG_HOME}/bash/rc  ] && . "${XDG_CONFIG_HOME}/bash/rc"
 
 { ! pgrep -f 'dbus-daemon --session' && DISPLAY=:0 exec dbus-daemon --session --address="${DBUS_SESSION_BUS_ADDRESS}" --syslog &
-! pgrep emacs && exec emacs --daemon &> /dev/null &
 } &
 
 clear
