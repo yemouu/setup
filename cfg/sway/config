@@ -1,0 +1,169 @@
+# Output #
+output DP-1 {
+       res 1920x1080@144.001007Hz
+       subpixel rgb
+       bg ${HOME}/media/wallpapers/chesapeake-wallpaper-has54598-64_1000_grayscale-noise.jpg tile
+}
+
+# Input #
+input 7805:11815:ROCCAT_ROCCAT_Kone_Aimo_Mouse {
+      accel_profile flat
+}
+
+# Appearance #
+include ${XDG_CONFIG_HOME}/thm/current/sway-appearance
+
+# Options #
+focus_follows_mouse no
+focus_on_window_activation none
+hide_edge_borders --i3 smart
+workspace_layout tabbed
+
+# Keybinds #
+# Variables
+set $W Mod4
+set $A Mod1
+set $C Control
+set $S Shift
+set $term alacritty
+set $menu bemenu-run
+set $noti_dir ${HOME}/doc/setup/bin/noti
+
+# Binds
+bindsym $W+Return exec $term
+
+bindsym $W+r exec $menu
+bindsym $A+F12 exec powermenu
+
+bindsym $W+e exec $noti_dir/volume/microphone-volume-mute
+bindsym XF86AudioRaiseVolume exec $noti_dir/volume/microphone-volume-up
+bindsym XF86AudioLowerVolume exec $noti_dir/volume/microphone-volume-down
+bindsym XF86AudioMute exec $noti_dir/volume/microphone-volume-set-base
+bindsym $C+F5 exec $noti_dir/volume/microphone-please-die
+bindsym $A+F5 exec $noti_dir/volume/microphone-volume-set-max
+
+#bindsym $W+p exec playerctl play-pause
+#bindsym $W+bracketleft exec playerctl volume 0.02-
+#bindsym $W+bracketright exec playerctl volume 0.02+
+#bindsym $W+$C+minus exec playerctl position 0
+#bindsym $W+minus exec playerctl position 0.05-
+#bindsym $W+equal exec playerctl position 0.05+
+#bindsym $W+comma exec playerctl previous
+#bindsym $W+period exec playerctl next
+
+bindsym $W+p exec $noti_dir/music/music-toggle
+bindsym $W+bracketleft exec $noti_dir/music/music-volume-down
+bindsym $W+bracketright exec $noti_dir/music/music-volume-up
+bindsym $W+$C+minus exec $noti_dir/music/music-seek 00%
+bindsym $W+minus exec $noti_dir/music/music-seek -05%
+bindsym $W+equal exec $noti_dir/music/music-seek +05%
+bindsym $W+comma exec mpc -q prev
+bindsym $W+period exec mpc -q next
+bindsym $W+i exec $noti_dir/music/music-info
+bindsym $W+o exec $term -t ncmpcpp -e ncmpcpp
+
+bindsym $W+t exec $noti_dir/time-date/local-time-date
+bindsym $W+$A+t exec $noti_dir/time-date/utc-time-date
+
+bindsym Print exec scr pic -fc
+bindsym $W+Print exec scr pic -c
+
+bindsym $W+space exec makoctl dismiss -a
+
+bindsym $W+f exec emacsclient -c
+
+# change to focus next|prev next sway release
+bindsym $W+z focus right
+bindsym $W+$A+z focus left
+bindsym $W+$C+z focus mode_toggle
+
+bindsym $W+Left focus left
+bindsym $W+Down focus down
+bindsym $W+Up focus up
+bindsym $W+Right focus right
+
+bindsym $W+1 workspace 1
+bindsym $W+2 workspace 2
+bindsym $W+3 workspace 3
+bindsym $W+4 workspace 4
+bindsym $W+5 workspace 5
+bindsym $W+6 workspace 6
+bindsym $W+7 workspace 7
+bindsym $W+8 workspace 8
+bindsym $W+9 workspace 9
+bindsym $W+0 workspace 0
+
+bindsym $W+Shift+1 move container to workspace 1
+bindsym $W+Shift+2 move container to workspace 2
+bindsym $W+Shift+3 move container to workspace 3
+bindsym $W+Shift+4 move container to workspace 4
+bindsym $W+Shift+5 move container to workspace 5
+bindsym $W+Shift+6 move container to workspace 6
+bindsym $W+Shift+7 move container to workspace 7
+bindsym $W+Shift+8 move container to workspace 8
+bindsym $W+Shift+9 move container to workspace 9
+bindsym $W+Shift+0 move container to workspace 0
+
+bindsym $W+$C+Escape exit
+bindsym $W+$A+Escape reload
+bindsym $W+q kill
+
+bindsym $W+$S+s floating enable
+bindsym $W+$S+t floating disable
+bindsym $W+$S+f fullscreen toggle
+
+bindsym $W+v border normal 2
+bindsym $W+b border pixel 2
+bindsym $W+n border none
+
+floating_modifier $W normal
+
+# Window Rules #
+for_window [title=".*"] floating enable
+for_window [app_id="firefox"] floating disable, border pixel 2
+for_window [class="Google-chrome$"] floating disable, border pixel 2
+for_window [class="Google-chrome-unstable"] floating disable, border pixel 2
+for_window [class="discord"] floating disable, border pixel 2
+for_window [app_id="mpv"] border none
+for_window [app_id="parsecd"] floating disable, border none
+for_window [class="SuperTuxKart"] floating disable, border none
+for_window [class="Minecraft*"] floating disable, border none
+for_window [class="io.krunker.desktop"] floating disable, border none
+for_window [class="steam_app_*"] floating disable, border none
+for_window [class="Wine"] floating disable, border none
+for_window [class="csgo_linux64"] floating disable, border none
+for_window [class="hl2_linux"] floating disable, border none
+for_window [class="hl_linux"] floating disable, border none
+for_window [class="RocketLeague"] floating disable, border none
+for_window [class="Golf With Your Friends.x86_64"] floating disable, border none
+for_window [class="insurgency_linux"] floating disable, border none
+for_window [class="DirtRally"] floating disable, border none
+for_window [class="ShellShockLive.x86_64"] floating disable, border none
+for_window [class="TheMeanGreens-Linux-Shipping"] floating disable, border none
+
+# Move Windows to Workspaces
+for_window [class="Google-chrome-unstable"] move container to workspace 1
+for_window [app_id="firefox"] move container to workspace 1
+for_window [class="discord"] move container to workspace 2
+for_window [class="Google-chrome$"] move container to workspace 3
+for_window [class="Steam"] move container to workspace 0
+for_window [app_id="org.multimc.MultiMC"] move container to workspace 0
+
+for_window [app_id="parsecd"] move container to workspace 9
+for_window [class="SuperTuxKart"] move container to workspace 9
+for_window [class="Minecraft*"] move container to workspace 9
+for_window [class="io.krunker.desktop"] move container to workspace 9
+for_window [class="steam_app_*"] move container to workspace 9
+for_window [class="Wine"] move container to workspace 9
+for_window [class="csgo_linux64"] move container to workspace 9
+for_window [class="hl2_linux"] move container to workspace 9
+for_window [class="hl_linux"] move container to workspace 9
+for_window [class="RocketLeague"] move container to workspace 9
+for_window [class="Golf With Your Friends.x86_64"] move container to workspace 9
+for_window [class="insurgency_linux"] move container to workspace 9
+for_window [class="DirtRally"] move container to workspace 9
+for_window [class="ShellShockLive.x86_64"] move container to workspace 9
+for_window [class="TheMeanGreens-Linux-Shipping"] move container to workspace 9
+
+# Include extra system config #
+include /etc/sway/config.d/*

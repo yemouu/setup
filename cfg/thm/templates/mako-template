@@ -1,0 +1,44 @@
+# Global Config
+max-visible=2
+sort=-time
+
+# All Notifcations
+font=monospace 10
+background-color=#{bg_color}
+text-color=#{fg_color}
+width=600
+height=100
+margin=8,8
+padding=8,16
+border-size=4
+border-color=#{fg_color}
+max-icon-size=32
+actions=0
+format=<b>%a</b>\n%s\n%b
+default-timeout=8000
+group-by=app-name
+
+# Low Urgency Notifcations
+[urgency=low]
+border-color=#{color8}
+default-timeout=4000
+
+# Normal Ugency Notifcations
+[urgency=normal]
+border-color=#{fg_color}
+default-timeout=8000
+
+# High Urgency Notifcations
+[urgency=high]
+border-color=#{color1}
+default-timeout=0
+
+[grouped]
+format=<b>%a</b>\n%s\n%b
+
+# Hidden Notification
+[hidden]
+width=0
+height=0
+border-size=0
+format=

@@ -17,7 +17,7 @@ alias suet="sudo -v;clear;sudo -u portage watch -cn 10 genlop -ci"
 alias sues="sudo -v;clear;sudo -Es"
 
 alias em="sudo emerge"
-alias emu="sudo emerge -uDN --with-bdeps=y @world"
+alias emu="sudo emerge -uDN --changed-deps --with-bdeps=y @world"
 alias emul="sudo emerge @live-rebuild"
 alias qe="qlist -IR | grep -v ::gentoo"
 alias emdxml="metagen -e meeyou@tuta.io -t person -l"
