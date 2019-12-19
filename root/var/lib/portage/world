@@ -1,4 +1,3 @@
-app-admin/doas
 app-admin/pass
 app-editors/emacs
 app-emacs/ebuild-mode
@@ -40,7 +39,6 @@ media-sound/mpd
 media-sound/ncmpcpp
 media-sound/pavucontrol
 media-sound/playerctl
-media-sound/scdlapp-admin/doas
 media-video/ffmpeg
 media-video/mpv
 net-im/discord-canary
