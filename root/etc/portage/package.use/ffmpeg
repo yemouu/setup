@@ -1,0 +1,2 @@
+media-video/ffmpeg mp3 libdrm openssl libaom sdl
+media-libs/libsdl2 gles

@@ -1,0 +1,3 @@
+xfce-base/thunar -trash-panel-plugin udisks
+xfce-extra/tumbler ffmpeg raw
+gnome-base/gvfs udisks

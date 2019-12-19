@@ -7,7 +7,7 @@ XDG_CACHE_HOME="${HOME}/tmp/cache"
 
 ALTERNATE_EDITOR=""
 VISUAL="emacsclient -c"
-EDITOR="emacsclient -t"
+EDITOR="emacsclient -ct"
 PAGER="less"
 
 LESSHISTFILE="/dev/null"

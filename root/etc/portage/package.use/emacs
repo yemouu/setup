@@ -1,0 +1,2 @@
+app-editors/emacs -alsa -gtk -gif -gpm -jpeg -lcms -png -svg -tiff -xpm xft athena Xaw3d dynamic-loading gzip-el
+

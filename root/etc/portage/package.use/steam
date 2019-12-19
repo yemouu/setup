@@ -1,0 +1,51 @@
+games-util/steam-games-meta mono steamgames_portal steamgames_source_engine steamgames_tf2 steamgames_dirt_rally
+games-util/steam-client-meta steamfonts trayicon
+
+dev-libs/libxml2 python
+
+x11-libs/libX11 abi_x86_32
+x11-libs/libXau abi_x86_32
+x11-libs/libxcb abi_x86_32
+x11-libs/libXdmcp abi_x86_32
+dev-libs/libpthread-stubs abi_x86_32
+x11-base/xcb-proto abi_x86_32
+virtual/opengl abi_x86_32
+media-libs/mesa abi_x86_32
+dev-libs/expat abi_x86_32
+sys-libs/zlib abi_x86_32
+x11-libs/libxshmfence abi_x86_32
+x11-libs/libXdamage abi_x86_32
+x11-libs/libXext abi_x86_32
+x11-libs/libXxf86vm abi_x86_32
+x11-libs/libXfixes abi_x86_32
+sys-devel/llvm abi_x86_32
+x11-libs/libXrandr abi_x86_32
+x11-libs/libXrender abi_x86_32
+sys-libs/ncurses abi_x86_32
+dev-libs/libxml2 abi_x86_32
+sys-libs/gpm abi_x86_32
+virtual/libffi abi_x86_32
+dev-libs/libffi abi_x86_32
+virtual/libelf abi_x86_32
+dev-libs/elfutils abi_x86_32
+app-arch/bzip2 abi_x86_32
+media-libs/libpng-compat:1.2 abi_x86_32
+dev-libs/libgcrypt abi_x86_32
+dev-libs/libgpg-error abi_x86_32
+virtual/libintl abi_x86_32
+dev-libs/icu abi_x86_32
+x11-libs/libdrm abi_x86_32 video_cards_radeon
+x11-libs/libva abi_x86_32
+x11-libs/libvdpau abi_x86_32
+x11-libs/libva-vdpau-driver abi_x86_32
+dev-libs/wayland abi_x86_32
+virtual/pkgconfig abi_x86_32
+dev-util/pkgconf abi_x86_32
+x11-libs/libxkbcommon abi_x86_32
+sys-libs/libunwind abi_x86_32
+sys-apps/lm-sensors abi_x86_32
+dev-libs/ocl-icd abi_x86_32
+x11-libs/libXvMC abi_x86_32
+dev-util/glslang abi_x86_32
+sys-devel/clang abi_x86_32
+x11-libs/libXv abi_x86_32

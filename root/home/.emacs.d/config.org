@@ -1,0 +1,159 @@
+#+TITLE: Config for Emacs friend :D
+#+AUTHOR: yemou
+#+OPTION: num nil
+#+PROPERTY: header-args :results silent
+* Setup
+** Emacs package repos setup
+
+   #+NAME: package repos
+   #+BEGIN_SRC emacs-lisp
+     (setq package-enable-at-startup nil
+	   package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
+			      ("melpa" . "https://melpa.org/packages/")))
+   #+END_SRC
+
+** bootstrap use-package
+
+   #+NAME: use-package
+   #+BEGIN_SRC emacs-lisp
+     (unless (package-installed-p 'use-package)
+       (package-refresh-contents)
+       (package-install 'use-package))
+     (require 'use-package)
+     (require 'use-package-ensure)
+     (setq use-package-always-ensure t)
+   #+END_SRC
+
+** Things i like
+*** Appearance
+
+    bars begone
+
+    #+NAME: disable bars
+    #+BEGIN_SRC emacs-lisp
+      (scroll-bar-mode -1)
+      (tool-bar-mode -1)
+      (tooltip-mode -1)
+      (menu-bar-mode -1)
+    #+END_SRC
+
+    please be the good size
+    
+    #+NAME: window dimensions
+    #+BEGIN_SRC emacs-lisp
+      (setq initial-frame-alist
+	    '((top . 960) (left . 540)
+	      (width . 128) (height . 36)))
+      (setq default-frame-alist
+	    '((top . 960) (left . 540)
+	      (width . 128) (height . 36)))
+    #+END_SRC
+
+    my template generated theme file
+
+    #+NAME: thene
+    #+BEGIN_SRC emacs-lisp
+      (add-to-list 'custom-theme-load-path "~/cfg/thm/current")
+      (load-theme 'thm t)
+    #+END_SRC
+
+    i like a beam friend
+
+    #+NAME: beam cursor
+    #+BEGIN_SRC emacs-lisp
+      (setq-default cursor-type 'bar)
+    #+END_SRC
+
+*** Functionality
+
+    stop asking me to follow symlinks
+
+    #+NAME: symlink
+    #+BEGIN_SRC emacs-lisp
+      (setq vc-follow-symlinks t)
+    #+END_SRC
+
+    ask for y or n instead of yes or no
+
+    #+NAME: yes-or-no
+    #+BEGIN_SRC emacs-lisp
+      (defalias 'yes-or-no-p 'y-or-n-p)
+    #+END_SRC
+
+    no backup or save files
+
+    #+NAME: backups
+    #+BEGIN_SRC emacs-lisp
+      (setq make-backup-files nil)
+      (setq auto-save-default nil)
+    #+END_SRC
+
+    delete entire line with C-k
+
+    #+NAME: kill-whole-line
+    #+BEGIN_SRC emacs-lisp
+      (setq kill-whole-line t)
+    #+END_SRC
+
+    splash screen bad
+
+    #+NAME: splash screen
+    #+BEGIN_SRC emacs-lisp
+      (setq inhibit-splash-screen t)
+    #+END_SRC
+
+* Templates
+** Gentoo Metadata.xml
+   #+NAME: gentoo metadata.xml
+   #+BEGIN_SRC emacs-lisp
+     (define-skeleton ebmetaxml
+       "Template for ebuild metadata.xml files." nil
+       "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+       "<!DOCTYPE pkgmetadata SYSTEM \"http://www.gentoo.org/dtd/metadata.dtd\">\n"
+       "<pkgmetadata>\n"
+       "  <maintainer type=\"person\">\n"
+       "    <email>meeyou@tuta.io</email>\n"
+       "  </maintainer>\n"
+       "  <longdescription lang=\"en\">"_"</longdescription>\n"
+       "</pkgmetadata>\n")
+   #+END_SRC
+* Packages
+** more modes
+
+   #+NAME: more modes
+   #+BEGIN_SRC emacs-lisp
+     (use-package go-mode)
+     (use-package kotlin-mode)
+     (use-package lua-mode)
+     (use-package rust-mode)
+   #+END_SRC
+
+** which-key
+
+   show keybinds while typing them
+
+   #+NAME: which-key
+   #+BEGIN_SRC emacs-lisp
+     (use-package which-key
+       :config (which-key-mode))
+   #+END_SRC
+
+** flycheck
+
+   code linting
+
+   #+NAME: flycheck
+   #+BEGIN_SRC emacs-lisp
+     (use-package flycheck
+       :init (global-flycheck-mode))
+   #+END_SRC
+
+* Keybinds
+
+#  #+NAME: keybindings
+#  #+BEGIN_SRC emacs-lisp
+#    (use-package general
+#      :config
+#      (general-define-key
+#       ))
+#  #+END_SRC
