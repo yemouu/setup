@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Dbus setup
+dbus_uae=dbus-update-activation-environment
+command -v $dbus_uae && \
+    $dbus_uae XDG_DATA_HOME XDG_CONFIG_HOME XDG_CACHE_HOME
+
+# Set Environment variables
+XDG_SESSION_TYPE=wayland
+SDL_VIDEODRIVER=wayland
+
+export XDG_SESSION_TYPE SDL_VIDEODRIVER
+
+{ # Autostart Applications
+    exec "${HOME}/doc/setup/bin/noti/music/music-changed" &
+} &
+
+# Pick Wayland Compositor
+case $1 in
+    sway|s ) exec sway ;;
+esac

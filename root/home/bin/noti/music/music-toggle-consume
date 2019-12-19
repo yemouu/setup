@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+app_name="MPD Toggle Consume"
+summary="Consume: $(mpc consume | awk NR==3'{print $10}')"
+body="$(mpc -q current)"
+
+dunstify -a "$app_name" \
+	-t 4000 \
+	-r 1 \
+	"$summary" \
+	"$body"

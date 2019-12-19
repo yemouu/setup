@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+app_name="MPD"
+summary="Now Playing"
+
+while true
+do
+	dunstify -a "$app_name" \
+		-t 4000 \
+		-r 1 \
+		-u low \
+		"$summary" \
+		"$(mpc current --wait)"
+done

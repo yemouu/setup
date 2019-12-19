@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+set -e
+
+usage() { printf '%s' "usage: ${0##*/} [options]
+	-a: skip kernel application
+	-c: skip kernel compliation
+	-e: edit kernel config
+	-h: display usage message
+"
+}
+
+info() {
+    case $1 in
+	f ) msg="fail"; color="\e[31;1m" ;;
+	i ) msg="info"; color="\e[32;1m" ;;
+	w ) msg="warn"; color="\e[33;1m" ;;
+    esac
+    shift
+    printf "\n${color}%s\e[m %s\n\n" "[${msg}]" "$*"
+}
+
+kernel_setup() {
+    [[ ! -d ${KERNEL_SRC_DIR} ]] && \
+	info w "${KERNEL_SRC_DIR} does not exist or is not a directory"
+    info i "cd ${KERNEL_SRC_DIR}"
+    cd "${KERNEL_SRC_DIR}" || { info f "failed to change directories"; exit 1; }
+
+    info i "make clean"
+    make clean || { info f "failed to clean"; exit 1; }
+
+    if [[ -e /proc/config.gz ]]
+    then
+	info i "zcat /proc/config.gz > ${KERNEL_SRC_DIR}/.config"
+	zcat /proc/config.gz > "${KERNEL_SRC_DIR}/.config"
+
+	info i "make olddefconfig"
+	make olddefconfig || { info f "failed to apply old kernel config"; exit 1; }
+    else
+	info w "/proc/config.gz does not exist"
+	info w "kernel was most likely compiled without IKCONFIG and IKCONFIG_PROC support"
+	info w "skipping application of old kernel config"
+    fi
+}
+
+kernel_configure() {
+    info i "make menuconfig"
+    make menuconfig || { info f "configuration failed"; exit 1; }
+}
+
+kernel_compile() {
+    info i "make ${KERNEL_MAKEOPTS}"
+    make ${KERNEL_MAKEOPTS} || { info f "failed to compile kernel"; exit 1; }
+}
+
+kernel_apply() {
+    if [[ -d ${KERNEL_DEST_DIR} ]]
+    then
+	info i "mv ${KERNEL_SRC_DIR}/arch/x86/boot/bzImage ${KERNEL_DEST_DIR}"
+	mv "${KERNEL_SRC_DIR}/arch/x86/boot/bzImage" "${KERNEL_DEST_DIR}" || \
+	    { info f "failed to move kernel to ${KERNEL_DEST_DIR}"; exit 1; }
+    else
+	info f "${KERNEL_DEST_DIR} does not exist or is not a directory"
+    fi
+}
+
+for (( a=1; a<$(( ${#@} + 1 )); a++ ))
+do
+    arg=${!a}
+    [[ ! $arg =~ ^-.* || ${#arg} -lt 2 ]] && continue
+    for (( i=1; i<${#arg}; i++ ))
+    do
+	case ${arg:$i:1} in
+	    a ) kernel_skip_apply=true ;;
+	    c ) kernel_skip_compile=true ;;
+	    e ) kernel_edit=true ;;
+	    h ) usage; exit 0 ;;
+	    * ) printf '%s\n' "${0##*/}: -${arg:$i:1} is an invalid argument"
+		usage; exit 1 ;;
+	esac
+    done
+done
+
+[[ -z $KERNEL_SRC_DIR ]] && KERNEL_SRC_DIR="/usr/src/linux"
+[[ -z $KERNEL_MAKEOPTS ]] && KERNEL_MAKEOPTS="-j$(($(nproc)+1)) -l$(nproc)"
+[[ -z $KERNEL_DEST_DIR ]] && KERNEL_DEST_DIR="/boot/EFI/Gentoo"
+
+kernel_setup
+[[ -n $kernel_edit ]] && kernel_configure
+[[ -z $kernel_skip_compile ]] && kernel_compile
+[[ -z $kernel_skip_apply ]] && kernel_apply

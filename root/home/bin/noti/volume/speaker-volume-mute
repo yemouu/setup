@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+app_name="Speakers"
+
+pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+if command -v dunstify
+then
+	dunstify -a "${app_name}" \
+		-t 4000 \
+		-r 13596705 \
+		"Muted: $(pactl list sinks | awk NR==9'{print $2}')"
+elif command -v notify-send
+then
+	notify-send -t 4000 \
+		-a "${app_name}" \
+		"Muted: $(pactl list sinks | awk NR==9'{print $2}')"
+else
+	echo "dunstify/notify-send not found"
+	exit 1
+fi

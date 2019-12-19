@@ -1,0 +1,153 @@
+#!/usr/bin/env bash
+
+[[ -z $SCR_CONFIG_DIR ]] && SCR_CONFIG_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/scr"
+# shellcheck source=/home/ye/cfg/scr/config.sh
+. "${SCR_CONFIG_DIR}/config.sh"
+
+usage() { printf '%s' "usage: ${0##*/} action [options]
+
+actions:
+	aud	audio
+	pic	picture
+	rec	record
+
+options:
+	-a	record desktop audio
+	-c	copy picture to clipboard
+	-f	fullscreen
+	-h	display this message
+	-m	record microphone audio
+
+"
+}
+
+case $1 in
+    aud ) action="scr_aud" ;;
+    pic ) action="scr_pic" ;;
+    rec ) action="scr_rec" ;;
+    *help ) usage; exit 0 ;;
+    * ) usage; exit 1 ;;
+esac
+shift
+
+for (( a=1; a<$(( ${#@} + 1 )); a++ ))
+do
+    arg=${!a}
+    [[ ! $arg =~ ^-.* || ${#arg} -lt 2 ]] && continue
+    for (( i=1; i<${#arg}; i++ ))
+    do
+	case ${arg:$i:1} in
+	    a ) desktop_audio=true ;;
+	    c ) copy_clipboard=true ;;
+	    f ) fullscreen=true ;;
+	    h ) usage; exit 0 ;;
+	    m ) microphone=true ;;
+	    * ) printf '%s\n' "${0##*/}: -${arg:$1:1} is an invalid argument"; usage; exit 1 ;;
+	esac
+    done
+done
+
+die() {
+    printf '%s\n' "${0##*/}: $*"
+    exit 1
+}
+
+scr_aud() {
+    [[ ! -d ${scr_aud_dir} ]] && { mkdir -p "${scr_aud_dir}" || die "failed to create directory ${scr_aud_dir}"; }
+    filename="$scr_aud_dir/$aud_filename"
+    mimetype="$aud_mimetype"
+    [[ -z $microphone && -z $desktop_audio ]] && {
+	die "aud: argument -a or -m is required to record audio" "run \`scr help\` for more information"
+    }
+    [[ $microphone = true ]] && { read -ra args <<< "$aud_mic_args"; }
+    [[ $desktop_audio = true ]] && { read -ra args <<< "${args[*]} $aud_desktop_audio_args"; }
+    [[ $microphone = true && $desktop_audio = true ]] && { read -ra args <<< "${args[*]} $aud_multi_audio_args";}
+    echo "${args[@]}"
+    ffmpeg "${args[@]}" "$filename" &> /tmp/scr_aud.log
+    echo "$filename"
+}
+
+scr_pic() {
+    [[ ! -d ${scr_pic_dir} ]] && { mkdir -p "${scr_pic_dir}" || die "failed to create directory ${scr_pic_dir}"; }
+    filename="$scr_pic_dir/$pic_filename"
+    mimetype="$pic_mimetype"
+    [[ $XDG_SESSION_TYPE = wayland ]] && {
+	[[ $fullscreen != true ]] && {
+	    read -ra args <<< "$wl_selection_args"
+	    read -r geometry < <(slurp "${args[@]}")
+	    pic_selection="-g-"
+	}
+	read -ra args <<< "$pic_selection $wl_pic_args"
+	printf '%s' "$geometry" | grim "${args[@]}" "$filename"
+	[[ $copy_clipboard = true ]] && {
+	    read -ra args <<< "$wl_clipboard_args -t $mimetype"
+	    wl-copy "${args[@]}" < "$filename"
+	}
+    }
+    [[ $XDG_SESSION_TYPE != wayland ]] && {
+	[[ $fullscreen != true ]] && {
+	    read -ra args <<< "$X11_selection_args -f '%x %y %w %h'"
+	    read -r X Y W H < <(slop "${args[@]}")
+	    pic_selection="-crop ${W}x${H}+${X}+${Y}"
+	}
+	read -ra args <<< "-window root $pic_selection $X11_pic_args"
+	import "${args[@]}" "$filename"
+	[[ $copy_clipboard = true ]] && {
+	    read -ra args <<< "$X11_clipboard_args -i -t $mimetype"
+	    xclip "${args[@]}" "$filename"
+	}
+    }
+    echo "$filename"
+}
+
+scr_rec() {
+    [[ ! -d ${scr_rec_dir} ]] && { mkdir -p "${scr_rec_dir}" || die "failed to create directory ${scr_pic_dir}"; }
+    filename="$scr_rec_dir/rec_filename"
+    mimetype="$rec_mimetype"
+    [[ $XDG_SESSION_TYPE = wayland ]] && {
+	[[ $fullscreen != true ]] && {
+	    read -ra args <<< "$wl_selection_args"
+	    read -r geometry < <(slurp "${args[@]}")
+	    pic_selection="-g $geometry"
+	}
+	if [[ $microphone = true && $desktop_audio = true ]]
+	then
+	    # this is a temporary solution until wf-recorder has support for recording multiple audio devices
+	    unload_pulse_modules=true
+	    pactl_module_null_sink=$(pactl load-module module-null-sink sink_name=scr_inputs)
+	    pactl_module_loopback1=$(pactl load-module module-loopback sink=scr_inputs)
+	    pactl_module_loopback2=$(pactl load-module module-loopback sink=scr_inputs)
+	    
+	elif [[ $microphone = true ]]
+	then
+	     return 0
+	elif [[ $desktop_audio = true ]]
+	then
+	     return 0
+	fi
+	[[ $unload_pulse_modules = true ]] && {
+	    pactl unload-module "$pactl_module_loopback2"
+	    pactl unload-module "$pactl_module_loopback1"
+	    pactl unload-module "$pactl_module_null_sink"
+	}
+    }
+    [[ $XDG_SESSION_TYPE != wayland ]] && { return 1; }
+    echo "$filename"
+    #[[ -z ${microphone_only} ]] && {
+    #	filename="${video_filename}"
+    #	mimetype="${video_mimetype}"
+    #	read -r X Y W H < <(slop -q -f '%x %y %w %h')
+    #	ffmpeg_args="${rec_args} "
+    #	ffmpeg_args+="-s ${W}x${H} -i :0.0+${X},${Y} "
+    #	[[ -n ${audio} ]] && ffmpeg_args+="${rec_audio_args} "
+    #	[[ -n ${microphone} ]] && ffmpeg_args+="${rec_mic_args} "
+    #	[[ -n ${audio} && -n ${microphone} ]] && ffmpeg_args+="${rec_multi_audio_args} "
+    #	ffmpeg_args+="${rec_opt_args} "
+    #
+    #}
+    #
+    #ffmpeg ${ffmpeg_args} ${filename} &> /tmp/scr_rec.log
+    #[[ -n $clipboard ]] && xclip -i -se c -t ${mimetype} ${filename}
+}
+
+$action

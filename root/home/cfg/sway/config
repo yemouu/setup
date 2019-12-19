@@ -27,7 +27,7 @@ set $C Control
 set $S Shift
 set $term alacritty
 set $menu bemenu-run
-set $noti_dir ${HOME}/doc/setup/bin/noti
+set $noti_dir ${HOME}/bin/noti
 
 # Binds
 bindsym $W+Return exec $term

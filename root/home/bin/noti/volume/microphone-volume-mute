@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+app_name="Microphone"
+
+pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+dunstify -a "${app_name}" \
+	-t 4000 \
+	-r 13596705 \
+	"Muted: $(pactl list sources | awk NR==9'{print $2}')"

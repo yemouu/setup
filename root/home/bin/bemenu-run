@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+. ${XDG_CONFIG_HOME}/thm/current/colors.sh
+exec /usr/bin/bemenu-run -H 32 --fn 'monospace 10' --tb "#${color1}" --tf "#${bg_color}" --fb "#${bg_color}" --ff "#${fg_color}" --nb "#${bg_color}" --nf "#${fg_color}" --hb "#${bg_color}" --hf "#${color2}"
