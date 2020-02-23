@@ -1,15 +1,17 @@
 # Global Config
 max-visible=2
 sort=-time
+output=DP-1
+layer=overlay
 
 # All Notifcations
-font=monospace 10
+font=monospace 8
 background-color=#{bg_color}
 text-color=#{fg_color}
-width=600
-height=100
+width=400
+height=200
 margin=8,8
-padding=8,16
+padding=8,8
 border-size=4
 border-color=#{fg_color}
 max-icon-size=32

@@ -1,1 +1,1 @@
-media-video/mpv drm jpeg vulkan
+media-video/mpv -xv drm jpeg lcms luajit vulkan

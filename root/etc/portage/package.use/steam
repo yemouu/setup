@@ -3,6 +3,12 @@ games-util/steam-client-meta steamfonts trayicon
 
 dev-libs/libxml2 python
 
+media-libs/vulkan-loader X abi_x86_32
+
+app-arch/zstd abi_x86_32
+media-libs/libsamplerate abi_x86_32
+media-libs/speex abi_x86_32
+media-libs/speexdsp abi_x86_32
 x11-libs/libX11 abi_x86_32
 x11-libs/libXau abi_x86_32
 x11-libs/libxcb abi_x86_32
@@ -49,3 +55,4 @@ x11-libs/libXvMC abi_x86_32
 dev-util/glslang abi_x86_32
 sys-devel/clang abi_x86_32
 x11-libs/libXv abi_x86_32
+virtual/libcrypt abi_x86_32

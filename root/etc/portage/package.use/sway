@@ -1,1 +1,3 @@
+gui-libs/wlroots icccm x11-backend
 gui-wm/sway tray wallpapers
+x11-libs/libxcb xkb

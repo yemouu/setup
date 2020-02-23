@@ -1,0 +1,37 @@
+# Load Plugin Manager
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+# Plugins
+plug "whereswaldon/shellcheck.kak"
+plug "andreyorst/smarttab.kak" defer smarttab %{
+	set-option global smarttab_noexpandtab_mode_name 'Tab'
+	set-option global smarttab_expandtab_mode_name 'Space'
+	set-option global smarttab_smarttab_mode_name 'SmartTab'
+} config %{
+	# Use Tabs Only
+	hook global WinSetOption filetype=(sh|i3|ini|kak) noexpandtab
+	# Use Spaces Only
+	hook global WinSetOption filetype=(css|html|xml|python) expandtab
+	# Use Smart Tabs
+	#hook global WinSetOption filetype=() smarttab
+}
+
+# kak-lsp
+eval %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=(python) lsp-enable-window
+
+# Indention Widths
+hook global WinSetOption filetype=(css|html|xml) %{ set-option global indentwidth 2 }
+hook global WinSetOption filetype=python %{ set-option global indentwidth 4 }
+
+# Enable Wrapping
+add-highlighter global/ wrap -indent -marker '$>'
+
+# Enable Line Numbers
+add-highlighter global/ number-lines -hlcursor -min-digits 3
+
+# Highlight Matching Characters
+add-highlighter global/ show-matching
+
+# Colorscheme
+colorscheme theme

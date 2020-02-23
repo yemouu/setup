@@ -12,7 +12,7 @@ SDL_VIDEODRIVER=wayland
 export XDG_SESSION_TYPE SDL_VIDEODRIVER
 
 { # Autostart Applications
-    exec "${HOME}/doc/setup/bin/noti/music/music-changed" &
+    exec notimusic changed &
 } &
 
 # Pick Wayland Compositor

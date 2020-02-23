@@ -3,7 +3,7 @@
 [[ -z $BEMENU_OPTIONS ]] && BEMENU_OPTIONS="-i"
 
 prompt="powermenu"
-options="display-off\\nhibernate\\nhybrid-sleep\\npoweroff\\nreboot\\nsuspend\\nsuspend-then-hibernate"
+options="hibernate\\nhybrid-sleep\\nlock\\npoweroff\\nreboot\\nsuspend\\nsuspend-then-hibernate"
 
 confirm() {
     c_prompt="Are you sure? [$action]"
@@ -16,37 +16,17 @@ confirm() {
 }
 
 sleep_task() {
-    mpc -q pause
-    pactl set-source-mute @DEFAULT_SOURCE@ true
-    pactl set-sink-mute @DEFAULT_SINK@ true
-    while true
-    do
-	if [[ $(dunstify -b -t 0 -a "powermenu" "Speakers Muted" "Click here to unmute") = 2 ]]
-	then
-	    pactl set-sink-mute @DEFAULT_SINK@ false
-	    exit 0
-	fi
-    done
-}
-
-display_off() {
-    if [[ $XDG_SESSION_TYPE == "wayland" ]]
-    then
-	swayidle timeout 1 'swaymsg "output * dpms off"' \
-		 resume 'swaymsg "output * dpms on"; pkill swayidle' &
-    else
-	xset dpms force off
-    fi
+    pkill -USR1 swayidle
 }
 
 action=$(echo -e "$options" | bemenu $BEMENU_OPTIONS -p "$prompt")
 case $action in
-    display-off ) confirm; sleep_task & sleep 0.5 && display_off ;;
-    hibernate ) confirm; sleep_task & sleep 0.5 && alacritty -e systemctl hibernate ;;
-    hybrid-sleep ) confirm; sleep_task & sleep 0.5 && alacritty -e systemctl hybrid-sleep ;;
+    hibernate ) confirm; alacritty -e systemctl hibernate ;;
+    hybrid-sleep) confirm; alacritty -e systemctl hybrid-sleep ;;
+    lock ) confirm; alacritty -e loginctl lock-session ;;
     poweroff ) confirm; alacritty -e systemctl poweroff ;;
     reboot ) confirm; alacritty -e systemctl reboot ;;
-    suspend ) confirm; sleep_task & sleep 0.5 && alacritty -e systemctl suspend ;;
-    suspend-then-hibernate ) confirm; sleep_task & sleep 0.5 && alacritty -e systemctl suspend-then-hibernate ;;
+    suspend ) confirm; alacritty -e systemctl suspend ;;
+    suspend-then-hibernate ) confirm; alacritty -e systemctl suspend-then-hibernate ;;
     * ) exit 1 ;;
 esac

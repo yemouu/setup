@@ -19,7 +19,7 @@ export XDG_SESSION_TYPE=x11
 
 # Load xresources
 [ -f "${XDG_CONFIG_HOME}/xorg/xresources" ] && xrdb "${XDG_CONFIG_HOME}/xorg/xresources"
-[ -f "${XDG_CONFIG_HOME}/thm/current/Xresources" ] && xrdb -merge "${XDG_CONFIG_HOME}/thm/current/Xresources"
+[ -f "${XDG_CACHE_HOME}/thm/Xresources" ] && xrdb -merge "${XDG_CONFIG_HOME}/thm/current/Xresources"
 
 xrandr -r 144 & # Set monitor refresh rate to 144hz
 xrandr --output DisplayPort-0 --set TearFree on # Make sure TearFree is enabled
@@ -29,7 +29,7 @@ blugon & # Launch blue light filter
 setroot --restore & # Restore wallpeper
 tint2 -c "${XDG_CONFIG_HOME}/thm/current/tint2rc-main" & # Launch bottom bar
 polybar bar1 --reload & # Launch top bar
-"${HOME}/doc/setup/bin/noti/music/music-changed" & # Display when new song is playing
+notimusic changed & # Display when new song is playing
 
 # Pick a Window Manager/Desktop Environment to enter
 case $1 in

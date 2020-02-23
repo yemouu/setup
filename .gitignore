@@ -3,8 +3,4 @@
 *keep
 eselect-repo.conf~
 patterns.list
-elpa
-auto-save-list
-config.el
-themes
-transient
+plugins

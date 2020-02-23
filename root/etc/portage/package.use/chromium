@@ -1,2 +1,0 @@
-www-client/chromium -suid kerberos widevine system-libvpx
-net-libs/nodejs inspector bundled-ssl

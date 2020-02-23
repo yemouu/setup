@@ -1,1 +1,1 @@
-media-libs/mesa d3d9 gles1 lm-sensors opencl unwind valgrind vulkan-overlay
+media-libs/mesa d3d9 gles1 lm-sensors unwind valgrind vulkan-overlay

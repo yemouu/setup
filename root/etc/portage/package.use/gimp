@@ -1,1 +1,3 @@
+media-gfx/gimp -alsa vector-icons webp
 media-libs/babl introspection
+dev-lang/python:2.7 sqlite

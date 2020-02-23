@@ -1,4 +1,0 @@
-sys-libs/zlib minizip
-dev-python/PyQt5 gui widgets
-dev-qt/qtgui egl
-dev-libs/libpcre2 pcre16

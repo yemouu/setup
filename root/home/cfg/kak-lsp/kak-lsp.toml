@@ -1,0 +1,18 @@
+snippet_support = true
+verbosity = 2
+
+[semantic_scopes]
+variable="variable"
+entity_name_function="function"
+entity_name_type="type"
+variable_other_enummember="variable"
+entity_name_namespace="module"
+
+[server]
+timeout = 1800
+
+[language.python]
+filetypes = ["python"]
+roots = ["requirements.txt", "setup.py", ".git"]
+command = "pyls"
+offset_encoding = "utf-8"

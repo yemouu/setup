@@ -1,13 +1,12 @@
-[ ! $USER = "ye" ] || [ ! $SHELL = "/bin/bash" ] && return
+[ ! $USER = "y" ] || [ ! $SHELL = "/bin/bash" ] && return
 
 PATH="${HOME}/bin:${HOME}/opt/bin:$PATH"
 XDG_DATA_HOME="${HOME}/data"
 XDG_CONFIG_HOME="${HOME}/cfg"
 XDG_CACHE_HOME="${HOME}/tmp/cache"
 
-ALTERNATE_EDITOR=""
-VISUAL="emacsclient -c"
-EDITOR="emacsclient -ct"
+VISUAL="kak"
+EDITOR="kak"
 PAGER="less"
 
 LESSHISTFILE="/dev/null"

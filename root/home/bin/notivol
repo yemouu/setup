@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+usage() {
+    printf '%s\n' "usage: ${0##*/} action [vol_value]" \
+    	"actions:" \
+    	"  toggle - toggle volume of microphone" \
+    	"  vol    - change volume of microphone\n"
+}
+
+m_vol() {
+    [[ ! $1 =~ ^[+-]?[0-9]{1,}%$ ]] && echo "${0##*/}: $1: doesn't match \`^[+-]?[0-9]{1,}%$\`"
+
+    app_name="Microphone Volume"
+    pactl set-source-volume @DEFAULT_SOURCE@ "$1"
+
+    notify-send -a "$app_name" \
+    	-t 4000 \
+    	"Volume: $(pactl list sources | awk NR==10'{print $5}')"
+}
+
+m_toggle() {
+    app_name="Microphone Volume"
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+    notify-send -a "$app_name" \
+		-t 4000 \
+		"Muted: $(pactl list sources | awk NR==9'{print $2}')"
+}
+
+case $1 in
+    "vol"        ) shift; m_vol "$@" ;;
+    "toggle"     ) m_toggle          ;;
+    -h|--help    ) usage; exit 0    ;;
+    "*"          ) usage; exit 1     ;;
+esac

@@ -1,2 +1,2 @@
-media-sound/mpd -udisks -flac -mad -vorbis -network
+media-sound/mpd -audiofile -bzip2 -cue -curl -flac -ipv6 -mad -network -udisks -vorbis
 media-sound/ncmpcpp taglib

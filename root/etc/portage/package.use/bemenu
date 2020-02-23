@@ -1,1 +1,1 @@
-dev-libs/bemenu -X
+dev-libs/bemenu -X -ncurses
