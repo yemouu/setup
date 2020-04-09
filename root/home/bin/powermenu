@@ -21,12 +21,12 @@ sleep_task() {
 
 action=$(echo -e "$options" | bemenu $BEMENU_OPTIONS -p "$prompt")
 case $action in
-    hibernate ) confirm; alacritty -e systemctl hibernate ;;
-    hybrid-sleep) confirm; alacritty -e systemctl hybrid-sleep ;;
-    lock ) confirm; alacritty -e loginctl lock-session ;;
-    poweroff ) confirm; alacritty -e systemctl poweroff ;;
-    reboot ) confirm; alacritty -e systemctl reboot ;;
-    suspend ) confirm; alacritty -e systemctl suspend ;;
-    suspend-then-hibernate ) confirm; alacritty -e systemctl suspend-then-hibernate ;;
-    * ) exit 1 ;;
+    hibernate              ) confirm; alacritty -e loginctl hibernate ;;
+    hybrid-sleep           ) confirm; alacritty -e loginctl hybrid-sleep ;;
+    lock                   ) confirm; alacritty -e loginctl lock-session ;;
+    poweroff               ) confirm; alacritty -e loginctl poweroff ;;
+    reboot                 ) confirm; alacritty -e loginctl reboot ;;
+    suspend                ) confirm; alacritty -e loginctl suspend ;;
+    suspend-then-hibernate ) confirm; alacritty -e loginctl suspend-then-hibernate ;;
+    *                      ) exit 1 ;;
 esac

@@ -1,1 +1,2 @@
 dev-libs/libdbusmenu gtk3
+net-print/cups-filters -postscript

@@ -1,0 +1,13 @@
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -210,8 +210,8 @@
+ {
+     std::string config_dir = nonull(getenv("XDG_CONFIG_HOME"));
+     if (!config_dir.compare("nil"))
+-        config_dir = std::string(nonull(getenv("HOME"))) + "/.config/";
+-    config_file = config_dir + "wayfire.ini";
++        config_dir = std::string(nonull(getenv("HOME"))) + "/.config";
++    config_file = config_dir + "/wayfire.ini";
+
+     wf::log::log_level_t log_level = wf::log::LOG_LEVEL_INFO;
+     struct option opts[] = {

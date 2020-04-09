@@ -1,4 +1,4 @@
-[ ! $USER = "y" ] || [ ! $SHELL = "/bin/bash" ] && return
+[ ! $USER = "mou" ] || [ ! $SHELL = "/bin/bash" ] && return
 
 PATH="${HOME}/bin:${HOME}/opt/bin:$PATH"
 XDG_DATA_HOME="${HOME}/data"

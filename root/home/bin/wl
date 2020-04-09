@@ -1,21 +1,17 @@
 #!/usr/bin/env bash
 
-# Dbus setup
-dbus_uae=dbus-update-activation-environment
-command -v $dbus_uae && \
-    $dbus_uae XDG_DATA_HOME XDG_CONFIG_HOME XDG_CACHE_HOME
-
 # Set Environment variables
 XDG_SESSION_TYPE=wayland
 SDL_VIDEODRIVER=wayland
+XDG_CURRENT_DESKTOP=Unity
 
-export XDG_SESSION_TYPE SDL_VIDEODRIVER
+export XDG_SESSION_TYPE SDL_VIDEODRIVER XDG_CURRENT_DESKTOP
 
-{ # Autostart Applications
-    exec notimusic changed &
-} &
+# Autostart
+{ pulseaudio --start &
+  waybar & } &
 
 # Pick Wayland Compositor
 case $1 in
-    sway|s ) exec sway ;;
+    sway|s ) exec dbus-launch --exit-with-session sway ;;
 esac

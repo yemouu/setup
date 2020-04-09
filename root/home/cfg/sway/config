@@ -10,14 +10,14 @@ output DP-1 {
 	scale 2
 	pos 1920 0
 	subpixel rgb
-	bg "#$color14" solid_color
+	bg ${HOME}/media/wallpapers/evie-s-_IpKsTK9gcE-unsplash.jpg fill
 }
 
 output DP-2 {
 	res 1920x1080@144.001007Hz
 	pos 0 0
 	subpixel rgb
-	bg "#$color14" solid_color
+	bg ${HOME}/media/wallpapers/evie-s-XjX3Ju1jFfU-unsplash.jpg fill
 }
 
 # Input #
@@ -27,17 +27,18 @@ output DP-2 {
 
 # Idle #
 exec swayidle -w \
-     timeout 3600 'swaylock; swaymsg "output * dpms off"; pactl set-source-mute @DEFAULT_SOURCE@ 1; mpc -q pause; pactl set-sink-mute @DEFAULT_SINK@ 1' \
+     timeout 3600 'swaylock; swaymsg "output * dpms off"; pactl set-source-mute @DEFAULT_SOURCE@ 1; pactl set-sink-mute @DEFAULT_SINK@ 1' \
 	     resume 'swaymsg "output * dpms on"; pactl set-sink-mute @DEFAULT_SINK@ 0' \
-     before-sleep 'swaylock; pactl set-source-mute @DEFAULT_SOURCE@ 1; mpc -q pause; pactl set-sink-mute @DEFAULT_SINK@ 1' \
+     before-sleep 'swaylock; pactl set-source-mute @DEFAULT_SOURCE@ 1; pactl set-sink-mute @DEFAULT_SINK@ 1' \
      after-resume 'pactl set-sink-mute @DEFAULT_SINK@ 0' \
-     lock 'swaylock; pactl set-source-mute @DEFAULT_SOURCE@ 1; mpc -q pause; pactl set-sink-mute @DEFAULT_SINK@ 1' \
+     lock 'swaylock; pactl set-source-mute @DEFAULT_SOURCE@ 1; pactl set-sink-mute @DEFAULT_SINK@ 1' \
      unlock 'pactl set-sink-mute @DEFAULT_SINK@ 0'
 
 # Options #
 focus_follows_mouse yes
 focus_on_window_activation smart
 hide_edge_borders --i3 smart
+show_marks yes
 
 # Workspaces #
 # Variables
@@ -95,15 +96,6 @@ bindsym {
 	$C+F5 exec notivol vol 9830398%
 	$A+F5 exec notivol vol 100%
 
-	#$W+p exec playerctl play-pause
-	#$W+bracketleft exec playerctl volume 0.02-
-	#$W+bracketright exec playerctl volume 0.02+
-	#$W+$C+minus exec playerctl position 0
-	#$W+minus exec playerctl position 0.05-
-	#$W+equal exec playerctl position 0.05+
-	#$W+comma exec playerctl previous
-	#$W+period exec playerctl next
-
 	$W+p exec notimusic toggle
 	$W+bracketleft exec notimusic vol -2 
 	$W+bracketright exec notimusic vol +2
@@ -122,8 +114,6 @@ bindsym {
 	$W+Print exec scr pic -c
 
 	$W+space exec makoctl dismiss -a
-
-	$W+f exec $term -e kak
 
 	# change to focus next|prev next sway release
 	$W+z focus right
@@ -178,75 +168,55 @@ floating_modifier $W normal
 # Window Rules #
 for_window {
 	[title=".*"] floating enable
-	[app_id="firefox"] floating disable, border none
 	[app_id="mpv"] border none
-	[class="Chromium-browser-chromium"] floating disable, border none
+	[app_id="firefox" title="^Mozilla Firefox$"] floating disable, border none
+	[app_id="firefox" title=".*- Mozilla Firefox$"] floating disable, border none
 	[class="discord"] floating disable, border none
-	[class="Google-chrome$"] floating disable, border none
-	[class="Google-chrome-unstable"] floating disable, border none
 
-	[app_id="parsecd"] floating disable, border none
 	[class="csgo_linux64"] floating disable, border none
-	[class="DirtRally"] floating disable, border none
 	[class="Golf With Your Friends.x86_64"] floating disable, border none
 	[class="hl2_linux"] floating disable, border none
 	[class="hl_linux"] floating disable, border none
-	[class="hollow_knight.x86_64"] floating disable, border none
-	[class="insurgency_linux"] floating disable, border none
-	[class="io.krunker.desktop"] floating disable, border none
 	[class="Minecraft*"] floating disable, border none
-	[class="Never Split the Party.x86"] floating disable, border none
-	[class="OVIVO.x86"] floating disable, border none
-	[class="ShellShockLive.x86_64"] floating disable, border none
+	[class="streaming_client"] floating disable, border none 
+	[class="SuperTuxKart"] floating disable, border none
+	[class="Unturned.x86_64"] floating disable, border none
+
 	# Rocket League
 	[class="steam_app_252950"] floating disable, border none
 	# Human: Fall Flat
 	[class="steam_app_477160"] floating disable, border none
 	# Team Sonic Racing
 	[class="steam_app_785260"] floating disable, border none
-	[class="streaming_client"] floating disable, border none 
-	[class="SuperTuxKart"] floating disable, border none
-	[class="TheMeanGreens-Linux-Shipping"] floating disable, border none
-	[title="Audiosurf 2"] floating disable, border none
-	[title="Plague Inc: Evolved"] floating disable, border none
+	# Tower Unite
+	[class="steam_app_394690"] floating disable, border none
+	# Risk
+	[class="steam_app_1128810"] floating disable, border none
 }
 
 # Move Windows to Workspaces
 for_window {
-	[app_id="firefox"] move container to workspace 0
-	[class="Chromium-browser-chromium"] move container to workspace 0
-	[class="Google-chrome-unstable"] move container to workspace 0
-
 	[class="discord"] move container to workspace 1
-
-	[class="Google-chrome$"] move container to workspace 2
-
-	[app_id="org.multimc.MultiMC"] move container to workspace 7
+	[app_id="org.multimc.multimc"] move container to workspace 7
 	[class="Steam"] move container to workspace 7
 
-	[app_id="parsecd"] move container to workspace 8
-	[class="hollow_knight.x86_64"] move container to workspace 8
+	[class="Golf With Your Friends.x86_64"] move container to workspace 8
+	[class="hl2_linux"] move container to workspace 8
+	[class="hl_linux"] move container to workspace 8
 	[class="Minecraft*"] move container to workspace 8
-	[class="Never Split the Party.x86"] move container to workspace 8
-	[class="ShellShockLive.x86_64"] move container to workspace 8
+	[class="streaming_client"] move container to workspace 8
+	[class="SuperTuxKart"] move container to workspace 8
+	[class="Unturned.x86_64"] move container to workspace 8
+	[class="csgo_linux64"] move container to workspace 9
+
 	# Rocket League 
 	[class="steam_app_252950"] move container to workspace 8
 	# Human: Fall Flat
 	[class="steam_app_477160"] move container to workspace 8
 	# Team Sonic Racing
 	[class="steam_app_785260"] move container to workspace 8
-	[class="streaming_client"] move container to workspace 8
-	[class="SuperTuxKart"] move container to workspace 8
-	[title="Plague Inc: Evolved"] move container to workspace 8
-
-	[class="csgo_linux64"] move container to workspace 9
-	[class="DirtRally"] move container to workspace 9
-	[class="Golf With Your Friends.x86_64"] move container to workspace 9
-	[class="hl2_linux"] move container to workspace 9
-	[class="hl_linux"] move container to workspace 9
-	[class="insurgency_linux"] move container to workspace 9
-	[class="io.krunker.desktop"] move container to workspace 9
-	[class="OVIVO.x86"] move container to workspace 9
-	[class="TheMeanGreens-Linux-Shipping"] move container to workspace 9
-	[title="Audiosurf 2"] move container to workspace 9
+	# Tower Unite
+	[class="steam_app_394690"] move container to workspace 8
+	# Risk
+	[class="steam_app_1128810"] move container to workspace 8
 }

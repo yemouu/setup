@@ -1,3 +1,4 @@
-media-gfx/gimp -alsa vector-icons webp
-media-libs/babl introspection
-dev-lang/python:2.7 sqlite
+media-gfx/gimp -alsa
+app-text/poppler cairo
+gnome-base/librsvg -vala
+media-libs/gegl -vala

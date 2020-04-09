@@ -55,6 +55,7 @@ kernel_compile() {
 }
 
 kernel_apply() {
+	make modules_install "${KERNEL_MAKEOPTS[@]}"
 	if [[ -d ${KERNEL_DEST_DIR} ]]
 	then
 		[[ -z $kernel_skip_backup ]] && \

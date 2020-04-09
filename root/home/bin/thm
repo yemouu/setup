@@ -12,7 +12,7 @@ usage() {
 
 hex2rgb() {
 	hex=$1
-	printf '%d,%d,%d' "0x${hex:0:2}" "0x${hex:2:2}" 0x"${hex:4:2}"
+	printf '%d,%d,%d' "0x${hex:0:2}" "0x${hex:2:2}" "0x${hex:4:2}"
 }
 
 thm_config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/thm"
@@ -32,11 +32,13 @@ case $1 in
 		read -rp "Pick a theme: " theme_number
 		! [[ $theme_number =~ [0-9]{1,} && $theme_number < $count ]] && \
 			{ echo "${0##*/}: $theme_number: invalid theme number"; exit 1; }
+		theme_file="${files[theme_number]}"
 		. "${files[theme_number]}"
 		;;
 	* )
 		[[ ! -f "${thm_config_dir}/themes/${1}.theme" ]] && \
 			{ echo "${0##*/}: $1: theme not found"; exit 1; }
+		theme_file="${thm_config_dir}/themes/${1}.theme"
 		. "${thm_config_dir}/themes/${1}.theme"
 		;;
 esac
@@ -67,6 +69,7 @@ color15_rgb="$(hex2rgb "$color15")"
 }
 
 rm "$thm_dest_dir/"*
+echo "$theme_file" > "$thm_dest_dir/current_thm"
 
 templates=("${thm_config_dir}/templates/"*"-template")
 for t in "${templates[@]}"
@@ -116,5 +119,5 @@ done
 scripts=("${thm_config_dir}/scripts/"*)
 for i in "${scripts[@]}"
 do
-	$i &> /dev/null &
+	[[ ! -d $i ]] && $i #&> /dev/null &
 done

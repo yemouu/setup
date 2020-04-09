@@ -1,0 +1,7 @@
+media-libs/mlt ffmpeg qt5 melt kdenlive frei0r
+media-libs/opencv qt5
+kde-frameworks/kwindowsystem X
+virtual/ffmpeg X
+media-libs/libsdl2 gles2
+media-video/ffmpeg sdl X
+kde-frameworks/sonnet -hunspell

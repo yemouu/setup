@@ -13,14 +13,13 @@
 
 usage() {
 	printf '%s\n' "usage: ${0##*/} action [options]" \
-	              "\nactions:" \
+	              "actions:" \
 	              "  aud - audio" \
 	              "  pic - picture" \
 	              "  rec - record" \
 	              "options:" \
 	              "  -a - record desktop audio" \
 	              "  -c - copy picture to clipboard" \
-	              "  -f - fullscreen" \
 	              "  -h - display this message" \
 	              "  -m - record microphone audio"
 }
@@ -43,7 +42,6 @@ do
 		case ${arg:$i:1} in
 			a ) desktop_audio=true ;;
 			c ) copy_clipboard=true ;;
-			f ) fullscreen=true ;;
 			h ) usage; exit 0 ;;
 			m ) microphone=true ;;
 			* ) printf '%s\n' "${0##*/}: -${arg:$1:1}: invalid argument"
@@ -92,10 +90,8 @@ scr_pic() {
 
 	filename="$scr_pic_dir/$pic_filename"
 
-	[[ -z $fullscreen ]] && {
-		read -r geom < <(slurp)
-		pic_sel="-g-"
-	}
+	read -r geom < <(slurp)
+	pic_sel="-g-"
 
 	printf '%s' "$geom" | grim "$pic_sel" "$filename" &> "$SCR_CACHE_DIR/pic.log"
 	[[ -n $copy_clipboard ]] && \
@@ -108,33 +104,24 @@ scr_rec() {
 	[[ -d $scr_rec_dir ]] || \
 		{ mkdir -p "$scr_rec_dir" || die "failed to make directory: $scr_pic_dir"; }
 
+	[[ -e $SCR_CACHE_DIR/rec.pid ]] && \
+		{ kill -15 "$(<"$SCR_CACHE_DIR/rec.pid")"
+		  rm "$SCR_CACHE_DIR/rec.pid"; }
+
 	[[ -d $SCR_CACHE_DIR ]] || \
 		{ mkdir -p "$SCR_CACHE_DIR" || \
 		  die "failed to make directory: $SCR_CACHE_DIR"; }
 
 	filename="$scr_rec_dir/$rec_filename"
 
-	[[ -z $fullscreen ]] && {
-		read -r geometry < <(slurp)
-		rec_selection="-g $geometry"
-	}
+	read -r X Y W H < <(slurp -f "%x %y %w %h")
+	rec_sel=""
 
 	[[ -n $microphone && -n $desktop_audio ]] && {
-		# This is a temporary solution until wf-recorder has support for recording
-		# multiple audio devices.
 		unload_pulse_modules=true
 		pactlm_null_sink=$(pactl load-module module-null-sink sink_name=scr_inputs)
-		pactlm_loopback1=$(pactl load-module module-loopback sink=scr_inputs)
-		pactlm_loopback2=$(pactl load-module module-loopback sink=scr_inputs)
-
-		pactl move-source-output \
-			"$(pactl list source-outputs short | grep lo | tac | awk NR==2'{print $1}')" \
-			"$aud_sink"
-
-		pactl move-source-output \
-			"$(pactl list source-outputs short | grep lo | tac | awk NR==1'{print $1}')" \
-			"$aud_source"
-
+		pactlm_loopback1=$(pactl load-module module-loopback sink=scr_inputs source="$aud_sink")
+		pactlm_loopback2=$(pactl load-module module-loopback sink=scr_inputs source="$aud_source")
 		audio_args="-ascr_inputs.monitor"
 	}
 
@@ -142,13 +129,8 @@ scr_rec() {
 	[[ -n $desktop_audio ]] && audio_args="-a$aud_sink"
 	read -ra args <<< "$rec_selection $audio_args"
 
-	wf-recorder "${args[@]}" "$filename" &> "$SCR_CACHE_DIR/rec.log"
-
-	[[ $unload_pulse_modules = true ]] && {
-		pactl unload-module "$pactlm_loopback2"
-		pactl unload-module "$pactlm_loopback1"
-		pactl unload-module "$pactlm_null_sink"
-	}
+	#wf-recorder "${args[@]}" -g "$(slurp)" -f "$filename" &> "$SCR_CACHE_DIR/rec.log"
+	ffmpeg "${args[@]}" "$filename" &> "$SCR_CACHE_DIR/rec.log"
 
 	echo "$filename"
 }

@@ -1,2 +1,1 @@
-media-gfx/imagemagick corefonts djvu fontconfig hdri lcms lzma pango raw webp xml jpeg png lqr
-app-text/ghostscript-gpl cups
+media-gfx/imagemagick -truetype
