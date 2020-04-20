@@ -1,2 +1,3 @@
-dev-qt/qtmultimedia widgets
 sys-libs/zlib minizip
+media-libs/libsdl2 gles2
+kde-frameworks/kwindowsystem X

@@ -1,2 +1,1 @@
 app-admin/sudo -sendmail system-digest
-dev-lang/swig ccache

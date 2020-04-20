@@ -43,7 +43,6 @@ show_marks yes
 # Workspaces #
 # Variables
 set {
-	$ws0 0
 	$ws1 1
 	$ws2 2
 	$ws3 3
@@ -53,6 +52,7 @@ set {
 	$ws7 7
 	$ws8 8
 	$ws9 9
+	$ws10 10
 }
 
 # Options
@@ -60,16 +60,16 @@ workspace_layout tabbed
 
 # Assign
 workspace {
-	$ws0 output DP-1
-	$ws1 output DP-2
-	$ws2 output DP-1
-	$ws3 output DP-2
-	$ws4 output DP-1
-	$ws5 output DP-2
-	$ws6 output DP-1
-	$ws7 output DP-2
-	$ws8 output DP-1
-	$ws9 output DP-2
+	$ws1 output DP-1
+	$ws2 output DP-2
+	$ws3 output DP-1
+	$ws4 output DP-2
+	$ws5 output DP-1
+	$ws6 output DP-2
+	$ws7 output DP-1
+	$ws8 output DP-2
+	$ws9 output DP-1
+	$ws10 output DP-2
 }
 
 # Keybinds #
@@ -128,27 +128,27 @@ bindsym {
 	$W+Up focus up
 	$W+Right focus right
 
-	$W+1 workspace $ws0
-	$W+2 workspace $ws1
-	$W+3 workspace $ws2
-	$W+4 workspace $ws3
-	$W+5 workspace $ws4
-	$W+6 workspace $ws5
-	$W+7 workspace $ws6
-	$W+8 workspace $ws7
-	$W+9 workspace $ws8
-	$W+0 workspace $ws9
+	$W+1 workspace $ws1
+	$W+2 workspace $ws2
+	$W+3 workspace $ws3
+	$W+4 workspace $ws4
+	$W+5 workspace $ws5
+	$W+6 workspace $ws6
+	$W+7 workspace $ws7
+	$W+8 workspace $ws8
+	$W+9 workspace $ws9
+	$W+0 workspace $ws10
 
-	$W+$S+1 move container to workspace $ws0
-	$W+$S+2 move container to workspace $ws1
-	$W+$S+3 move container to workspace $ws2
-	$W+$S+4 move container to workspace $ws3
-	$W+$S+5 move container to workspace $ws4
-	$W+$S+6 move container to workspace $ws5
-	$W+$S+7 move container to workspace $ws6
-	$W+$S+8 move container to workspace $ws7
-	$W+$S+9 move container to workspace $ws8
-	$W+$S+0 move container to workspace $ws9
+	$W+$S+1 move container to workspace $ws1
+	$W+$S+2 move container to workspace $ws2
+	$W+$S+3 move container to workspace $ws3
+	$W+$S+4 move container to workspace $ws4
+	$W+$S+5 move container to workspace $ws5
+	$W+$S+6 move container to workspace $ws6
+	$W+$S+7 move container to workspace $ws7
+	$W+$S+8 move container to workspace $ws8
+	$W+$S+9 move container to workspace $ws9
+	$W+$S+0 move container to workspace $ws10
 
 	$W+$C+Escape exit
 	$W+$A+Escape reload
@@ -181,6 +181,9 @@ for_window {
 	[class="streaming_client"] floating disable, border none 
 	[class="SuperTuxKart"] floating disable, border none
 	[class="Unturned.x86_64"] floating disable, border none
+	[class="starbound"] floating disable, border none
+	[title="^The Escapist 2$"] floating disable, border none
+	[instance="geometrydash.exe"] floating disable, border none
 
 	# Rocket League
 	[class="steam_app_252950"] floating disable, border none
@@ -196,27 +199,31 @@ for_window {
 
 # Move Windows to Workspaces
 for_window {
-	[class="discord"] move container to workspace 1
-	[app_id="org.multimc.multimc"] move container to workspace 7
-	[class="Steam"] move container to workspace 7
+	[app_id="firefox"] move container to workspace 1
+	[class="discord"] move container to workspace 2
+	[app_id="org.multimc.multimc"] move container to workspace 8
+	[class="Steam"] move container to workspace 8
 
-	[class="Golf With Your Friends.x86_64"] move container to workspace 8
-	[class="hl2_linux"] move container to workspace 8
-	[class="hl_linux"] move container to workspace 8
-	[class="Minecraft*"] move container to workspace 8
-	[class="streaming_client"] move container to workspace 8
-	[class="SuperTuxKart"] move container to workspace 8
-	[class="Unturned.x86_64"] move container to workspace 8
-	[class="csgo_linux64"] move container to workspace 9
+	[class="Golf With Your Friends.x86_64"] move container to workspace 9
+	[class="hl2_linux"] move container to workspace 9
+	[class="hl_linux"] move container to workspace 9
+	[class="Minecraft*"] move container to workspace 9
+	[class="streaming_client"] move container to workspace 9
+	[class="SuperTuxKart"] move container to workspace 9
+	[class="Unturned.x86_64"] move container to workspace 9
+	[class="starbound"] move container to workspace 9
+	[title="^The Escapist 2$"] move container to workspace 9
+	[instance="geometrydash.exe"] move container to workspace 9
+	[class="csgo_linux64"] move container to workspace 10
 
 	# Rocket League 
-	[class="steam_app_252950"] move container to workspace 8
+	[class="steam_app_252950"] move container to workspace 9
 	# Human: Fall Flat
-	[class="steam_app_477160"] move container to workspace 8
+	[class="steam_app_477160"] move container to workspace 9
 	# Team Sonic Racing
-	[class="steam_app_785260"] move container to workspace 8
+	[class="steam_app_785260"] move container to workspace 9
 	# Tower Unite
-	[class="steam_app_394690"] move container to workspace 8
+	[class="steam_app_394690"] move container to workspace 9
 	# Risk
-	[class="steam_app_1128810"] move container to workspace 8
+	[class="steam_app_1128810"] move container to workspace 9
 }

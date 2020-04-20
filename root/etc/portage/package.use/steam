@@ -45,3 +45,6 @@ x11-libs/libXxf86vm abi_x86_32
 
 # Needed By virtual/opencl
 x11-libs/libdrm abi_x86_32
+
+# Needed for mesa with vaapi
+x11-libs/libva abi_x86_32

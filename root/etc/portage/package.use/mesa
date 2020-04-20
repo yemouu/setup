@@ -1,2 +1,2 @@
-media-libs/mesa -zstd gles1 lm-sensors unwind valgrind vulkan-overlay
+media-libs/mesa valgrind
 x11-libs/libdrm video_cards_radeon

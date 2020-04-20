@@ -3,6 +3,7 @@ max-visible=2
 sort=-time
 output=DP-1
 layer=overlay
+anchor=bottom-right
 
 # All Notifcations
 font=monospace 8

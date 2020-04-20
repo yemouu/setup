@@ -8,8 +8,7 @@ XDG_CURRENT_DESKTOP=Unity
 export XDG_SESSION_TYPE SDL_VIDEODRIVER XDG_CURRENT_DESKTOP
 
 # Autostart
-{ pulseaudio --start &
-  waybar & } &
+{ pulseaudio --start & } &
 
 # Pick Wayland Compositor
 case $1 in

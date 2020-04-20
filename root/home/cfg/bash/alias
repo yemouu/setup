@@ -20,7 +20,6 @@ alias em="sudo emerge"
 alias emu="sudo emerge -uDN --changed-deps --with-bdeps=y @world"
 alias emul="sudo emerge @live-rebuild"
 alias qe="qlist -IR | grep -v ::gentoo"
-alias emdxml="metagen -e meeyou@tuta.io -t person -l"
 
 alias gb="cd ~-"
 alias e="$VISUAL"

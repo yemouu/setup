@@ -5,15 +5,15 @@ app-editors/kakoune
 app-eselect/eselect-repository
 app-misc/beautifuldiscord
 app-misc/jq
-app-misc/radeontop
 app-misc/tmux
 app-portage/euses
 app-portage/genlop
 app-portage/gentoolkit
 app-portage/repoman
 app-shells/bash-completion
+app-shells/dash
 dev-libs/bemenu
-dev-libs/libappindicator
+dev-libs/rocm-opencl-runtime
 dev-python/discord-py
 dev-python/pycodestyle
 dev-python/pydocstyle
@@ -22,7 +22,7 @@ dev-python/python-language-server
 dev-util/ccache
 dev-util/kak-lsp
 dev-util/rocminfo
-dev-util/shellcheck-bin
+dev-util/shellcheck
 dev-vcs/git
 games-action/multimc
 games-action/supertuxkart
@@ -35,7 +35,6 @@ gui-apps/wev
 gui-apps/wf-recorder
 gui-apps/wl-clipboard
 gui-wm/sway
-kde-apps/kdenlive
 media-fonts/fontawesome
 media-fonts/ibm-plex
 media-fonts/noto
@@ -48,8 +47,9 @@ media-sound/playerctl
 media-video/ffmpeg
 media-video/mpv
 net-firewall/ufw
-net-im/discord-canary
+net-im/discord-bin
 net-im/zoom
+net-p2p/rtorrent
 sci-biology/foldingathome
 sys-apps/fakeroot
 sys-apps/lm-sensors
@@ -63,7 +63,8 @@ sys-kernel/gentoo-sources
 sys-kernel/linux-firmware
 sys-process/htop
 virtual/opencl
-www-client/firefox-bin
+www-client/firefox
+x11-apps/radeon-profile-daemon
 x11-base/xorg-drivers
 x11-misc/xdg-user-dirs
 x11-misc/xdg-utils

@@ -1,0 +1,5 @@
+www-client/firefox clang lto pgo -screenshot
+media-libs/libvpx postproc
+x11-base/xorg-server xvfb
+sys-devel/llvm gold
+net-libs/nodejs -system-ssl
