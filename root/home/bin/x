@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-exec xinit "$1" -- /usr/bin/Xorg -nolisten tcp vt1

@@ -1,1 +1,4 @@
 app-text/xmlto text
+dev-perl/Net-HTTP minimal
+dev-perl/Net-SSLeay minimal
+dev-perl/Try-Tiny minimal

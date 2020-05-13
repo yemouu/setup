@@ -55,7 +55,6 @@ kernel_compile() {
 }
 
 kernel_apply() {
-	make modules_install "${KERNEL_MAKEOPTS[@]}"
 	if [[ -d ${KERNEL_DEST_DIR} ]]
 	then
 		[[ -z $kernel_skip_backup ]] && \
@@ -90,11 +89,11 @@ do
 done
 
 [[ -z $KERNEL_SRC_DIR ]] && KERNEL_SRC_DIR="/usr/src/linux"
-[[ -z $KERNEL_MAKEOPTS ]] && KERNEL_MAKEOPTS=("-j$(($(nproc)+1))" "-l$(nproc)")
+[[ -z $KERNEL_MAKEOPTS ]] && KERNEL_MAKEOPTS="-j$(nproc)"
 [[ -z $KERNEL_DEST_DIR ]] && KERNEL_DEST_DIR="/boot/EFI/Gentoo"
 [[ -z $KERNEL_NAME ]] && KERNEL_NAME="bzImage"
 
 kernel_setup
 [[ -n $kernel_edit ]] && kernel_configure
-[[ -z $kernel_skip_compile ]] && kernel_compile
+[[ -z $kernel_skip_compile ]] && time kernel_compile
 [[ -z $kernel_skip_apply ]] && kernel_apply

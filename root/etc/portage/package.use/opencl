@@ -1,5 +1,8 @@
 dev-libs/rocr-runtime non-free
 
+dev-lang/ocaml flambda
+dev-lang/ruby -rdoc jemalloc jit
+
 >=dev-ruby/minitest-5.14.0 ruby_targets_ruby27
 >=dev-ruby/net-telnet-0.2.0 ruby_targets_ruby27
 >=dev-ruby/power_assert-1.1.7 ruby_targets_ruby27

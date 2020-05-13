@@ -106,7 +106,7 @@ scr_rec() {
 
 	[[ -e $SCR_CACHE_DIR/rec.pid ]] && \
 		{ kill -15 "$(<"$SCR_CACHE_DIR/rec.pid")"
-		  rm "$SCR_CACHE_DIR/rec.pid"; }
+		  rm "$SCR_CACHE_DIR/rec.pid"; exit 0; }
 
 	[[ -d $SCR_CACHE_DIR ]] || \
 		{ mkdir -p "$SCR_CACHE_DIR" || \
@@ -120,8 +120,8 @@ scr_rec() {
 	[[ -n $microphone && -n $desktop_audio ]] && {
 		unload_pulse_modules=true
 		pactlm_null_sink=$(pactl load-module module-null-sink sink_name=scr_inputs)
-		pactlm_loopback1=$(pactl load-module module-loopback sink=scr_inputs source="$aud_sink")
-		pactlm_loopback2=$(pactl load-module module-loopback sink=scr_inputs source="$aud_source")
+		pactlm_lb1=$(pactl load-module module-loopback sink=scr_inputs source="$aud_sink")
+		pactlm_lb2=$(pactl load-module module-loopback sink=scr_inputs source="$aud_source")
 		audio_args="-ascr_inputs.monitor"
 	}
 
@@ -129,9 +129,7 @@ scr_rec() {
 	[[ -n $desktop_audio ]] && audio_args="-a$aud_sink"
 	read -ra args <<< "$rec_selection $audio_args"
 
-	#wf-recorder "${args[@]}" -g "$(slurp)" -f "$filename" &> "$SCR_CACHE_DIR/rec.log"
-	ffmpeg "${args[@]}" "$filename" &> "$SCR_CACHE_DIR/rec.log"
-
+	wf-recorder "${args[@]}" -g "$(slurp)" -f "$filename" &> "$SCR_CACHE_DIR/rec.log"
 	echo "$filename"
 }
 

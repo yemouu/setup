@@ -3,10 +3,10 @@ max-visible=2
 sort=-time
 output=DP-1
 layer=overlay
-anchor=bottom-right
+anchor=bottom-left
 
 # All Notifcations
-font=monospace 8
+font=monospace 9
 background-color=#{bg_color}
 text-color=#{fg_color}
 width=400
@@ -15,7 +15,7 @@ margin=8,8
 padding=8,8
 border-size=4
 border-color=#{fg_color}
-max-icon-size=32
+max-icon-size=48
 actions=1
 format=<b>%a</b>\n%s\n%b
 default-timeout=8000

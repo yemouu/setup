@@ -1,1 +1,1 @@
-app-admin/sudo -sendmail system-digest
+app-admin/sudo -sendmail

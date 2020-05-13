@@ -11,3 +11,4 @@ x11-libs/gtk+ X
 gui-wm/sway X
 gui-libs/wlroots X
 sys-apps/dbus X
+media-libs/libepoxy X

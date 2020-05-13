@@ -4,3 +4,4 @@
 eselect-repo.conf~
 patterns.list
 plugins
+ltoworkarounds.conf

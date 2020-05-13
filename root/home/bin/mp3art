@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-rm "$XDG_CACHE_HOME/mp3art.jpg"
-ffmpeg -i "$(xdg-user-dir MUSIC)/$(mpc current --format=%file%)" \
-	"$XDG_CACHE_HOME/mp3art.jpg"

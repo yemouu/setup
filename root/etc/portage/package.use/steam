@@ -1,7 +1,17 @@
 games-util/steam-client-meta steamfonts trayicon
 games-util/steam-games-meta mono steamgames_portal steamgames_source_engine steamgames_tf2 steamgames_dirt_rally
 
+# Needed for proton
 media-libs/vulkan-loader X abi_x86_32
+
+# Needed By virtual/opencl
+x11-libs/libdrm abi_x86_32
+
+# Needed for mesa with vaapi
+x11-libs/libva abi_x86_32
+
+# Needed for minimal mono
+dev-lang/mono minimal
 
 app-arch/bzip2 abi_x86_32
 app-arch/zstd abi_x86_32
@@ -42,9 +52,3 @@ x11-libs/libXrandr abi_x86_32
 x11-libs/libXrender abi_x86_32
 x11-libs/libxshmfence abi_x86_32
 x11-libs/libXxf86vm abi_x86_32
-
-# Needed By virtual/opencl
-x11-libs/libdrm abi_x86_32
-
-# Needed for mesa with vaapi
-x11-libs/libva abi_x86_32

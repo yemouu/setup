@@ -28,5 +28,4 @@ else
 fi
 
 PROMPT_COMMAND='history -a'
-PS1+="${color}\\W ${reset}"
-PS2="${color}\\W > ${reset}"
+PS1+="🦑 "

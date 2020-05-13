@@ -21,8 +21,12 @@ output DP-2 {
 }
 
 # Input #
-	input 7805:11815:ROCCAT_ROCCAT_Kone_Aimo_Mouse {
+input 7805:11815:ROCCAT_ROCCAT_Kone_Aimo_Mouse {
 	accel_profile flat
+}
+
+input 12136:130:Hoksi_Technology_DURGOD_Taurus_K320 {
+	xkb_options compose:caps
 }
 
 # Idle #
@@ -172,6 +176,7 @@ for_window {
 	[app_id="firefox" title="^Mozilla Firefox$"] floating disable, border none
 	[app_id="firefox" title=".*- Mozilla Firefox$"] floating disable, border none
 	[class="discord"] floating disable, border none
+	[class="Riot"] floating disable, border none
 
 	[class="csgo_linux64"] floating disable, border none
 	[class="Golf With Your Friends.x86_64"] floating disable, border none
@@ -182,6 +187,9 @@ for_window {
 	[class="SuperTuxKart"] floating disable, border none
 	[class="Unturned.x86_64"] floating disable, border none
 	[class="starbound"] floating disable, border none
+	[class="StardewValley.bin.x86_64"] floating disable, border none
+	[class="portal2_linux"] floating disable, border none
+	[class="Albion Online Client"] floating disable, border none
 	[title="^The Escapist 2$"] floating disable, border none
 	[instance="geometrydash.exe"] floating disable, border none
 
@@ -201,7 +209,9 @@ for_window {
 for_window {
 	[app_id="firefox"] move container to workspace 1
 	[class="discord"] move container to workspace 2
+	[class="Riot"] move container to workspace 2
 	[app_id="org.multimc.multimc"] move container to workspace 8
+	[class="minecraft-launcher"] move container to workspace 8
 	[class="Steam"] move container to workspace 8
 
 	[class="Golf With Your Friends.x86_64"] move container to workspace 9
@@ -212,6 +222,10 @@ for_window {
 	[class="SuperTuxKart"] move container to workspace 9
 	[class="Unturned.x86_64"] move container to workspace 9
 	[class="starbound"] move container to workspace 9
+	[class="StardewValley.bin.x86_64"] move container to workspace 9
+	[class="portal2_linux"] move container to workspace 9
+	[class="Albion Online Launcher"] move container to workspace 9
+	[class="Albion Online Client"] move container to workspace 9
 	[title="^The Escapist 2$"] move container to workspace 9
 	[instance="geometrydash.exe"] move container to workspace 9
 	[class="csgo_linux64"] move container to workspace 10
