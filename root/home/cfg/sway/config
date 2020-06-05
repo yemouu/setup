@@ -100,19 +100,8 @@ bindsym {
 	$C+F5 exec notivol vol 9830398%
 	$A+F5 exec notivol vol 100%
 
-	$W+p exec notimusic toggle
-	$W+bracketleft exec notimusic vol -2 
-	$W+bracketright exec notimusic vol +2
-	$W+$C+minus exec notimusic seek 0%
-	$W+minus exec notimusic seek -5%
-	$W+equal exec notimusic seek +5%
-	$W+comma exec mpc -q prev
-	$W+period exec mpc -q next
-	$W+i exec notimusic info
-	$W+o exec $term -t ncmpcpp -e ncmpcpp
-
 	$W+t exec notidate
-	$W+$A+t exec notidate UTC
+	$W+$A+t exec notidate America/New_York
 
 	Print exec scr pic -fc
 	$W+Print exec scr pic -c
@@ -161,6 +150,9 @@ bindsym {
 	$W+$S+s floating enable
 	$W+$S+t floating disable
 	$W+$S+f fullscreen toggle
+	$W+l layout toggle split tabbed
+	$W+o layout toggle split
+	$W+p splitt
 
 	$W+v border normal 2
 	$W+b border pixel 2
@@ -177,6 +169,7 @@ for_window {
 	[app_id="firefox" title=".*- Mozilla Firefox$"] floating disable, border none
 	[class="discord"] floating disable, border none
 	[class="Riot"] floating disable, border none
+	[app_id="parsecd"] floating disable, border none
 
 	[class="csgo_linux64"] floating disable, border none
 	[class="Golf With Your Friends.x86_64"] floating disable, border none
@@ -190,11 +183,15 @@ for_window {
 	[class="StardewValley.bin.x86_64"] floating disable, border none
 	[class="portal2_linux"] floating disable, border none
 	[class="Albion Online Client"] floating disable, border none
+	[class="Terraria.bin.x86_64"] floating disable, border none
+	[class="Wine"] floating disable, border none
 	[title="^The Escapist 2$"] floating disable, border none
 	[instance="geometrydash.exe"] floating disable, border none
 
 	# Rocket League
 	[class="steam_app_252950"] floating disable, border none
+	# Gravitas
+	[class="steam_app_1067310"] floating disable, border none
 	# Human: Fall Flat
 	[class="steam_app_477160"] floating disable, border none
 	# Team Sonic Racing
@@ -203,6 +200,12 @@ for_window {
 	[class="steam_app_394690"] floating disable, border none
 	# Risk
 	[class="steam_app_1128810"] floating disable, border none
+	# The Lego Ninjago Movie Video Game
+	[class="steam_app_640590"] floating disable, border none
+	# Castle Crashers
+	[class="steam_app_204360"] floating disable, border none
+	# Worms Revolution
+	[class="steam_app_200170"] floating disable, border none
 }
 
 # Move Windows to Workspaces
@@ -210,9 +213,11 @@ for_window {
 	[app_id="firefox"] move container to workspace 1
 	[class="discord"] move container to workspace 2
 	[class="Riot"] move container to workspace 2
+	[app_id="org.qbittorrent.qBittorrent"] move container to workspace 6
 	[app_id="org.multimc.multimc"] move container to workspace 8
 	[class="minecraft-launcher"] move container to workspace 8
 	[class="Steam"] move container to workspace 8
+	[app_id="parsecd"] move container to workspace 9
 
 	[class="Golf With Your Friends.x86_64"] move container to workspace 9
 	[class="hl2_linux"] move container to workspace 9
@@ -226,12 +231,16 @@ for_window {
 	[class="portal2_linux"] move container to workspace 9
 	[class="Albion Online Launcher"] move container to workspace 9
 	[class="Albion Online Client"] move container to workspace 9
+	[class="Terraria.bin.x86_64"] move container to workspace 9
+	[class="Wine"] move container to workspace 9
 	[title="^The Escapist 2$"] move container to workspace 9
 	[instance="geometrydash.exe"] move container to workspace 9
 	[class="csgo_linux64"] move container to workspace 10
 
 	# Rocket League 
 	[class="steam_app_252950"] move container to workspace 9
+	# Gravitas
+	[class="steam_app_1067310"] move container to workspace 9
 	# Human: Fall Flat
 	[class="steam_app_477160"] move container to workspace 9
 	# Team Sonic Racing
@@ -240,4 +249,10 @@ for_window {
 	[class="steam_app_394690"] move container to workspace 9
 	# Risk
 	[class="steam_app_1128810"] move container to workspace 9
+	# The Lego Ninjago Movie Video Game
+	[class="steam_app_640590"] move container to workspace 9
+	# Castle Crashers
+	[class="steam_app_204360"] move container to workspace 9
+	# Worms Revolution
+	[class="steam_app_200170"] move container to workspace 9
 }

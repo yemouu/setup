@@ -1,5 +1,17 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 . "${XDG_CACHE_HOME}/thm/colors.sh"
-args=( -H 32 -m 1 --fn 'monospace 9' --tb "#${color1}" --tf "#${bg_color}" --fb "#${bg_color}" --ff "#${fg_color}" --nb "#${bg_color}" --nf "#${fg_color}" --hb "#${bg_color}" --hf "#${color2}" )
-exec /usr/bin/bemenu-run "${args[@]}" "$@"
+exec /usr/bin/bemenu-run -H 32 \
+                         -i \
+                         -m all \
+                         -w \
+                         --fn 'monospace 10' \
+                         --fb "#${bg_color}" \
+                         --ff "#${fg_color}" \
+                         --hb "#${bg_color}" \
+                         --hf "#${color2}" \
+                         --nb "#${bg_color}" \
+                         --nf "#${fg_color}" \
+                         --tb "#${color1}" \
+                         --tf "#${bg_color}" \
+                         "$@"

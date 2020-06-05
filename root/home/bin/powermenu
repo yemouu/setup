@@ -1,13 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-[[ -z $BEMENU_OPTIONS ]] && BEMENU_OPTIONS="-i"
+[ -z "$BEMENU_OPTIONS" ] && BEMENU_OPTIONS="-i"
 
 prompt="powermenu"
 options="hibernate\\nhybrid-sleep\\nlock\\npoweroff\\nreboot\\nsuspend\\nsuspend-then-hibernate"
 
 confirm() {
     c_prompt="Are you sure? [$action]"
-    c_input=$(echo -e "yes\\nno" | bemenu $BEMENU_OPTIONS -p "$c_prompt")
+    c_input=$(printf '%b' "yes\\nno" | bemenu $BEMENU_OPTIONS -p "$c_prompt")
     case $c_input in
 	Y*|y* ) return 0 ;;
 	N*|n* ) exit 0 ;;
@@ -19,7 +19,7 @@ sleep_task() {
     pkill -USR1 swayidle
 }
 
-action=$(echo -e "$options" | bemenu $BEMENU_OPTIONS -p "$prompt")
+action=$(printf '%b' "$options" | bemenu $BEMENU_OPTIONS -p "$prompt")
 case $action in
     hibernate              ) confirm; alacritty -e loginctl hibernate ;;
     hybrid-sleep           ) confirm; alacritty -e loginctl hybrid-sleep ;;

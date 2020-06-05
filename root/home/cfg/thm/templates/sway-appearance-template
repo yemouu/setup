@@ -6,7 +6,7 @@ client.urgent #{color7} #{color7} #{color8} #{color7} #{color8}
 default_border normal 2
 default_floating_border normal 2
 
-font pango:monospace 9
+font pango:monospace 10
 
 hide_edge_borders both
 

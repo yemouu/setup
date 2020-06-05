@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Set Environment variables
 XDG_SESSION_TYPE=wayland

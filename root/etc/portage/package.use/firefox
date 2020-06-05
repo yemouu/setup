@@ -1,5 +1,5 @@
 www-client/firefox lto pgo -screenshot
-=www-client/firefox-76.0.1 -pgo
+=www-client/firefox-77.0.1 -pgo
 media-libs/libvpx postproc
 x11-base/xorg-server xvfb
 net-libs/nodejs -system-ssl

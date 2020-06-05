@@ -6,7 +6,7 @@ layer=overlay
 anchor=bottom-left
 
 # All Notifcations
-font=monospace 9
+font=monospace 10
 background-color=#{bg_color}
 text-color=#{fg_color}
 width=400

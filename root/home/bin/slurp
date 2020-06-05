@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 monitor_sel="$(swaymsg -t get_outputs | jq -r '.[] | select(.active) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')"
 window_sel="$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')"
 exec printf '%s\n' "$monitor_sel" "$window_sel" | /usr/bin/slurp "$@"

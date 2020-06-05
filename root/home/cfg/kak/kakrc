@@ -31,6 +31,10 @@ template %{
 	}
 }
 
+# Keybinds
+map global user y '<a-|>wl-copy<ret>' -docstring 'Copy to System Clipboard (Wayland)'
+map global user h ':lsp-hover<ret>' -docstring 'View lsp-hover information'
+
 # Indention Widths
 hook global WinSetOption filetype=(css|html|xml) %{ set-option global indentwidth 2 }
 hook global WinSetOption filetype=python %{ set-option global indentwidth 4 }
