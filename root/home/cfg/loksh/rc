@@ -1,0 +1,18 @@
+#!/bin/ksh
+
+# Not having this set to the current terminal can cause issues
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# Setup some shell functionality
+set -o trackall
+set -o bgnice
+set -o braceexpand
+set -o csh-history
+
+# Setup Prompt
+PS1="\[\e[1;35m\]\u\[\e[m\] "
+PS2="\[\e[35m\]\u\[\e[m\] "
+
+# Source aliases
+. "$XDG_CONFIG_HOME/loksh/alias"

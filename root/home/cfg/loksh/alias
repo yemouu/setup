@@ -1,0 +1,23 @@
+#!/bin/ksh
+
+# Use exa instead of ls if available
+if command -v exa > /dev/null 2>&1
+	then alias ls="exa -Fbg"
+	else alias ls="ls -Fh"
+fi
+
+## Use bat instead of cat if available
+#command -v bat > /dev/null 2>&1 && \
+#	alias cat="bat -pp --tabs 0"
+
+# Run something N amount of times
+run() {
+	[[ $# -lt 2 ]] && return 1
+	local i=0
+	local n=$1; shift
+	until [[ $i -eq $n ]]
+	do
+		eval "$@"
+		i=$((i+1))
+	done
+}
