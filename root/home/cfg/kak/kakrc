@@ -18,11 +18,11 @@ plug "andreyorst/smarttab.kak" defer smarttab %{
 
 # kak-lsp
 eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(python) lsp-enable-window
+hook global WinSetOption filetype=(go|lua|python|rust) lsp-enable-window
 
 # Template Command
 define-command -params 1 -docstring \
-"Print a template into the current file. Templates are located at %val{config}/templates." \
+"Print template into the current file. Templates are located at %val{config}/templates." \
 template %{
 	evaluate-commands %sh{
 		[ -e "$kak_config/templates/$1" ] && \
@@ -32,8 +32,9 @@ template %{
 }
 
 # Keybinds
+map global user l ':enter-user-mode lsp<ret>' -docstring 'Enter kak-lsp user mode'
+map global user p '!wl-paste<ret>' -docstring 'Paste from System Clipboard (Wayland)'
 map global user y '<a-|>wl-copy<ret>' -docstring 'Copy to System Clipboard (Wayland)'
-map global user h ':lsp-hover<ret>' -docstring 'View lsp-hover information'
 
 # Indention Widths
 hook global WinSetOption filetype=(css|html|xml) %{ set-option global indentwidth 2 }
@@ -41,9 +42,6 @@ hook global WinSetOption filetype=python %{ set-option global indentwidth 4 }
 
 # Enable Wrapping
 add-highlighter global/ wrap -indent -marker '$>'
-
-# Enable Line Numbers
-add-highlighter global/ number-lines -hlcursor -min-digits 3
 
 # Highlight Matching Characters
 add-highlighter global/ show-matching

@@ -1,13 +1,16 @@
 #!/bin/sh
 
-[ -z "$BEMENU_OPTIONS" ] && BEMENU_OPTIONS="-i"
+# Required Commands
+# bemenu - allow the user to pick options
+# pkill - send sway into idle state
+# loginctl - perform actions
 
 prompt="powermenu"
 options="hibernate\\nhybrid-sleep\\nlock\\npoweroff\\nreboot\\nsuspend\\nsuspend-then-hibernate"
 
 confirm() {
     c_prompt="Are you sure? [$action]"
-    c_input=$(printf '%b' "yes\\nno" | bemenu $BEMENU_OPTIONS -p "$c_prompt")
+    c_input=$(printf '%b' "yes\\nno" | bemenu -p "$c_prompt")
     case $c_input in
 	Y*|y* ) return 0 ;;
 	N*|n* ) exit 0 ;;
@@ -19,14 +22,14 @@ sleep_task() {
     pkill -USR1 swayidle
 }
 
-action=$(printf '%b' "$options" | bemenu $BEMENU_OPTIONS -p "$prompt")
+action=$(printf '%b' "$options" | bemenu -p "$prompt")
 case $action in
-    hibernate              ) confirm; alacritty -e loginctl hibernate ;;
-    hybrid-sleep           ) confirm; alacritty -e loginctl hybrid-sleep ;;
-    lock                   ) confirm; alacritty -e loginctl lock-session ;;
-    poweroff               ) confirm; alacritty -e loginctl poweroff ;;
-    reboot                 ) confirm; alacritty -e loginctl reboot ;;
-    suspend                ) confirm; alacritty -e loginctl suspend ;;
-    suspend-then-hibernate ) confirm; alacritty -e loginctl suspend-then-hibernate ;;
+    hibernate              ) confirm; loginctl hibernate ;;
+    hybrid-sleep           ) confirm; loginctl hybrid-sleep ;;
+    lock                   ) confirm; loginctl lock-session ;;
+    poweroff               ) confirm; loginctl poweroff ;;
+    reboot                 ) confirm; loginctl reboot ;;
+    suspend                ) confirm; loginctl suspend ;;
+    suspend-then-hibernate ) confirm; loginctl suspend-then-hibernate ;;
     *                      ) exit 1 ;;
 esac

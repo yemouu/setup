@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Place this file in /etc/profile.d
-[ ! "$(id -u)" = "1000" ] || [ ! "${0##*/}" = "-ksh" ] && return 0
+[ "$(id -u)" = "1000" ] && [ "${0##*/}" = "-ksh" ] || return 0
 
 # Add local bin dirs to path
 PATH="$HOME/bin:$HOME/opt/bin:$PATH"
@@ -15,7 +15,7 @@ XDG_DATA_HOME="$HOME/data"
 ENV="$XDG_CONFIG_HOME/loksh/rc"
 HISTCONTROL="ignoredups:ignorespace"
 HISTFILE="$XDG_CACHE_HOME/loksh_history"
-HISTSIZE=
+HISTSIZE=1000000
 
 # Prevent $HOME pollution
 LESSHISTFILE="$XDG_CACHE_HOME/less_history"

@@ -10,14 +10,14 @@ output DP-1 {
 	scale 2
 	pos 1920 0
 	subpixel rgb
-	bg ${HOME}/media/wallpapers/evie-s-_IpKsTK9gcE-unsplash.jpg fill
+	bg ${HOME}/media/images/wallpapers/evie-s-_IpKsTK9gcE-unsplash.jpg fill
 }
 
 output DP-2 {
 	res 1920x1080@144.001007Hz
 	pos 0 0
 	subpixel rgb
-	bg ${HOME}/media/wallpapers/evie-s-XjX3Ju1jFfU-unsplash.jpg fill
+	bg ${HOME}/media/images/wallpapers/evie-s-XjX3Ju1jFfU-unsplash.jpg fill
 }
 
 # Input #
@@ -27,6 +27,16 @@ input 7805:11815:ROCCAT_ROCCAT_Kone_Aimo_Mouse {
 
 input 12136:130:Hoksi_Technology_DURGOD_Taurus_K320 {
 	xkb_options compose:caps
+}
+
+input 1386:782:Wacom_Intuos_S_Pen {
+	map_to_output DP-1
+}
+
+# Seats #
+seat seat0 {
+	hide_cursor 8000
+	#xcursor_theme clicc
 }
 
 # Idle #
@@ -43,6 +53,7 @@ focus_follows_mouse yes
 focus_on_window_activation smart
 hide_edge_borders --i3 smart
 show_marks yes
+floating_maximum_size -1 x -1
 
 # Workspaces #
 # Variables
@@ -62,7 +73,7 @@ set {
 # Options
 workspace_layout tabbed
 
-# Assign
+# Assign workspaces to Displays
 workspace {
 	$ws1 output DP-1
 	$ws2 output DP-2
@@ -103,8 +114,12 @@ bindsym {
 	$W+t exec notidate
 	$W+$A+t exec notidate America/New_York
 
-	Print exec scr pic -fc
-	$W+Print exec scr pic -c
+	Print exec scr pic -c
+
+	$W+c exec colorgrab -co
+	$W+$A+c exec colorgrab -cn
+	$W+$C+c exec colorgrab -cor
+	$W+$C+$A+c exec colorgrab -cnr
 
 	$W+space exec makoctl dismiss -a
 
@@ -154,7 +169,7 @@ bindsym {
 	$W+o layout toggle split
 	$W+p splitt
 
-	$W+v border normal 2
+	$W+v border normal 0
 	$W+b border pixel 2
 	$W+n border none
 }
@@ -163,12 +178,28 @@ floating_modifier $W normal
 
 # Window Rules #
 for_window {
-	[title=".*"] floating enable
+	# Make all windows float by default
+	# # According to `swaymsg -m "['window']" -t subscribe`, windows get their title after
+	# # they get created. However, app_id, class and instace are all set when the window is
+	# # created.
+	[app_id="."] floating enable
+	[class="."] floating enable
+	[instance="."] floating enable
+
+	# Make the title of each window bold
+	[title="."] title_format "<b>%title</b>"
+
 	[app_id="mpv"] border none
+
+	# These apps should take up the entire screen and not have a border
 	[app_id="firefox" title="^Mozilla Firefox$"] floating disable, border none
 	[app_id="firefox" title=".*- Mozilla Firefox$"] floating disable, border none
+	[app_id="firefox" title="^Firefox Nightly$"] floating disable, border none
+	[app_id="firefox" title=".*- Firefox Nightly$"] floating disable, border none
 	[class="discord"] floating disable, border none
 	[class="Riot"] floating disable, border none
+
+	# Games and Game Related Applications
 	[app_id="parsecd"] floating disable, border none
 
 	[class="csgo_linux64"] floating disable, border none
@@ -206,19 +237,34 @@ for_window {
 	[class="steam_app_204360"] floating disable, border none
 	# Worms Revolution
 	[class="steam_app_200170"] floating disable, border none
+	# Just Cause 3
+	[class="steam_app_225540"] floating disable, border none
 }
 
 # Move Windows to Workspaces
 for_window {
+	# Web Browsers should be on the first workspace
 	[app_id="firefox"] move container to workspace 1
+
+	# Chat Applications should be on the second workspace
 	[class="discord"] move container to workspace 2
 	[class="Riot"] move container to workspace 2
+
+	# Graphic Applications should be on the third workspace
+	[app_id="org.inkscape.Inkscape"] move container to workspace 3
+	[class="Gimp"] move container to workspace 3
+	[class="krita"] move container to workspace 3
+
+	# This just needs to be out of my way
 	[app_id="org.qbittorrent.qBittorrent"] move container to workspace 6
+
+	# Game Launchers should be on the eighth workspace
 	[app_id="org.multimc.multimc"] move container to workspace 8
-	[class="minecraft-launcher"] move container to workspace 8
 	[class="Steam"] move container to workspace 8
+
 	[app_id="parsecd"] move container to workspace 9
 
+	# Casual/Slow Paste Games should be on the ninth workspace (4k 60hz Monitor)
 	[class="Golf With Your Friends.x86_64"] move container to workspace 9
 	[class="hl2_linux"] move container to workspace 9
 	[class="hl_linux"] move container to workspace 9
@@ -234,8 +280,6 @@ for_window {
 	[class="Terraria.bin.x86_64"] move container to workspace 9
 	[class="Wine"] move container to workspace 9
 	[title="^The Escapist 2$"] move container to workspace 9
-	[instance="geometrydash.exe"] move container to workspace 9
-	[class="csgo_linux64"] move container to workspace 10
 
 	# Rocket League 
 	[class="steam_app_252950"] move container to workspace 9
@@ -255,4 +299,11 @@ for_window {
 	[class="steam_app_204360"] move container to workspace 9
 	# Worms Revolution
 	[class="steam_app_200170"] move container to workspace 9
+	# Just Cause 3
+	[class="steam_app_225540"] move container to workspace 9
+
+	# Competitive/Fast Paste Games should be on the tenth workspace (1080p 144hz Monitor)
+	[instance="geometrydash.exe"] move container to workspace 10
+	[class="csgo_linux64"] move container to workspace 10
+
 }

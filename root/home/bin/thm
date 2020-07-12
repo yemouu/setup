@@ -1,48 +1,43 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # shellcheck disable=SC1090,SC2154
+# The user should have specified all variables in the theme file that is being sourced
 
-# SC1090 & SC2154
-# The files sourced are user generated files that should contain the needed
-# variables for the script to function correctly. It should be safe to ignore
-# these warnings.
+# Required Commands
+# cut - converting hex values to rgb
+# mkdir - create missing directories
+# rm - clean out old files
+# sed - repalce values in template with actual colors
 
+# Usage statement
 usage() {
 	printf '%s\n' "usage: ${0##*/} theme"
 }
 
+# Convert hex colors into rgb
 hex2rgb() {
 	hex=$1
-	printf '%d,%d,%d' "0x${hex:0:2}" "0x${hex:2:2}" "0x${hex:4:2}"
+	hex_r=$(printf '%s' "$hex" | cut -c-2)
+	hex_g=$(printf '%s' "$hex" | cut -c3-4)
+	hex_b=$(printf '%s' "$hex" | cut -c5-6)
+	printf '%d,%d,%d' "0x$hex_r" "0x$hex_g" "0x$hex_b"
 }
 
+# Set directory variables
 thm_config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/thm"
 thm_dest_dir="${XDG_CACHE_HOME:-$HOME/.cache}/thm"
 
 case $1 in
 	-h|--help ) usage; exit 0 ;;
-	"" )
-		count=0
-		files=("$thm_config_dir/themes/"*".theme")
-		for f in "${files[@]}"
-		do
-			f=${f::-6}
-			echo [$count] "${f/$thm_config_dir\/themes\//}"
-			(( count++ ))
-		done
-		read -rp "Pick a theme: " theme_number
-		! [[ $theme_number =~ [0-9]{1,} && $theme_number < $count ]] && \
-			{ echo "${0##*/}: $theme_number: invalid theme number"; exit 1; }
-		theme_file="${files[theme_number]}"
-		. "${files[theme_number]}"
-		;;
-	* )
-		[[ ! -f "${thm_config_dir}/themes/${1}.theme" ]] && \
-			{ echo "${0##*/}: $1: theme not found"; exit 1; }
-		theme_file="${thm_config_dir}/themes/${1}.theme"
-		. "${thm_config_dir}/themes/${1}.theme"
-		;;
+	* ) # Determine if the theme exist and source it
+		[ "$1" ] || { printf '%s\n' "${0##*/}: missing argument" 1>&2; exit 1; }
+		[ -f "${thm_config_dir}/themes/${1}.theme" ] || \
+			{ printf '%s\n' "${0##*/}: $1: theme not found" 1>&2; exit 1; }
+	    	theme_file="${thm_config_dir}/themes/${1}.theme"
+	    	. "${thm_config_dir}/themes/${1}.theme"
+	    	;;
 esac
 
+# Create RGB colors fro the hex colors
 bg_color_rgb="$(hex2rgb "$bg_color")"
 fg_color_rgb="$(hex2rgb "$fg_color")"
 color0_rgb="$(hex2rgb "$color0")"
@@ -62,62 +57,65 @@ color13_rgb="$(hex2rgb "$color13")"
 color14_rgb="$(hex2rgb "$color14")"
 color15_rgb="$(hex2rgb "$color15")"
 
-[[ ! -d $thm_dest_dir ]] && {
+[ -d "$thm_dest_dir" ] || {
 	mkdir -p "$thm_dest_dir" || {
-		echo "${0##*/}: couldn't create $thm_dest_dir"; exit 1
+		printf '%s\n' "${0##*/}: failed to create $thm_dest_dir" 1>&2; exit 1
 	}
 }
 
+# Clean out the dest dir
 rm "$thm_dest_dir/"*
-echo "$theme_file" > "$thm_dest_dir/current_thm"
+# Make a file with the name of the new theme
+printf '%s\n' "$theme_file" > "$thm_dest_dir/current_thm"
 
-templates=("${thm_config_dir}/templates/"*"-template")
-for t in "${templates[@]}"
+# Repalce template syntax with the actual colors
+for t in "${thm_config_dir}/templates/"*"-template"
 do
-	file_name=${t/${thm_config_dir}\/templates\//}
-	file_name=${file_name/-template/}
-	file="$(<"$t")"
-	file="${file//\{bg_color\}/$bg_color}"
-	file="${file//\{fg_color\}/$fg_color}"
-	file="${file//\{color0\}/$color0}"
-	file="${file//\{color1\}/$color1}"
-	file="${file//\{color2\}/$color2}"
-	file="${file//\{color3\}/$color3}"
-	file="${file//\{color4\}/$color4}"
-	file="${file//\{color5\}/$color5}"
-	file="${file//\{color6\}/$color6}"
-	file="${file//\{color7\}/$color7}"
-	file="${file//\{color8\}/$color8}"
-	file="${file//\{color9\}/$color9}"
-	file="${file//\{color10\}/$color10}"
-	file="${file//\{color11\}/$color11}"
-	file="${file//\{color12\}/$color12}"
-	file="${file//\{color13\}/$color13}"
-	file="${file//\{color14\}/$color14}"
-	file="${file//\{color15\}/$color15}"
-	file="${file//\{bg_color.rgb\}/$bg_color_rgb}"
-	file="${file//\{fg_color.rgb\}/$fg_color_rgb}"
-	file="${file//\{color0.rgb\}/$color0_rgb}"
-	file="${file//\{color1.rgb\}/$color1_rgb}"
-	file="${file//\{color2.rgb\}/$color2_rgb}"
-	file="${file//\{color3.rgb\}/$color3_rgb}"
-	file="${file//\{color4.rgb\}/$color4_rgb}"
-	file="${file//\{color5.rgb\}/$color5_rgb}"
-	file="${file//\{color6.rgb\}/$color6_rgb}"
-	file="${file//\{color7.rgb\}/$color7_rgb}"
-	file="${file//\{color8.rgb\}/$color8_rgb}"
-	file="${file//\{color9.rgb\}/$color9_rgb}"
-	file="${file//\{color10.rgb\}/$color10_rgb}"
-	file="${file//\{color11.rgb\}/$color11_rgb}"
-	file="${file//\{color12.rgb\}/$color12_rgb}"
-	file="${file//\{color13.rgb\}/$color13_rgb}"
-	file="${file//\{color14.rgb\}/$color14_rgb}"
-	file="${file//\{color15.rgb\}/$color15_rgb}"
-	printf '%s\n' "$file" > "${thm_dest_dir}/${file_name}"
+	file_name=${t##*/}
+	file_name=${file_name%-template}
+
+	sed "
+	s/{bg_color}/$bg_color/g
+	s/{fg_color}/$fg_color/g
+	s/{color0}/$color0/g
+	s/{color1}/$color1/g
+	s/{color2}/$color2/g
+	s/{color3}/$color3/g
+	s/{color4}/$color4/g
+	s/{color5}/$color5/g
+	s/{color6}/$color6/g
+	s/{color7}/$color7/g
+	s/{color8}/$color8/g
+	s/{color9}/$color9/g
+	s/{color10}/$color10/g
+	s/{color11}/$color11/g
+	s/{color12}/$color12/g
+	s/{color13}/$color13/g
+	s/{color14}/$color14/g
+	s/{color15}/$color15/g
+	s/{bg_color.rgb}/$bg_color_rgb/g
+	s/{fg_color.rgb}/$fg_color_rgb/g
+	s/{color0.rgb}/$color0_rgb/g
+	s/{color1.rgb}/$color1_rgb/g
+	s/{color2.rgb}/$color2_rgb/g
+	s/{color3.rgb}/$color3_rgb/g
+	s/{color4.rgb}/$color4_rgb/g
+	s/{color5.rgb}/$color5_rgb/g
+	s/{color6.rgb}/$color6_rgb/g
+	s/{color7.rgb}/$color7_rgb/g
+	s/{color8.rgb}/$color8_rgb/g
+	s/{color9.rgb}/$color9_rgb/g
+	s/{color10.rgb}/$color10_rgb/g
+	s/{color11.rgb}/$color11_rgb/g
+	s/{color12.rgb}/$color12_rgb/g
+	s/{color13.rgb}/$color13_rgb/g
+	s/{color14.rgb}/$color14_rgb/g
+	s/{color15.rgb}/$color15_rgb/g
+	" "$t" > "${thm_dest_dir}/${file_name}"
 done
 
-scripts=("${thm_config_dir}/scripts/"*)
-for i in "${scripts[@]}"
+# Run extra scripts
+for i in "${thm_config_dir}/scripts/"*
 do
-	[[ ! -d $i ]] && $i #&> /dev/null &
+	[ -x "$i" ] && $i > /dev/null 2>&1 &
 done

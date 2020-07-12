@@ -2,7 +2,7 @@
 max-visible=2
 sort=-time
 output=DP-1
-layer=overlay
+layer=top
 anchor=bottom-left
 
 # All Notifcations

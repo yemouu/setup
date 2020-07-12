@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # shellcheck disable=SC1090,SC2154
 
 # SC1090 & SC2154
@@ -6,11 +6,30 @@
 # variables for the script to function correctly. It should be safe to ignore
 # these warnings.
 
-[[ -z $SCR_CFG_DIR ]] && SCR_CFG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/scr"
-[[ -z $SCR_CACHE_DIR ]] && SCR_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/scr"
-. "$SCR_CFG_DIR/config.sh" || \
-	{ echo "${0##*/}: could not source $SCR_CONFIG_DIR/config.sh"; exit 1; }
+# Required Commands
+# grep - argument handling
+# mkdir - create missing directories
+# ffmpeg - needed for aud
+# grim - needed for pic
+# slurp - make a selection
+# wl-copy - copy images to clipboard
+# pactl - create loopback devices for multi-device audio recording in wf-recorder
+# wf-recorder - needed for rec
 
+# This script is intended for use on wayland; however, `scr aud` should work fine without
+# wayland.
+
+# Set required variables if needed
+[ "$SCR_CFG_DIR" ] || SCR_CFG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/scr"
+[ "$SCR_CACHE_DIR" ] || SCR_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/scr"
+
+# Source the configuration file
+# A sample configuration can be found in my dotfiles at:
+# https://github.com/yemouu/setup/blob/master/root/home/cfg/scr/config.sh
+. "$SCR_CFG_DIR/config.sh" || \
+	{ printf '%s\n' "${0##*/}: failed to source $SCR_CONFIG_DIR/config.sh" 1>&2; exit 1; }
+
+# Usage statement for the script
 usage() {
 	printf '%s\n' "usage: ${0##*/} action [options]" \
 	              "actions:" \
@@ -19,118 +38,158 @@ usage() {
 	              "  rec - record" \
 	              "options:" \
 	              "  -a - record desktop audio" \
-	              "  -c - copy picture to clipboard" \
+	              "  -c - copy image to clipboard" \
 	              "  -h - display this message" \
 	              "  -m - record microphone audio"
 }
 
+# Determine the action to run
 case $1 in
-	aud   ) action="scr_aud" ;;
-	pic   ) action="scr_pic" ;;
-	rec   ) action="scr_rec" ;;
-	*help ) usage; exit 0 ;;
-	*     ) usage; exit 1 ;;
+	aud      ) action="scr_aud" ;;
+	pic      ) action="scr_pic" ;;
+	rec      ) action="scr_rec" ;;
+	*h|*help ) usage; exit 0 ;;
+	*        ) printf '%s\n' "${0##*/}: $1: invalid action" 1>&2; usage 1>&2; exit 1 ;;
 esac
 shift
 
-for (( a=1; a<$(( ${#@} + 1 )); a++ ))
+# Determine options to run with based on arguments
+for args in "$@"
 do
-	arg=${!a}
-	[[ ! $arg =~ ^-.* || ${#arg} -lt 2 ]] && continue
-	for (( i=1; i<${#arg}; i++ ))
+	# Make sure arguments start with '-' and are atleast 2 characters long
+	printf '%s' "$args" | grep -q '^-.*' || continue
+	[ ${#args} -ge 2 ] || continue
+
+	# Split arguments to be 1 character long and determine options to use
+	for arg in $(printf '%s' "${args#-}" | grep -o .)
 	do
-		case ${arg:$i:1} in
+		case $arg in
 			a ) desktop_audio=true ;;
 			c ) copy_clipboard=true ;;
 			h ) usage; exit 0 ;;
 			m ) microphone=true ;;
-			* ) printf '%s\n' "${0##*/}: -${arg:$1:1}: invalid argument"
-			    usage; exit 1 ;;
+			* ) printf '%s\n' "${0##*/}: -$arg: invalid argument" 1>&2
+			    usage 1>&2; exit 1 ;;
 		esac
 	done
 done
+unset args arg
 
+# Simple function to print out an error message and exit
 die() {
-	printf '%s\n' "${0##*/}: $*"
+	printf '%s\n' "${0##*/}: $*" 1>&2
 	exit 1
 }
 
+# Record Audio
 scr_aud() {
-	[[ -d $scr_aud_dir ]] || \
+	# Create the directory to store audio recordings if it does not already exist
+	[ -d "$scr_aud_dir" ] || \
 		{ mkdir -p "$scr_aud_dir" || die "failed to make directory: $scr_aud_dir"; }
 
-	[[ -d $SCR_CACHE_DIR ]] || \
+	# Create the directory to store logs if it does not already exist
+	[ -d "$SCR_CACHE_DIR" ] || \
 		{ mkdir -p "$SCR_CACHE_DIR" || \
 		  die "failed to make directory: $SCR_CACHE_DIR"; }
 
 	filename="$scr_aud_dir/$aud_filename"
 
-	[[ -z $microphone && -z $desktop_audio ]] && {
-		die "aud: argument -a or -m is required to record audio" \
-		    "run \`scr help\` for more information about arguments"
-	}
+	# Require atleast one of the arguments: -a or -m
+	[ "$microphone" ] || [ "$desktop_audio" ] || \
+		{ die "aud: argument -a or -m is required to record audio"; }
 
-	[[ -n $microphone ]] && { _args="-f pulse -i $aud_source"; }
-	[[ -n $desktop_audio ]] && { _args="$_args -f pulse -i $aud_sink"; }
-	[[ -n $microphone && -n $desktop_audio ]] && \
-		{ _args="$_args -filter_complex amix=inputs=2"; }
-	read -ra args <<< "$_args"
+	# Set ffmpeg options based on script options
+	[ "$microphone" ] && { args="-f pulse -i $aud_source"; }
+	[ "$desktop_audio" ] && { args="$args -f pulse -i $aud_sink"; }
+	[ "$microphone" ] && [ "$desktop_audio" ] && \
+		{ args="$args -filter_complex amix=inputs=2"; }
 
-	ffmpeg "${args[@]}" "$filename" &> "$SCR_CACHE_DIR/aud.log"
-	echo "$filename"
+	# Pressing Ctrl+C will exit the script instead of just wf-recorder.
+	# Intercept Ctrl+C and exit wf-recorder instead of the script
+	trap 'kill -2 $aud_pid' INT
+
+	# shellcheck disable=SC2086
+	# Word splitting is favorable here
+	ffmpeg $args "$filename" > "$SCR_CACHE_DIR/aud.log" 2>&1 &
+	aud_pid=$!
+	printf '%s' "Press Ctrl+C to stop recording. " 1>&2
+	wait $aud_pid
+
+	# Reset the trap
+	trap - INT
+
+	printf '\n%s\n' "$filename"
 }
 
+# Take a screenshot
 scr_pic() {
-	[[ -d $scr_pic_dir ]] || \
+	# Create directories if they do not already exist
+	[ -d "$scr_pic_dir" ] || \
 		{ mkdir -p "$scr_pic_dir" || die "failed to make directory: $scr_pic_dir"; }
 
-	[[ -d $SCR_CACHE_DIR ]] || \
+	[ -d "$SCR_CACHE_DIR" ] || \
 		{ mkdir -p "$SCR_CACHE_DIR" || \
 		  die "failed to create directory: $SCR_CACHE_DIR"; }
 
 	filename="$scr_pic_dir/$pic_filename"
 
-	read -r geom < <(slurp)
-	pic_sel="-g-"
+	# Get the geometry of the screenshot from the user and take the screenshot
+	grim -g "$(slurp)"  "$filename" > "$SCR_CACHE_DIR/pic.log" 2>&1
 
-	printf '%s' "$geom" | grim "$pic_sel" "$filename" &> "$SCR_CACHE_DIR/pic.log"
-	[[ -n $copy_clipboard ]] && \
-		{ wl-copy  < "$filename" &> "$SCR_CACHE_DIR/copy.log"; }
+	# Copy the image to the system clipboard
+	$copy_clipboard && { wl-copy  <"$filename" > "$SCR_CACHE_DIR/copy.log" 2>&1; }
 	
-	echo "$filename"
+	printf '%s\n' "$filename"
 }
 
 scr_rec() {
-	[[ -d $scr_rec_dir ]] || \
+	# Create directories if they do not already exist
+	[ -d "$scr_rec_dir" ] || \
 		{ mkdir -p "$scr_rec_dir" || die "failed to make directory: $scr_pic_dir"; }
 
-	[[ -e $SCR_CACHE_DIR/rec.pid ]] && \
-		{ kill -15 "$(<"$SCR_CACHE_DIR/rec.pid")"
-		  rm "$SCR_CACHE_DIR/rec.pid"; exit 0; }
-
-	[[ -d $SCR_CACHE_DIR ]] || \
+	[ -d "$SCR_CACHE_DIR" ] || \
 		{ mkdir -p "$SCR_CACHE_DIR" || \
 		  die "failed to make directory: $SCR_CACHE_DIR"; }
 
 	filename="$scr_rec_dir/$rec_filename"
 
-	read -r X Y W H < <(slurp -f "%x %y %w %h")
-	rec_sel=""
+	# Set wf-recorder arguments based on script options
+	[ "$microphone" ] && args="-a$aud_source"
+	[ "$desktop_audio" ] && args="-a$aud_sink"
 
-	[[ -n $microphone && -n $desktop_audio ]] && {
+	# If both microphone and desktop_audio is set, create a loopback devices pointing to
+	# scr_inputs. wf-record does not support multiple audio devices. This is how they
+	# recomend you record two devices at the same time.
+	[ "$microphone" ] && [ "$desktop_audio" ] && {
 		unload_pulse_modules=true
-		pactlm_null_sink=$(pactl load-module module-null-sink sink_name=scr_inputs)
-		pactlm_lb1=$(pactl load-module module-loopback sink=scr_inputs source="$aud_sink")
-		pactlm_lb2=$(pactl load-module module-loopback sink=scr_inputs source="$aud_source")
-		audio_args="-ascr_inputs.monitor"
+		null_sink=$(pactl load-module module-null-sink sink_name=aud_both)
+		lb_desk=$(pactl load-module module-loopback sink=aud_both source="$aud_sink")
+		lb_mic=$(pactl load-module module-loopback sink=aud_both source="$aud_source")
+		args="-aaud_both.monitor"
 	}
 
-	[[ -n $microphone ]] && audio_args="-a$aud_source"
-	[[ -n $desktop_audio ]] && audio_args="-a$aud_sink"
-	read -ra args <<< "$rec_selection $audio_args"
+	# Pressing Ctrl+C will exit the script instead of just wf-recorder.
+	# Intercept Ctrl+C and exit wf-recorder instead of the script
+	trap 'kill -2 $rec_pid' INT
 
-	wf-recorder "${args[@]}" -g "$(slurp)" -f "$filename" &> "$SCR_CACHE_DIR/rec.log"
-	echo "$filename"
+	# Word splitting is favorable here
+	# shellcheck disable=SC2086
+	wf-recorder $args -g "$(slurp)" -f "$filename" > "$SCR_CACHE_DIR/rec.log" 2>&1 &
+	rec_pid=$!
+	printf '%s' "Press Ctrl+C to stop recording. " 1>&2
+	wait $rec_pid
+
+	# Reset the trap
+	trap - INT
+
+	# Clean up pulseaudio modules that the script created
+	[ "$unload_pulse_modules" ] && {
+		pactl unload-module "$lb_mic"
+		pactl unload-module "$lb_desk"
+		pactl unload-module "$null_sink"
+	}
+
+	printf '\n%s\n' "$filename"
 }
 
 $action

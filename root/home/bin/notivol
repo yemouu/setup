@@ -1,14 +1,21 @@
-#!/usr/bin/env bash
+#!/bin/sh
+
+# Required Commands:
+# pactl - get information from pulseaudio
+# grep - regex checks
+# awk - get specific information from pactl
+# notify-send - create notification
 
 usage() {
-    printf '%s\n' "usage: ${0##*/} action [vol_value]" \
-    	"actions:" \
-    	"  toggle - toggle volume of microphone" \
-    	"  vol    - change volume of microphone\n"
+	printf '%s\n' "usage: ${0##*/} action [vol_value]" \
+	              "actions:" \
+	              "  toggle - toggle volume of microphone" \
+	              "  vol    - change volume of microphone\n"
 }
 
 m_vol() {
-    [[ ! $1 =~ ^[+-]?[0-9]{1,}%$ ]] && echo "${0##*/}: $1: doesn't match \`^[+-]?[0-9]{1,}%$\`"
+     printf '%s' "$1" | grep -q '^[+-]?[0-9]{1,}%$' || \
+     printf '%s\n' "${0##*/}: $1: doesn't match \`^[+-]?[0-9]{1,}%$\`"
 
     app_name="Microphone Volume"
     pactl set-source-volume @DEFAULT_SOURCE@ "$1"

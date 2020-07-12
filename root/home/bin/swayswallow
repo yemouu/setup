@@ -1,0 +1,135 @@
+#!/bin/sh
+
+# Script to add 'Swallowing' to sway using scratchpads
+
+# Required Commands
+# swaymsg - get information about opened and closed windows
+# jq      - parse json output from swaymsg
+# ps      - get the pid of the terminal
+# grep    - regex matching
+
+# Used Environment Variables
+# SWAYSWALLOW_CFG_DIR - defaults to $XDG_CONFIG_HOME/swayswallow (~/.config/swayswallow)
+# SWAYSWALLOW_TMP_DIR - defaults to /tmp/swayswallow
+
+# Usage statement
+usage() {
+	printf '%s\n' "usage: swayswallow [options]" \
+	              "options:" \
+	              "  -i|--inverse - Inverse the function of swayswallow. Allow swallowing for"
+	              "                 all windows except a select few." \
+	              "  -h|--help    - Display this message"
+}
+
+# Basic handling of arguments
+case $1 in
+	*i| *inverse ) inverse=true ;;
+	*h|*help     ) usage; exit 0 ;;
+	''           ) inverse=false ;;
+	*            ) usage; exit 1 ;;
+esac
+
+# Set these variables if they are not already set
+[ "$SWAYSWALLOW_CFG_DIR" ] || SWAYSWALLOW_CFG_DIR=${XDG_CONFIG_HOME:-$HOME/.config}/swayswallow
+[ "$SWAYSWALLOW_TMP_DIR" ] || SWAYSWALLOW_TMP_DIR=/tmp/swayswallow
+
+# TODO: [REDACTED]list/[REDACTED]list terminals via app_id (wayland)
+# TODO: [REDACTED]list/[REDACTED]list terminals via class, instance (xorg)
+# TODO: [REDACTED]list/[REDACTED]list terminals via title (both)
+# TODO: [REDACTED]list/[REDACTED]list app_id (wayland)
+# TODO: [REDACTED]list/[REDACTED]list class, instance (xorg)
+# TODO: [REDACTED]list/[REDACTED]list title (both)
+# TODO: save state of window tiling, floating etc
+
+# Check the information we gathered to determine if we should do anything
+info_check() {
+	# Each line in the config file should be regex. Split the config file by line so we can
+	# check the information we gathered from swaymsg
+	while read -r line
+	do
+		printf '%s' "$2" | grep "$line" && match=true
+	done <"$SWAYSWALLOW_CFG_DIR/$1"
+}
+
+# Hide the terminal of the app by adding it to the scratchpad
+swallow() {
+	# Get the pid of the newly created window
+	pid=$(printf '%s' "$msg" | jq '.container.pid')
+
+	# If the pid is 0 we cannot progress. This is the case for some steam windows and most
+	# likely some others. A pid of 0 will stop us from finding the terminal_pid so we won't
+	# have anything to swallow.
+	[ "$pid" = 0 ] && return 0
+
+	# Get the ppid of the newly created window. If the newly created window was launched from a
+	# terminal, the ppid should belong to a shell (bash, ksh, zsh, etc)
+	ppid=$(ps -o ppid= -p "$pid" | tr -d ' ')
+
+	# Stop here if the ppid is equal to 1 (the initsystem)
+	[ "$ppid" = 1 ] && return 0
+
+	# Stop here if the config directory doesn't exist and inverse is false.
+	[ ! -d "$SWAYSWALLOW_CFG_DIR" ] && [ $inverse = false ] && {
+		printf '%s\n' "${0##*/}: $SWAYSWALLOW_CFG_DIR does not exist and \`-i\` is not set"
+		usage; return 1
+	}
+
+	# Get information about the newly created window to determine if we should swallow or not
+	# A title isn't assigned when the window is created so we won't have it with the 'new'
+	# event. Get information from `swaymsg -t get_tree`
+	json=$(swaymsg -t get_tree | jq -c --argjson pid "$pid" '.. | select(.pid?==$pid)')
+	title=$(printf '%s' "$json" | jq -r '.name')
+	app_id=$(printf '%s' "$json" | jq -r '.app_id')
+	class=$(printf '%s' "$json" | jq -r '.window_properties.class')
+	instance=$(printf '%s' "$json" | jq -r '.window_properties.instance')
+
+	info_check title "$title"
+	info_check app_id "$app_id"
+	info_check class "$class"
+	info_check instance "$instance"
+
+	[ $match = true ]
+
+	# Use the ppid in order to get the pid of the terminal
+	term_pid=$(ps -o ppid= -p "$ppid" | tr -d ' ')
+
+	# Use the terminal pid to get the correct information from swaymsg (container_id)
+	tjson=$(swaymsg -t get_tree | jq -c --argjson tpid "$term_pid" '.. | select(.pid?==$tpid)')
+	con_id=$(printf '%s' "$tjson" | jq '.id')
+
+	# Get information about the terminal window to determine if we should swallow or not
+	term_title=$(printf '%s' "$tjson" | jq -r '.name')
+	term_app_id=$(printf '%s' "$tjson" | jq -r '.app_id')
+	term_class=$(printf '%s' "$tjson" | jq -r '.window_properties.class')
+	term_instance=$(printf '%s' "$tjson" | jq -r '.window_properties.instance')
+
+	info_check term_title "$term_title"
+	info_check term_app_id "$term_app_id"
+	info_check term_class "$term_class"
+	info_check term_instance "$term_instance"
+
+	printf '%s\n' "------------" \
+	              "pid: $pid" "title: $title" "app_id: $app_id" "class: $class" \
+	              "instance: $instance" "" \
+	              "ppid (shell): $ppid" \
+	              "term_pid: $term_pid" "con_id: $con_id" "term_title: $term_title" \
+	              "term_app_id: $term_app_id" "term_class: $term_class" \
+	              "term_instance: $term_instance" \
+	              "------------"
+}
+
+# Show the terminal of the app and remove it from the scratchpad
+regurgitate() {
+	return 0
+}
+
+# We will only get an event if a widnow is opened or closed
+swaymsg -m "['window']" -t subscribe | \
+	jq -c --unbuffered 'select(.change=="new" or .change=="close")' | \
+	while read -r msg
+	do
+		# Determine if a window was added or removed and launch the required function to
+		# either swallow or regurgitate the window.
+		printf '%s' "$msg" | jq -e '.change == "new"' > /dev/null && swallow
+		printf '%s' "$msg" | jq -e '.change == "close"' > /dev/null && regurgitate
+	done

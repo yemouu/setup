@@ -1,1 +1,0 @@
-app-emulation/qemu -vnc io-uring iscsi jemalloc virgl QEMU_SOFTMMU_TARGET: x86_64 QEMU_USER_TARGETS: x86_64

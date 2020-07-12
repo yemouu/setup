@@ -11,8 +11,8 @@ set -o braceexpand
 set -o csh-history
 
 # Setup Prompt
-PS1="\[\e[1;35m\]\u\[\e[m\] "
-PS2="\[\e[35m\]\u\[\e[m\] "
+PS1="\[\e[1;35m\]]\[\e[m\] "
+PS2="\[\e[35m\]]\[\e[m\] "
 
 # Source aliases
 . "$XDG_CONFIG_HOME/loksh/alias"

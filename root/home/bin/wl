@@ -3,14 +3,15 @@
 # Set Environment variables
 XDG_SESSION_TYPE=wayland
 SDL_VIDEODRIVER=wayland
-XDG_CURRENT_DESKTOP=Unity
 
-export XDG_SESSION_TYPE SDL_VIDEODRIVER XDG_CURRENT_DESKTOP
+export XDG_SESSION_TYPE SDL_VIDEODRIVER
 
 # Autostart
 { pulseaudio --start & } &
 
 # Pick Wayland Compositor
 case $1 in
-    sway|s ) exec dbus-launch --exit-with-session sway ;;
+    sway|s    ) exec dbus-launch --exit-with-session sway ;;
+    hikari|h  ) exec dbus-launch --exit-with-session hikari ;;
+    wayfire|w ) exec dbus-launch --exit-with-session wayfire;;
 esac

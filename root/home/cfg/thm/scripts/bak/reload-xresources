@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-xrdb "${XDG_CONFIG_HOME}/xorg/xresources"
-xrdb -merge "${XDG_CONFIG_HOME}/thm/current/Xresources"
