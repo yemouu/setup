@@ -1,3 +1,4 @@
+media-gfx/krita -pdf
 kde-frameworks/kwindowsystem X
 dev-qt/qtmultimedia widgets
 sys-libs/zlib minizip
