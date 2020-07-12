@@ -1,4 +1,1 @@
-media-gfx/gimp -alsa python vector-icons
-media-libs/gegl cairo
-app-text/poppler cairo
-app-arch/libarchive zstd
+media-gfx/gimp python
