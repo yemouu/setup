@@ -7,14 +7,13 @@
 # these warnings.
 
 # Required Commands
-# grep - argument handling
-# mkdir - create missing directories
 # ffmpeg - needed for aud
 # grim - needed for pic
-# slurp - make a selection
-# wl-copy - copy images to clipboard
+# mkdir - create missing directories
 # pactl - create loopback devices for multi-device audio recording in wf-recorder
+# slurp - make a selection
 # wf-recorder - needed for rec
+# wl-copy - copy images to clipboard
 
 # This script is intended for use on wayland; however, `scr aud` should work fine without
 # wayland.
@@ -54,23 +53,30 @@ esac
 shift
 
 # Determine options to run with based on arguments
-for args in "$@"
+for flag in "$@"
 do
 	# Make sure arguments start with '-' and are atleast 2 characters long
-	printf '%s' "$args" | grep -q '^-.*' || continue
-	[ ${#args} -ge 2 ] || continue
+	case $flag in
+		-  ) continue ;;
+		-- ) break ;;
+		-* ) ;;
+		*  ) continue;;
+	esac
 
 	# Split arguments to be 1 character long and determine options to use
-	for arg in $(printf '%s' "${args#-}" | grep -o .)
+	flag=${flag#-}
+	while [ "$flag" ]
 	do
-		case $arg in
+		a=${flag%${flag#?}}
+		case $a in
 			a ) desktop_audio=true ;;
 			c ) copy_clipboard=true ;;
 			h ) usage; exit 0 ;;
 			m ) microphone=true ;;
-			* ) printf '%s\n' "${0##*/}: -$arg: invalid argument" 1>&2
+			* ) printf '%s\n' "${0##*/}: -$a: invalid argument" 1>&2
 			    usage 1>&2; exit 1 ;;
 		esac
+		flag=${flag#?}
 	done
 done
 unset args arg
