@@ -3,16 +3,13 @@
 # Made with wayland in mind
 
 # Required Commands:
-# grim - Take a screenshot of the selected point
 # convert(imagemagick) - Get the color from the screenshotted point
+# grim - Take a screenshot of the selected point
 # slurp - Select a point
 # mkdir - Create missing directories
 # notify-send (optional) - Send a screenshot with the color
 # wl-copy(wl-clipboard) (optional) - Copy the color into the clipboard
 # xdg-open (optional) - Open the screenshot in an image viewer
-
-# Used Environment Variables:
-#
 
 usage() {
 	printf '%s\n' "usage: ${0##*/} [options]" \
@@ -35,18 +32,20 @@ do
 		-* ) ;;
 		*  ) continue ;;
 	esac
+
 	# Split the flags into individual arguments and set variables
 	flag=${flag#-}
 	while [ "$flag" ]
 	do
-		case ${flag%${flag#?}} in
+		a=${flag%${flag#?}}
+		case $a in
 			c ) copy_to_clipboard=true ;;
 			h ) usage; exit 0 ;;
 			n ) send_notification=true ;;
 			o ) open_color_image=true ;;
 			r ) color_type="rgb" ;;
 			x ) color_type="hex" ;;
-			* ) printf '%s\n' "${0##*/}: -${flag%${flag#?}}: invalid argument" 1>&2;
+			* ) printf '%s\n' "${0##*/}: -$a invalid argument" 1>&2
 			    usage 1>&2; exit 1 ;;
 		esac
 		flag=${flag#?}

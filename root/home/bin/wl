@@ -13,5 +13,5 @@ export XDG_SESSION_TYPE SDL_VIDEODRIVER
 case $1 in
     sway|s    ) exec dbus-launch --exit-with-session sway ;;
     hikari|h  ) exec dbus-launch --exit-with-session hikari ;;
-    wayfire|w ) exec dbus-launch --exit-with-session wayfire;;
+    wayfire|w ) exec dbus-launch --exit-with-session wayfire ;;
 esac

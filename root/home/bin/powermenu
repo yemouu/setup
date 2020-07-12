@@ -2,8 +2,8 @@
 
 # Required Commands
 # bemenu - allow the user to pick options
-# pkill - send sway into idle state
 # loginctl - perform actions
+# pkill - send sway into idle state
 
 prompt="powermenu"
 options="hibernate\\nhybrid-sleep\\nlock\\npoweroff\\nreboot\\nsuspend\\nsuspend-then-hibernate"
