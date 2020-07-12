@@ -2,11 +2,10 @@
 # This script is made with Gentoo systems running EFISTUB in mind
 
 # Required commands:
-# nproc - find amount of cpu threads available if $KUPDATER_MAKEOPTS isn't specified
-# make - needed for perform clean, olddefconfig, menuconfig and to compile the kernel source
-# zcat - copy currently running kernel config for use in new kernel
 # cp - copy compiled kernel to destination aswell as making a backup of the current kernel
-# grep - argument handling
+# make - needed for perform clean, olddefconfig, menuconfig and to compile the kernel source
+# nproc - find amount of cpu threads available if $KUPDATER_MAKEOPTS isn't specified
+# zcat - copy currently running kernel config for use in new kernel
 
 # Exit the script on error
 set -e
@@ -107,16 +106,22 @@ kup_apply() {
 [ -d "$KUPDATER_DEST_DIR" ] || { info f "$KUPDATER_DEST_DIR not found" 1>&2; exit 1; }
 
 # Handle arguments
-for a in "$@"
+for flag in "$@"
 do
-	# Make sure argument start with '-'
-	printf '%s' "$a" | grep -q '^-.*' || continue
-	# Make sure argument is atleast 2 characters long
-	[ ${#a} -ge 2 ] || continue
+	# Make sure argument start with '-' and is atleast 2 characters long
+	case $flag in
+		-  ) continue ;;
+		-- ) break ;;
+		-* ) ;;
+		*  ) continue ;;
+	esac
+
 	# Split the argument into letters to get options
-	for l in $(printf '%s' "${a#-}" | grep -o .)
+	flag=${flag#-}
+	while [ "$flag" ]
 	do
-		case $l in
+		a=${flag%${flag#?}}
+		case $a in
 			a ) kup_skip_apply=true ;;
 			b ) kup_skip_backup=true ;;
 			c ) kup_skip_compile=true ;;
@@ -124,9 +129,10 @@ do
 			h ) usage; exit 0 ;;
 			o ) kup_skip_setup=true ;;
 			r ) kup_rollback=true ;;
-			* ) printf '%s\n' "${0##*/}: -$l is an invalid argument" 1>&2
+			* ) printf '%s\n' "${0##*/}: -$a is an invalid argument" 1>&2
 			    usage 1>&2; exit 1 ;;
 		esac
+		flag=${flag#?}
 	done
 done
 
