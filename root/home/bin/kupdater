@@ -42,10 +42,6 @@ kup_restore() {
 
 # Preform some setup on the source
 kup_setup() {
-	# Change directories into $KUPDATER_SRC_DIR
-	info i "cd $KUPDATER_SRC_DIR"
-	cd "$KUPDATER_SRC_DIR"
-
 	# Very rarely, compiling the kernel will fail without a clean
 	info i "make clean"
 	make clean || { info f "make clean failed" 1>&2; }
@@ -140,6 +136,11 @@ done
 # Launch script functions based on options
 # If rollback is specified, we shouldn't try to do anything else
 [ $kup_rollback ] && { kup_restore; exit 0; }
+
+# Change directories into $KUPDATER_SRC_DIR
+info i "cd $KUPDATER_SRC_DIR"
+cd "$KUPDATER_SRC_DIR" || { info f "failed to enter directory $KUPDATER_SRC_DIR" 1>&2; exit 1; }
+
 [ $kup_skip_setup ] || kup_setup
 [ $kup_edit_cfg ] && kup_configure
 [ $kup_skip_compile ] || kup_compile
