@@ -18,19 +18,20 @@ HISTFILE="$XDG_CACHE_HOME/loksh_history"
 HISTSIZE=1000000
 
 # Prevent $HOME pollution
-LESSHISTFILE="$XDG_CACHE_HOME/less_history"
 GNUPGHOME="$XDG_DATA_HOME/gnupg"
+GRIPHOME="$XDG_CONFIG_HOME/grip"
+LESSHISTFILE="$XDG_CACHE_HOME/less_history"
 PASSWORD_STORE_DIR="$HOME/doc/.pws"
 
 # Set default commands
-VISUAL="kak"
 EDITOR="kak"
+VISUAL="kak"
 PAGER="less"
 
 # Export all the variables
 export PATH XDG_CACHE_HOME XDG_CONFIG_HOME XDG_DATA_HOME ENV HISTCONTROL \
        HISTFILE HISTSIZE LESSHISTFILE GNUPGHOME PASSWORD_STORE_DIR VISUAL \
-       EDITOR PAGER
+       EDITOR PAGER GRIPHOME
 
 # Clear tty after login
 clear

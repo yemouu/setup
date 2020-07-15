@@ -169,6 +169,9 @@ bindsym {
 	$W+o layout toggle split
 	$W+p splitt
 
+	$W+d swaymsg seat seat0 hide_cursor 8000
+	$W+$A+d swaymsg seat seat0 hide_cursor 0
+
 	$W+v border normal 0
 	$W+b border pixel 2
 	$W+n border none

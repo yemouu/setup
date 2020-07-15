@@ -7,12 +7,12 @@ exec /usr/bin/bemenu-run -i \
                          -m all \
                          -H 32 \
                          --fn "monospace 10" \
-                         --tb="#$fg_color" \
+                         --tb="#$bg_color" \
                          --tf="#$color1" \
-                         --fb="#$fg_color" \
+                         --fb="#$bg_color" \
                          --ff="#$color9" \
-                         --nb="#$fg_color" \
+                         --nb="#$bg_color" \
                          --nf="#$color8" \
-                         --hb="#$fg_color" \
-                         --hf="#$bg_color" \
+                         --hb="#$bg_color" \
+                         --hf="#$fg_color" \
                          "$@"
