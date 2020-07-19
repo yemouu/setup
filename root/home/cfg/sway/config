@@ -169,8 +169,8 @@ bindsym {
 	$W+o layout toggle split
 	$W+p splitt
 
-	$W+d swaymsg seat seat0 hide_cursor 8000
-	$W+$A+d swaymsg seat seat0 hide_cursor 0
+	$W+d exec swaymsg seat seat0 hide_cursor 0
+	$W+$A+d exec swaymsg seat seat0 hide_cursor 8000
 
 	$W+v border normal 0
 	$W+b border pixel 2
@@ -182,9 +182,9 @@ floating_modifier $W normal
 # Window Rules #
 for_window {
 	# Make all windows float by default
-	# # According to `swaymsg -m "['window']" -t subscribe`, windows get their title after
-	# # they get created. However, app_id, class and instace are all set when the window is
-	# # created.
+	# According to `swaymsg -m "['window']" -t subscribe`, windows get their title after
+	# they get created. However, app_id, class and instace are all set when the window is
+	# created.
 	[app_id="."] floating enable
 	[class="."] floating enable
 	[instance="."] floating enable
@@ -193,6 +193,11 @@ for_window {
 	[title="."] title_format "<b>%title</b>"
 
 	[app_id="mpv"] border none
+
+	# Set Alacritty's size. Doing this through Alacritty's config causes the window contents
+	# to spill outside of the border when using multiple scaling factors and spawning
+	# the terminal on one lower than the highest. Sets the terminal to 120x36.
+	[app_id="Alacritty"] resize set width 976 px, resize set height 654 px
 
 	# These apps should take up the entire screen and not have a border
 	[app_id="firefox" title="^Mozilla Firefox$"] floating disable, border none
@@ -244,7 +249,7 @@ for_window {
 	[class="steam_app_225540"] floating disable, border none
 }
 
-# Move Windows to Workspaces
+# Move Windows when they launch
 for_window {
 	# Web Browsers should be on the first workspace
 	[app_id="firefox"] move container to workspace 1
@@ -308,5 +313,4 @@ for_window {
 	# Competitive/Fast Paste Games should be on the tenth workspace (1080p 144hz Monitor)
 	[instance="geometrydash.exe"] move container to workspace 10
 	[class="csgo_linux64"] move container to workspace 10
-
 }

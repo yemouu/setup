@@ -16,3 +16,6 @@ PS2="\[\e[35m\]]\[\e[m\] "
 
 # Source aliases
 . "$XDG_CONFIG_HOME/loksh/alias"
+
+# Source completions
+. "$XDG_CONFIG_HOME/loksh/completions"

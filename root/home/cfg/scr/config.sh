@@ -11,7 +11,7 @@ scr_aud_dir="${scr_basedir}/aud"
 ## aud settings ##
 
 # Audio devices to use for recording audio.
-# These devices canbe found by executing `pactl list sinks| Grep "Monitor Source"`
+# These devices canbe found by executing `pactl list sinks | grep "Monitor Source"`
 # for the sink and by executing `pactl list sources | grep Name:` for the source.
 aud_sink="alsa_output.pci-0000_00_1f.3.analog-stereo.monitor"
 aud_source="alsa_input.usb-BLUE_MICROPHONE_Blue_Snowball_201306-00.mono-fallback"
