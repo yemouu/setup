@@ -36,36 +36,43 @@ draw_bold_text_with_bright_colors: false
 
 colors:
   primary:
-    background: '0x{bg_color}'
-    foreground: '0x{fg_color}'
+    background: '#{bg_color}'
+    foreground: '#{fg_color}'
 
   cursor:
-    text: '0x{bg_color}'
-    cursor: '0x{fg_color}'
+    text:       '#{bg_color}'
+    cursor:     '#{fg_color}'
 
   selection:
-    text: '0x{bg_color}'
-    background: '0x{fg_color}'
+    text:       '#{bg_color}'
+    background: '#{fg_color}'
 
   normal:
-    black:   '0x{color0}'
-    red:     '0x{color1}'
-    green:   '0x{color2}'
-    yellow:  '0x{color3}'
-    blue:    '0x{color4}'
-    magenta: '0x{color5}'
-    cyan:    '0x{color6}'
-    white:   '0x{color7}'
+    black:      '#{color0}'
+    red:        '#{color1}'
+    green:      '#{color2}'
+    yellow:     '#{color3}'
+    blue:       '#{color4}'
+    magenta:    '#{color5}'
+    cyan:       '#{color6}'
+    white:      '#{color7}'
 
   bright:
-    black:   '0x{color8}'
-    red:     '0x{color9}'
-    green:   '0x{color10}'
-    yellow:  '0x{color11}'
-    blue:    '0x{color12}'
-    magenta: '0x{color13}'
-    cyan:    '0x{color14}'
-    white:   '0x{color15}'
+    black:      '#{color8}'
+    red:        '#{color9}'
+    green:      '#{color10}'
+    yellow:     '#{color11}'
+    blue:       '#{color12}'
+    magenta:    '#{color13}'
+    cyan:       '#{color14}'
+    white:      '#{color15}'
+
+#bell:
+#  duration: 1
+#  color: '#{bg_color}'
+#  command:
+#    program: /usr/bin/notify-send
+#    args: [-u, critical, -t, "0", -a, "Allacritty", "Bell was rung!"]
 
 cursor:
   style: Beam

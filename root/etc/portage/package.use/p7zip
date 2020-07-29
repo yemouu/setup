@@ -1,1 +1,1 @@
-app-arch/p7zip rar
+app-arch/p7zip -wxwidgets rar

@@ -172,7 +172,7 @@ bindsym {
 	$W+d exec swaymsg seat seat0 hide_cursor 0
 	$W+$A+d exec swaymsg seat seat0 hide_cursor 8000
 
-	$W+v border normal 0
+	$W+v border normal 2
 	$W+b border pixel 2
 	$W+n border none
 }
@@ -265,6 +265,7 @@ for_window {
 
 	# This just needs to be out of my way
 	[app_id="org.qbittorrent.qBittorrent"] move container to workspace 6
+	[app_id="boincmgr"] move container to workspace 6
 
 	# Game Launchers should be on the eighth workspace
 	[app_id="org.multimc.multimc"] move container to workspace 8
