@@ -1,1 +1,4 @@
-media-gfx/imagemagick fontconfig
+media-gfx/imagemagick fontconfig opencl
+
+# imagemagick seems to force using gold when compiling with clang
+sys-devel/llvm gold

@@ -9,7 +9,7 @@ plug "andreyorst/smarttab.kak" defer smarttab %{
 	set-option global smarttab_smarttab_mode_name 'SmartTab'
 } config %{
 	# Use Tabs Only
-	hook global WinSetOption filetype=(sh|i3|ini|kak) noexpandtab
+	hook global WinSetOption filetype=(sh|i3|ini|kak|c) noexpandtab
 	# Use Spaces Only
 	hook global WinSetOption filetype=(css|html|xml|python) expandtab
 	# Use Smart Tabs

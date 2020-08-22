@@ -1,0 +1,6 @@
+www-client/firefox screencast
+net-libs/nodejs -system-ssl
+media-libs/libvpx postproc
+x11-base/xorg-server xvfb
+
+sys-apps/xdg-desktop-portal screencast

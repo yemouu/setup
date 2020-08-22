@@ -6,9 +6,25 @@
 # make - needed for perform clean, olddefconfig, menuconfig and to compile the kernel source
 # nproc - find amount of cpu threads available if $KUPDATER_MAKEOPTS isn't specified
 # zcat - copy currently running kernel config for use in new kernel
+# you will also need whatever is required to compile the kernel
 
 # Exit the script on error
 set -e
+
+# Compile kernel with LLVM toolchain
+export LLVM=1
+
+# If these variables are not set, set them
+[ "$KUPDATER_SRC_DIR" ] || KUPDATER_SRC_DIR=/usr/src/linux
+[ "$KUPDATER_MAKEOPTS" ] || KUPDATER_MAKEOPTS=-j$(nproc)
+[ "$KUPDATER_DEST_DIR" ] || KUPDATER_DEST_DIR=/boot/EFI/Gentoo
+[ "$KUPDATER_NAME" ] || KUPDATER_NAME=bzImage
+
+# Make sure the required directories are present before continuing
+[ -d "$KUPDATER_SRC_DIR" ] || { info f "$KUPDATER_SRC_DIR not found" 1>&2; exit 1; }
+[ -d "$KUPDATER_DEST_DIR" ] || { info f "$KUPDATER_DEST_DIR not found" 1>&2; exit 1; }
+
+# 
 
 # Usage statement
 usage() {
@@ -19,6 +35,7 @@ usage() {
 	              "  -c: do not compile the kernel" \
 	              "  -e: edit kernel config" \
 	              "  -h: display this message" \
+	              "  -l: set LLVM=0" \
 	              "  -o: do not apply old kernel config" \
 	              "  -r: rollback the last update"
 }
@@ -91,16 +108,6 @@ kup_apply() {
 		{ info f "failed to move new kernel" 1>&2; exit 1; }
 }
 
-# If these variables are not set, set them
-[ "$KUPDATER_SRC_DIR" ] || KUPDATER_SRC_DIR=/usr/src/linux
-[ "$KUPDATER_MAKEOPTS" ] || KUPDATER_MAKEOPTS=-j$(nproc)
-[ "$KUPDATER_DEST_DIR" ] || KUPDATER_DEST_DIR=/boot/EFI/Gentoo
-[ "$KUPDATER_NAME" ] || KUPDATER_NAME=bzImage
-
-# Make sure the required directories are present before continuing
-[ -d "$KUPDATER_SRC_DIR" ] || { info f "$KUPDATER_SRC_DIR not found" 1>&2; exit 1; }
-[ -d "$KUPDATER_DEST_DIR" ] || { info f "$KUPDATER_DEST_DIR not found" 1>&2; exit 1; }
-
 # Handle arguments
 for flag in "$@"
 do
@@ -123,6 +130,7 @@ do
 			c ) kup_skip_compile=true ;;
 			e ) kup_edit_cfg=true ;;
 			h ) usage; exit 0 ;;
+			l ) export LLVM=0 ;;
 			o ) kup_skip_setup=true ;;
 			r ) kup_rollback=true ;;
 			* ) printf '%s\n' "${0##*/}: -$a is an invalid argument" 1>&2

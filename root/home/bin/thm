@@ -1,12 +1,5 @@
 #!/bin/sh
 # shellcheck disable=SC1090,SC2154
-# The user should have specified all variables in the theme file that is being sourced
-
-# Required Commands
-# cut - converting hex values to rgb
-# mkdir - create missing directories
-# rm - clean out old files
-# sed - repalce values in template with actual colors
 
 # Usage statement
 usage() {
@@ -16,28 +9,38 @@ usage() {
 # Convert hex colors into rgb
 hex2rgb() {
 	hex=$1
-	hex_r=$(printf '%s' "$hex" | cut -c-2)
-	hex_g=$(printf '%s' "$hex" | cut -c3-4)
-	hex_b=$(printf '%s' "$hex" | cut -c5-6)
+	hex_r=${hex%????}
+	hex_g=${hex#??}
+	hex_g=${hex_g%??}
+	hex_b=${hex%????}
 	printf '%d,%d,%d' "0x$hex_r" "0x$hex_g" "0x$hex_b"
 }
 
 # Set directory variables
-thm_config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/thm"
-thm_dest_dir="${XDG_CACHE_HOME:-$HOME/.cache}/thm"
+[ "$THM_CONFIG_DIR" ] \
+	&& conf_dir="$THM_CONFIG_DIR" \
+	|| conf_dir="${XDG_CONFIG_HOME:-$HOME/.config}/thm"
+[ "$THM_DEST_DIR" ] \
+	&& conf_dir="$THM_DEST_DIR" \
+	|| dest_dir="${XDG_CACHE_HOME:-$HOME/.cache}/thm"
 
+err() {
+	[ "$*" ] && err_msg="$*" || err_msg="error"
+	printf '%s%b' "${0##*/}: " "$err_msg\n" 1>&2
+	exit 1
+}
+
+# Ensure the theme file exist and source it
 case $1 in
-	-h|--help ) usage; exit 0 ;;
-	* ) # Determine if the theme exist and source it
-		[ "$1" ] || { printf '%s\n' "${0##*/}: missing argument" 1>&2; exit 1; }
-		[ -f "${thm_config_dir}/themes/${1}.theme" ] || \
-			{ printf '%s\n' "${0##*/}: $1: theme not found" 1>&2; exit 1; }
-	    	theme_file="${thm_config_dir}/themes/${1}.theme"
-	    	. "${thm_config_dir}/themes/${1}.theme"
-	    	;;
+	-h|h|--help|help ) usage; exit 0 ;;
+	* ) 
+		[ "$1" ] || err "missing argument"
+		[ -f "$conf_dir/themes/$1.theme" ] || err "$1: theme not found"
+		theme_file="$conf_dir/themes/$1.theme"
+		. "$theme_file" ;;
 esac
 
-# Create RGB colors fro the hex colors
+# Create RGB colors from the hex colors
 bg_color_rgb="$(hex2rgb "$bg_color")"
 fg_color_rgb="$(hex2rgb "$fg_color")"
 color0_rgb="$(hex2rgb "$color0")"
@@ -57,22 +60,20 @@ color13_rgb="$(hex2rgb "$color13")"
 color14_rgb="$(hex2rgb "$color14")"
 color15_rgb="$(hex2rgb "$color15")"
 
-[ -d "$thm_dest_dir" ] || {
-	mkdir -p "$thm_dest_dir" || {
-		printf '%s\n' "${0##*/}: failed to create $thm_dest_dir" 1>&2; exit 1
-	}
-}
+# Make sure the dest_dir exist
+[ -d "$dest_dir" ] || { mkdir -p "$dest_dir" || err "failed to create $dest_dir"; }
 
-# Clean out the dest dir
-rm "$thm_dest_dir/"*
+# Ensure the dest_dir is empty before populating it
+rm "$dest_dir/"*
+
 # Make a file with the name of the new theme
-printf '%s\n' "$theme_file" > "$thm_dest_dir/current_thm"
+printf '%s\n' "$theme_file" > "$dest_dir/current_thm"
 
 # Repalce template syntax with the actual colors
-for t in "${thm_config_dir}/templates/"*"-template"
+for t in "${conf_dir}/templates/"*".template"
 do
 	file_name=${t##*/}
-	file_name=${file_name%-template}
+	file_name=${file_name%.template}
 
 	sed "
 	s/{bg_color}/$bg_color/g
@@ -111,11 +112,12 @@ do
 	s/{color13.rgb}/$color13_rgb/g
 	s/{color14.rgb}/$color14_rgb/g
 	s/{color15.rgb}/$color15_rgb/g
-	" "$t" > "${thm_dest_dir}/${file_name}"
+	" "$t" > "${dest_dir}/${file_name}"
 done
 
-# Run extra scripts
-for i in "${thm_config_dir}/scripts/"*
+# Run extra user scripts
+[ -d "$conf_dir/scripts" ] || return 0
+for i in "$conf_dir/scripts/"*
 do
 	[ -x "$i" ] && $i > /dev/null 2>&1 &
 done

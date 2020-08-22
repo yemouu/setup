@@ -39,6 +39,24 @@ seat seat0 {
 	#xcursor_theme clicc
 }
 
+## Bars #
+#bar {
+#	id topbar
+#	bindcode nop
+#	bindsym nop
+#
+#	font pango:monospace 10
+#	height 32
+#	pango_markup enabled
+#	position top
+#
+#	status_command
+#}
+#
+##bar {
+##	id botbar
+##}
+
 # Idle #
 exec swayidle -w \
      timeout 3600 'swaylock; swaymsg "output * dpms off"; pactl set-source-mute @DEFAULT_SOURCE@ 1; pactl set-sink-mute @DEFAULT_SINK@ 1' \
@@ -205,7 +223,7 @@ for_window {
 	[app_id="firefox" title="^Firefox Nightly$"] floating disable, border none
 	[app_id="firefox" title=".*- Firefox Nightly$"] floating disable, border none
 	[class="discord"] floating disable, border none
-	[class="Riot"] floating disable, border none
+	[class="Element"] floating disable, border none
 
 	# Games and Game Related Applications
 	[app_id="parsecd"] floating disable, border none
@@ -247,6 +265,8 @@ for_window {
 	[class="steam_app_200170"] floating disable, border none
 	# Just Cause 3
 	[class="steam_app_225540"] floating disable, border none
+	# Panzer Ball
+	[class="steam_app_325260"] floating disable, border none
 }
 
 # Move Windows when they launch
@@ -256,7 +276,7 @@ for_window {
 
 	# Chat Applications should be on the second workspace
 	[class="discord"] move container to workspace 2
-	[class="Riot"] move container to workspace 2
+	[class="Element"] move container to workspace 2
 
 	# Graphic Applications should be on the third workspace
 	[app_id="org.inkscape.Inkscape"] move container to workspace 3
@@ -310,6 +330,8 @@ for_window {
 	[class="steam_app_200170"] move container to workspace 9
 	# Just Cause 3
 	[class="steam_app_225540"] move container to workspace 9
+	# Panzer Ball
+	[class="steam_app_325260"] move container to workspace 9
 
 	# Competitive/Fast Paste Games should be on the tenth workspace (1080p 144hz Monitor)
 	[instance="geometrydash.exe"] move container to workspace 10

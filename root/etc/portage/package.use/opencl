@@ -1,4 +1,5 @@
 dev-libs/rocr-runtime non-free
+app-editors/vim-core minimal
 
 dev-lang/ocaml flambda
 dev-lang/ruby -rdoc jemalloc jit

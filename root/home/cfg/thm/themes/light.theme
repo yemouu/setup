@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 bg_color="efefef"
 fg_color="1f1f1f"

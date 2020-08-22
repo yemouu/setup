@@ -1,6 +1,11 @@
 #!/bin/sh
 # Grab the color of a specific point
-# Made with wayland in mind
+
+# TODO:
+# make it work on xorg and wayland
+# allow for different utilities to be used
+# allow for selection of font
+# allow setting temp directory
 
 # Required Commands:
 # convert(imagemagick) - Get the color from the screenshotted point
@@ -10,6 +15,23 @@
 # notify-send (optional) - Send a screenshot with the color
 # wl-copy(wl-clipboard) (optional) - Copy the color into the clipboard
 # xdg-open (optional) - Open the screenshot in an image viewer
+#
+# Used Environment Varibles:
+# COLORGRAB_CONFIG_DIR
+
+# Check for config directory to be used
+[ "$COLORGRAB_CONFIG_DIR" ] \
+	&& cfg_dir="$COLORGRAB_CONFIG_DIR" \
+	|| cfg_dir="${XDG_CONFIG_HOME:-$HOME/.config}/colorgrab"
+
+# Load defaults first based on whether or not wayland or xorg is in use
+[ "$WAYLAND_DISPLAY" ] \
+	&& : \
+	|| :
+
+# Load config file
+# shellcheck disable=SC1090
+[ -f "$cfg_dir/config.sh" ] && . "$cfg_dir/config.sh"
 
 usage() {
 	printf '%s\n' "usage: ${0##*/} [options]" \

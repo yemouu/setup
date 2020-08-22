@@ -1,5 +1,4 @@
 #!/bin/sh
-
 . "${XDG_CACHE_HOME}/thm/colors.sh"
 exec /usr/bin/bemenu-run -i \
                          -w \
