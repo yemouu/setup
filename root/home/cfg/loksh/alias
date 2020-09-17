@@ -1,10 +1,6 @@
 #!/bin/ksh
 
-# Use exa instead of ls if available
-if command -v exa > /dev/null 2>&1
-	then alias ls="exa -Fbg"
-	else alias ls="ls -Fh"
-fi
+alias ls="ls -Fh --color=auto"
 
 # Run something N amount of times
 run() {

@@ -8,6 +8,7 @@ app-editors/kakoune
 app-eselect/eselect-repository
 app-eselect/eselect-sh
 app-misc/abduco
+app-misc/beautifuldiscord
 app-misc/dvtm
 app-misc/jq
 app-misc/radeontop
@@ -32,6 +33,7 @@ dev-vcs/git
 games-action/multimc
 games-action/supertuxkart
 games-fps/xonotic
+games-util/lutris
 games-util/steam-meta
 gui-apps/grim
 gui-apps/mako
@@ -41,6 +43,7 @@ gui-apps/wf-recorder
 gui-apps/wl-clipboard
 gui-libs/xdg-desktop-portal-wlr
 gui-wm/sway
+gui-wm/wayfire
 media-fonts/ibm-plex
 media-fonts/montserrat
 media-fonts/noto
@@ -54,10 +57,12 @@ media-video/ffmpeg
 media-video/mpv
 net-firewall/ufw
 net-im/discord-bin
+net-im/element-desktop-bin
 net-im/zoom
+net-misc/dhcpcd
+net-misc/openntpd
 net-misc/youtube-dl
 net-news/newsboat
-net-p2p/qbittorrent
 sci-misc/boinc
 sys-apps/exa
 sys-apps/fakeroot

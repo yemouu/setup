@@ -3,6 +3,8 @@ sys-config/ltoize ikwiady
 
 # Fails to compile with clang
 sys-libs/glibc gcc-compile	# 17 August 2020
+
+# This needs o-flag-munging useflag enabled or to compile with gcc
 dev-libs/libgcrypt gcc-compile	# 18 August 2020
 
 # Using clang causes alot of warnings resulting in slower compile times

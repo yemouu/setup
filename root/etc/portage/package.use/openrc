@@ -1,1 +1,1 @@
-sys-apps/openrc sysv-utils
+sys-apps/openrc -netifrc sysv-utils
