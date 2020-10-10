@@ -1,0 +1,13 @@
+app-admin/sudo
+app-editors/kakoune
+app-eselect/eselect-repository
+app-shells/loksh
+dev-util/ccache
+dev-vcs/git
+games-util/steam-meta
+media-fonts/ibm-plex
+media-fonts/noto
+media-fonts/noto-emoji
+media-sound/alsa-utils
+net-im/discord-bin
+x11-terms/alacritty

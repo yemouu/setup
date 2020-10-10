@@ -1,6 +1,0 @@
-sys-config/ltoize::lto-overlay
-app-portage/portage-bashrc-mv::mv
-app-portage/lto-rebuild::lto-overlay
-
-dev-lang/python:2.7::lto-overlay
-dev-lang/python:3.7::lto-overlay

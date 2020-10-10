@@ -1,0 +1,151 @@
+src_configure() {
+	local arch_cflags rust_target="" rust_targets="\"$CHOST\"" tools="\"cargo\""
+
+	# Collect rust target names to compile standard libs for all ABIs.
+	for v in $(multilib_get_enabled_abi_pairs); do
+		rust_target=$(rust_abi $(get_abi_CHOST ${v##*.}) | sed s/gnu/musl/)
+		rust_targets="${rust_targets},\"${rust_target}\""
+
+		if [ "$rust_target" = "armv7-unknown-linux-musleabihf" ] &&
+		   use cpu_flags_arm_neon && use cpu_flags_arm_thumb2; then
+			rust_targets="${rust_targets},\"thumbv7neon-unknown-linux-musleabihf\""
+		fi
+	done
+	if use wasm; then
+		rust_targets="${rust_targets},\"wasm32-unknown-unknown\""
+		if use system-llvm; then
+			# un-hardcode rust-lld linker for this target
+			# https://bugs.gentoo.org/715348
+			sed -i '/linker:/ s/rust-lld/wasm-ld/' src/librustc_target/spec/wasm32_base.rs || die
+		fi
+	fi
+
+	if use clippy; then
+		tools="\"clippy\",$tools"
+	fi
+	if use miri; then
+		tools="\"miri\",$tools"
+	fi
+	if use rls; then
+		tools="\"rls\",\"analysis\",\"src\",$tools"
+	fi
+	if use rustfmt; then
+		tools="\"rustfmt\",$tools"
+	fi
+
+	local rust_stage0_root
+	if use system-bootstrap; then
+		rust_stage0_root="$(rustc --print sysroot)"
+	else
+		rust_stage0_root="${WORKDIR}"/rust-stage0
+	fi
+
+	cat <<- EOF > "${S}"/config.toml
+		[llvm]
+		optimize = $(toml_usex !debug)
+		release-debuginfo = $(toml_usex debug)
+		assertions = $(toml_usex debug)
+		ninja = true
+		targets = "${LLVM_TARGETS// /;}"
+		experimental-targets = ""
+		link-shared = $(toml_usex system-llvm)
+		use-libcxx = true
+		[build]
+		build = "${CHOST}"
+		host = ["${CHOST}"]
+		target = [${rust_targets}]
+		cargo = "${rust_stage0_root}/bin/cargo"
+		rustc = "${rust_stage0_root}/bin/rustc"
+		docs = $(toml_usex doc)
+		compiler-docs = $(toml_usex doc)
+		submodules = false
+		python = "${EPYTHON}"
+		locked-deps = true
+		vendor = true
+		extended = true
+		tools = [${tools}]
+		verbose = 2
+		sanitizers = false
+		profiler = false
+		cargo-native-static = false
+		[install]
+		prefix = "${EPREFIX}/usr"
+		libdir = "lib/${P}"
+		docdir = "share/doc/${PF}"
+		mandir = "share/${P}/man"
+		[rust]
+		optimize = true
+		debug = $(toml_usex debug)
+		debug-assertions = $(toml_usex debug)
+		debuginfo-level-rustc = 0
+		backtrace = true
+		incremental = false
+		default-linker = "$(tc-getCC)"
+		parallel-compiler = $(toml_usex parallel-compiler)
+		channel = "$(usex nightly nightly stable)"
+		rpath = false
+		verbose-tests = true
+		optimize-tests = $(toml_usex !debug)
+		codegen-tests = true
+		dist-src = false
+		remap-debuginfo = true
+		lld = $(usex system-llvm false $(toml_usex wasm))
+		backtrace-on-ice = true
+		jemalloc = false
+		[dist]
+		src-tarball = false
+		[target.${CHOST}]
+		cc = "$(tc-getCC)"
+		cxx = "$(tc-getCXX)"
+		linker = "$(tc-getCC)"
+		ar = "$(tc-getAR)"
+		crt-static = false
+	EOF
+	if use system-llvm; then
+		cat <<- EOF >> "${S}"/config.toml
+			llvm-config = "$(get_llvm_prefix "${LLVM_MAX_SLOT}")/bin/llvm-config"
+		EOF
+	fi
+
+	for v in $(multilib_get_enabled_abi_pairs); do
+		rust_target=$(rust_abi $(get_abi_CHOST ${v##*.}) | sed s/gnu/musl/)
+		arch_cflags="$(get_abi_CFLAGS ${v##*.})"
+
+		export "CFLAGS_${rust_target//-/_}"="$CFLAGS ${arch_cflags}"
+
+		cat <<- EOF >> "${S}"/config.toml
+			[target.${rust_target}]
+			cc = "$(tc-getCC)"
+			cxx = "$(tc-getCXX)"
+			linker = "$(tc-getCC)"
+			ar = "$(tc-getAR)"
+			crt-static = false
+		EOF
+
+		if [ "$rust_target" = "armv7-unknown-linux-musleabihf" ] &&
+		   use cpu_flags_arm_neon && use cpu_flags_arm_thumb2; then
+			rust_target=thumbv7neon-unknown-linux-musleabihf
+
+			export "CFLAGS_${rust_target//-/_}"="$CFLAGS ${arch_cflags}"
+
+			cat <<- EOF >> "${S}"/config.toml
+				[target.${rust_target}]
+				cc = "$(tc-getCC)"
+				cxx = "$(tc-getCXX)"
+				linker = "$(tc-getCC)"
+				ar = "$(tc-getAR)"
+				crt-static = false
+			EOF
+		fi
+	done
+
+	if use wasm; then
+		cat <<- EOF >> "${S}"/config.toml
+			[target.wasm32-unknown-unknown]
+			linker = "$(usex system-llvm lld rust-lld)"
+		EOF
+	fi
+
+	einfo "Rust configured with the following settings:"
+	cat "${S}"/config.toml || die
+}

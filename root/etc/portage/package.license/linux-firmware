@@ -1,1 +1,1 @@
-sys-kernel/linux-firmware no-source-code linux-fw-redistributable
+sys-kernel/linux-firmware linux-fw-redistributable no-source-code

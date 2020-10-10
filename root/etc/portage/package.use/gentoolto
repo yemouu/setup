@@ -1,3 +1,0 @@
-*/* lto pgo
-app-portage/portage-bashrc-mv -ccache -remove-la -title
-dev-lang/python pgo

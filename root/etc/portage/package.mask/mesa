@@ -1,0 +1,3 @@
+# mesa on musl needs a patch or programs using opengl will segfault.
+# Use musl overlay instead.
+media-libs/mesa::gentoo

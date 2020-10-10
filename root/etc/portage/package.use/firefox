@@ -1,6 +1,8 @@
-www-client/firefox screencast
-net-libs/nodejs -system-ssl
+media-libs/libpng apng
 media-libs/libvpx postproc
+dev-lang/python sqlite
+sys-devel/llvm gold
+net-libs/nodejs -npm -ssl -system-ssl
+www-client/firefox lto pgo screencast
 x11-base/xorg-server xvfb
-
-sys-apps/xdg-desktop-portal screencast
+media-libs/libsdl2 gles2

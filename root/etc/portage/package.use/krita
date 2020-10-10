@@ -1,6 +1,4 @@
-media-gfx/krita pdf vc
-kde-frameworks/kwindowsystem X
-dev-qt/qtmultimedia widgets
+dev-python/PyQt5 widgets
+dev-libs/libpcre2 pcre16
 sys-libs/zlib minizip
-dev-qt/qtgui X
-app-text/poppler qt5
+dev-qt/qtgui egl
