@@ -46,28 +46,32 @@ ghroot_mount() {
 		mkdir -p "$1/$repo"
 		mount -R "$repo" "$1/$repo" || { info "failed to mount $repo to $1/$repo"; exit 1;}
 	done
+	mount -R /var/cache/distfiles "$1/var/cache/distfiles" \
+		|| { info "failed to mount /var/cache/distfiles to $1/var/cache/distfiles"; exit 1;}
 	printf '%s\n' "$1" >> /tmp/ghroot
 }
 
 ghroot_umount() {
 	# Unmount everything
-	umount -l "$1/proc" || { info "failed to unmount $1/proc"; exit 1;}
-	umount -l "$1/sys" || { info "failed to unmount $1/sys"; exit 1;}
-	umount -l "$1/dev" || { info "failed to unmount $1/dev"; exit 1;}
+	umount -R "$1/proc" || { info "failed to unmount $1/proc"; }
+	umount -R "$1/sys" || { info "failed to unmount $1/sys"; }
+	umount -R "$1/dev" || { info "failed to unmount $1/dev"; }
 
-	umount -l "$1/run" || { info "failed to unmount $1/run"; exit 1;}
-	umount -l "$1/tmp" || { info "failed to unmount $1/tmp"; exit 1;}
-	umount -l "$1/var/lib/dbus" || { info "failed to unmount $1/var/lib/dbus"; exit 1;}
+	umount -R "$1/run" || { info "failed to unmount $1/run"; }
+	umount -R "$1/tmp" || { info "failed to unmount $1/tmp"; }
+	umount -R "$1/var/lib/dbus" || { info "failed to unmount $1/var/lib/dbus"; }
 
 	for home in /home/*
 	do
-		umount -l "$1/$home" || { info "failed to unmount $1/$home"; exit 1;}
+		umount -R "$1/$home" || { info "failed to unmount $1/$home"; }
 	done
 
 	for repo in /var/db/repos/*
 	do
-		umount -l "$1/$repo" || { info "failed to unmount $1/$repo"; exit 1;}
+		umount -R "$1/$repo" || { info "failed to unmount $1/$repo"; }
 	done
+
+	umount -R "$1/var/cache/distfiles" || { info "failed to unmount $1/var/cache/distfiles"; exit 1;}
 
 	# Deletes the line number the chroot is on
 	sed "$(grep -n "$1" /tmp/ghroot | sed 's/:.*/d;/' | tr -d '\n' | sed 's/;$//')" /tmp/ghroot > /tmp/ghrootn

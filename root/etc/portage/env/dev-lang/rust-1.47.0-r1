@@ -1,0 +1,215 @@
+src_configure() {
+	local rust_target="" rust_targets="" arch_cflags
+	#usex elibc_musl && rust_targets="\"$CHOST\""
+
+	# Collect rust target names to compile standard libs for all ABIs.
+	for v in $(multilib_get_enabled_abi_pairs); do
+		rust_targets="${rust_targets},\"$(rust_abi $(get_abi_CHOST ${v##*.}))\""
+	done
+	if use wasm; then
+		rust_targets="${rust_targets},\"wasm32-unknown-unknown\""
+		if use system-llvm; then
+			# un-hardcode rust-lld linker for this target
+			# https://bugs.gentoo.org/715348
+			sed -i '/linker:/ s/rust-lld/wasm-ld/' src/librustc_target/spec/wasm32_base.rs || die
+		fi
+	fi
+	rust_targets="${rust_targets#,}"
+
+	local tools="\"cargo\","
+	if use clippy; then
+		tools="\"clippy\",$tools"
+	fi
+	if use miri; then
+		tools="\"miri\",$tools"
+	fi
+	if use rls; then
+		tools="\"rls\",\"analysis\",\"src\",$tools"
+	fi
+	if use rustfmt; then
+		tools="\"rustfmt\",$tools"
+	fi
+
+	local rust_stage0_root
+	if use system-bootstrap; then
+		rust_stage0_root="$(rustc --print sysroot)"
+	else
+		rust_stage0_root="${WORKDIR}"/rust-stage0
+	fi
+
+	rust_target="$(rust_abi)"
+
+	cat <<- _EOF_ > "${S}"/config.toml
+		[llvm]
+		optimize = $(toml_usex !debug)
+		release-debuginfo = $(toml_usex debug)
+		assertions = $(toml_usex debug)
+		ninja = true
+		targets = "${LLVM_TARGETS// /;}"
+		experimental-targets = ""
+		link-shared = $(toml_usex system-llvm)
+		use-libcxx = true
+		[build]
+		build = "${rust_target}"
+		host = ["${rust_target}"]
+		target = [${rust_targets}]
+		cargo = "${rust_stage0_root}/bin/cargo"
+		rustc = "${rust_stage0_root}/bin/rustc"
+		docs = $(toml_usex doc)
+		compiler-docs = $(toml_usex doc)
+		submodules = false
+		python = "${EPYTHON}"
+		locked-deps = true
+		vendor = true
+		extended = true
+		tools = [${tools}]
+		verbose = 2
+		sanitizers = false
+		profiler = false
+		cargo-native-static = false
+		[install]
+		prefix = "${EPREFIX}/usr/lib/${PN}/${PV}"
+		sysconfdir = "etc"
+		docdir = "share/doc/rust"
+		bindir = "bin"
+		libdir = "lib"
+		mandir = "share/man"
+		[rust]
+		# https://github.com/rust-lang/rust/issues/54872
+		codegen-units-std = 1
+		optimize = true
+		debug = $(toml_usex debug)
+		debug-assertions = $(toml_usex debug)
+		debuginfo-level-rustc = 0
+		backtrace = true
+		incremental = false
+		default-linker = "$(tc-getCC)"
+		parallel-compiler = $(toml_usex parallel-compiler)
+		channel = "$(usex nightly nightly stable)"
+		rpath = false
+		verbose-tests = true
+		optimize-tests = $(toml_usex !debug)
+		codegen-tests = true
+		dist-src = false
+		remap-debuginfo = true
+		lld = $(usex system-llvm false $(toml_usex wasm))
+		backtrace-on-ice = true
+		jemalloc = false
+		[dist]
+		src-tarball = false
+	_EOF_
+
+	for v in $(multilib_get_enabled_abi_pairs); do
+		rust_target=$(rust_abi $(get_abi_CHOST ${v##*.}))
+		arch_cflags="$(get_abi_CFLAGS ${v##*.})"
+
+		cat <<- _EOF_ >> "${S}"/config.env
+			CFLAGS_${rust_target}=${arch_cflags}
+		_EOF_
+
+		cat <<- _EOF_ >> "${S}"/config.toml
+			[target.${rust_target}]
+			cc = "$(tc-getBUILD_CC)"
+			cxx = "$(tc-getBUILD_CXX)"
+			linker = "$(tc-getCC)"
+			ar = "$(tc-getAR)"
+		_EOF_
+		# librustc_target/spec/linux_musl_base.rs sets base.crt_static_default = true;
+		if use elibc_musl; then
+			cat <<- _EOF_ >> "${S}"/config.toml
+				crt-static = false
+			_EOF_
+		fi
+		if use system-llvm; then
+			cat <<- _EOF_ >> "${S}"/config.toml
+				llvm-config = "$(get_llvm_prefix "${LLVM_MAX_SLOT}")/bin/llvm-config"
+			_EOF_
+		fi
+	done
+	if use wasm; then
+		cat <<- _EOF_ >> "${S}"/config.toml
+			[target.wasm32-unknown-unknown]
+			linker = "$(usex system-llvm lld rust-lld)"
+		_EOF_
+	fi
+
+	if [[ -n ${I_KNOW_WHAT_I_AM_DOING_CROSS} ]]; then # whitespace intentionally shifted below
+	# experimental cross support
+	# discussion: https://bugs.gentoo.org/679878
+	# TODO: c*flags, clang, system-llvm, cargo.eclass target support
+	# it would be much better if we could split out stdlib
+	# complilation to separate ebuild and abuse CATEGORY to
+	# just install to /usr/lib/rustlib/<target>
+
+	# extra targets defined as a bash array
+	# spec format:  <LLVM target>:<rust-target>:<CTARGET>
+	# best place would be /etc/portage/env/dev-lang/rust
+	# Example:
+	# RUST_CROSS_TARGETS=(
+	#	"AArch64:aarch64-unknown-linux-gnu:aarch64-unknown-linux-gnu"
+	# )
+	# no extra hand holding is done, no target transformations, all
+	# values are passed as-is with just basic checks, so it's up to user to supply correct values
+	# valid rust targets can be obtained with
+	# 	rustc --print target-list
+	# matching cross toolchain has to be installed
+	# matching LLVM_TARGET has to be enabled for both rust and llvm (if using system one)
+	# only gcc toolchains installed with crossdev are checked for now.
+
+	# BUG: we can't pass host flags to cross compiler, so just filter for now
+	# BUG: this should be more fine-grained.
+	filter-flags '-mcpu=*' '-march=*' '-mtune=*'
+
+	local cross_target_spec
+	for cross_target_spec in "${RUST_CROSS_TARGETS[@]}";do
+		# extracts first element form <LLVM target>:<rust-target>:<CTARGET>
+		local cross_llvm_target="${cross_target_spec%%:*}"
+		# extracts toolchain triples, <rust-target>:<CTARGET>
+		local cross_triples="${cross_target_spec#*:}"
+		# extracts first element after before : separator
+		local cross_rust_target="${cross_triples%%:*}"
+		# extracts last element after : separator
+		local cross_toolchain="${cross_triples##*:}"
+		use llvm_targets_${cross_llvm_target} || die "need llvm_targets_${cross_llvm_target} target enabled"
+		command -v ${cross_toolchain}-gcc > /dev/null 2>&1 || die "need ${cross_toolchain} cross toolchain"
+
+		cat <<- _EOF_ >> "${S}"/config.toml
+			[target.${cross_rust_target}]
+			cc = "${cross_toolchain}-gcc"
+			cxx = "${cross_toolchain}-g++"
+			linker = "${cross_toolchain}-gcc"
+			ar = "${cross_toolchain}-ar"
+		_EOF_
+		if use system-llvm; then
+			cat <<- _EOF_ >> "${S}"/config.toml
+				llvm-config = "$(get_llvm_prefix "${LLVM_MAX_SLOT}")/bin/llvm-config"
+			_EOF_
+		fi
+
+		# append cross target to "normal" target list
+		# example 'target = ["powerpc64le-unknown-linux-gnu"]'
+		# becomes 'target = ["powerpc64le-unknown-linux-gnu","aarch64-unknown-linux-gnu"]'
+
+		rust_targets="${rust_targets},\"${cross_rust_target}\""
+		sed -i "/^target = \[/ s#\[.*\]#\[${rust_targets}\]#" config.toml || die
+
+		ewarn
+		ewarn "Enabled ${cross_rust_target} rust target"
+		ewarn "Using ${cross_toolchain} cross toolchain"
+		ewarn
+		if ! has_version -b 'sys-devel/binutils[multitarget]' ; then
+			ewarn "'sys-devel/binutils[multitarget]' is not installed"
+			ewarn "'strip' will be unable to strip cross libraries"
+			ewarn "cross targets will be installed with full debug information"
+			ewarn "enable 'multitarget' USE flag for binutils to be able to strip object files"
+			ewarn
+			ewarn "Alternatively llvm-strip can be used, it supports stripping any target"
+			ewarn "define STRIP=\"llvm-strip\" to use it (experimental)"
+			ewarn
+		fi
+	done
+	fi # I_KNOW_WHAT_I_AM_DOING_CROSS
+
+	einfo "Rust configured with the following settings:"
+	cat "${S}"/config.toml || die
+}

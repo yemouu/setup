@@ -2,3 +2,6 @@ dev-python/PyQt5 widgets
 dev-libs/libpcre2 pcre16
 sys-libs/zlib minizip
 dev-qt/qtgui egl
+media-gfx/krita fftw pdf
+sci-libs/fftw -fortran
+app-text/poppler qt5

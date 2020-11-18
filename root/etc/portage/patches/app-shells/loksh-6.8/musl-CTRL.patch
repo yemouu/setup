@@ -1,0 +1,13 @@
+diff --git a/vi.c b/vi.c
+index 83f2d69..8744983 100644
+--- a/vi.c
++++ b/vi.c
+@@ -17,7 +17,7 @@
+ #ifndef SMALL
+ # include <term.h>
+ # include <curses.h>
+-#else
++//#else
+ #  include <sys/ttydefaults.h>
+ #endif
+ 

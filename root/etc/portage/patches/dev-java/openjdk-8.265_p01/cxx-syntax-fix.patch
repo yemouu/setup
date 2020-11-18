@@ -1,0 +1,75 @@
+diff --git a/hotspot/src/share/vm/gc_implementation/g1/g1BlockOffsetTable.inline.hpp b/hotspot/src/share/vm/gc_implementation/g1/g1BlockOffsetTable.inline.hpp
+index 70646a4..94331dd 100644
+--- a/hotspot/src/share/vm/gc_implementation/g1/g1BlockOffsetTable.inline.hpp
++++ b/hotspot/src/share/vm/gc_implementation/g1/g1BlockOffsetTable.inline.hpp
+@@ -49,10 +49,10 @@ G1BlockOffsetTable::block_start_const(const void* addr) const {
+ 
+ #define check_index(index, msg)                                                \
+   assert((index) < (_reserved.word_size() >> LogN_words),                      \
+-         err_msg("%s - index: "SIZE_FORMAT", _vs.committed_size: "SIZE_FORMAT, \
++         err_msg("%s - index: " SIZE_FORMAT ", _vs.committed_size: " SIZE_FORMAT, \
+                  msg, (index), (_reserved.word_size() >> LogN_words)));        \
+   assert(G1CollectedHeap::heap()->is_in_exact(address_for_index_raw(index)),   \
+-         err_msg("Index "SIZE_FORMAT" corresponding to "PTR_FORMAT             \
++         err_msg("Index " SIZE_FORMAT " corresponding to " PTR_FORMAT             \
+                  " (%u) is not in committed area.",                            \
+                  (index),                                                      \
+                  p2i(address_for_index_raw(index)),                            \
+diff --git a/hotspot/src/share/vm/gc_implementation/shared/parGCAllocBuffer.cpp b/hotspot/src/share/vm/gc_implementation/shared/parGCAllocBuffer.cpp
+index bddf14b..923c34e 100644
+--- a/hotspot/src/share/vm/gc_implementation/shared/parGCAllocBuffer.cpp
++++ b/hotspot/src/share/vm/gc_implementation/shared/parGCAllocBuffer.cpp
+@@ -98,10 +98,10 @@ void PLABStats::adjust_desired_plab_sz(uint no_of_gc_workers) {
+   if (_allocated == 0) {
+     assert(_unused == 0,
+            err_msg("Inconsistency in PLAB stats: "
+-                   "_allocated: "SIZE_FORMAT", "
+-                   "_wasted: "SIZE_FORMAT", "
+-                   "_unused: "SIZE_FORMAT", "
+-                   "_used  : "SIZE_FORMAT,
++                   "_allocated: " SIZE_FORMAT ", "
++                   "_wasted: " SIZE_FORMAT ", "
++                   "_unused: " SIZE_FORMAT ", "
++                   "_used  : " SIZE_FORMAT,
+                    _allocated, _wasted, _unused, _used));
+ 
+     _allocated = 1;
+diff --git a/hotspot/src/share/vm/memory/generation.hpp b/hotspot/src/share/vm/memory/generation.hpp
+index ca3fe94..6c868fb 100644
+--- a/hotspot/src/share/vm/memory/generation.hpp
++++ b/hotspot/src/share/vm/memory/generation.hpp
+@@ -423,7 +423,7 @@ class Generation: public CHeapObj<mtGC> {
+     // have to guard against non-monotonicity.
+     NOT_PRODUCT(
+       if (now < _time_of_last_gc) {
+-        warning("time warp: "INT64_FORMAT" to "INT64_FORMAT, (int64_t)_time_of_last_gc, (int64_t)now);
++        warning("time warp: " INT64_FORMAT " to " INT64_FORMAT, (int64_t)_time_of_last_gc, (int64_t)now);
+       }
+     )
+     return _time_of_last_gc;
+diff --git a/hotspot/src/share/vm/memory/referenceProcessor.cpp b/hotspot/src/share/vm/memory/referenceProcessor.cpp
+index a38a72e..7132fd8 100644
+--- a/hotspot/src/share/vm/memory/referenceProcessor.cpp
++++ b/hotspot/src/share/vm/memory/referenceProcessor.cpp
+@@ -164,7 +164,7 @@ void ReferenceProcessor::update_soft_ref_master_clock() {
+ 
+   NOT_PRODUCT(
+   if (now < _soft_ref_timestamp_clock) {
+-    warning("time warp: "INT64_FORMAT" to "INT64_FORMAT,
++    warning("time warp: " INT64_FORMAT " to " INT64_FORMAT,
+             _soft_ref_timestamp_clock, now);
+   }
+   )
+diff --git a/hotspot/src/share/vm/memory/genCollectedHeap.cpp b/hotspot/src/share/vm/memory/genCollectedHeap.cpp
+index 26a0e7f..a6b2eb9 100644
+--- a/hotspot/src/share/vm/memory/genCollectedHeap.cpp
++++ b/hotspot/src/share/vm/memory/genCollectedHeap.cpp
+@@ -1401,7 +1401,7 @@ jlong GenCollectedHeap::millis_since_last_gc() {
+   // back a time later than 'now'.
+   jlong retVal = now - tolgc_cl.time();
+   if (retVal < 0) {
+-    NOT_PRODUCT(warning("time warp: "INT64_FORMAT, (int64_t) retVal);)
++    NOT_PRODUCT(warning("time warp: " INT64_FORMAT, (int64_t) retVal);)
+     return 0;
+   }
+   return retVal;

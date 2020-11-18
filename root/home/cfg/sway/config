@@ -39,24 +39,6 @@ seat seat0 {
 	#xcursor_theme clicc
 }
 
-## Bars #
-#bar {
-#	id topbar
-#	bindcode nop
-#	bindsym nop
-#
-#	font pango:monospace 10
-#	height 32
-#	pango_markup enabled
-#	position top
-#
-#	status_command
-#}
-#
-##bar {
-##	id botbar
-##}
-
 # Idle #
 exec swayidle -w \
      timeout 3600 'swaylock; swaymsg "output * dpms off"; pactl set-source-mute @DEFAULT_SOURCE@ 1; pactl set-sink-mute @DEFAULT_SINK@ 1' \
@@ -121,6 +103,7 @@ bindsym {
 	$W+Return exec $term
 	$W+r exec $menu
 	$A+F12 exec powermenu
+	$W+f exec ffp
 
 	$W+e exec notivol toggle
 	XF86AudioRaiseVolume exec notivol vol +2%
@@ -218,58 +201,15 @@ for_window {
 	[app_id="Alacritty"] resize set width 976 px, resize set height 654 px
 
 	# These apps should take up the entire screen and not have a border
-	[app_id="firefox" title=".*- Firefox Nightly$"] floating disable, border none
-	[app_id="firefox" title="^Firefox Nightly$"] floating disable, border none
 	[app_id="firefox" title=".*- Mozilla Firefox$"] floating disable, border none
 	[app_id="firefox" title="^Mozilla Firefox$"] floating disable, border none
-	[class="discord"] floating disable, border none
 	[class="Element"] floating disable, border none
+	[class="discord"] floating disable, border none
 
-	# Games and Game Related Applications
-	[app_id="parsecd"] floating disable, border none
-	[class="Albion Online Client"] floating disable, border none
-	[class="csgo_linux64"] floating disable, border none
-	[class="Golf With Your Friends.x86_64"] floating disable, border none
-	[class="hl2_linux"] floating disable, border none
-	[class="hl_linux"] floating disable, border none
-	[class="io.krunker.desktop"] floating disable, border none
-	[class="Minecraft*"] floating disable, border none
-	[class="portal2_linux"] floating disable, border none
-	[class="starbound"] floating disable, border none
-	[class="StardewValley.bin.x86_64"] floating disable, border none
-	[class="streaming_client"] floating disable, border none 
-	[class="SuperTuxKart"] floating disable, border none
-	[class="Terraria.bin.x86_64"] floating disable, border none
-	[class="Unturned.x86_64"] floating disable, border none
-	[instance="geometrydash.exe"] floating disable, border none
-	[title="^The Escapist 2$"] floating disable, border none
-
-	# Among Us
-	[class="steam_app_945360"] floating disable, border none
-	# Castle Crashers
-	[class="steam_app_204360"] floating disable, border none
-	# Gravitas
-	[class="steam_app_1067310"] floating disable, border none
-	# Human: Fall Flat
-	[class="steam_app_477160"] floating disable, border none
-	# Just Cause 3
-	[class="steam_app_225540"] floating disable, border none
-	# Muse Dash
-	[class="steam_app_774171"] floating disable, border none
-	# Panzer Ball
-	[class="steam_app_325260"] floating disable, border none
-	# Risk
-	[class="steam_app_1128810"] floating disable, border none
+	# Fullscreen all games
+	[class="csgo_linux64"] fullscreen enable
 	# Rocket League
-	[class="steam_app_252950"] floating disable, border none
-	# Team Sonic Racing
-	[class="steam_app_785260"] floating disable, border none
-	# The Lego Ninjago Movie Video Game
-	[class="steam_app_640590"] floating disable, border none
-	# Tower Unite
-	[class="steam_app_394690"] floating disable, border none
-	# Worms Revolution
-	[class="steam_app_200170"] floating disable, border none
+	[class="steam_app_252950"] fullscreen enable
 }
 
 # Move Windows when they launch
@@ -278,71 +218,20 @@ for_window {
 	[app_id="firefox"] move container to workspace 1
 
 	# Chat Applications should be on the second workspace
-	[class="discord"] move container to workspace 2
 	[class="Element"] move container to workspace 2
+	[class="discord"] move container to workspace 2
 
 	# Graphic Applications should be on the third workspace
 	[app_id="org.inkscape.Inkscape"] move container to workspace 3
 	[class="Gimp"] move container to workspace 3
 	[class="krita"] move container to workspace 3
 
-	# This just needs to be out of my way
-	[app_id="boincmgr"] move container to workspace 6
-	[app_id="org.qbittorrent.qBittorrent"] move container to workspace 6
-
-	# Game Launchers should be on the eighth workspace
+	# Games and Game Launchers should be on the eighth workspace
 	[app_id="org.multimc.multimc"] move container to workspace 8
-	[app_id="lutris"] move container to workspace 8
 	[class="Steam"] move container to workspace 8
 
-	[app_id="parsecd"] move container to workspace 9
-
-	# Casual/Slow Paste Games should be on the ninth workspace (4k 60hz Monitor)
-	[class="Albion Online Client"] move container to workspace 9
-	[class="Albion Online Launcher"] move container to workspace 9
-	[class="Golf With Your Friends.x86_64"] move container to workspace 9
-	[class="hl2_linux"] move container to workspace 9
-	[class="hl_linux"] move container to workspace 9
-	[class="Minecraft*"] move container to workspace 9
-	[class="portal2_linux"] move container to workspace 9
-	[class="starbound"] move container to workspace 9
-	[class="StardewValley.bin.x86_64"] move container to workspace 9
-	[class="streaming_client"] move container to workspace 9
-	[class="Terraria.bin.x86_64"] move container to workspace 9
-	[class="Unturned.x86_64"] move container to workspace 9
-	[title="^The Escapist 2$"] move container to workspace 9
-
-	# Among Us
-	[class="steam_app_945360"] move container to worksapce 9
-	# Castle Crashers
-	[class="steam_app_204360"] move container to workspace 9
-	# Gravitas
-	[class="steam_app_1067310"] move container to workspace 9
-	# Human: Fall Flat
-	[class="steam_app_477160"] move container to workspace 9
-	# Just Cause 3
-	[class="steam_app_225540"] move container to workspace 9
-	# Muse Dash
-	[class="steam_app_774171"] move container to workspace 9
-	# Panzer Ball
-	[class="steam_app_325260"] move container to workspace 9
-	# Risk
-	[class="steam_app_1128810"] move container to workspace 9
-	# The Lego Ninjago Movie Video Game
-	[class="steam_app_640590"] move container to workspace 9
-	# Tower Unite
-	[class="steam_app_394690"] move container to workspace 9
-	# Worms Revolution
-	[class="steam_app_200170"] move container to workspace 9
-
-	# Competitive/Fast Paste Games should be on the tenth workspace (1080p 144hz Monitor)
-	[class="csgo_linux64"] move container to workspace 10
-	[class="io.krunker.desktop"] move container to workspace 10
-	[class="SuperTuxKart"] move container to workspace 10
-	[instance="geometrydash.exe"] move container to workspace 10
+	[class="csgo_linux64"] move container to workspace 8
 
 	# Rocket League
-	[class="steam_app_252950"] move container to workspace 10
-	# Team Sonic Racing
-	[class="steam_app_785260"] move container to workspace 10
+	[class="steam_app_252950"] move container to workspace 8
 }

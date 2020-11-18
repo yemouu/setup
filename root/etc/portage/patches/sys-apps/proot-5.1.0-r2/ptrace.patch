@@ -1,0 +1,39 @@
+diff --git a/src/ptrace/ptrace.c b/src/ptrace/ptrace.c
+index ef69cf5..24ddecf 100644
+--- a/src/ptrace/ptrace.c
++++ b/src/ptrace/ptrace.c
+@@ -58,7 +58,7 @@
+ #define user_fpregs_struct user_fpsimd_struct
+ #endif
+ 
+-static const char *stringify_ptrace(enum __ptrace_request request)
++static const char *stringify_ptrace(PTRACE_REQUEST_TYPE request)
+ {
+ #define CASE_STR(a) case a: return #a; break;
+ 	switch ((int) request) {
+diff --git a/src/tracee/tracee.h b/src/tracee/tracee.h
+index f4c3a23..efb0c8a 100644
+--- a/src/tracee/tracee.h
++++ b/src/tracee/tracee.h
+@@ -33,6 +33,12 @@
+ #include "arch.h" /* word_t, user_regs_struct, */
+ #include "compat.h"
+ 
++#if defined(__GLIBC__)
++#define PTRACE_REQUEST_TYPE enum __ptrace_request
++#else
++#define PTRACE_REQUEST_TYPE int
++#endif
++
+ typedef enum {
+ 	CURRENT  = 0,
+ 	ORIGINAL = 1,
+@@ -140,7 +146,7 @@ typedef struct tracee {
+ 				     && get_sysnum((tracee), ORIGINAL) == sysnum)
+ 
+ 	/* How this tracee is restarted.  */
+-	enum __ptrace_request restart_how;
++	PTRACE_REQUEST_TYPE restart_how;
+ 
+ 	/* Value of the tracee's general purpose registers.  */
+ 	struct user_regs_struct _regs[NB_REG_VERSION];

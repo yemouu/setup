@@ -2,10 +2,6 @@ CC="gcc"
 CXX="g++"
 LD="ld.bfd"
 
-#NTHREADS="auto"
-#source /etc/portage/make.conf.lto
-
-#COMMON_FLAGS="-march=native ${CFLAGS} -pipe -falign-functions=32"
 COMMON_FLAGS="-march=native -O2 -pipe -falign-functions=32"
 CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"

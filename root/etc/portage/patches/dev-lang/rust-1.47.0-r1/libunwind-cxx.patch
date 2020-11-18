@@ -1,0 +1,17 @@
+diff --git a/library/unwind/build.rs b/library/unwind/build.rs
+index ab09a6e..3b99973 100644
+--- a/library/unwind/build.rs
++++ b/library/unwind/build.rs
+@@ -146,9 +146,9 @@ mod llvm_libunwind {
+         }
+ 
+         if target_env == "musl" {
+-            // use the same C compiler command to compile C++ code so we do not need to setup the
+-            // C++ compiler env variables on the builders
+-            cfg.cpp(false);
++            //// use the same C compiler command to compile C++ code so we do not need to setup the
++            //// C++ compiler env variables on the builders
++            //cfg.cpp(false);
+             // linking for musl is handled in lib.rs
+             cfg.cargo_metadata(false);
+             println!("cargo:rustc-link-search=native={}", env::var("OUT_DIR").unwrap());

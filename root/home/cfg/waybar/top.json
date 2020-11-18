@@ -1,0 +1,73 @@
+{
+	"layer":	   "top",
+	"position":	   "top",
+	"height":	   32,
+	"modules-left":	   ["cpu", "memory"],
+	"modules-center":  ["sway/workspaces"],
+	"modules-right":   ["pulseaudio", "clock"],
+	"name":		   "topbar",
+
+	"clock": {
+		"interval": 1,
+		"format": "{:%R}",
+		"timezones": [ "UTC", "America/New_York"],
+		"tooltip-format": "{:%e %a %b %Y %Z}",
+	},
+
+	"cpu": {
+		"interval": 2,
+		"format": "CPU: {usage}%",
+		"tooltip": false
+	},
+
+	"memory": {
+		"interval": 2,
+		"format": "RAM: {used:0.2f}G / {total:0.2f}G ({avail:0.2f}G)",
+		"states": {
+			"warn": 60,
+			"crit": 80
+		},
+		"tooltip": false
+	}
+
+	"pulseaudio": {
+		"format": "",
+	}
+
+	//"sway/workspaces": { }
+}
+//    // Modules configuration
+//    // "sway/workspaces": {
+//    //     "disable-scroll": true,
+//    //     "all-outputs": true,
+//    //     "format": "{name}: {icon}",
+//    //     "format-icons": {
+//    //         "1": "",
+//    //         "2": "",
+//    //         "3": "",
+//    //         "4": "",
+//    //         "5": "",
+//    //         "urgent": "",
+//    //         "focused": "",
+//    //         "default": ""
+//    //     }
+//    // },
+//    "pulseaudio": {
+//        // "scroll-step": 1, // %, can be a float
+//        "format": "{volume}% {icon} {format_source}",
+//        "format-bluetooth": "{volume}% {icon} {format_source}",
+//        "format-bluetooth-muted": " {icon} {format_source}",
+//        "format-muted": " {format_source}",
+//        "format-source": "{volume}% ",
+//        "format-source-muted": "",
+//        "format-icons": {
+//            "headphone": "",
+//            "hands-free": "",
+//            "headset": "",
+//            "phone": "",
+//            "portable": "",
+//            "car": "",
+//            "default": ["", "", ""]
+//        },
+//        "on-click": "pavucontrol"
+//    },
