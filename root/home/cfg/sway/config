@@ -208,8 +208,12 @@ for_window {
 
 	# Fullscreen all games
 	[class="csgo_linux64"] fullscreen enable
+	[class="Minecraft.*"] fullscreen enable
+
 	# Rocket League
 	[class="steam_app_252950"] fullscreen enable
+	# Deceit
+	[class="steam_app_466240"] fullscreen enable
 }
 
 # Move Windows when they launch
@@ -231,7 +235,10 @@ for_window {
 	[class="Steam"] move container to workspace 8
 
 	[class="csgo_linux64"] move container to workspace 8
+	[class="Minecraft.*"] move container to workspace 8
 
 	# Rocket League
 	[class="steam_app_252950"] move container to workspace 8
+	# Deceit
+	[class="steam_app_466240"] move container to workspace 8
 }

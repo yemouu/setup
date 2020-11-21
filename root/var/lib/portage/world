@@ -2,6 +2,8 @@ app-admin/doas
 app-admin/logrotate
 app-admin/pass
 app-admin/sysklogd
+app-crypt/yubikey-manager
+app-crypt/yubikey-manager-qt
 app-editors/kakoune
 app-eselect/eselect-repository
 app-eselect/eselect-sh
@@ -23,6 +25,7 @@ dev-util/shellcheck-bin
 dev-util/strace
 dev-vcs/git
 games-action/multimc
+gnome-base/nautilus
 gui-apps/grim
 gui-apps/mako
 gui-apps/slurp
@@ -50,6 +53,8 @@ sys-apps/lm-sensors
 sys-apps/man-pages
 sys-apps/usbutils
 sys-auth/pam_yubico
+sys-auth/yubico-piv-tool
+sys-auth/yubikey-personalization-gui
 sys-block/zram-init
 sys-boot/efibootmgr
 sys-firmware/intel-microcode

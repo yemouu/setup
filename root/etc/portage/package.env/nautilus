@@ -1,0 +1,2 @@
+sys-apps/osinfo-db-tools link-libunwind
+sys-libs/libosinfo link-libunwind
