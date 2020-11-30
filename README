@@ -1,5 +1,41 @@
-# haiku readme
-
+# haiku
 gentoo linux with
 system configurations
 and some eye candy
+
+# current hardware
+Intel Core i5 6500
+Radeon RX 470
+16GB RAM
+2 x 1TB HDD
+
+# Gentoo
+I use Gentoo with musl libc and LibreSSL and in a chroot, a normal Gentoo install.
+Portage configurations for my main install are located in root/etc/portage.
+Portage configurations for the chroot are located in root/media/glibc64/etc/portage.
+
+# notable things i use
+wm: sway
+terminal: alacritty
+editor: Kakoune
+shell: loksh
+launcher: bemenu
+bar: waybar
+screenshot/screenrecording: grim slurp wf-recorder
+
+Some of the scripts used can be found in my scripts repo and others can be found in root/home/bin.
+
+# home directory structure
+My home directory is read-only and contains seven directories:
+bin   - Contains mostly scritps.
+cfg   - The XDG_CONFIG_HOME directory. 
+data  - The XDG_DATA_HOME directory.
+doc   - Contains documents and repos.
+media - Contains videos and images.
+opt   - Contains software not installed system wide.
+tmp   - Contains cache (XDG_CACHE_HOME is ~/tmp/cache) and other random files.
+
+These directories can be changed in root/home/cfg/loksh/profile and root/home/cfg/user-dirs.dirs.
+
+# note
+These configurations are specific to my system and are not guaranteed to work on yours.
