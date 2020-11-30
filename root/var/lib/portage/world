@@ -36,6 +36,7 @@ gui-apps/wl-clipboard
 gui-apps/wlsunset
 gui-wm/sway
 media-fonts/corefonts
+media-fonts/fontawesome
 media-fonts/ibm-plex
 media-fonts/noto
 media-fonts/noto-emoji

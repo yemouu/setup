@@ -1,0 +1,57 @@
+{
+	"layer":	   "bottom",
+	"position":	   "bottom",
+	"height":	   32,
+	"modules-left":	   ["custom/randomtext", "custom/loadaverage", "memory"],
+	"modules-center":  ["sway/workspaces"],
+	"modules-right":   ["pulseaudio", "clock", "tray"],
+	"name":		   "topbar",
+
+	"custom/randomtext": {
+		"exec": "$HOME/cfg/waybar/randomtext.sh",
+		"interval": 3600,
+		"format": "{}",
+		"tooltip": false
+	},
+
+	"clock": {
+		"interval": 1,
+		"format": "{:%R}",
+		"timezones": [ "UTC", "America/New_York"],
+		"tooltip-format": "{:%e %a %b %Y %Z}",
+	},
+
+	"custom/loadaverage": {
+		"exec": "$HOME/cfg/waybar/loadaverage.sh",
+		"interval": 2,
+		"format": "{}",
+		"tooltip": false
+	},
+
+	"memory": {
+		"interval": 2,
+		"format": "{used:0.2f}G / {total:0.2f}G ({avail:0.2f}G)",
+		"tooltip": false
+	},
+
+	"pulseaudio": {
+		"format": "{volume}% / {format_source}",
+		"format-muted": "MUTE / {format_source}",
+		"format-source": "{volume}%",
+		"format-source-muted": "MUTE",
+		"scroll-step": 0.0,
+		"tooltip": false
+	},
+
+	"sway/workspaces": {
+		"format": "{name}",
+		"disable-scroll": true,
+		"disable-click": true,
+		"numeric-first": true
+	},
+
+	"tray": {
+		"icon-size": 24,
+		"spacing": 10
+	}
+}

@@ -1,0 +1,12 @@
+diff --git a/daemon/gamemode-context.c b/daemon/gamemode-context.c
+index ef30146..09e400d 100644
+--- a/daemon/gamemode-context.c
++++ b/daemon/gamemode-context.c
+@@ -45,6 +45,7 @@ POSSIBILITY OF SUCH DAMAGE.
+ #include <assert.h>
+ #include <fcntl.h>
+ #include <pthread.h>
++#include <signal.h>
+ #include <stdatomic.h>
+ #include <stdlib.h>
+ #include <sys/time.h>

@@ -1,4 +1,3 @@
-dev-libs/gjs -sysprof
 dev-ruby/bundler ruby_targets_ruby27
 dev-ruby/did_you_mean ruby_targets_ruby27
 dev-ruby/json ruby_targets_ruby27

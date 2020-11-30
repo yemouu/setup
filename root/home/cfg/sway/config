@@ -58,6 +58,7 @@ floating_maximum_size -1 x -1
 # Workspaces #
 # Variables
 set {
+	$ws0 0
 	$ws1 1
 	$ws2 2
 	$ws3 3
@@ -67,7 +68,6 @@ set {
 	$ws7 7
 	$ws8 8
 	$ws9 9
-	$ws10 10
 }
 
 # Options
@@ -75,16 +75,16 @@ workspace_layout tabbed
 
 # Assign workspaces to Displays
 workspace {
-	$ws1 output DP-1
-	$ws2 output DP-2
-	$ws3 output DP-1
-	$ws4 output DP-2
-	$ws5 output DP-1
-	$ws6 output DP-2
-	$ws7 output DP-1
-	$ws8 output DP-2
-	$ws9 output DP-1
-	$ws10 output DP-2
+	$ws0 output DP-1
+	$ws1 output DP-2
+	$ws2 output DP-1
+	$ws3 output DP-2
+	$ws4 output DP-1
+	$ws5 output DP-2
+	$ws6 output DP-1
+	$ws7 output DP-2
+	$ws8 output DP-1
+	$ws9 output DP-2
 }
 
 # Keybinds #
@@ -137,27 +137,27 @@ bindsym {
 	$W+Up focus up
 	$W+Right focus right
 
-	$W+1 workspace $ws1
-	$W+2 workspace $ws2
-	$W+3 workspace $ws3
-	$W+4 workspace $ws4
-	$W+5 workspace $ws5
-	$W+6 workspace $ws6
-	$W+7 workspace $ws7
-	$W+8 workspace $ws8
-	$W+9 workspace $ws9
-	$W+0 workspace $ws10
+	$W+1 workspace $ws0
+	$W+2 workspace $ws1
+	$W+3 workspace $ws2
+	$W+4 workspace $ws3
+	$W+5 workspace $ws4
+	$W+6 workspace $ws5
+	$W+7 workspace $ws6
+	$W+8 workspace $ws7
+	$W+9 workspace $ws8
+	$W+0 workspace $ws9
 
-	$W+$S+1 move container to workspace $ws1
-	$W+$S+2 move container to workspace $ws2
-	$W+$S+3 move container to workspace $ws3
-	$W+$S+4 move container to workspace $ws4
-	$W+$S+5 move container to workspace $ws5
-	$W+$S+6 move container to workspace $ws6
-	$W+$S+7 move container to workspace $ws7
-	$W+$S+8 move container to workspace $ws8
-	$W+$S+9 move container to workspace $ws9
-	$W+$S+0 move container to workspace $ws10
+	$W+$S+1 move container to workspace $ws0
+	$W+$S+2 move container to workspace $ws1
+	$W+$S+3 move container to workspace $ws2
+	$W+$S+4 move container to workspace $ws3
+	$W+$S+5 move container to workspace $ws4
+	$W+$S+6 move container to workspace $ws5
+	$W+$S+7 move container to workspace $ws6
+	$W+$S+8 move container to workspace $ws7
+	$W+$S+9 move container to workspace $ws8
+	$W+$S+0 move container to workspace $ws9
 
 	$W+$C+Escape exit
 	$W+$A+Escape reload
@@ -208,37 +208,40 @@ for_window {
 
 	# Fullscreen all games
 	[class="csgo_linux64"] fullscreen enable
-	[class="Minecraft.*"] fullscreen enable
 
 	# Rocket League
 	[class="steam_app_252950"] fullscreen enable
 	# Deceit
 	[class="steam_app_466240"] fullscreen enable
+	# TitanFall 2
+	[class="steam_app_1237970"] fullscreen enable
 }
 
 # Move Windows when they launch
 for_window {
 	# Web Browsers should be on the first workspace
-	[app_id="firefox"] move container to workspace 1
+	[app_id="firefox"] move container to workspace 0
 
 	# Chat Applications should be on the second workspace
-	[class="Element"] move container to workspace 2
-	[class="discord"] move container to workspace 2
+	[class="Element"] move container to workspace 1
+	[class="discord"] move container to workspace 1
 
 	# Graphic Applications should be on the third workspace
-	[app_id="org.inkscape.Inkscape"] move container to workspace 3
-	[class="Gimp"] move container to workspace 3
-	[class="krita"] move container to workspace 3
+	[app_id="org.inkscape.Inkscape"] move container to workspace 2
+	[class="Gimp"] move container to workspace 2
+	[class="krita"] move container to workspace 2
 
 	# Games and Game Launchers should be on the eighth workspace
-	[app_id="org.multimc.multimc"] move container to workspace 8
-	[class="Steam"] move container to workspace 8
+	[app_id="org.multimc.multimc"] move container to workspace 7
+	[class="Steam"] move container to workspace 7
 
-	[class="csgo_linux64"] move container to workspace 8
-	[class="Minecraft.*"] move container to workspace 8
+	[class="csgo_linux64"] move container to workspace 7
+	[class="Minecraft.*"] move container to workspace 7
 
 	# Rocket League
-	[class="steam_app_252950"] move container to workspace 8
+	[class="steam_app_252950"] move container to workspace 7
 	# Deceit
-	[class="steam_app_466240"] move container to workspace 8
+	[class="steam_app_466240"] move container to workspace 7
+	# TitanFall 2
+	[class="steam_app_1237970"] move container to workspace 7
 }

@@ -1,0 +1,13 @@
+src_configure() {
+	# FIXME: add systemtap/dtrace support, like in glib:2
+	local emesonargs=(
+		$(meson_feature cairo)
+		$(meson_feature readline)
+		$(meson_feature sysprof profiler)
+		-Dprofiler=disabled
+		-Dinstalled_tests=false
+		$(meson_use !test skip_dbus_tests)
+		$(meson_use !test skip_gtk_tests)
+	)
+	meson_src_configure
+}

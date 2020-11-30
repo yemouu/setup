@@ -1,9 +1,3 @@
 # Some updates break compatability with musl, mask them here
 
-# Update breaks
-=dev-util/ragel-7.0.0.12::gentoo
-
-# Doesn't have patches to allow dynamic linking on musl
-=virtual/rust-1.47.0::gentoo
-=dev-lang/rust-1.47.0-r1::gentoo
-=dev-lang/rust-bin-1.47.0-r1::gentoo
+=dev-util/ragel-7.0.0.12
