@@ -15,13 +15,12 @@ Portage configurations for my main install are located in root/etc/portage.
 Portage configurations for the chroot are located in root/media/glibc64/etc/portage.
 
 # notable things i use
-wm: sway
+wm:	  sway
 terminal: alacritty
-editor: Kakoune
-shell: loksh
+editor:	  Kakoune
+shell:	  loksh
 launcher: bemenu
-bar: waybar
-screenshot/screenrecording: grim slurp wf-recorder
+bar:	  waybar
 
 Some of the scripts used can be found in my scripts repo and others can be found in root/home/bin.
 
