@@ -1,8 +1,10 @@
+# I get a segmentation fault when trying to compile with lto
+www-client/firefox pgo screencast
+
 media-libs/libpng apng
 media-libs/libvpx postproc
 dev-lang/python sqlite
 sys-devel/llvm gold
-net-libs/nodejs -npm -ssl -system-ssl
-www-client/firefox lto pgo screencast
+net-libs/nodejs -npm -system-ssl
 x11-base/xorg-server xvfb
 media-libs/libsdl2 gles2

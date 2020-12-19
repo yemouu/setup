@@ -9,7 +9,6 @@ export XDG_SESSION_TYPE SDL_VIDEODRIVER
 # Autostart
 {
 	pulseaudio --start &
-	( sleep 60; waybar ) &
 	# This is a script that launches awlsunset with some options
 	# Ensure that it starts when the compositor is running
 	( sleep 10; awlsunset ) &

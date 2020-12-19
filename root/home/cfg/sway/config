@@ -39,14 +39,13 @@ seat seat0 {
 	#xcursor_theme clicc
 }
 
+# Bar
+bar swaybar_command waybar
+
 # Idle #
 exec swayidle -w \
-     timeout 3600 'swaylock; swaymsg "output * dpms off"; pactl set-source-mute @DEFAULT_SOURCE@ 1; pactl set-sink-mute @DEFAULT_SINK@ 1' \
-	     resume 'swaymsg "output * dpms on"; pactl set-sink-mute @DEFAULT_SINK@ 0' \
-     before-sleep 'swaylock; pactl set-source-mute @DEFAULT_SOURCE@ 1; pactl set-sink-mute @DEFAULT_SINK@ 1' \
-     after-resume 'pactl set-sink-mute @DEFAULT_SINK@ 0' \
-     lock 'swaylock; pactl set-source-mute @DEFAULT_SOURCE@ 1; pactl set-sink-mute @DEFAULT_SINK@ 1' \
-     unlock 'pactl set-sink-mute @DEFAULT_SINK@ 0'
+     timeout 3600 'swaylock; swaymsg "output * dpms off"; pkill wlsunset; pactl set-source-mute @DEFAULT_SOURCE@ 1; pactl set-sink-mute @DEFAULT_SINK@ 1' \
+	     resume 'swaymsg "output * dpms on"; pactl set-sink-mute @DEFAULT_SINK@ 0; awlsunset &' \
 
 # Options #
 focus_follows_mouse yes
@@ -105,6 +104,10 @@ bindsym {
 	$A+F12 exec powermenu
 	$W+f exec ffp
 
+	# XF86AudioPlay exec
+	# XF86AudioStop exec
+	# XF86AudioPrev exec
+	# XF86AudioNext exec
 	$W+e exec notivol toggle
 	XF86AudioRaiseVolume exec notivol vol +2%
 	XF86AudioLowerVolume exec notivol vol -2%
@@ -201,26 +204,18 @@ for_window {
 	[app_id="Alacritty"] resize set width 976 px, resize set height 654 px
 
 	# These apps should take up the entire screen and not have a border
-	[app_id="firefox" title=".*- Mozilla Firefox$"] floating disable, border none
-	[app_id="firefox" title="^Mozilla Firefox$"] floating disable, border none
+	[app_id="firefox-wayland" title=".*- Mozilla Firefox$"] floating disable, border none
+	[app_id="firefox-wayland" title="^Mozilla Firefox$"] floating disable, border none
 	[class="Element"] floating disable, border none
 	[class="discord"] floating disable, border none
 
-	# Fullscreen all games
 	[class="csgo_linux64"] fullscreen enable
-
-	# Rocket League
-	[class="steam_app_252950"] fullscreen enable
-	# Deceit
-	[class="steam_app_466240"] fullscreen enable
-	# TitanFall 2
-	[class="steam_app_1237970"] fullscreen enable
 }
 
 # Move Windows when they launch
 for_window {
 	# Web Browsers should be on the first workspace
-	[app_id="firefox"] move container to workspace 0
+	[app_id="firefox-wayland"] move container to workspace 0
 
 	# Chat Applications should be on the second workspace
 	[class="Element"] move container to workspace 1

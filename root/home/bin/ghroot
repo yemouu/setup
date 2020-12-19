@@ -30,8 +30,6 @@ ghroot_mount() {
 	# These are some extra stuff we can mount to get things like audio to work from the chroot
 	mount -R /run "$1/run" || { info "failed to mount /run to $1/run"; exit 1;}
 	mount -R /tmp "$1/tmp" || { info "failed to mount /tmp to $1/tmp"; exit 1;}
-	mount -R /var/lib/dbus "$1/var/lib/dbus" \
-		|| { info "failed to mount /var/lib/dbus to $1/var/lib/dbus"; exit 1;}
 
 	# Mount any home directories
 	for home in /home/*
@@ -59,7 +57,6 @@ ghroot_umount() {
 
 	umount -R "$1/run" || { info "failed to unmount $1/run"; }
 	umount -R "$1/tmp" || { info "failed to unmount $1/tmp"; }
-	umount -R "$1/var/lib/dbus" || { info "failed to unmount $1/var/lib/dbus"; }
 
 	for home in /home/*
 	do

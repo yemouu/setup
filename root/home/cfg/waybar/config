@@ -16,20 +16,21 @@
 
 	"clock": {
 		"interval": 1,
-		"format": "{:%R}",
+		"format": "{:%R %e %a %b %Y %Z}",
 		"timezones": [ "UTC", "America/New_York"],
-		"tooltip-format": "{:%e %a %b %Y %Z}",
+		"tooltip": false,
+		"tooltip-format": "{:%e %a %b %Y %Z}"
 	},
 
 	"custom/loadaverage": {
 		"exec": "$HOME/cfg/waybar/loadaverage.sh",
-		"interval": 2,
+		"interval": 1,
 		"format": "{}",
 		"tooltip": false
 	},
 
 	"memory": {
-		"interval": 2,
+		"interval": 1,
 		"format": "{used:0.2f}G / {total:0.2f}G ({avail:0.2f}G)",
 		"tooltip": false
 	},

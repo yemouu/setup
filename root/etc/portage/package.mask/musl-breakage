@@ -1,3 +1,6 @@
-# Some updates break compatability with musl, mask them here
+# Firefox requires a patched rust to build on musl
+dev-lang/rust::gentoo
+dev-lang/rust-bin::gentoo
 
+# Some updates break compatability with musl, mask them here
 =dev-util/ragel-7.0.0.12

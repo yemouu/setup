@@ -12,6 +12,7 @@ media-fonts/noto
 media-fonts/noto-emoji
 media-sound/alsa-utils
 net-im/discord-bin
+net-im/zoom
 sys-apps/bubblewrap
 sys-apps/pciutils
 sys-fs/fuse:0

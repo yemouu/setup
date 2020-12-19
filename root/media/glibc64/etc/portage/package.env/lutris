@@ -1,0 +1,3 @@
+# webkit-gtk will fail in the configure phase when using ccache w/ gcc
+# 19 December 2020
+net-libs/webkit-gtk no-ccache

@@ -25,6 +25,7 @@ dev-util/shellcheck-bin
 dev-util/strace
 dev-vcs/git
 games-action/multimc
+games-fps/xonotic
 gnome-base/nautilus
 gui-apps/grim
 gui-apps/mako
@@ -40,13 +41,17 @@ media-fonts/fontawesome
 media-fonts/ibm-plex
 media-fonts/noto
 media-fonts/noto-emoji
+media-gfx/blender
 media-gfx/imagemagick
 media-gfx/inkscape
 media-gfx/krita
 media-sound/alsa-utils
 media-sound/catnip
+media-sound/mumble
 media-sound/pavucontrol
+media-sound/playerctl
 media-video/mpv
+media-video/obs-studio
 net-misc/dhcpcd
 net-misc/openntpd
 net-misc/youtube-dl
