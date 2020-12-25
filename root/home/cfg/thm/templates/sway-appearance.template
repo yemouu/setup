@@ -6,6 +6,7 @@ client.urgent		#{color1}	#{color9}	#{bg_color}	#{color1}	#{color1}
 
 default_border normal 2
 default_floating_border normal 2
+titlebar_border_thickness 2
 
 font pango:monospace 10
 

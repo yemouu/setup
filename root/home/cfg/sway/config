@@ -9,7 +9,7 @@ output DP-1 {
 	bg ${HOME}/media/images/wallpapers/evie-s-_IpKsTK9gcE-unsplash.jpg fill
 	max_render_time 3
 	pos 1920 0
-	res 3840x2160@60Hz
+	res 3840x2160@60.000000Hz
 	scale 2
 	subpixel rgb
 }
@@ -50,11 +50,13 @@ exec swayidle -w \
 	     resume 'swaymsg "output * dpms on"; pactl set-sink-mute @DEFAULT_SINK@ 0; awlsunset &' \
 
 # Options #
+floating_maximum_size -1 x -1
 focus_follows_mouse yes
-focus_on_window_activation smart
+focus_on_window_activation urgent
+focus_wrapping workspace
 hide_edge_borders --i3 smart
 show_marks yes
-floating_maximum_size -1 x -1
+tiling_drag disable
 
 # Workspaces #
 # Variables
@@ -115,12 +117,9 @@ bindsym {
 	XF86AudioMute exec playerctl volume 0
 	 
 	 
-	$A+F5 exec notivol vol 9830398%
-	$C+F5 exec notivol vol 100%
-	$W+e exec notivol toggle
-
-	$W+t exec notidate
-	$W+$A+t exec notidate America/New_York
+	$A+F5 exec pactl set-source-volume @DEFAULT_SOURCE@ 9830398%
+	$C+F5 exec pactl set-source-volume @DEFAULT_SOURCE@ 100%
+	$W+e exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 	Print exec scr pic -c
 
@@ -131,9 +130,8 @@ bindsym {
 
 	$W+space exec makoctl dismiss -a
 
-	# change to focus next|prev next sway release
-	$W+z focus right
-	$W+$A+z focus left
+	$W+z focus next sibling
+	$W+$A+z focus prev sibling
 	$W+$C+z focus mode_toggle
 
 	$W+x move workspace to right
