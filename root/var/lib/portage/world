@@ -2,6 +2,7 @@ app-admin/doas
 app-admin/logrotate
 app-admin/pass
 app-admin/sysklogd
+app-arch/p7zip
 app-crypt/yubikey-manager
 app-crypt/yubikey-manager-qt
 app-editors/kakoune
@@ -26,7 +27,6 @@ dev-util/strace
 dev-vcs/git
 games-action/multimc
 games-fps/xonotic
-gnome-base/nautilus
 gui-apps/grim
 gui-apps/mako
 gui-apps/slurp
@@ -52,6 +52,7 @@ media-sound/pavucontrol
 media-sound/playerctl
 media-video/mpv
 media-video/obs-studio
+net-firewall/ufw
 net-misc/dhcpcd
 net-misc/openntpd
 net-misc/youtube-dl
@@ -72,6 +73,7 @@ sys-libs/timezone-data
 sys-process/htop
 sys-process/lsof
 www-client/firefox
+x11-apps/mesa-progs
 x11-libs/libnotify
 x11-misc/xdg-user-dirs
 x11-misc/xdg-utils

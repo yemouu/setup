@@ -5,7 +5,6 @@ app-shells/loksh
 dev-util/ccache
 dev-util/shellcheck
 dev-vcs/git
-games-util/lutris
 games-util/steam-meta
 media-fonts/ibm-plex
 media-fonts/noto

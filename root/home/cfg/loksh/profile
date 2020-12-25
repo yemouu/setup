@@ -12,7 +12,6 @@ XDG_DATA_HOME="$HOME/data"
 ENV="$XDG_CONFIG_HOME/loksh/rc"
 HISTCONTROL="ignoredups:ignorespace"
 HISTFILE="$XDG_CACHE_HOME/loksh_history"
-HISTSIZE=1000000
 
 # Prevent $HOME pollution
 GNUPGHOME="$XDG_DATA_HOME/gnupg"

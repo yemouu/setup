@@ -7,6 +7,7 @@ include ${XDG_CACHE_HOME}/thm/sway-appearance
 # Outputs #
 output DP-1 {
 	bg ${HOME}/media/images/wallpapers/evie-s-_IpKsTK9gcE-unsplash.jpg fill
+	max_render_time 3
 	pos 1920 0
 	res 3840x2160@60Hz
 	scale 2
@@ -15,6 +16,7 @@ output DP-1 {
 
 output DP-2 {
 	bg ${HOME}/media/images/wallpapers/evie-s-XjX3Ju1jFfU-unsplash.jpg fill
+	max_render_time 3
 	pos 0 0
 	res 1920x1080@144.001007Hz
 	subpixel rgb
@@ -104,16 +106,18 @@ bindsym {
 	$A+F12 exec powermenu
 	$W+f exec ffp
 
-	# XF86AudioPlay exec
-	# XF86AudioStop exec
-	# XF86AudioPrev exec
-	# XF86AudioNext exec
+	XF86AudioPlay exec playerctl play-pause
+	XF86AudioStop exec playerctl stop
+	XF86AudioPrev exec playerctl previous
+	XF86AudioNext exec playerctl next
+	XF86AudioRaiseVolume exec playerctl volume 0.02+
+	XF86AudioLowerVolume exec playerctl volume 0.02- 
+	XF86AudioMute exec playerctl volume 0
+	 
+	 
+	$A+F5 exec notivol vol 9830398%
+	$C+F5 exec notivol vol 100%
 	$W+e exec notivol toggle
-	XF86AudioRaiseVolume exec notivol vol +2%
-	XF86AudioLowerVolume exec notivol vol -2%
-	XF86AudioMute exec notivol vol 68%
-	$C+F5 exec notivol vol 9830398%
-	$A+F5 exec notivol vol 100%
 
 	$W+t exec notidate
 	$W+$A+t exec notidate America/New_York
