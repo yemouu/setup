@@ -40,3 +40,6 @@ x11-libs/libxshmfence abi_x86_32
 
 # This is needed for proton to work
 media-libs/vulkan-loader abi_x86_32
+
+# Wayland stuff
+dev-util/wayland-scanner abi_x86_32

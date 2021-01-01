@@ -15,6 +15,7 @@ app-portage/repoman
 app-shells/dash
 app-shells/loksh
 dev-go/golicense
+dev-java/gradle-bin
 dev-libs/bemenu
 dev-python/discord-py
 dev-python/mccabe
@@ -47,12 +48,13 @@ media-gfx/inkscape
 media-gfx/krita
 media-sound/alsa-utils
 media-sound/catnip
-media-sound/mumble
 media-sound/pavucontrol
 media-sound/playerctl
 media-video/mpv
 media-video/obs-studio
 net-firewall/ufw
+net-im/cchat-gtk
+net-im/fractal
 net-misc/dhcpcd
 net-misc/openntpd
 net-misc/youtube-dl
@@ -75,6 +77,7 @@ sys-process/lsof
 www-client/firefox
 x11-apps/mesa-progs
 x11-libs/libnotify
+x11-misc/pcmanfm
 x11-misc/xdg-user-dirs
 x11-misc/xdg-utils
 x11-terms/alacritty

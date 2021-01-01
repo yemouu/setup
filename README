@@ -10,17 +10,17 @@ Radeon RX 470
 2 x 1TB HDD
 
 # Gentoo
-I use Gentoo with musl libc and LibreSSL and in a chroot, a normal Gentoo install.
+I use Gentoo with musl libc and in a chroot, a normal Gentoo install.
 Portage configurations for my main install are located in root/etc/portage.
 Portage configurations for the chroot are located in root/media/glibc64/etc/portage.
 
 # notable things i use
-wm:	  sway
+wm:       sway
 terminal: alacritty
 editor:	  Kakoune
-shell:	  loksh
+shell:    loksh
 launcher: bemenu
-bar:	  waybar
+bar:      waybar
 
 Some of the scripts used can be found in my scripts repo and others can be found in root/home/bin.
 

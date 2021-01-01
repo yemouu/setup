@@ -1,2 +1,1 @@
-#dev-lang/rust system-bootstrap system-llvm
 dev-lang/rust -system-bootstrap system-llvm
