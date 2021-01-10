@@ -1,5 +1,7 @@
 #!/bin/sh
 
+theme_type="light"
+
 bg_color="ffffff"
 fg_color="000000"
 

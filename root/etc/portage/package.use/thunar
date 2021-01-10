@@ -1,0 +1,2 @@
+xfce-extra/tumbler ffmpeg gstreamer
+xfce-base/thunar -libnotify -trash-panel-plugin -udisks

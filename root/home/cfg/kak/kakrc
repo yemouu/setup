@@ -47,4 +47,12 @@ add-highlighter global/ wrap -indent -marker '$>'
 add-highlighter global/ show-matching
 
 # Colorscheme
-colorscheme theme
+evaluate-commands %sh{
+	[ "$TERM" = linux ] && return 0
+	. $(cat $HOME/tmp/cache/thm/current_thm)
+	case $theme_type in
+		light ) printf '%s\n' "colorscheme theme-light" ;;
+		dark ) printf '%s\n' "colorscheme theme-dark" ;;
+		* ) ;;
+	esac
+}

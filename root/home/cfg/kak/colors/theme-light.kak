@@ -15,7 +15,7 @@ set-face global MenuInfo bright-cyan,white
 set-face global Information bright-white,bright-yellow
 set-face global Error bright-white,bright-red
 
-set-face global StatusLine bright-cyan,white 
+set-face global StatusLine bright-cyan,white
 set-face global StatusLineMode bright-yellow,white
 set-face global StatusLineInfo bright-blue,white
 set-face global StatusLineValue bright-green,white

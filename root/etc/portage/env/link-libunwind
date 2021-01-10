@@ -1,1 +1,2 @@
 LDFLAGS="${LDFLAGS} -lunwind"
+CGO_LDFLAGS="${LDFLAGS}"

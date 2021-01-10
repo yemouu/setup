@@ -11,7 +11,7 @@ export XDG_SESSION_TYPE SDL_VIDEODRIVER
 	pulseaudio --start &
 	# This is a script that launches awlsunset with some options
 	# Ensure that it starts when the compositor is running
-	( sleep 10; awlsunset ) &
+	( sleep 2; awlsunset ) &
 } &
 
 # Pick Wayland Compositor

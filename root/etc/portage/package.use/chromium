@@ -1,2 +1,2 @@
 net-libs/nodejs inspector
-www-client/chromium -suid widevine
+www-client/chromium -suid official widevine

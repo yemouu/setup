@@ -99,6 +99,7 @@ set {
 	$S Shift
 	$term alacritty
 	$menu bemenu-run
+	$file_manager dolphin
 }
 
 # Binds
@@ -106,7 +107,8 @@ bindsym {
 	$W+Return exec $term
 	$W+r exec $menu
 	$A+F12 exec powermenu
-	$W+f exec ffp
+	$W+f exec $file_manager
+	$W+$C+f exec ffp
 
 	XF86AudioPlay exec playerctl play-pause
 	XF86AudioStop exec playerctl stop

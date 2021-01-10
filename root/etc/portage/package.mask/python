@@ -1,2 +1,2 @@
-# We should only install python versions in our targets
+# Only install python versions in our targets
 dev-lang/python:3.9
