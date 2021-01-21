@@ -44,11 +44,6 @@ seat seat0 {
 # Bar
 bar swaybar_command waybar
 
-# Idle #
-exec swayidle -w \
-     timeout 3600 'swaylock; swaymsg "output * dpms off"; pkill wlsunset; pactl set-source-mute @DEFAULT_SOURCE@ 1; pactl set-sink-mute @DEFAULT_SINK@ 1' \
-	     resume 'swaymsg "output * dpms on"; pactl set-sink-mute @DEFAULT_SINK@ 0; awlsunset &' \
-
 # Options #
 floating_maximum_size -1 x -1
 focus_follows_mouse yes
@@ -117,7 +112,6 @@ bindsym {
 	XF86AudioRaiseVolume exec playerctl volume 0.02+
 	XF86AudioLowerVolume exec playerctl volume 0.02- 
 	XF86AudioMute exec playerctl volume 0
-	 
 	 
 	$A+F5 exec pactl set-source-volume @DEFAULT_SOURCE@ 9830398%
 	$C+F5 exec pactl set-source-volume @DEFAULT_SOURCE@ 100%

@@ -3,7 +3,7 @@ max-visible=2
 sort=-time
 output=DP-1
 layer=top
-anchor=bottom-left
+anchor=top-right
 
 # All Notifcations
 font=monospace 10

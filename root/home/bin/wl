@@ -6,15 +6,10 @@ SDL_VIDEODRIVER=wayland
 
 export XDG_SESSION_TYPE SDL_VIDEODRIVER
 
-# Autostart
-{
-	pulseaudio --start &
-	# This is a script that launches awlsunset with some options
-	# Ensure that it starts when the compositor is running
-	( sleep 2; awlsunset ) &
-} &
-
 # Pick Wayland Compositor
 case $1 in
-	sway|s    ) export XDG_CURRENT_DESKTOP=sway; exec dbus-launch --exit-with-session sway ;;
+	sway|s    ) export XDG_CURRENT_DESKTOP=sway
+	            exec sway ;;
+	wayfire|w ) export XDG_CURRENT_DESKTOP=wayfire
+	            exec wayfire ;;
 esac

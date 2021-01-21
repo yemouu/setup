@@ -1,2 +1,0 @@
-CXXSTDLIB="c++"
-CXXFLAGS="${CXXFLAGS} -stdlib=libc++"

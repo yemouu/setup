@@ -3,22 +3,6 @@ source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
 # Plugins
 plug "whereswaldon/shellcheck.kak"
-plug "andreyorst/smarttab.kak" defer smarttab %{
-	set-option global smarttab_noexpandtab_mode_name 'Tab'
-	set-option global smarttab_expandtab_mode_name 'Space'
-	set-option global smarttab_smarttab_mode_name 'SmartTab'
-} config %{
-	# Indention Widths
-	hook global WinSetOption filetype=(css|html|xml) %{ set-option global indentwidth 2 }
-	hook global WinSetOption filetype=python %{ set-option global indentwidth 4 }
-
-	# Use Tabs Only
-	hook global WinSetOption filetype=(.*) noexpandtab
-	# Use Spaces Only
-	hook global WinSetOption filetype=(css|html|xml|python) expandtab
-	# Use Smart Tabs
-	#hook global WinSetOption filetype=() smarttab
-}
 
 # kak-lsp
 eval %sh{kak-lsp --kakoune -s $kak_session}
@@ -45,6 +29,18 @@ add-highlighter global/ wrap -indent -marker '$>'
 
 # Highlight Matching Characters
 add-highlighter global/ show-matching
+
+# Indentation Options
+set-option global indentwidth 0
+set-option global tabstop 8
+hook global WinSetOption filetype=(css|html|xml) %{
+	map global insert <tab> '  '
+	set-option global indentwidth 2
+}
+hook global WinSetOption filetype=python %{
+	map global insert <tab> '    '
+	set-option global indentwidth 4
+}
 
 # Colorscheme
 evaluate-commands %sh{

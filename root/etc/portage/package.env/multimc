@@ -1,2 +1,1 @@
-dev-java/icedtea bad-configure use-gcc
 dev-java/openjdk no-ccache use-gcc

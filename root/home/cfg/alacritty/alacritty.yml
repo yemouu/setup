@@ -1,12 +1,13 @@
 import:
-  - /home/mou/tmp/cache/thm/alacritty-colors.yml
+  - ~/tmp/cache/thm/alacritty-colors.yml
 
 window:
   padding:
     x: 8
     y: 8
-
   dynamic_padding: true
+  title: ""
+  dynamic_title: false
 
 scrolling:
   history: 30000

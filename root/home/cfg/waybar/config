@@ -1,9 +1,9 @@
-{
+[{
 	"layer":	   "bottom",
-	"position":	   "bottom",
+	"position":	   "top",
 	"height":	   32,
-	"modules-left":	   ["custom/randomtext", "custom/loadaverage", "memory"],
-	"modules-center":  ["sway/workspaces"],
+	"modules-left":	   ["custom/loadaverage", "memory"],
+	"modules-center":  ["custom/randomtext"],
 	"modules-right":   ["pulseaudio", "clock", "tray"],
 	"name":		   "topbar",
 
@@ -55,4 +55,18 @@
 		"icon-size": 24,
 		"spacing": 10
 	}
-}
+},{
+	"layer":	   "bottom",
+	"position":	   "bottom",
+	"height":	   32,
+	"modules-center":  ["wlr/taskbar"],
+	"name":		   "botbar",
+
+	"wlr/taskbar": {
+		"format": "{app_id}",
+		"icon-size": 24,
+		"on-click": "minimize-raise",
+		"on-click-middle": "close",
+		"on-click-right": "activate"
+	}
+}]

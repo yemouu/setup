@@ -1,3 +1,0 @@
-app-emulation/lxc link-libunwind
-app-emulation/lxd link-libunwind no-ccache
-sys-fs/lxcfs link-libunwind

@@ -9,7 +9,6 @@ scr_rec_dir="${scr_basedir}/rec"
 scr_aud_dir="${scr_basedir}/aud"
 
 ## aud settings ##
-
 # Audio devices to use for recording audio.
 # These devices canbe found by executing `pactl list sinks | grep "Monitor Source"`
 # for the sink and by executing `pactl list sources | grep Name:` for the source.
