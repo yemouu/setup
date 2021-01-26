@@ -1,6 +1,8 @@
 # I get a segmentation fault when trying to compile with lto
 www-client/firefox pgo screencast
 
+sys-apps/xdg-desktop-portal screencast
+
 media-libs/libpng apng
 media-libs/libvpx postproc
 dev-lang/python sqlite

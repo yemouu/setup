@@ -6,7 +6,7 @@ plug "whereswaldon/shellcheck.kak"
 
 # kak-lsp
 eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(go|lua|python|rust) lsp-enable-window
+hook global WinSetOption filetype=(go|lua|python|rust|c|cpp) lsp-enable-window
 
 # Template Command
 define-command -params 1 -docstring \

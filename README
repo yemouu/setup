@@ -7,7 +7,7 @@ and some eye candy
 Intel Core i5 6500
 Radeon RX 470
 16GB RAM
-2 x 1TB HDD
+2 x 1TB SSD
 
 # Gentoo
 I use Gentoo with musl libc and in a chroot, a normal Gentoo install.
@@ -16,8 +16,8 @@ Portage configurations for the chroot are located in root/media/glibc64/etc/port
 
 # notable things i use
 
-wm:       sway
-terminal: alacritty
+wm:       wayfire
+terminal: foot
 editor:   Kakoune
 shell:    loksh
 launcher: bemenu

@@ -1,0 +1,17 @@
+CC="gcc"
+CXX="g++"
+LD="ld.bfd"
+AR="gcc-ar"
+NM="gcc-nm"
+RANLIB="gcc-ranlib"
+
+COMMON_FLAGS="-march=native -O3 -flto=auto -pipe -falign-functions=32"
+CFLAGS="${COMMON_FLAGS}"
+CXXFLAGS="${COMMON_FLAGS}"
+FCFLAGS="${COMMON_FLAGS}"
+FFLAGS="${COMMON_FLAGS}"
+
+CGO_CFLAGS="${COMMON_FLAGS}"
+CGO_CXXFLAGS="${COMMON_FLAGS}"
+CGO_FFLAGS="${COMMON_FLAGS}"
+CGO_LDFLAGS="${LDFLAGS}"

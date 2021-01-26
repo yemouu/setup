@@ -33,7 +33,7 @@ AR="llvm-ar"
 NM="llvm-nm"
 RANLIB="llvm-ranlib"
 
-CFLAGS="-march=native -O2 -pipe -falign-functions=32"
+CFLAGS="-march=native -O3 -flto=thin -pipe -falign-functions=32"
 CXXFLAGS="${CFLAGS}"
 FCFLAGS="${CFLAGS}"
 FFLAGS="${CFLAGS}"

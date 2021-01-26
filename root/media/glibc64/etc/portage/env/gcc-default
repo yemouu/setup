@@ -1,7 +1,3 @@
-CC="gcc"
-CXX="g++"
-LD="ld.bfd"
-
 COMMON_FLAGS="-march=native -O2 -pipe -falign-functions=32"
 CFLAGS="${COMMON_FLAGS}"
 CXXFLAGS="${COMMON_FLAGS}"

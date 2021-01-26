@@ -22,6 +22,9 @@ ghroot_check(){
 }
 
 ghroot_mount() {
+	# create a bind mount at the root of the chroot
+	mount -B "$1" "$1"
+
 	# Mount what is necessary for the chroot
 	mount -t proc /proc "$1/proc" || { info "failed to mount /proc to $1/proc"; exit 1;}
 	mount -R /sys "$1/sys" || { info "failed to mount /sys to $1/sys"; exit 1;}
@@ -46,6 +49,19 @@ ghroot_mount() {
 	done
 	mount -R /var/cache/distfiles "$1/var/cache/distfiles" \
 		|| { info "failed to mount /var/cache/distfiles to $1/var/cache/distfiles"; exit 1;}
+
+	# Mount any drives from /etc/fstab
+	while read -r line
+	do
+		case $line in
+			*$1* ) ;;
+			*    ) continue ;;
+		esac
+		line="${line#* }"
+		line="${line%% *}"
+		mount "$line"
+	done < /etc/fstab
+
 	printf '%s\n' "$1" >> /tmp/ghroot
 }
 
@@ -69,6 +85,19 @@ ghroot_umount() {
 	done
 
 	umount -R "$1/var/cache/distfiles" || { info "failed to unmount $1/var/cache/distfiles"; exit 1;}
+
+	while read -r line
+	do
+		case $line in
+			*$1* ) ;;
+			*    ) continue ;;
+		esac
+		line="${line#* }"
+		line="${line%% *}"
+		umount -R "$line"
+	done < /etc/fstab
+
+	umount -R "$1"
 
 	# Deletes the line number the chroot is on
 	sed "$(grep -n "$1" /tmp/ghroot | sed 's/:.*/d;/' | tr -d '\n' | sed 's/;$//')" /tmp/ghroot > /tmp/ghrootn
