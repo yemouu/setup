@@ -14,9 +14,3 @@ run() {
 		i=$((i+1))
 	done
 }
-
-cache-repo() {
-	doas repoman -j 4 manifest
-	repoman -j 4 full
-	doas egencache --update --repo "${PWD##*/}" -j 4
-}

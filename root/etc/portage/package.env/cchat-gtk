@@ -1,1 +1,1 @@
-net-im/cchat-gtk no-ccache
+net-im/cchat-gtk no-ccache clang-default

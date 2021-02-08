@@ -1,0 +1,10 @@
+#!/bin/sh
+# Post startup script for wayland compositors
+
+# Dbus (atleast with elogind) doesn't get updated environment variables causing
+# some applications (like mako) to not autostart.
+dbus-update-activation-environment --all &
+
+# For screencasting with xdg-desktop-portal-wlr. This will be removed when I
+# switch to pipewire from pulseaudio.
+pipewire &

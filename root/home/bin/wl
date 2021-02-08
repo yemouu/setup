@@ -1,15 +1,12 @@
 #!/bin/sh
 
 # Set Environment variables
-XDG_SESSION_TYPE=wayland
-SDL_VIDEODRIVER=wayland
-
-export XDG_SESSION_TYPE SDL_VIDEODRIVER
+export SDL_VIDEODRIVER=wayland
 
 # Pick Wayland Compositor
 case $1 in
 	sway|s    ) export XDG_CURRENT_DESKTOP=sway
-	            exec sway ;;
-	wayfire|w ) export XDG_CURRENT_DESKTOP=wayfire
-	            exec wayfire ;;
+	            exec dbus-run-session sway ;;
+	wayfire|w ) export XDG_CURRENT_DESKTOP=Wayfire
+	            exec dbus-run-session wayfire ;;
 esac

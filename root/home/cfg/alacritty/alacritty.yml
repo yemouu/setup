@@ -5,6 +5,9 @@ window:
   padding:
     x: 8
     y: 8
+  dimensions:
+    columns: 120
+    lines: 36
   dynamic_padding: true
   title: ""
   dynamic_title: false

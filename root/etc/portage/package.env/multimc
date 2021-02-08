@@ -1,1 +1,1 @@
-dev-java/openjdk no-ccache gcc-optimized
+dev-java/openjdk no-ccache gcc-default

@@ -5,16 +5,11 @@ app-shells/loksh
 dev-util/ccache
 dev-util/shellcheck
 dev-vcs/git
-games-util/lutris
 games-util/steam-meta
-games-util/xboxdrv
 media-fonts/ibm-plex
 media-fonts/noto
 media-fonts/noto-emoji
 media-sound/alsa-utils
-net-im/discord-bin
-net-im/teams
-net-im/zoom
 sys-apps/bubblewrap
 sys-apps/pciutils
 sys-fs/fuse:0

@@ -2,7 +2,14 @@
 # Search for `complete_command` in the ksh/rksh manual for more information
 
 # pass
-password_list=$(find "$PASSWORD_STORE_DIR" -name '*.gpg' -printf '%P\n' | sed s/.gpg// | sort)
+[[ -e $PASSWORD_STORE_DIR ]] && \
+for passfile in "$PASSWORD_STORE_DIR"/*/*.gpg
+do
+	passfile=${passfile#$PASSWORD_STORE_DIR/}
+	passfile=${passfile%.gpg}
+	password_list="$password_list$passfile "
+done
+
 set -A complete_pass -- $password_list
 set -A complete_pass_1 -- add cp edit find generate git grep help init insert list ls mv rm \
                           search show version

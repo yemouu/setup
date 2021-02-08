@@ -4,4 +4,5 @@ sys-libs/zlib minizip
 dev-qt/qtgui egl
 media-gfx/krita fftw pdf
 sci-libs/fftw -fortran
-app-text/poppler qt5
+#app-text/poppler qt5
+app-arch/libarchive -e2fsprogs

@@ -1,5 +1,6 @@
 #!/bin/sh
-# This script is made with Gentoo systems running EFISTUB in mind
+# This script is made for Gentoo systems running EFISTUB but could be adapted
+# for other systems
 
 # Required commands:
 # cp - copy compiled kernel to destination aswell as making a backup of the current kernel
@@ -10,6 +11,9 @@
 
 # Exit the script on error
 set -e
+
+# Make sure PATH information is updated
+. /etc/profile.env
 
 # Compile kernel with LLVM toolchain
 export LLVM=1
@@ -23,8 +27,6 @@ export LLVM=1
 # Make sure the required directories are present before continuing
 [ -d "$KUPDATER_SRC_DIR" ] || { info f "$KUPDATER_SRC_DIR not found" 1>&2; exit 1; }
 [ -d "$KUPDATER_DEST_DIR" ] || { info f "$KUPDATER_DEST_DIR not found" 1>&2; exit 1; }
-
-# 
 
 # Usage statement
 usage() {
