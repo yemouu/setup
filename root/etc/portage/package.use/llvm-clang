@@ -1,7 +1,4 @@
-*/* clang compiler-rt default-compiler-rt default-libcxx default-lld libcxx libcxxabi libunwind
+*/* clang compiler-rt default-compiler-rt default-libcxx default-lld libcxx libcxxabi
 
 # Fails trying to include execinfo.h
-sys-libs/compiler-rt-sanitizers -asan -cfi -dfsan -gwp-asan -hwasan -msan -safestack -scudo -tsan -ubsan -xray # 6 January 2021
-
-# clang doesn't support `#pragma GCC optimize("O0")'
-dev-libs/libgcrypt o-flag-munging # 21 September
+sys-libs/compiler-rt-sanitizers -asan -cfi -dfsan -gwp-asan -hwasan -msan -safestack -scudo -tsan -ubsan -xray

@@ -1,0 +1,2 @@
+dev-libs/libpcre2 no-ccache
+dev-qt/qtcore clang-O3

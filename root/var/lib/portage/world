@@ -1,9 +1,7 @@
-app-admin/doas
 app-admin/logrotate
 app-admin/pass
 app-admin/sysklogd
 app-arch/p7zip
-app-crypt/yubikey-manager
 app-editors/kakoune
 app-eselect/eselect-repository
 app-eselect/eselect-sh
@@ -22,7 +20,7 @@ dev-util/ccache
 dev-util/kak-lsp
 dev-util/shellcheck-bin
 dev-vcs/git
-games-fps/xonotic
+games-action/multimc
 games-util/game-device-udev-rules
 gui-apps/foot
 gui-apps/grim
@@ -40,20 +38,16 @@ gui-libs/wlroots
 gui-libs/xdg-desktop-portal-wlr
 gui-wm/wayfire
 media-fonts/corefonts
-media-fonts/fontawesome
 media-fonts/ibm-plex
-media-fonts/montserrat
 media-fonts/noto
 media-fonts/noto-emoji
-media-fonts/roboto
 media-gfx/imagemagick
-media-sound/alsa-utils
+media-gfx/krita
 media-sound/catnip
 media-sound/pavucontrol
 media-sound/playerctl
 media-video/mpv
 net-im/cchat-gtk
-net-im/fractal
 net-misc/dhcpcd
 net-misc/openntpd
 net-misc/youtube-dl
@@ -61,7 +55,6 @@ sys-apps/lm-sensors
 sys-apps/man-pages
 sys-apps/usbutils
 sys-auth/pam_yubico
-sys-auth/yubico-piv-tool
 sys-block/zram-init
 sys-boot/efibootmgr
 sys-firmware/intel-microcode
@@ -73,8 +66,6 @@ sys-libs/timezone-data
 sys-process/htop
 sys-process/lsof
 www-client/firefox
-x11-apps/mesa-progs
 x11-libs/libnotify
 x11-misc/xdg-user-dirs
 x11-misc/xdg-utils
-x11-terms/alacritty

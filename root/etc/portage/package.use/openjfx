@@ -1,1 +1,1 @@
-dev-java/openjdk:11 javafx
+dev-java/openjdk:11 alsa javafx

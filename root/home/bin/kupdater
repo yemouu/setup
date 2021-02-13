@@ -12,9 +12,6 @@
 # Exit the script on error
 set -e
 
-# Make sure PATH information is updated
-. /etc/profile.env
-
 # Compile kernel with LLVM toolchain
 export LLVM=1
 

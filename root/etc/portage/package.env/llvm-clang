@@ -1,7 +1,0 @@
-# dev-libs/elfutils: requires gcc with GNU99 extensions
-dev-libs/elfutils gcc-optimized # 21 September
-
-# gnome-base/librsvg: has undefined references to libunwind
-gnome-base/librsvg link-libunwind # 23 September
-# gnome-base/librsvg: has undefined references to libunwind
-media-gfx/imagemagick link-libunwind # 5 October

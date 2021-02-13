@@ -1,2 +1,0 @@
-# Uses gcc instead of clang regardless
-x11-base/xorg-server gcc-default
