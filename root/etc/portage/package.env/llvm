@@ -1,0 +1,2 @@
+# Fails to recompile w/ LTO
+sys-devel/llvm:11 clang-O3

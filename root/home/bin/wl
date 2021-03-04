@@ -1,7 +1,14 @@
 #!/bin/sh
 
 # Set Environment variables
-export SDL_VIDEODRIVER=wayland
+XDG_SESSION_TYPE=wayland
+SDL_VIDEODRIVER=wayland
+export XDG_SESSION_TYPE SDL_VIDEODRIVER
+
+# Autostart
+{
+	syncthing -no-browser &
+} &
 
 # Pick Wayland Compositor
 case $1 in

@@ -1,4 +1,5 @@
 sys-devel/clang
+sys-devel/clang-common
 sys-devel/clang-runtime
 sys-devel/lld
 sys-devel/llvm

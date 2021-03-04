@@ -9,7 +9,9 @@ media-fonts/ibm-plex
 media-fonts/noto
 media-fonts/noto-emoji
 media-sound/alsa-utils
+net-im/discord-bin
 sys-apps/bubblewrap
 sys-apps/pciutils
 sys-fs/fuse:0
+www-client/firefox-bin
 x11-misc/xkeyboard-config

@@ -1,0 +1,12 @@
+diff --git a/proc/escape.c b/proc/escape.c
+index 2e8fb7d..321254a 100644
+--- a/proc/escape.c
++++ b/proc/escape.c
+@@ -24,6 +24,7 @@
+ #include "procps.h"
+ #include "escape.h"
+ #include "readproc.h"
++#include "nls.h"
+ 
+ #if (__GNU_LIBRARY__ >= 6) && (!defined(__UCLIBC__) || defined(__UCLIBC_HAS_WCHAR__))
+ # include <wchar.h>

@@ -1,2 +1,2 @@
 # Using sys-libs/llvm-libunwind instead
-sys-libs/libunwind-0
+sys-libs/libunwind-9999

@@ -1,0 +1,2 @@
+media-libs/gegl clang-O3
+media-gfx/gimp clang-O3 clang-gnu_linux

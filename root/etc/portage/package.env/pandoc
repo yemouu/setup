@@ -1,0 +1,3 @@
+dev-lang/ghc gcc-optimized
+dev-haskell/* gcc-optimized
+app-text/pandoc gcc-optimized

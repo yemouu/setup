@@ -12,13 +12,12 @@ window#waybar {
   color: @fg-color;
 }
 
-#custom-randomtext, #custom-loadaverage, #memory, #pulseaudio, #clock, #tray {
+#custom-randomtext, #custom-loadaverage, #memory, #custom-ds4-battery, #pulseaudio, #clock, #tray {
   padding: 0 8px;
   margin: 0 8px;
 }
 
 #custom-randomtext {
-  margin-left: 16px;
   color: @color1;
 }
 
@@ -50,14 +49,14 @@ window#waybar {
   padding: 0 4px;
 }
 
+#custom-ds4-battery {
+  color: @color4;
+}
+
 #pulseaudio {
   color: @color5;
 }
 
 #clock {
   color: @color6;
-}
-
-#tray {
-  margin-right: 16px;
 }

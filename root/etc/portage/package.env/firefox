@@ -1,1 +1,6 @@
 gnome-base/librsvg link-libunwind
+media-libs/dav1d clang-O3
+media-libs/libaom clang-O3
+media-libs/libpng clang-O3
+media-libs/libvpx clang-O3
+media-libs/x264 clang-O3

@@ -1,15 +1,18 @@
 font=monospace:size=10
-dpi-aware=yes
-pad=8x8
+dpi-aware=no
+pad=8x8 center
 initial-window-size-chars=120x36
 
 [scrollback]
 lines=2000
-indicator-position=none
+indicator-position=relative
 
 [cursor]
 style=bar
-color={bg_color} {fg_color}
+blink=yes
+
+[mouse]
+hide-when-typing=yes
 
 [colors]
 background={bg_color}
@@ -30,14 +33,13 @@ bright4={color12}
 bright5={color13}
 bright6={color14}
 bright7={color15}
-# selection-foreground=<inverse foreground/background>
-# selection-background=<inverse foreground/background>
+alpha=0.85
 
 [csd]
 preferred=client
 size=32
-color=ff{fg_color}
+color=ff{color8}
 button-width=32
-button-minimize-color={color4}
-button-maximize-color={color2}
-button-close-color={color1}
+button-minimize-color=ff{color3}
+button-maximize-color=ff{color2}
+button-close-color=ff{color1}

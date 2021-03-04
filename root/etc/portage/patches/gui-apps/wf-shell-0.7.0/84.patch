@@ -1,0 +1,36 @@
+From 4ba9eb4b62fee0ad23fc016eba1b5968603df2d0 Mon Sep 17 00:00:00 2001
+From: yemou <meeyou@tuta.io>
+Date: Sun, 28 Feb 2021 05:01:10 +0000
+Subject: [PATCH] Add XDG_CONFIG_HOME support
+
+Signed-off-by: yemou <meeyou@tuta.io>
+---
+ src/util/wf-shell-app.cpp | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
+
+diff --git a/src/util/wf-shell-app.cpp b/src/util/wf-shell-app.cpp
+index 595aca2..9248fca 100644
+--- a/src/util/wf-shell-app.cpp
++++ b/src/util/wf-shell-app.cpp
+@@ -10,9 +10,18 @@
+ 
+ std::string WayfireShellApp::get_config_file()
+ {
+-    std::string home_dir = getenv("HOME");
+-    std::string config_file = home_dir + "/.config/wf-shell.ini";
+-    return config_file;
++    std::string config_dir;
++
++    char* config_home = getenv("XDG_CONFIG_HOME");
++    if (config_home == NULL)
++    {
++        config_dir = std::string(getenv("HOME")) + "/.config";
++    } else
++    {
++        config_dir = std::string(config_home);
++    }
++
++    return config_dir + "/wf-shell.ini";
+ }
+ 
+ #define INOT_BUF_SIZE (1024 * sizeof(inotify_event))

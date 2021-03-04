@@ -1,0 +1,3 @@
+media-gfx/sam2p gcc-optimized
+app-text/ghostscript-gpl clang-O3
+app-text/texlive-core clang-O3 link-libunwind

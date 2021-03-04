@@ -1,1 +1,3 @@
+dev-lang/orc clang-O3
 media-libs/libsndfile clang-O3
+media-libs/opus clang-O3

@@ -1,0 +1,21 @@
+diff --git a/w.c b/w.c
+index 9d07ac9..d2d5615 100644
+--- a/w.c
++++ b/w.c
+@@ -55,11 +55,12 @@
+ #include <termios.h>
+ #include <time.h>
+ #include <unistd.h>
+-#ifdef HAVE_UTMPX_H
+-#	include <utmpx.h>
+-#else
++// MUSL's utmpx doesn't have __UT_HOSTSIZE
++//#ifdef HAVE_UTMPX_H
++//#	include <utmpx.h>
++//#else
+ #	include <utmp.h>
+-#endif
++//#endif
+ #include <arpa/inet.h>
+ 
+ static int ignoreuser = 0;	/* for '-u' */

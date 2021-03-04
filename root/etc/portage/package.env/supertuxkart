@@ -1,0 +1,3 @@
+media-libs/openal clang-O3
+media-libs/glew clang-O3
+#games-action/supertuxkart clang-LTO

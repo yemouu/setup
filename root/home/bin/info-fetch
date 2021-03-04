@@ -42,16 +42,14 @@ pretty_uptime="$dout$hout$mout$sout"
 
 # Calculate package count (Gentoo)
 pkg_count=0
-for _ in /var/db/pkg/*/*
-do
-	pkg_count=$((pkg_count+1))
-done
+set -- /var/db/pkg/*/*
+pkg_count=$#
 
 # Color Showcase
 for i in 0 1 2 3 4 5 6 7
 do
-	normal_colors="$normal_colors\033[4${i}m\033[3${i}mee"
-	bright_colors="$bright_colors\033[10${i}m\033[9${i}mee"
+	normal_colors="$normal_colors\033[4${i}m\033[3${i}m  "
+	bright_colors="$bright_colors\033[10${i}m\033[9${i}m  "
 done
 
 # Colors and Formatting

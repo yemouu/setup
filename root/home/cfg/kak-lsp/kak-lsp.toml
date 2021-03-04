@@ -21,3 +21,8 @@ offset_encoding = "utf-8"
 filetypes = ["c", "cpp"]
 roots = ["compile_commands.json", ".clangd"]
 command = "clangd"
+
+[language.latex]
+filetypes = ["latex"]
+roots = [".git"]
+command = "texlab"
